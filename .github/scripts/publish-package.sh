@@ -18,15 +18,15 @@ ssh-keyscan github.com >> $HOME/.ssh/known_hosts
 echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_rsa
 chmod 400 $HOME/.ssh/id_rsa
 
-git config --global user.email "gitbot@carucci.org"
-git config --global user.name "CRCBot"
+git config --global user.email "gitbot@learnn.com"
+git config --global user.name "NNBot"
 
-cd ./packages/desio
+cd ./packages/designn
 pnpm version --no-git-tag-version --new-version $VERSION
 
 git add .
 git commit -m "v$VERSION"
-$(git push $DRY_RUN_FLAG origin HEAD:main)
+$(git push $DRY_RUN_FLAG origin HEAD:master)
  
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> $HOME/.npmrc
 eval "pnpm publish $DRY_RUN_FLAG --git-checks false"
