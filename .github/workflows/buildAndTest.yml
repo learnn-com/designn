@@ -1,7 +1,7 @@
 name: CI
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ['master']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -9,42 +9,42 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-        - name: Install Node.js
-          uses: actions/setup-node@v3
-          with:
-            node-version: 16
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
-        - uses: pnpm/action-setup@v2.2.4
-          name: Install pnpm
-          id: pnpm-install
-          with:
-            version: 7
-            run_install: false
+      - uses: pnpm/action-setup@v2.2.4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
 
-        # - name: Get pnpm store directory
-        #   id: pnpm-cache
-        #   run: |
-        #     echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      # - name: Get pnpm store directory
+      #   id: pnpm-cache
+      #   run: |
+      #     echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
-        # - uses: actions/cache@v3
-        #   name: Setup pnpm cache
-        #   with:
-        #     path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-        #     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        #     restore-keys: |
-        #       ${{ runner.os }}-pnpm-store-
+      # - uses: actions/cache@v3
+      #   name: Setup pnpm cache
+      #   with:
+      #     path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+      #     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pnpm-store-
 
-        - name: Install dependencies
-          run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-        - name: build projects
-          run: pnpm build
+      - name: build projects
+        run: pnpm build
 
-        - name: run tests
-          run: pnpm test
+      - name: run tests
+        run: pnpm test
