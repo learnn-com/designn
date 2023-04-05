@@ -19,7 +19,8 @@
     "@pnpm/merge-lockfile-changes": "4.0.3",
     "husky": "8.0.3",
     "turbo": "1.6.3",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "@learnn/nn-config-prettier": "^1.0.1"
   },
   "engines": {
     "pnpm": ">=7",
@@ -37,5 +38,6 @@
         "@types/react": "18"
       }
     }
-  }
+  },
+  "prettier": "@learnn/nn-config-prettier"
 }

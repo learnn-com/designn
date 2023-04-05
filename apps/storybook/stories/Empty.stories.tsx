@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
   title: 'Components/Empty',
-  component: Empty
+  component: Empty,
 } as ComponentMeta<typeof Empty>
 
 const Template: ComponentStory<typeof Empty> = () => <Empty />

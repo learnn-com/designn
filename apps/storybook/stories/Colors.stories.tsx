@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
   title: 'Tokens/Colors',
-  component: ColorPalette
+  component: ColorPalette,
 } as ComponentMeta<typeof ColorPalette>
 
 const defaultTheme = createTheme()
@@ -17,7 +17,7 @@ const ThemeColors = ({ theme }: ThemeColorsArgs) => {
     { name: 'system info', palette: theme.color.feedback.info },
     { name: 'feedback success', palette: theme.color.feedback.success },
     { name: 'feedback warning', palette: theme.color.feedback.warning },
-    { name: 'feedback danger', palette: theme.color.feedback.danger }
+    { name: 'feedback danger', palette: theme.color.feedback.danger },
   ]
   return (
     <div>
@@ -34,10 +34,12 @@ const ThemeColors = ({ theme }: ThemeColorsArgs) => {
   )
 }
 
-const Template: ComponentStory<typeof ThemeColors> = (args: ThemeColorsArgs) => <ThemeColors {...args} />
+const Template: ComponentStory<typeof ThemeColors> = (args: ThemeColorsArgs) => (
+  <ThemeColors {...args} />
+)
 
 export const Default = Template.bind({})
 Default.storyName = 'Default theme'
 Default.args = {
-  theme: defaultTheme
+  theme: defaultTheme,
 } as ThemeColorsArgs
