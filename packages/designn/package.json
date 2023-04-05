@@ -1,0 +1,64 @@
+{
+  "name": "@learnn/designn",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "react",
+    "components",
+    "component library",
+    "design system"
+  ],
+  "scripts": {
+    "build": "tsup --minify --clean",
+    "clean": "rm -rf .turbo node_modules build",
+    "prettier-check": "prettier --parser=typescript \"src/**/*.{ts,tsx}\" --check",
+    "prettier-write": "prettier --parser=typescript \"src/**/*.{ts,tsx}\" --write",
+    "eslint-check": "eslint \"src/**/*.{js,ts,tsx}\"",
+    "typecheck": "tsc",
+    "prepublish": "pnpm test && pnpm build",
+    "test": "jest",
+    "lint-staged": "lint-staged",
+    "start": "tsup --watch"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "styled-components": "5.3.9"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "7.20.2",
+    "@babel/preset-react": "7.18.6",
+    "@babel/preset-typescript": "7.21.0",
+    "@learnn/tsconfig": "*",
+    "@testing-library/dom": "8.20.0",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/react-hooks": "8.0.1",
+    "@testing-library/user-event": "14.4.3",
+    "@types/jest": "29.4.0",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "@types/styled-components": "5.1.26",
+    "@types/testing-library__jest-dom": "5.14.5",
+    "babel-jest": "29.5.0",
+    "eslint": "8.35.0",
+    "eslint-config-react-app": "7.0.1",
+    "eslint-plugin-sort-export-all": "1.2.2",
+    "jest": "29.5.0",
+    "jest-environment-jsdom": "29.5.0",
+    "lint-staged": "13.1.2",
+    "prettier": "2.8.4",
+    "ts-jest": "29.0.5",
+    "tsup": "6.5.0",
+    "typescript": "4.9.5"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0"
+  }
+}
