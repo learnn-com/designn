@@ -39,6 +39,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.5",
-    "@learnn/tsconfig": "*"
+    "@learnn/nn-config-ts": "^0.0.1"
   }
 }

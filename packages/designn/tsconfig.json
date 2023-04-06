@@ -1,4 +1,4 @@
 {
-  "extends": "@learnn/tsconfig/library.json",
+  "extends": "@learnn/nn-config-ts/library.json",
   "include": ["src/**/*.ts*"]
 }

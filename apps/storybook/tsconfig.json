@@ -1,5 +1,5 @@
 {
-  "extends": "@learnn/tsconfig/library.json",
+  "extends": "@learnn/nn-config-ts/library.json",
   "include": ["stories/**/*", ".storybook/*.ts"],
   "compilerOptions": {
     "module": "commonjs",
