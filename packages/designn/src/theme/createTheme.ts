@@ -1,7 +1,7 @@
 import { defaultTheme } from '.'
-import { createColors } from './createColors'
-import { createResponsive } from './createResponsive'
-import { createTypography } from './createTypography'
+import { createColors } from './tokens/createColors'
+import { createResponsive } from './tokens/createResponsive'
+import { createTypography } from './tokens/createTypography'
 import { ThemeOptions, Theme } from './Theme'
 
 const defaultDisableOpacity = 0.3

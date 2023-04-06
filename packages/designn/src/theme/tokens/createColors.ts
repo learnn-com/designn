@@ -17,6 +17,11 @@ const defaultInfoColor = '#0FADFC'
 const defaultWarningColor = '#FFBB35'
 const defaultDangerColor = '#FF4A26'
 
+
+const colors = {
+  white: ''
+}
+
 const defaultMutedColor = '#767676'
 
 export function createColors(brandColors?: BrandColors): Colors {
@@ -24,7 +29,9 @@ export function createColors(brandColors?: BrandColors): Colors {
   const gray = calculatePalette(defaultNeutralColor) //TODO: adjust color based on primary brand
   return {
     brand: {
-      primary: calculatePalette(brandColor[0]),
+      primary: {
+        background: colors.white
+      },
       accent: calculatePalette(brandColor[1])
     },
     gray,
