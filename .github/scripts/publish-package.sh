@@ -29,4 +29,4 @@ git commit -m "v$VERSION"
 $(git push $DRY_RUN_FLAG origin HEAD:master)
  
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> $HOME/.npmrc
-eval "pnpm publish $DRY_RUN_FLAG --git-checks false"
+eval "pnpm publish $DRY_RUN_FLAG --access=public --git-checks false"
