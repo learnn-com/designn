@@ -1,9 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
+import { Theme } from './Theme'
 
 export const GlobalStyle = createGlobalStyle`
     body {
-        font-family: ${({ theme }) => theme.typography.family};
-        font-size: ${({ theme }) => theme.typography.baseFontSize}px;
+        font-family: ${({ theme }: { theme: Theme }) => theme.typography['font-family-sans']};
+        font-size: ${({ theme }: { theme: Theme }) => theme.typography['font-size-base']};
         min-width:100vw;
         min-height:100vh;
         margin:0;

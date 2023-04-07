@@ -1,6 +1,7 @@
 type FontFamilyAlias = 'sans' | 'mono';
 
 export type FontSizeScale =
+  | 'base'
   | '75'
   | '100'
   | '200'
@@ -27,6 +28,7 @@ export type Typography = {
 export const typography: Typography = {
   'font-family-sans': "-apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif",
   'font-family-mono': "ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace",
+  'font-size-base': '12px',
   'font-size-75': '12px',
   'font-size-100': '14px',
   'font-size-200': '16px',
