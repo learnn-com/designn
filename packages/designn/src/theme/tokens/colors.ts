@@ -1,12 +1,12 @@
 import { brandColors, Color } from '../../utils/colors'
 
 export type ColorBackgroundAlias =
-  | 'bg-app'
+  | 'bg_app'
 export type ColorBorderAlias =
   | 'border'
 export type ColorTextAlias =
   | 'text'
-  | 'text-primary'
+  | 'text_primary'
 export type ColorTokenName =
   | ColorBackgroundAlias
   | ColorBorderAlias
@@ -17,9 +17,9 @@ export type Colors = {
 }
 
 export const colors: Colors = {
-  'bg-app': brandColors.backgroundColor,
-  'border': brandColors.brand.primary,
-  'text': brandColors.brand.accent,
-  'text-primary': brandColors.brand.accent
+  bg_app: brandColors.backgroundColor,
+  border: brandColors.brand.primary,
+  text: brandColors.brand.accent,
+  text_primary: brandColors.brand.accent
 
 }

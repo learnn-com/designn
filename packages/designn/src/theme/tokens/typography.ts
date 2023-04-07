@@ -1,4 +1,9 @@
-type FontFamilyAlias = 'sans' | 'mono';
+type FontFamilyAlias =
+  | 'light'
+  | 'regular'
+  | 'semi_bold'
+  | 'bold'
+  | 'black'
 
 export type FontSizeScale =
   | 'base'
@@ -16,36 +21,39 @@ export type FontLineHeightScale = '1' | '2' | '3' | '4' | '5' | '6' | '7';
 export type FontWeightAlias = 'regular' | 'medium' | 'semibold' | 'bold';
 
 export type TypographyKeys =
-  | `font-family-${FontFamilyAlias}`
-  | `font-size-${FontSizeScale}`
-  | `font-weight-${FontWeightAlias}`
-  | `font-line-height-${FontLineHeightScale}`;
+  | `font_family_${FontFamilyAlias}`
+  | `font_size_${FontSizeScale}`
+  | `font_weight_${FontWeightAlias}`
+  | `font_line_height_${FontLineHeightScale}`;
 
 export type Typography = {
   [Key in TypographyKeys]: string;
 };
 
 export const typography: Typography = {
-  'font-family-sans': "-apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif",
-  'font-family-mono': "ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace",
-  'font-size-base': '12px',
-  'font-size-75': '12px',
-  'font-size-100': '14px',
-  'font-size-200': '16px',
-  'font-size-300': '20px',
-  'font-size-400': '24px',
-  'font-size-500': '28px',
-  'font-size-600': '32px',
-  'font-size-700': '40px',
-  'font-weight-regular': '400',
-  'font-weight-medium': '500',
-  'font-weight-semibold': '600',
-  'font-weight-bold': '700',
-  'font-line-height-1': '16px',
-  'font-line-height-2': '20px',
-  'font-line-height-3': '24px',
-  'font-line-height-4': '28px',
-  'font-line-height-5': '32px',
-  'font-line-height-6': '40px',
-  'font-line-height-7': '48px',
+  font_family_light: "MessinaSans Light, Roboto",
+  font_family_regular: 'MessinaSans Regular, Roboto',
+  font_family_semi_bold: "MessinaSans SemiBold, Roboto",
+  font_family_bold: "MessinaSans Bold, Roboto",
+  font_family_black: "MessinaSans Black, Roboto",
+  font_size_base: '12px',
+  font_size_75: '12px',
+  font_size_100: '14px',
+  font_size_200: '16px',
+  font_size_300: '20px',
+  font_size_400: '24px',
+  font_size_500: '28px',
+  font_size_600: '32px',
+  font_size_700: '40px',
+  font_weight_regular: '400',
+  font_weight_medium: '500',
+  font_weight_semibold: '600',
+  font_weight_bold: '700',
+  font_line_height_1: '16px',
+  font_line_height_2: '20px',
+  font_line_height_3: '24px',
+  font_line_height_4: '28px',
+  font_line_height_5: '32px',
+  font_line_height_6: '40px',
+  font_line_height_7: '48px',
 };

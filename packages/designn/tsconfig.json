@@ -1,4 +1,7 @@
 {
   "extends": "@learnn/nn-config-ts/library.json",
-  "include": ["src/**/*.ts*"]
+  "include": ["src/**/*.ts*", "src/**/*.woff*"],
+  "compilerOptions": {
+
+  }
 }
