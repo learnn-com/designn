@@ -1,10 +1,9 @@
 import { CSSProp } from 'styled-components'
-import { BrandColors, Colors } from './createColors'
-import { Responsive } from './createResponsive'
-import { Typography } from './createTypography'
+import { Colors } from './tokens/createColors'
+import { Responsive } from './tokens/createResponsive';
+import { Typography } from './tokens/createTypography';
 
-export type ThemeOptions = { name: string; fontFamily?: string; baseFontSize?: number; brandColors?: BrandColors }
-export type ResponsiveBreakpoint = `(max-width: ${number}px)`
+export type ThemeOptions = { name: string; fontFamily?: string; baseFontSize?: number }
 
 export interface Theme {
   name: string

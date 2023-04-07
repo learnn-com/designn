@@ -1,47 +1,26 @@
-import { Hexcode, ColorRange, calculatePalette } from '../utils/colors'
+import { brandColors, Color } from '../../utils/colors'
 
-export type BrandColors = [Hexcode, Hexcode]
+export type ColorBackgroundAlias =
+  | 'bg-app'
+export type ColorBorderAlias =
+  | 'border'
+export type ColorTextAlias =
+  | 'text'
+  | 'text-primary'
+export type ColorTokenName =
+  | ColorBackgroundAlias
+  | ColorBorderAlias
+  | ColorTextAlias
 
 export type Colors = {
-  brand: { primary: ColorRange; accent: ColorRange }
-  gray: ColorRange
-  feedback: { success: ColorRange; info: ColorRange; warning: ColorRange; danger: ColorRange }
-  clear: Hexcode
-  muted: Hexcode
+  [TokenName in ColorTokenName]: Color;
 }
 
-const defaultBrandColors: BrandColors = ['#3366FF', '#fac748']
-const defaultNeutralColor = '#6a707f'
-const defaultSuccessColor = '#67BC1C'
-const defaultInfoColor = '#0FADFC'
-const defaultWarningColor = '#FFBB35'
-const defaultDangerColor = '#FF4A26'
-
-
-const colors = {
-  white: ''
-}
-
-const defaultMutedColor = '#767676'
-
-export function createColors(brandColors?: BrandColors): Colors {
-  const brandColor: BrandColors = brandColors ?? defaultBrandColors
-  const gray = calculatePalette(defaultNeutralColor) //TODO: adjust color based on primary brand
+export function createColors(): Colors {
   return {
-    brand: {
-      primary: {
-        background: colors.white
-      },
-      accent: calculatePalette(brandColor[1])
-    },
-    gray,
-    feedback: {
-      success: calculatePalette(defaultSuccessColor), //TODO: adjust color based on primary brand
-      info: calculatePalette(defaultInfoColor), //TODO: adjust color based on primary brand
-      warning: calculatePalette(defaultWarningColor), //TODO: adjust color based on primary brand
-      danger: calculatePalette(defaultDangerColor) //TODO: adjust color based on primary brand
-    },
-    muted: defaultMutedColor, //https://artincontext.org/muted-colors/
-    clear: 'transparent'
+    'bg-app': brandColors.backgroundColor,
+    'border': brandColors.brand.primary,
+    'text': brandColors.brand.accent,
+    'text-primary': brandColors.brand.accent,
   }
 }

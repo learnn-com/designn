@@ -11,7 +11,7 @@ export function createTheme(options?: ThemeOptions): Theme {
     return defaultTheme
   }
   const responsive = createResponsive()
-  const color = createColors(options.brandColors)
+  const color = createColors()
   return {
     name: options.name,
     color,
