@@ -1,5 +1,2 @@
+export * from './Heading'
 export * from './AppShell'
-export * from './Empty'
-export * from './Title'
-export * from './Text'
-export * from './ColorPalette'

@@ -1,7 +1,7 @@
-import { ThemeProvider } from 'styled-components'
-import { defaultTheme, GlobalStyle, Theme } from '../theme'
+import { DefaultTheme, ThemeProvider } from 'styled-components'
+import { defaultTheme, GlobalStyle } from '../theme'
 
-export type AppShellProps = { theme?: Theme; children: NonNullable<React.ReactNode> }
+export type AppShellProps = { theme?: DefaultTheme; children: NonNullable<React.ReactNode> }
 
 export const AppShell = ({ theme, children }: AppShellProps) => {
   return (
