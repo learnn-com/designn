@@ -1,6 +1,6 @@
 import { defaultTheme } from '.'
 import { createColors } from './tokens/createColors'
-import { createResponsive } from './tokens/createResponsive'
+import { responsive } from './tokens/responsive'
 import { createTypography } from './tokens/createTypography'
 import { ThemeOptions, Theme } from './Theme'
 
@@ -10,7 +10,7 @@ export function createTheme(options?: ThemeOptions): Theme {
   if (!options) {
     return defaultTheme
   }
-  const responsive = createResponsive()
+
   const color = createColors(options.brandColors)
   return {
     name: options.name,
@@ -20,8 +20,8 @@ export function createTheme(options?: ThemeOptions): Theme {
     pattern: {
       disabled: {
         opacity: defaultDisableOpacity,
-        cursor: 'normal'
-      }
-    } 
+        cursor: 'normal',
+      },
+    },
   }
 }
