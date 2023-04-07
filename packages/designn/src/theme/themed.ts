@@ -1,5 +1,4 @@
 import styled, { ThemedStyledInterface } from 'styled-components'
-import { defaultTheme } from '.'
 import domElements from './domElements'
 import { Theme } from './Theme'
 
@@ -8,7 +7,7 @@ type ElementTag = keyof JSX.IntrinsicElements
 function applyDefaultTheme({ theme = {}, ...props }) {
   return {
     ...props,
-    theme: Object.keys(theme).length === 0 ? defaultTheme : theme
+    theme
   }
 }
 function createThemed(): ThemedStyledInterface<Theme> {

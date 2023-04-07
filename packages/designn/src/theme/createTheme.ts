@@ -1,20 +1,15 @@
-import { defaultTheme } from '.'
 import { colors } from './tokens/colors'
 import { responsive } from './tokens/responsive'
 import { spacing } from './tokens/spacing'
-import { createTypography } from './tokens/createTypography'
-import { ThemeOptions, Theme } from './Theme'
+import { Theme } from './Theme'
+import { typography } from './tokens/typography'
 
 const defaultDisableOpacity = 0.3
 
-export function createTheme(options?: ThemeOptions): Theme {
-  if (!options) {
-    return defaultTheme
-  }
+export function createTheme(): Theme {
   return {
-    name: options.name,
     colors,
-    typography: createTypography(responsive, options.fontFamily, options.baseFontSize),
+    typography,
     responsive,
     spacing,
     pattern: {

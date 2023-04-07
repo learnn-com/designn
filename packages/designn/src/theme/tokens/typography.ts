@@ -1,0 +1,49 @@
+type FontFamilyAlias = 'sans' | 'mono';
+
+export type FontSizeScale =
+  | '75'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700';
+
+export type FontLineHeightScale = '1' | '2' | '3' | '4' | '5' | '6' | '7';
+
+export type FontWeightAlias = 'regular' | 'medium' | 'semibold' | 'bold';
+
+export type TypographyKeys =
+  | `font-family-${FontFamilyAlias}`
+  | `font-size-${FontSizeScale}`
+  | `font-weight-${FontWeightAlias}`
+  | `font-line-height-${FontLineHeightScale}`;
+
+export type Typography = {
+  [Key in TypographyKeys]: string;
+};
+
+export const typography: Typography = {
+  'font-family-sans': "-apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif",
+  'font-family-mono': "ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace",
+  'font-size-75': '12px',
+  'font-size-100': '14px',
+  'font-size-200': '16px',
+  'font-size-300': '20px',
+  'font-size-400': '24px',
+  'font-size-500': '28px',
+  'font-size-600': '32px',
+  'font-size-700': '40px',
+  'font-weight-regular': '400',
+  'font-weight-medium': '500',
+  'font-weight-semibold': '600',
+  'font-weight-bold': '700',
+  'font-line-height-1': '16px',
+  'font-line-height-2': '20px',
+  'font-line-height-3': '24px',
+  'font-line-height-4': '28px',
+  'font-line-height-5': '32px',
+  'font-line-height-6': '40px',
+  'font-line-height-7': '48px',
+};
