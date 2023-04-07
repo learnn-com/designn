@@ -2,6 +2,7 @@ import { CSSProp } from 'styled-components'
 import { Colors } from './tokens/colors'
 import { Responsive } from './tokens/responsive'
 import { Spacing } from './tokens/spacing'
+import { Borders } from './tokens/borders'
 import { Typography } from './tokens/createTypography'
 
 export type ThemeOptions = { name: string; fontFamily?: string; baseFontSize?: number }
@@ -12,5 +13,6 @@ export interface Theme {
   typography: Typography
   responsive: Responsive
   spacing: Spacing
+  borders: Borders
   pattern: { disabled: CSSProp }
 }

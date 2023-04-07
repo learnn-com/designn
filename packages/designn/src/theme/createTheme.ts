@@ -2,6 +2,7 @@ import { defaultTheme } from '.'
 import { colors } from './tokens/colors'
 import { responsive } from './tokens/responsive'
 import { spacing } from './tokens/spacing'
+import { borders } from './tokens/borders'
 import { createTypography } from './tokens/createTypography'
 import { ThemeOptions, Theme } from './Theme'
 
@@ -17,6 +18,7 @@ export function createTheme(options?: ThemeOptions): Theme {
     typography: createTypography(responsive, options.fontFamily, options.baseFontSize),
     responsive,
     spacing,
+    borders,
     pattern: {
       disabled: {
         opacity: defaultDisableOpacity,
