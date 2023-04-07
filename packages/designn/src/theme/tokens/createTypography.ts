@@ -1,5 +1,5 @@
 import { CSSProp } from 'styled-components'
-import { Responsive } from './createResponsive'
+import { Responsive } from './responsive'
 // import { Responsive } from './createResponsive'
 
 type Scale = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
@@ -38,20 +38,27 @@ export type Typography = {
 const ratios = {
   tablet: 1.362,
   large: 1.2575,
-  small: 1.208
+  small: 1.208,
 }
 
-const responsiveFontSize: (scale: number, responsive: Responsive) => CSSProp = (scale, responsive) => `
+const responsiveFontSize: (scale: number, responsive: Responsive) => CSSProp = (
+  scale,
+  responsive,
+) => `
   font-size: ${fontModularSize(scale, ratios.small)};
-  ${responsive.large} {
+  ${responsive.medium_up} {
     font-size: ${fontModularSize(scale, ratios.large)};
   }
-  ${responsive.tablet} {
+  ${responsive.large_up} {
     font-size: ${fontModularSize(scale, ratios.tablet)};
   }
 `
 
-export function createTypography(responsive: Responsive, fontFamily?: string, baseFontSize?: number): Typography {
+export function createTypography(
+  responsive: Responsive,
+  fontFamily?: string,
+  baseFontSize?: number,
+): Typography {
   const family = fontFamily ?? defaultFontFamily
   const fontSize = baseFontSize ?? defaultBaseFontSize
   return {
@@ -141,7 +148,7 @@ export function createTypography(responsive: Responsive, fontFamily?: string, ba
       medium: 500,
       semibold: 600,
       bold: 700,
-      black: 900
-    }
+      black: 900,
+    },
   }
 }

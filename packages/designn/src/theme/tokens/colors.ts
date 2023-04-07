@@ -16,11 +16,10 @@ export type Colors = {
   [TokenName in ColorTokenName]: Color;
 }
 
-export function createColors(): Colors {
-  return {
-    'bg-app': brandColors.backgroundColor,
-    'border': brandColors.brand.primary,
-    'text': brandColors.brand.accent,
-    'text-primary': brandColors.brand.accent,
-  }
+export const colors: Colors = {
+  'bg-app': brandColors.backgroundColor,
+  'border': brandColors.brand.primary,
+  'text': brandColors.brand.accent,
+  'text-primary': brandColors.brand.accent
+
 }
