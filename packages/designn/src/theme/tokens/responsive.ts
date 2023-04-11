@@ -2,15 +2,16 @@ export type ResponsiveBreakpoint =
   | `@media only screen and (max-width: ${number}px)`
   | `@media only screen and (min-width: ${number}px)`
 
+export type ResponsiveDirections = 'up' | 'down'
+
+export type ResponsiveKeys =
+  | `small_${ResponsiveDirections}`
+  | `medium_${ResponsiveDirections}`
+  | `large_${ResponsiveDirections}`
+  | `xlarge_${ResponsiveDirections}`
+
 export type Responsive = {
-  small_up: ResponsiveBreakpoint
-  small_down: ResponsiveBreakpoint
-  medium_up: ResponsiveBreakpoint
-  medium_down: ResponsiveBreakpoint
-  large_up: ResponsiveBreakpoint
-  large_down: ResponsiveBreakpoint
-  xlarge_up: ResponsiveBreakpoint
-  xlarge_down: ResponsiveBreakpoint
+  [Key in ResponsiveKeys]: ResponsiveBreakpoint
 }
 
 export type Breakpoints = {

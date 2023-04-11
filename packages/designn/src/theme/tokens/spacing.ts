@@ -1,24 +1,29 @@
-export type Spacing = {
-  space_0: SpaceUnit
-  space_025: SpaceUnit
-  space_05: SpaceUnit
-  space_1: SpaceUnit
-  space_2: SpaceUnit
-  space_3: SpaceUnit
-  space_4: SpaceUnit
-  space_5: SpaceUnit
-  space_6: SpaceUnit
-  space_8: SpaceUnit
-  space_10: SpaceUnit
-  space_12: SpaceUnit
-  space_16: SpaceUnit
-  space_20: SpaceUnit
-  space_24: SpaceUnit
-  space_28: SpaceUnit
-  space_32: SpaceUnit
-}
+export type SpacingScale =
+  | '0'
+  | '025'
+  | '05'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '8'
+  | '10'
+  | '12'
+  | '16'
+  | '20'
+  | '24'
+  | '28'
+  | '32'
 
 type SpaceUnit = `${number}rem`
+
+export type SpacingKeys = `space_${SpacingScale}`
+
+export type Spacing = {
+  [Key in SpacingKeys]: SpaceUnit
+}
 
 export const spacing: Spacing = {
   space_0: '0rem',
