@@ -1,36 +1,39 @@
 import { createGlobalStyle } from 'styled-components'
-import MessinaSansLight from "../fonts/MessinaSans-Light.woff2";
-import MessinaSansRegular from "../fonts/MessinaSans-Regular.woff2";
-import MessinaSansSemiBold from "../fonts/MessinaSans-SemiBold.woff2";
-import MessinaSansBold from "../fonts/MessinaSans-Bold.woff2";
-import MessinaSansBlack from "../fonts/MessinaSans-Black.woff2";
-
-
+import MessinaSansLight from '../fonts/MessinaSans-Light.woff2'
+import MessinaSansRegular from '../fonts/MessinaSans-Regular.woff2'
+import MessinaSansSemiBold from '../fonts/MessinaSans-SemiBold.woff2'
+import MessinaSansBold from '../fonts/MessinaSans-Bold.woff2'
+import MessinaSansBlack from '../fonts/MessinaSans-Black.woff2'
 
 export const GlobalStyle = createGlobalStyle`
     @font-face {
-      font-family: 'MessinaSans Light';
+      font-family: 'Messina Sans';
       src: url(${MessinaSansLight}) format('woff2')
+      font-weight: 300;
     }
     @font-face {
-      font-family: 'MessinaSans Regular';
+      font-family: 'Messina Sans';
       src: url(${MessinaSansRegular}) format('woff2')
+      font-weight: 400;
     }
     @font-face {
-      font-family: 'MessinaSans SemiBold';
+      font-family: 'Messina Sans';
       src: url(${MessinaSansSemiBold}) format('woff2')
+      font-weight: 600;
     }
     @font-face {
-      font-family: 'MessinaSans Bold';
+      font-family: 'Messina Sans';
       src: url(${MessinaSansBold}) format('woff2')
+      font-weight: 700;
     }
     @font-face {
-      font-family: 'MessinaSans Black';
+      font-family: 'Messina Sans';
       src: url(${MessinaSansBlack}) format('woff2')
+      font-weight: 800;
     }
   
     body {
-        font-family: ${({ theme }) => theme.typography.font_family_regular};
+        font-family: ${({ theme }) => theme.typography.font_family};
         font-size: ${({ theme }) => theme.typography.font_size_base};
         min-width:100vw;
         min-height:100vh;

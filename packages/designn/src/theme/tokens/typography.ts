@@ -1,13 +1,11 @@
-type FontFamilyAlias = 'light' | 'regular' | 'semi_bold' | 'bold' | 'black'
-
 export type FontSizeScale = 'base' | '75' | '100' | '200' | '300' | '400' | '500' | '600' | '700'
 
 export type FontLineHeightScale = '1' | '2' | '3' | '4' | '5' | '6' | '7'
 
-export type FontWeightAlias = 'light' | 'regular' | 'medium' | 'semibold' | 'bold' | 'black'
+export type FontWeightAlias = 'light' | 'regular' | 'semibold' | 'bold' | 'black'
 
 export type TypographyKeys =
-  | `font_family_${FontFamilyAlias}`
+  | `font_family`
   | `font_size_${FontSizeScale}`
   | `font_weight_${FontWeightAlias}`
   | `font_line_height_${FontLineHeightScale}`
@@ -17,11 +15,7 @@ export type Typography = {
 }
 
 export const typography: Typography = {
-  font_family_light: 'MessinaSans Light, Roboto',
-  font_family_regular: 'MessinaSans Regular, Roboto',
-  font_family_semi_bold: 'MessinaSans SemiBold, Roboto',
-  font_family_bold: 'MessinaSans Bold, Roboto',
-  font_family_black: 'MessinaSans Black, Roboto',
+  font_family: 'Messina Sans, sans-serif',
   font_size_base: '1rem',
   font_size_75: '0.75rem',
   font_size_100: '0.875rem',
@@ -33,7 +27,6 @@ export const typography: Typography = {
   font_size_700: '2.5rem',
   font_weight_light: '300',
   font_weight_regular: '400',
-  font_weight_medium: '500',
   font_weight_semibold: '600',
   font_weight_bold: '700',
   font_weight_black: '800',
