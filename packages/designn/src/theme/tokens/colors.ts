@@ -12,7 +12,7 @@ export type Colors = {
 export const colors: Colors = {
   bg_app: brandColors.backgroundColor,
   border: brandColors.brand.primary,
-  text: brandColors.brand.accent,
+  text: brandColors.brand.primary,
   text_dimmed: gray[500],
   text_primary: brandColors.brand.primary,
   text_error: red[500],

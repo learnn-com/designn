@@ -1,20 +1,10 @@
-import { Color } from "./types";
+import { Color } from './types'
 
-type ColorScales =
-  | '50'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900';
+type ColorScales = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
 
 type ColorScale = {
-  [Scale in ColorScales]: Color;
-};
+  [Scale in ColorScales]: Color
+}
 
 export const gray: ColorScale = {
   50: '#ffffff',
@@ -27,7 +17,7 @@ export const gray: ColorScale = {
   700: '#2E2F32',
   800: '#232427',
   900: '#090A0C',
-};
+}
 
 export const green: ColorScale = {
   50: 'rgba(240, 253, 248, 1)',
@@ -40,7 +30,7 @@ export const green: ColorScale = {
   700: 'rgba(0, 122, 92, 1)',
   800: 'rgba(18, 84, 67, 1)',
   900: 'rgba(12, 59, 47, 1)',
-};
+}
 
 export const blue: ColorScale = {
   50: 'rgba(240, 245, 253, 1)',
@@ -53,7 +43,7 @@ export const blue: ColorScale = {
   700: 'rgba(20, 73, 149, 1)',
   800: 'rgba(14, 53, 108, 1)',
   900: 'rgba(16, 41, 76, 1)',
-};
+}
 
 export const red: ColorScale = {
   50: 'rgba(254, 243, 241, 1)',
@@ -66,7 +56,7 @@ export const red: ColorScale = {
   700: 'rgba(159, 32, 10, 1)',
   800: 'rgba(115, 24, 7, 1)',
   900: 'rgba(67, 14, 4, 1)',
-};
+}
 
 export const yellow: ColorScale = {
   50: 'rgba(254, 248, 236, 1)',
@@ -79,7 +69,7 @@ export const yellow: ColorScale = {
   700: 'rgba(183, 126, 11, 1)',
   800: 'rgba(135, 92, 8, 1)',
   900: 'rgba(77, 46, 5, 1)',
-};
+}
 
 export const teal: ColorScale = {
   50: 'rgba(238, 250, 251, 1)',
@@ -92,7 +82,7 @@ export const teal: ColorScale = {
   700: 'rgba(32, 130, 141, 1)',
   800: 'rgba(23, 92, 100, 1)',
   900: 'rgba(16, 65, 71, 1)',
-};
+}
 
 export const orange: ColorScale = {
   50: 'rgba(254, 243, 236, 1)',
@@ -105,7 +95,7 @@ export const orange: ColorScale = {
   700: 'rgba(164, 76, 10, 1)',
   800: 'rgba(111, 52, 7, 1)',
   900: 'rgba(77, 36, 5, 1)',
-};
+}
 
 export const purple: ColorScale = {
   50: 'rgba(242, 237, 253, 1)',
@@ -118,8 +108,7 @@ export const purple: ColorScale = {
   700: 'rgba(67, 21, 158, 1)',
   800: 'rgba(49, 13, 120, 1)',
   900: 'rgba(36, 8, 73, 1)',
-};
-
+}
 
 type BrandColor = {
   brand: { primary: Color; accent: Color }
@@ -129,10 +118,10 @@ type BrandColor = {
 }
 export const brandColors: BrandColor = {
   brand: {
-    primary: '#19191C',
-    accent: '#ffffff'
+    primary: '#ffffff',
+    accent: '#000000',
   },
   backgroundColor: gray[900],
   muted: '#767676', //https://artincontext.org/muted-colors/
-  clear: 'transparent'
+  clear: 'transparent',
 }

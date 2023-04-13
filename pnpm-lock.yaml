@@ -36,6 +36,7 @@ importers:
       '@storybook/manager-webpack5': 6.5.16
       '@storybook/react': 6.5.16
       '@storybook/testing-library': 0.0.13
+      '@storybook/theming': 6.5.16
       '@types/node': 18.15.5
       '@types/react': ^18
       eslint: 8.35.0
@@ -62,6 +63,7 @@ importers:
       '@storybook/manager-webpack5': 6.5.16_a5ainwq6j6e77vl54wahuheooy
       '@storybook/react': 6.5.16_36eg3eltunx5ybwmoxfjsozksm
       '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
+      '@storybook/theming': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@types/node': 18.15.5
       '@types/react': 18.0.33
       eslint: 8.35.0

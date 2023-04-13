@@ -15,42 +15,49 @@ function bind(node: JSX.Element) {
 
 export const Variants = bind(
   <AppShell theme={defaultTheme}>
-    <Title key={1} variant='heading2xl'>
-      Text with heading2xl variant
-    </Title>
-    <Title key={2} variant='headingXl'>
-      Text with headingXl variant
-    </Title>
-    <Title key={3} variant='headingLg'>
-      Text with headingLg variant
-    </Title>
-    <Title key={4} variant='headingMd'>
-      Text with headingMd variant
-    </Title>
-    <Title key={5} variant='headingSm'>
-      Text with headingSm variant
-    </Title>
-    <Title key={6} variant='headingXs'>
-      Text with headingXs variant
-    </Title>
+    <Title variant='heading2xl'>Text with heading2xl variant</Title>
+    <Title variant='headingXl'>Text with headingXl variant</Title>
+    <Title variant='headingLg'>Text with headingLg variant</Title>
+    <Title variant='headingMd'>Text with headingMd variant</Title>
+    <Title variant='headingSm'>Text with headingSm variant</Title>
+    <Title variant='headingXs'>Text with headingXs variant</Title>
   </AppShell>,
 )
 
+Variants.storyName = 'With Size Variants'
+
 export const FontWeight = bind(
   <AppShell theme={defaultTheme}>
-    <Title key={1} variant='headingLg' fontWeight='black'>
+    <Title variant='headingLg' fontWeight='black'>
       {DEFAULT_TEXT}
     </Title>
-    <Title key={2} variant='headingLg' fontWeight='bold'>
+    <Title variant='headingLg' fontWeight='bold'>
       {DEFAULT_TEXT}
     </Title>
-    <Title key={3} variant='headingLg' fontWeight='semibold'>
+    <Title variant='headingLg' fontWeight='semibold'>
       {DEFAULT_TEXT}
     </Title>
-    <Title key={4} variant='headingLg' fontWeight='regular'>
+    <Title variant='headingLg' fontWeight='regular'>
       {DEFAULT_TEXT}
     </Title>
   </AppShell>,
 )
 
 FontWeight.storyName = 'With Font Weight'
+
+export const Colors = bind(
+  <AppShell theme={defaultTheme}>
+    <Title variant='headingMd'>Heading with primary color</Title>
+    <Title variant='headingMd' color='dimmed'>
+      Heading with dimmed color
+    </Title>
+    <Title variant='headingMd' color='success'>
+      Heading with success color
+    </Title>
+    <Title variant='headingMd' color='error'>
+      Heading with error color
+    </Title>
+  </AppShell>,
+)
+
+Colors.storyName = 'With Colors'
