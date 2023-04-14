@@ -23,6 +23,8 @@ export type ButtonProps = {
   iconPosition?: 'left' | 'right'
   /** Component size */
   size?: 'sm' | 'md' | 'lg'
+  /** Border type */
+  squareBorder?: boolean
 }
 
 export function Button({
@@ -35,6 +37,7 @@ export function Button({
   disabled,
   iconPosition,
   size,
+  squareBorder,
 }: ButtonProps) {
   return (
     <Component
@@ -47,6 +50,7 @@ export function Button({
       size={size}
       label={label}
       data-testid={testid}
+      squareBorder={undefinedAsFalse(squareBorder)}
     >
       {label}
       {icon && icon}
@@ -59,8 +63,8 @@ const Component = styled.button<ButtonProps>`
   flex-direction: row;
   align-items: center;
   padding: 10px 20px;
-  cursor: pointer;
-  ${p => `border-radius:${p.theme.borders.radius.full};`}
+  border-radius: ${p =>
+    p.squareBorder ? p.theme.borders.radius.base : p.theme.borders.radius.full};
   ${p => `font-weight:${p.theme.typography.font_weight_semibold};`}
   ${p => {
     if (p.size === 'sm') {
@@ -90,6 +94,11 @@ const Component = styled.button<ButtonProps>`
                 color: ${p.theme.colors.interaction_foreground.primary_hover};
                 border: 1px solid ${p.theme.colors.interaction_outline.primary_hover};
               }
+              &:disabled {
+                background-color: ${p.theme.colors.interaction_background.primary_disabled};
+                color: ${p.theme.colors.interaction_foreground.primary_disabled};
+                border: 1px solid ${p.theme.colors.interaction_outline.primary_disabled};
+              }
               `
     }
     if (p.variant === 'secondary') {
@@ -100,6 +109,11 @@ const Component = styled.button<ButtonProps>`
                 background-color: ${p.theme.colors.interaction_background.secondary_hover};
                 color: ${p.theme.colors.interaction_foreground.secondary_hover};
                 border: 1px solid ${p.theme.colors.interaction_outline.secondary_hover};
+              }
+              &:disabled {
+                background-color: ${p.theme.colors.interaction_background.secondary_disabled};
+                color: ${p.theme.colors.interaction_foreground.secondary_disabled};
+                border: 1px solid ${p.theme.colors.interaction_outline.secondary_disabled};
               }
               `
     }
@@ -112,9 +126,16 @@ const Component = styled.button<ButtonProps>`
                 color: ${p.theme.colors.interaction_foreground.tertiary_hover};
                 border: 1px solid ${p.theme.colors.interaction_outline.tertiary_hover};
               }
+              &:disabled {
+                background-color: ${p.theme.colors.interaction_background.tertiary_disabled};
+                color: ${p.theme.colors.interaction_foreground.tertiary_disabled};
+                border: 1px solid ${p.theme.colors.interaction_outline.tertiary_disabled};
+              }
               `
     }
 
     return ''
   }}
+  pointer-events:${p => (p.disabled ? 'none' : null)};
+  cursor: ${p => (p.disabled ? 'normal' : 'pointer')};
 `
