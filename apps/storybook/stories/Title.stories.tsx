@@ -1,4 +1,4 @@
-import { Title } from '@learnn/designn'
+import { AppShell, Title, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -6,32 +6,58 @@ export default {
   component: Title,
 } as ComponentMeta<typeof Title>
 
-const DEFAULT_TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+const DEFAULT_TEXT = 'Lorem ipsum dolor sit amet'
 
 function bind(node: JSX.Element) {
   const template: ComponentStory<typeof Title> = () => node
   return template.bind({})
 }
 
-export const DifferentLevel = bind(
-  <>
-    {[1, 2, 3].map(i => (
-      <Title key={i} level={i as 1 | 2 | 3}>
-        {DEFAULT_TEXT}
-      </Title>
-    ))}
-  </>,
+export const Variants = bind(
+  <AppShell theme={defaultTheme}>
+    <Title variant='heading2xl'>Text with heading2xl variant</Title>
+    <Title variant='headingXl'>Text with headingXl variant</Title>
+    <Title variant='headingLg'>Text with headingLg variant</Title>
+    <Title variant='headingMd'>Text with headingMd variant</Title>
+    <Title variant='headingSm'>Text with headingSm variant</Title>
+    <Title variant='headingXs'>Text with headingXs variant</Title>
+  </AppShell>,
 )
-DifferentLevel.storyName = 'Titles with different heading levels'
 
-export const DifferentColor = bind(
-  <>
-    <Title key={1} level={3} primary>
+Variants.storyName = 'With Size Variants'
+
+export const FontWeight = bind(
+  <AppShell theme={defaultTheme}>
+    <Title variant='headingLg' fontWeight='black'>
       {DEFAULT_TEXT}
     </Title>
-    <Title key={2} level={3} muted>
+    <Title variant='headingLg' fontWeight='bold'>
       {DEFAULT_TEXT}
     </Title>
-  </>,
+    <Title variant='headingLg' fontWeight='semibold'>
+      {DEFAULT_TEXT}
+    </Title>
+    <Title variant='headingLg' fontWeight='regular'>
+      {DEFAULT_TEXT}
+    </Title>
+  </AppShell>,
 )
-DifferentColor.storyName = 'Titles with different states: primary, muted'
+
+FontWeight.storyName = 'With Font Weight'
+
+export const Colors = bind(
+  <AppShell theme={defaultTheme}>
+    <Title variant='headingMd'>Heading with primary color</Title>
+    <Title variant='headingMd' color='dimmed'>
+      Heading with dimmed color
+    </Title>
+    <Title variant='headingMd' color='success'>
+      Heading with success color
+    </Title>
+    <Title variant='headingMd' color='error'>
+      Heading with error color
+    </Title>
+  </AppShell>,
+)
+
+Colors.storyName = 'With Colors'

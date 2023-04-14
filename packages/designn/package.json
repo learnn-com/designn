@@ -20,7 +20,7 @@
     "prettier-check": "prettier --parser=typescript \"src/**/*.{ts,tsx}\" --check",
     "prettier-write": "prettier --parser=typescript \"src/**/*.{ts,tsx}\" --write",
     "eslint-check": "eslint \"src/**/*.{js,ts,tsx}\"",
-    "typecheck": "tsc",
+    "ts:check": "tsc",
     "prepublish": "pnpm test && pnpm build",
     "test": "jest",
     "lint-staged": "lint-staged",

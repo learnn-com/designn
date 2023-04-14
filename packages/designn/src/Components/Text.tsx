@@ -1,148 +1,113 @@
-import { css } from 'styled-components'
-import themed from '../theme/themed'
-import { mutuallyExclusiveTrueKeys, undefinedAsFalse } from '../utils/props'
+import { ReactNode } from 'react'
+import { undefinedAsFalse } from '../utils/props'
+import styled, { css } from 'styled-components'
+
+type Variant = 'bodyXs' | 'bodySm' | 'bodyMd' | 'bodyLg'
+
+type Element = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
+
+type Alignment = 'start' | 'center' | 'end'
+
+type Color = 'primary' | 'dimmed' | 'error' | 'success'
+
+type FontWeight = 'light' | 'regular' | 'semibold' | 'bold' | 'black'
 
 export type TextProps = {
-  children: string
-  micro?: boolean
-  small?: boolean
-  large?: boolean
+  /** The element type */
+  as?: Element
+  /** Adjust horizontal alignment of text */
+  alignment?: Alignment
+  /** Text to display */
+  children: ReactNode
+  /** Adjust color of text */
+  color?: Color
+  /** Adjust weight of text */
+  fontWeight?: FontWeight
+  /** HTML id attribute */
+  id?: string
+  /** Truncate text overflow with ellipsis */
+  truncate?: boolean
+  /** Typographic style of text */
+  variant?: Variant
+  /** Weather or not element should be inline */
   inline?: boolean
-  muted?: boolean
-  disabled?: boolean
-  align?: Align
-  bold?: boolean
-  noWrap?: boolean
-  truncated?: boolean
-  uppercased?: boolean
-  preserveWhitespace?: boolean
+  /** Id used for tests */
   testid?: string
 }
 
-type Element = 'div' | 'span' | 'small' | 'h4'
-type Align = 'parent' | 'start' | 'center' | 'end'
-
 export function Text({
-  inline,
-  micro,
-  small,
-  large,
-  muted,
-  disabled,
-  align,
-  bold,
-  noWrap,
-  truncated,
-  uppercased,
-  preserveWhitespace,
+  alignment,
   children,
-  testid
+  color,
+  fontWeight,
+  id,
+  truncate,
+  variant,
+  inline,
+  as,
+  testid,
 }: TextProps) {
-  const element: Element = getElement({ inline, large })
-  const alignment = align ?? 'parent'
+  const element: Element = as || (inline ? 'span' : 'p')
+
   return (
     <Component
+      id={id}
       as={element}
+      variant={variant}
+      alignment={alignment ?? 'start'}
+      truncate={undefinedAsFalse(truncate)}
+      fontWeight={fontWeight}
+      color={color ?? 'primary'}
       data-testid={testid}
-      inline={undefinedAsFalse(inline)}
-      micro={undefinedAsFalse(micro)}
-      small={undefinedAsFalse(small)}
-      large={undefinedAsFalse(large)}
-      muted={undefinedAsFalse(muted)}
-      alignment={alignment}
-      bold={undefinedAsFalse(bold)}
-      noWrap={undefinedAsFalse(noWrap)}
-      truncated={undefinedAsFalse(truncated)}
-      uppercased={undefinedAsFalse(uppercased)}
-      preserveWhitespace={undefinedAsFalse(preserveWhitespace)}
-      disabled={undefinedAsFalse(disabled)}>
+    >
       {children}
     </Component>
   )
 }
-const Component = themed.div<{
-  micro: boolean
-  small: boolean
-  large: boolean
-  muted: boolean
-  disabled: boolean
-  inline: boolean
-  alignment: Align
-  bold: boolean
-  noWrap: boolean
-  uppercased: boolean
-  truncated: boolean
-  preserveWhitespace: boolean
-}>`
-${(p) => p.theme.typography.textReset}
-${(p) => {
-  const key = mutuallyExclusiveTrueKeys(p, 'micro', 'small', 'large')
-  if (key === 'micro') {
-    return p.theme.typography.textMicro
-  }
-  if (key === 'small') {
-    return p.theme.typography.textSmall
-  }
-  if (key === 'large') {
-    return p.theme.typography.textLarge
-  }
-  return p.theme.typography.textRegular
-}}
 
-${(p) => {
-  const key = mutuallyExclusiveTrueKeys(p, 'muted', 'disabled')
-  if (key === 'muted') {
-    return `color: ${p.theme.color.brand.primary[3]}`
-  }
-  if (key === 'disabled') {
-    return p.theme.pattern.disabled
-  }
-  return ''
-}}
-
-${(p) => (p.inline ? 'display: inline;' : '')}
-${(p) => (p.bold ? 'font-weight: 700;' : '')}
-${(p) => (p.uppercased ? 'text-transform: uppercase;' : '')}
-${(p) => (p.preserveWhitespace ? 'white-space: pre-wrap;' : '')}
-${(p) => {
-  const key = mutuallyExclusiveTrueKeys(p, 'noWrap', 'truncated')
-  if (key === 'noWrap') {
-    return noWrapStyle
-  }
-  if (key === 'truncated') {
-    return truncatedStyle
-  }
-  return ''
-}}
-${(p) => {
-  if (p.alignment === 'start') {
-    return `text-align: left;`
-  }
-  if (p.alignment === 'center') {
-    return `text-align: center;`
-  }
-  if (p.alignment === 'end') {
-    return `text-align: right;`
-  }
-  return ''
-}}
- `
-
-const noWrapStyle = css`
-  white-space: nowrap;
+const Component = styled.p<TextProps>`
+  ${p => {
+    if (p.alignment === 'start') {
+      return `text-align: left;`
+    }
+    if (p.alignment === 'center') {
+      return `text-align: center;`
+    }
+    if (p.alignment === 'end') {
+      return `text-align: right;`
+    }
+    return ''
+  }}
+  ${p => (p.truncate ? truncatedStyle : '')}
+  ${p => {
+    if (p.variant === 'bodyXs') {
+      return `font-size: ${p.theme.typography.font_size_100};
+              line-height: ${p.theme.typography.font_line_height_1};`
+    }
+    if (p.variant === 'bodySm') {
+      return `font-size: ${p.theme.typography.font_size_200};
+              line-height: ${p.theme.typography.font_line_height_2};`
+    }
+    if (p.variant === 'bodyMd') {
+      return `font-size: ${p.theme.typography.font_size_300};
+              line-height: ${p.theme.typography.font_line_height_3};`
+    }
+    if (p.variant === 'bodyLg') {
+      return `font-size: ${p.theme.typography.font_size_400};
+              line-height: ${p.theme.typography.font_line_height_4};`
+    }
+    return `font-size: ${p.theme.typography.font_size_200};
+            line-height: ${p.theme.typography.font_line_height_2};`
+  }}
+  ${p => (p.fontWeight ? `font-weight:${p.theme.typography[`font_weight_${p.fontWeight}`]};` : '')}
+    ${p =>
+    p.color
+      ? `color:${p.theme.colors[`text_${p.color}`]};`
+      : `color:${p.theme.colors.text_primary};`}
 `
+
 const truncatedStyle = css`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 `
-
-const getElement: (p: Omit<TextProps, 'children'>) => Element = ({ inline, large }) => {
-  if (inline) {
-    return 'span'
-  }
-  if (large) {
-    return 'h4'
-  }
-  return 'div'
-}

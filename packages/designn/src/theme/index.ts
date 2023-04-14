@@ -1,7 +1,4 @@
-export { createTheme } from './createTheme'
+export { defaultTheme } from './defaultTheme'
 export { GlobalStyle } from './GlobalStyle'
-export type { Theme, ThemeOptions } from './Theme'
+export type { Theme } from './Theme'
 
-import { createTheme } from './createTheme'
-
-export const defaultTheme = createTheme({ name: 'default' })

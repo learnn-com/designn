@@ -37,6 +37,7 @@ importers:
       '@storybook/react': 6.5.16
       '@storybook/testing-library': 0.0.13
       '@types/node': 18.15.11
+      '@storybook/theming': 6.5.16
       '@types/react': ^18
       eslint: 8.35.0
       eslint-config-react-app: 7.0.1
@@ -63,6 +64,7 @@ importers:
       '@storybook/react': 6.5.16_hvww4uj7dq7lxi5dzmygnimm34
       '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
       '@types/node': 18.15.11
+      '@storybook/theming': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@types/react': 18.0.33
       eslint: 8.35.0
       eslint-config-react-app: 7.0.1_gcyfy74iqiklag2v2snmabwqqm

@@ -1,10 +1,10 @@
 {
-  "extends": "@gianlucacarucci5/tsconfig/library-test.json",
+  "extends": "@learnn/nn-config-ts/library-test.json",
   "include": ["../src/**/*.ts*", "./**/*.ts*"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gianlucacarucci5/desio": ["../src/index.ts"]
+      "@learnn/designn": ["../src/index.ts"]
     }
   }
 }
