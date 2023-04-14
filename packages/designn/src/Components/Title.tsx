@@ -112,8 +112,8 @@ const Component = styled.h1<TitleProps>`
       : `font-weight:${p.theme.typography.font_weight_black};`}
     ${p =>
     p.color
-      ? `color:${p.theme.colors[`text_${p.color}`]};`
-      : `color:${p.theme.colors.text_primary};`}
+      ? `color:${p.theme.colors.text[`${p.color}`]};`
+      : `color:${p.theme.colors.text.primary};`}
 `
 
 const truncatedStyle = css`

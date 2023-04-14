@@ -102,8 +102,8 @@ const Component = styled.p<TextProps>`
   ${p => (p.fontWeight ? `font-weight:${p.theme.typography[`font_weight_${p.fontWeight}`]};` : '')}
     ${p =>
     p.color
-      ? `color:${p.theme.colors[`text_${p.color}`]};`
-      : `color:${p.theme.colors.text_primary};`}
+      ? `color:${p.theme.colors.text[`${p.color}`]};`
+      : `color:${p.theme.colors.text.primary};`}
 `
 
 const truncatedStyle = css`

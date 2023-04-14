@@ -1,5 +1,6 @@
 export * from './Title'
 export * from './Text'
+export * from './Button'
 export * from './AppShell'
 export * from './Box'
 export * from './HorizontalStack'
