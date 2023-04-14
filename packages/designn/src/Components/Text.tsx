@@ -31,6 +31,8 @@ export type TextProps = {
   variant?: Variant
   /** Weather or not element should be inline */
   inline?: boolean
+  /** Id used for tests */
+  testid?: string
 }
 
 export function Text({
@@ -43,6 +45,7 @@ export function Text({
   variant,
   inline,
   as,
+  testid,
 }: TextProps) {
   const element: Element = as || (inline ? 'span' : 'p')
 
@@ -55,6 +58,7 @@ export function Text({
       truncate={undefinedAsFalse(truncate)}
       fontWeight={fontWeight}
       color={color ?? 'primary'}
+      data-testid={testid}
     >
       {children}
     </Component>

@@ -1,38 +1,33 @@
 import { createGlobalStyle } from 'styled-components'
-import MessinaSansLight from '../fonts/MessinaSans-Light.woff2'
-import MessinaSansRegular from '../fonts/MessinaSans-Regular.woff2'
-import MessinaSansSemiBold from '../fonts/MessinaSans-SemiBold.woff2'
-import MessinaSansBold from '../fonts/MessinaSans-Bold.woff2'
-import MessinaSansBlack from '../fonts/MessinaSans-Black.woff2'
 
 export const GlobalStyle = createGlobalStyle`
     @font-face {
       font-family: 'Messina Sans';
-      src: url(${MessinaSansBlack}) format('woff2')
+      src: url('../fonts/MessinaSans-Black.woff2') format('woff2')
       font-weight: 800;
       font-style: normal;
     }
     @font-face {
       font-family: 'Messina Sans';
-      src: url(${MessinaSansBold}) format('woff2')
+      src: url('../fonts/MessinaSans-Bold.woff2') format('woff2')
       font-weight: 700;
       font-style: normal;
     }
     @font-face {
       font-family: 'Messina Sans';
-      src: url(${MessinaSansSemiBold}) format('woff2')
+      src: url('../fonts/MessinaSans-SemiBold.woff2') format('woff2')
       font-weight: 600;
       font-style: normal;
     }
     @font-face {
       font-family: 'Messina Sans';
-      src: url(${MessinaSansRegular}) format('woff2')
+      src: url('../fonts/MessinaSans-Regular.woff2') format('woff2')
       font-weight: 400;
       font-style: normal;
     }
     @font-face {
       font-family: 'Messina Sans';
-      src: url(${MessinaSansLight}) format('woff2')
+      src: url('../fonts/MessinaSans-Light.woff2') format('woff2')
       font-weight: 300;
       font-style: normal;
     }

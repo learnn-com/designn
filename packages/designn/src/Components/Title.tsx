@@ -27,6 +27,8 @@ export type TitleProps = {
   truncate?: boolean
   /** Typographic style of text */
   variant: Variant
+  /** Id used for tests */
+  testid?: string
 }
 
 export function Title({
@@ -37,6 +39,7 @@ export function Title({
   id,
   truncate,
   variant,
+  testid,
 }: TitleProps) {
   const element: Element = getElement({ variant })
 
@@ -49,6 +52,7 @@ export function Title({
       truncate={undefinedAsFalse(truncate)}
       color={color ?? 'primary'}
       fontWeight={fontWeight}
+      data-testid={testid}
     >
       {children}
     </Component>
