@@ -15,7 +15,7 @@
     "design system"
   ],
   "scripts": {
-    "build": "tsup --minify --clean",
+    "build": "tsc",
     "clean": "rm -rf .turbo node_modules build",
     "prettier-check": "prettier --parser=typescript \"src/**/*.{ts,tsx}\" --check",
     "prettier-write": "prettier --parser=typescript \"src/**/*.{ts,tsx}\" --write",
@@ -27,9 +27,11 @@
     "start": "tsup --watch"
   },
   "dependencies": {
+    "@types/styled-system": "^5.1.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "5.3.9"
+    "styled-components": "5.3.9",
+    "styled-system": "^5.1.5"
   },
   "devDependencies": {
     "@babel/preset-env": "7.21.4",
