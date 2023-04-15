@@ -60,6 +60,8 @@ export function Title({
 }
 
 const Component = styled.h1<TitleProps>`
+  margin: 0;
+  padding: 0;
   ${p => {
     if (p.alignment === 'start') {
       return `text-align: left;`

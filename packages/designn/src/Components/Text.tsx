@@ -66,6 +66,8 @@ export function Text({
 }
 
 const Component = styled.p<TextProps>`
+  margin: 0;
+  padding: 0;
   ${p => {
     if (p.alignment === 'start') {
       return `text-align: left;`
@@ -104,6 +106,7 @@ const Component = styled.p<TextProps>`
     p.color
       ? `color:${p.theme.colors.text[`${p.color}`]};`
       : `color:${p.theme.colors.text.primary};`}
+
 `
 
 const truncatedStyle = css`

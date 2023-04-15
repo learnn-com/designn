@@ -29,6 +29,8 @@ export type Colors = {
   interaction_background: InteractionColors
   interaction_foreground: InteractionColors
   interaction_outline: InteractionColors
+  feature_card_background: Color
+  feature_card_border: Color
 }
 
 export const colors: Colors = {
@@ -74,4 +76,6 @@ export const colors: Colors = {
     secondary_disabled: gray[500],
     tertiary_disabled: brandColors.clear,
   },
+  feature_card_background: gray[800],
+  feature_card_border: gray[500]
 }

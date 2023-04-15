@@ -1,23 +1,65 @@
-import { AppShell, FeatureCard, defaultTheme } from '@learnn/designn'
+import { AppShell, FeatureCard, HorizontalStack, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
 
 export default {
   title: 'Components/FeatureCard',
-  component: Text,
-} as ComponentMeta<typeof Text>
+  component: FeatureCard,
+} as ComponentMeta<typeof FeatureCard>
 
 const TITLE = '49 Lezioni'
 const SUBTITLE =
   'da 5-10 minuti'
 
 function bind(node: JSX.Element) {
-  const template: ComponentStory<typeof Text> = () => node
+  const template: ComponentStory<typeof FeatureCard> = () => node
   return template.bind({})
 }
 
-export const Basic = bind(
+export const FullWidth = bind(
   <AppShell theme={defaultTheme}>
-    <FeatureCard icon={<></>} title={TITLE} subtitle={SUBTITLE}/>
+    <FeatureCard
+     icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
+     title={TITLE} 
+     subtitle={SUBTITLE}/>
   </AppShell>,
 )
-Basic.storyName = 'A basic string of text'
+FullWidth.storyName = 'Feature Card full width'
+
+export const FixedWidth = bind(
+  <AppShell theme={defaultTheme}>
+    <FeatureCard
+     icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
+     title={TITLE} 
+     subtitle={SUBTITLE}
+     width="160px"/>
+  </AppShell>,
+)
+FixedWidth.storyName = 'Feature Card width fixed 16px'
+
+export const FeatureCardsHorizontalStack = bind(
+  <AppShell theme={defaultTheme}>
+    <HorizontalStack
+      justifyContent="space-between"
+      width="700px">
+    <FeatureCard
+     icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
+     title='4:06 Ore' 
+     subtitle='durata corso' />
+     <FeatureCard
+      icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
+      title='49 Lezioni' 
+      subtitle='da 5-10 minuti' />
+      <FeatureCard
+       icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
+       title='Slide e PDF' 
+       subtitle='scaricabili' />
+       <FeatureCard
+        icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
+        title='Verifica' 
+        subtitle='disponibile' />
+     </HorizontalStack>
+  </AppShell>,
+)
+FeatureCardsHorizontalStack.storyName = 'Feature Cards in horizontal stack'
