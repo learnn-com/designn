@@ -42,8 +42,8 @@ export const FeatureCard = ({
         </VerticalStack>
         <VerticalStack
           ml={spacing.space_2}>
-        <Title variant='headingSm'>{title}</Title>
-        <Text variant='bodySm'>{subtitle}</Text>
+        <Title variant='headingXs' fontWeight='semibold'>{title}</Title>
+        <Text variant='bodyXs' fontWeight='light'>{subtitle}</Text>
         </VerticalStack>
       </HorizontalStack>
     </HorizontalStack>

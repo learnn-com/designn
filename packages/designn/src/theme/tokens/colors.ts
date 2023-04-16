@@ -25,6 +25,7 @@ export type InteractionColors = {
 export type Colors = {
   bg_app: Color
   border: Color
+  edge: Color
   text: TextColors
   interaction_background: InteractionColors
   interaction_foreground: InteractionColors
@@ -36,6 +37,7 @@ export type Colors = {
 export const colors: Colors = {
   bg_app: brandColors.backgroundColor,
   border: brandColors.brand.primary,
+  edge: gray[800],
   text: {
     base: brandColors.brand.primary,
     dimmed: gray[500],

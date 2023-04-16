@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import styled, { css } from 'styled-components'
 
-type Variant = 'headingXs' | 'headingSm' | 'headingMd' | 'headingLg' | 'headingXl' | 'heading2xl'
+type Variant = 'heading2xs' | 'headingXs' | 'headingSm' | 'headingMd' | 'headingLg' | 'headingXl' | 'heading2xl'
 
 type Element = 'h1' | 'h2' | 'h3' | 'h4'
 
@@ -76,35 +76,40 @@ const Component = styled.h1<TitleProps>`
   }}
   ${p => (p.truncate ? truncatedStyle : '')}
   ${p => {
+    if (p.variant === 'heading2xs') {
+      return `font-size: ${p.theme.typography.font_size_100};
+              line-height: ${p.theme.typography.font_line_height_1};
+              letter-spacing:-0.05rem;`
+    }
     if (p.variant === 'headingXs') {
       return `font-size: ${p.theme.typography.font_size_200};
               line-height: ${p.theme.typography.font_line_height_2};
-              letter-spacing:-0.1rem;`
+              letter-spacing:-0.05rem;`
     }
     if (p.variant === 'headingSm') {
       return `font-size: ${p.theme.typography.font_size_300};
               line-height: ${p.theme.typography.font_line_height_3};
-              letter-spacing:-0.1rem;`
+              letter-spacing:-0.05rem;`
     }
     if (p.variant === 'headingMd') {
       return `font-size: ${p.theme.typography.font_size_400};
               line-height: ${p.theme.typography.font_line_height_4};
-              letter-spacing:-0.1rem;`
+              letter-spacing:-0.05rem;`
     }
     if (p.variant === 'headingLg') {
       return `font-size: ${p.theme.typography.font_size_500};
               line-height: ${p.theme.typography.font_line_height_5};
-              letter-spacing:-0.1rem;`
+              letter-spacing:-0.05rem;`
     }
     if (p.variant === 'headingXl') {
       return `font-size: ${p.theme.typography.font_size_600};
               line-height: ${p.theme.typography.font_line_height_6};
-              letter-spacing:-0.1rem;`
+              letter-spacing:-0.05rem;`
     }
     if (p.variant === 'heading2xl') {
       return `font-size: ${p.theme.typography.font_size_700};
               line-height: ${p.theme.typography.font_line_height_7};
-              letter-spacing:-0.1rem;`
+              letter-spacing:-0.05rem;`
     }
     return ''
   }}
