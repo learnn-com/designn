@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 import {
   border,
   BorderProps,
@@ -17,13 +17,15 @@ import {
   SpaceProps,
   typography,
   TypographyProps,
-} from "styled-system";
+  background,
+  BackgroundProps,
+} from 'styled-system'
 
 type BoxProps = {
-  shadow?: number;
-  cursor?: string;
-  transition?: string;
-};
+  shadow?: number
+  cursor?: string
+  transition?: string
+}
 
 export const Box = styled.div<
   BoxProps &
@@ -34,11 +36,12 @@ export const Box = styled.div<
     FlexProps &
     BorderProps &
     FlexboxProps &
-    TypographyProps
+    TypographyProps &
+    BackgroundProps
 >(
   ({ cursor, transition }) => ({
     cursor,
     transition,
   }),
-  compose(layout, space, color, position, flexbox, flex, border, typography)
-);
+  compose(layout, space, color, position, flexbox, flex, border, typography, background),
+)

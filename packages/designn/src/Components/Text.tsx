@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
+import { ColorTextAlias } from '../theme/tokens/colors'
 import styled, { css } from 'styled-components'
+import { SpaceProps, space } from 'styled-system'
 
 type Variant = 'bodyXs' | 'bodySm' | 'bodyMd' | 'bodyLg'
 
@@ -8,7 +10,7 @@ type Element = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
 
 type Alignment = 'start' | 'center' | 'end'
 
-type Color = 'primary' | 'dimmed' | 'error' | 'success'
+type Color = ColorTextAlias
 
 type FontWeight = 'light' | 'regular' | 'semibold' | 'bold' | 'black'
 
@@ -46,7 +48,8 @@ export function Text({
   inline,
   as,
   testid,
-}: TextProps) {
+  ...props
+}: TextProps & SpaceProps) {
   const element: Element = as || (inline ? 'span' : 'p')
 
   return (
@@ -59,15 +62,17 @@ export function Text({
       fontWeight={fontWeight}
       color={color ?? 'primary'}
       data-testid={testid}
+      {...props}
     >
       {children}
     </Component>
   )
 }
 
-const Component = styled.p<TextProps>`
+const Component = styled.p<TextProps & SpaceProps>`
   margin: 0;
   padding: 0;
+  ${space}
   ${p => {
     if (p.alignment === 'start') {
       return `text-align: left;`

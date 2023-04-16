@@ -12,7 +12,7 @@ export type ColorInteractionAlias =
   | 'secondary_disabled'
   | 'tertiary_disabled'
 
-export type ColorTextAlias = 'base' | 'primary' | 'error' | 'success' | 'dimmed'
+export type ColorTextAlias = 'base' | 'primary' | 'secondary' | 'error' | 'success' | 'dimmed'
 
 export type TextColors = {
   [TokenName in ColorTextAlias]: Color
@@ -40,6 +40,7 @@ export const colors: Colors = {
   edge: gray[800],
   text: {
     base: brandColors.brand.primary,
+    secondary: gray[300],
     dimmed: gray[500],
     primary: brandColors.brand.primary,
     error: red[500],
