@@ -9,8 +9,7 @@ export default {
 } as ComponentMeta<typeof FeatureCard>
 
 const TITLE = '49 Lezioni'
-const SUBTITLE =
-  'da 5-10 minuti'
+const SUBTITLE = 'da 5-10 minuti'
 
 function bind(node: JSX.Element) {
   const template: ComponentStory<typeof FeatureCard> = () => node
@@ -19,36 +18,43 @@ function bind(node: JSX.Element) {
 
 export const Standard = bind(
   <AppShell theme={defaultTheme}>
-    <FeatureCard
-     icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
-     title={TITLE} 
-     subtitle={SUBTITLE}/>
+    <div style={{ display: 'flex' }}>
+      <FeatureCard
+        icon={<FontAwesomeIcon icon={faClock} size='2x' color='white' />}
+        title={TITLE}
+        subtitle={SUBTITLE}
+      />
+    </div>
   </AppShell>,
 )
 Standard.storyName = 'Feature Card'
 
 export const FeatureCardsHorizontalStack = bind(
   <AppShell theme={defaultTheme}>
-    <HorizontalStack
-      justifyContent="space-between"
-      width="700px">
-    <FeatureCard
-     icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
-     title='4:06 Ore' 
-     subtitle='durata corso' />
-     <FeatureCard
-      icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
-      title='49 Lezioni' 
-      subtitle='da 5-10 minuti' />
-      <FeatureCard
-       icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
-       title='Slide e PDF' 
-       subtitle='scaricabili' />
-       <FeatureCard
-        icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
-        title='Verifica' 
-        subtitle='disponibile' />
-     </HorizontalStack>
+    <div style={{ display: 'flex' }}>
+      <HorizontalStack justifyContent='space-between' width='700px'>
+        <FeatureCard
+          icon={<FontAwesomeIcon icon={faClock} size='2x' color='white' />}
+          title='4:06 Ore'
+          subtitle='durata corso'
+        />
+        <FeatureCard
+          icon={<FontAwesomeIcon icon={faClock} size='2x' color='white' />}
+          title='49 Lezioni'
+          subtitle='da 5-10 minuti'
+        />
+        <FeatureCard
+          icon={<FontAwesomeIcon icon={faClock} size='2x' color='white' />}
+          title='Slide e PDF'
+          subtitle='scaricabili'
+        />
+        <FeatureCard
+          icon={<FontAwesomeIcon icon={faClock} size='2x' color='white' />}
+          title='Verifica'
+          subtitle='disponibile'
+        />
+      </HorizontalStack>
+    </div>
   </AppShell>,
 )
 FeatureCardsHorizontalStack.storyName = 'Feature Cards in horizontal stack'

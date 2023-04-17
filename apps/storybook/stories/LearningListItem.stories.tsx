@@ -16,14 +16,18 @@ function bind(node: JSX.Element) {
 
 export const Standard = bind(
   <AppShell theme={defaultTheme}>
-    <LearningListItem index={INDEX} title={TITLE} />
+    <div style={{ display: 'flex' }}>
+      <LearningListItem index={INDEX} title={TITLE} />
+    </div>
   </AppShell>,
 )
 Standard.storyName = 'Learning List Item'
 
 export const ShortTitle = bind(
   <AppShell theme={defaultTheme}>
-    <LearningListItem index={INDEX} title='Design' />
+    <div style={{ display: 'flex' }}>
+      <LearningListItem index={INDEX} title='Design' />
+    </div>
   </AppShell>,
 )
 ShortTitle.storyName = 'Learning List Item with short title'
