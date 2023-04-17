@@ -12,7 +12,8 @@
     "react",
     "components",
     "component library",
-    "design system"
+    "design system",
+    "learnn"
   ],
   "scripts": {
     "build": "tsc",
