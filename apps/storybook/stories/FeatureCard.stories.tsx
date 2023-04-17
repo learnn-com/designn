@@ -17,7 +17,7 @@ function bind(node: JSX.Element) {
   return template.bind({})
 }
 
-export const FullWidth = bind(
+export const Standard = bind(
   <AppShell theme={defaultTheme}>
     <FeatureCard
      icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
@@ -25,18 +25,7 @@ export const FullWidth = bind(
      subtitle={SUBTITLE}/>
   </AppShell>,
 )
-FullWidth.storyName = 'Feature Card full width'
-
-export const FixedWidth = bind(
-  <AppShell theme={defaultTheme}>
-    <FeatureCard
-     icon={<FontAwesomeIcon icon={faClock} size="2x" color='white'/>} 
-     title={TITLE} 
-     subtitle={SUBTITLE}
-     width="160px"/>
-  </AppShell>,
-)
-FixedWidth.storyName = 'Feature Card width fixed 16px'
+Standard.storyName = 'Feature Card'
 
 export const FeatureCardsHorizontalStack = bind(
   <AppShell theme={defaultTheme}>

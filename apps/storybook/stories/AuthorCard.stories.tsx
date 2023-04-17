@@ -15,12 +15,12 @@ function bind(node: JSX.Element) {
   return template.bind({})
 }
 
-export const FullWidth = bind(
+export const AuthorCardWithoutLink = bind(
   <AppShell theme={defaultTheme}>
     <AuthorCard authorName={AUTHOR_NAME} authorProfession={AUTHOR_PROFESSION} authorImageSrc={AUTHOR_IMAGE} />
   </AppShell>,
 )
-FullWidth.storyName = 'AuthorCard full width'
+AuthorCardWithoutLink.storyName = 'AuthorCard without link'
 
 export const AuthorCardWithLink = bind(
   <AppShell theme={defaultTheme}>

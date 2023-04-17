@@ -26,6 +26,7 @@ export type Colors = {
   bg_app: Color
   border: Color
   edge: Color
+  outline: Color
   text: TextColors
   interaction_background: InteractionColors
   interaction_foreground: InteractionColors
@@ -38,6 +39,7 @@ export const colors: Colors = {
   bg_app: brandColors.backgroundColor,
   border: brandColors.brand.primary,
   edge: gray[800],
+  outline: gray[500],
   text: {
     base: brandColors.brand.primary,
     secondary: gray[300],

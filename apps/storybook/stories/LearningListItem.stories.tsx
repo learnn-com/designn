@@ -14,23 +14,16 @@ function bind(node: JSX.Element) {
   return template.bind({})
 }
 
-export const FullWidth = bind(
+export const Standard = bind(
   <AppShell theme={defaultTheme}>
     <LearningListItem index={INDEX} title={TITLE} />
   </AppShell>,
 )
-FullWidth.storyName = 'Learning List Item full width'
-
-export const FixedWidth = bind(
-  <AppShell theme={defaultTheme}>
-    <LearningListItem index={INDEX} title={TITLE} width='220px' />
-  </AppShell>,
-)
-FixedWidth.storyName = 'Learning List Item width fixed 220px'
+Standard.storyName = 'Learning List Item'
 
 export const ShortTitle = bind(
   <AppShell theme={defaultTheme}>
-    <LearningListItem index={INDEX} title='Design' width='220px' />
+    <LearningListItem index={INDEX} title='Design' />
   </AppShell>,
 )
 ShortTitle.storyName = 'Learning List Item with short title'
