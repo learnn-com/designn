@@ -27,7 +27,7 @@ Contained.storyName = 'Bedge contained'
 
 export const ContainedSquared = bind(
   <AppShell theme={defaultTheme}>
-    <Bedge body='Categoria' variant='contained' borderRadius={defaultTheme.borders.radius.base} />
+    <Bedge body='Categoria' variant='contained' squareBorder />
   </AppShell>,
 )
 Contained.storyName = 'Bedge contained more squared'

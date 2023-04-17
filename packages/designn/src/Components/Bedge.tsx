@@ -2,20 +2,19 @@ import { LayoutProps, SpaceProps } from 'styled-system'
 import { HorizontalStack } from './HorizontalStack'
 import { Text } from './Text'
 import { useTheme } from 'styled-components'
-import { SpaceUnit } from '../theme/tokens/borders'
 
 type Variant = 'outlined' | 'contained'
 
 export type BedgeProps = {
   body: string
   variant: Variant
-  borderRadius?: SpaceUnit
+  squareBorder?: boolean
 }
 
 export const Bedge = ({
   body,
   variant,
-  borderRadius,
+  squareBorder,
   ...props
 }: BedgeProps & SpaceProps & LayoutProps) => {
   const { borders, spacing, colors } = useTheme()
@@ -25,7 +24,7 @@ export const Bedge = ({
       return (
         <HorizontalStack
           {...props}
-          borderRadius={borderRadius ?? borders.radius.large}
+          borderRadius={squareBorder ? borders.radius.base : borders.radius.large}
           borderColor={colors.outline}
           borderWidth={borders.width.base}
           borderStyle='solid'
@@ -42,7 +41,7 @@ export const Bedge = ({
       return (
         <HorizontalStack
           {...props}
-          borderRadius={borderRadius ?? borders.radius.large}
+          borderRadius={squareBorder ? borders.radius.base : borders.radius.large}
           borderColor={colors.edge}
           bg={colors.edge}
           borderWidth={borders.width.base}
