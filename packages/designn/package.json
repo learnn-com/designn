@@ -1,6 +1,6 @@
 {
   "name": "@learnn/designn",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "",
   "license": "MIT",
   "main": "build/index.js",
