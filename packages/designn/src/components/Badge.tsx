@@ -5,18 +5,18 @@ import { useTheme } from 'styled-components'
 
 type Variant = 'outlined' | 'contained'
 
-export type BedgeProps = {
+export type BadgeProps = {
   body: string
   variant: Variant
   squareBorder?: boolean
 }
 
-export const Bedge = ({
+export const Badge = ({
   body,
   variant,
   squareBorder,
   ...props
-}: BedgeProps & SpaceProps & LayoutProps) => {
+}: BadgeProps & SpaceProps & LayoutProps) => {
   const { borders, spacing, colors } = useTheme()
 
   switch (variant) {
