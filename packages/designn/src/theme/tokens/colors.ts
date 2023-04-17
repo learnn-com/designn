@@ -12,7 +12,7 @@ export type ColorInteractionAlias =
   | 'secondary_disabled'
   | 'tertiary_disabled'
 
-export type ColorTextAlias = 'base' | 'primary' | 'error' | 'success' | 'dimmed'
+export type ColorTextAlias = 'base' | 'primary' | 'secondary' | 'error' | 'success' | 'dimmed'
 
 export type TextColors = {
   [TokenName in ColorTextAlias]: Color
@@ -25,17 +25,24 @@ export type InteractionColors = {
 export type Colors = {
   bg_app: Color
   border: Color
+  edge: Color
+  outline: Color
   text: TextColors
   interaction_background: InteractionColors
   interaction_foreground: InteractionColors
   interaction_outline: InteractionColors
+  feature_card_background: Color
+  feature_card_border: Color
 }
 
 export const colors: Colors = {
   bg_app: brandColors.backgroundColor,
   border: brandColors.brand.primary,
+  edge: gray[800],
+  outline: gray[500],
   text: {
     base: brandColors.brand.primary,
+    secondary: gray[300],
     dimmed: gray[500],
     primary: brandColors.brand.primary,
     error: red[500],
@@ -74,4 +81,6 @@ export const colors: Colors = {
     secondary_disabled: gray[500],
     tertiary_disabled: brandColors.clear,
   },
+  feature_card_background: gray[800],
+  feature_card_border: gray[500]
 }

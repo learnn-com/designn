@@ -7,7 +7,7 @@ type ColorScale = {
 }
 
 export const gray: ColorScale = {
-  50: '#ffffff',
+  50: "#ffffff",
   100: 'rgba(233, 234, 239, 1)',
   200: '#D0D5DE',
   300: 'rgba(174, 180, 187, 1)',
@@ -15,8 +15,8 @@ export const gray: ColorScale = {
   500: '#696C73',
   600: '#46474D',
   700: '#2E2F32',
-  800: '#232427',
-  900: '#121214',
+  800: '#27272C',
+  900: '#121214'
 }
 
 export const green: ColorScale = {

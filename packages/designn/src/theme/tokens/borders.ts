@@ -12,7 +12,7 @@ export type Borders = {
   }
 }
 
-type SpaceUnit = `${number}rem` | `${number}%`
+export type SpaceUnit = `${number}rem` | `${number}%`
 
 export const borders: Borders = {
   radius: {

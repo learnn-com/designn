@@ -42,6 +42,9 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
+    #root {
+      position: absolute;
+    }
     /* html,
     body,
     body > div:first-child,
