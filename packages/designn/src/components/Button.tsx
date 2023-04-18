@@ -35,7 +35,7 @@ export function Button({
   id,
   testid,
   disabled,
-  iconPosition,
+  iconPosition = 'left',
   size,
   squareBorder,
 }: ButtonProps) {
@@ -52,8 +52,9 @@ export function Button({
       data-testid={testid}
       squareBorder={undefinedAsFalse(squareBorder)}
     >
+      {icon && iconPosition === 'left' && <div className='icon'>{icon}</div>}
       {label}
-      {icon && icon}
+      {icon && iconPosition === 'right' && <div className='icon'>{icon}</div>}
     </Component>
   )
 }
@@ -62,6 +63,7 @@ const Component = styled.button<ButtonProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 10px 20px;
   border-radius: ${p =>
     p.squareBorder ? p.theme.borders.radius.base : p.theme.borders.radius.full};
@@ -136,6 +138,16 @@ const Component = styled.button<ButtonProps>`
 
     return ''
   }}
+
+  .icon {
+    ${p => {
+      if (p.iconPosition === 'left')
+        return `margin-right: ${p.theme.spacing.space_2};`
+      else
+        return `margin-left: ${p.theme.spacing.space_2};`
+    }}
+  }
+
   pointer-events:${p => (p.disabled ? 'none' : null)};
   cursor: ${p => (p.disabled ? 'normal' : 'pointer')};
 `

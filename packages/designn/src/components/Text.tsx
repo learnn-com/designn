@@ -4,6 +4,7 @@ import { ColorTextAlias } from '../theme/tokens/colors'
 import { Color} from '../utils/colors'
 import styled, { css, DefaultTheme } from 'styled-components'
 import { SpaceProps, space } from 'styled-system'
+import {FontLineHeightScale } from '../theme/tokens/typography'
 
 
 type Variant = 'bodyXs' | 'bodySm' | 'bodyMd' | 'bodyLg'
@@ -15,6 +16,7 @@ type Alignment = 'start' | 'center' | 'end'
 type ColorVariants = ColorTextAlias
 
 type FontWeight = 'light' | 'regular' | 'semibold' | 'bold' | 'black'
+
 
 export type TextProps = {
   /** The element type */
@@ -29,6 +31,8 @@ export type TextProps = {
   textColor?: Color
   /** Adjust weight of text */
   fontWeight?: FontWeight
+  /** Adjust weight of text */
+  lineHeightScale?: FontLineHeightScale
   /** HTML id attribute */
   id?: string
   /** Truncate text overflow with ellipsis */
@@ -123,7 +127,8 @@ const Component = styled.p<TextProps & SpaceProps>`
   }}
   ${p => (p.fontWeight ? `font-weight:${p.theme.typography[`font_weight_${p.fontWeight}`]};` : '')}
   ${textColorSf}
-
+  ${p => p.lineHeightScale && `line-height: ${p.theme.typography[`font_line_height_${p.lineHeightScale}`]};`}
+ 
 `
 
 const truncatedStyle = css`

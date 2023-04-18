@@ -10,15 +10,18 @@ export type ResponsiveKeys =
   | `large_${ResponsiveDirections}`
   | `xlarge_${ResponsiveDirections}`
 
+export type BreakpointsKeys = 
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xlarge'
+
 export type Responsive = {
   [Key in ResponsiveKeys]: ResponsiveBreakpoint
 }
 
 export type Breakpoints = {
-  small: number
-  medium: number
-  large: number
-  xlarge: number
+  [Key in BreakpointsKeys]: number 
 }
 
 const createResponsiveBreakpoint: (
@@ -27,7 +30,7 @@ const createResponsiveBreakpoint: (
 ) => ResponsiveBreakpoint = (breakpoint: number, limit: 'min' | 'max') =>
   `@media only screen and (${limit}-width: ${breakpoint}px)`
 
-const breakpoints: Breakpoints = {
+export const breakpoints: Breakpoints = {
   small: 576,
   medium: 768,
   large: 1024,

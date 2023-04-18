@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import styled, { css } from 'styled-components'
+import { SpaceProps, space } from 'styled-system'
 
 type Variant = 'heading2xs' | 'headingXs' | 'headingSm' | 'headingMd' | 'headingLg' | 'headingXl' | 'heading2xl'
 
@@ -40,7 +41,8 @@ export function Title({
   truncate,
   variant,
   testid,
-}: TitleProps) {
+  ...props
+}: TitleProps & SpaceProps) {
   const element: Element = getElement({ variant })
 
   return (
@@ -53,15 +55,17 @@ export function Title({
       color={color ?? 'primary'}
       fontWeight={fontWeight}
       data-testid={testid}
+      {...props}
     >
       {children}
     </Component>
   )
 }
 
-const Component = styled.h1<TitleProps>`
+const Component = styled.h1<TitleProps & SpaceProps>`
   margin: 0;
   padding: 0;
+  ${space}
   ${p => {
     if (p.alignment === 'start') {
       return `text-align: left;`
