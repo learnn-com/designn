@@ -1,5 +1,7 @@
 import { AppShell, Badge, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
 
 export default {
   title: 'Components/Badge',
@@ -37,4 +39,13 @@ export const ContainedSquared = bind(
   </AppShell>,
 )
 Contained.storyName = 'Badge contained more squared'
+
+export const BadgeFlat = bind(
+  <AppShell theme={defaultTheme}>
+  <div style={{ display: 'flex' }}>
+    <Badge body='Categoria' icon={<FontAwesomeIcon icon={faClock} color='white' style={{width: '100%'}}/>} variant='flat' />
+    </div>
+  </AppShell>,
+)
+BadgeFlat.storyName = 'Badge flat'
 

@@ -23,9 +23,9 @@ export const FeatureCard = ({
     <HorizontalStack
       {...props}
       borderRadius={borders.radius.large}
-      bg={colors.feature_card_background}
+      bg={colors.card_background}
       borderStyle='solid'
-      borderColor={colors.feature_card_border}
+      borderColor={colors.card_border}
       borderWidth={borders.width.base}
       px={spacing.space_4}
       py={spacing.space_5}

@@ -5,12 +5,15 @@ export type ColorInteractionAlias =
   | 'primary_active'
   | 'secondary_active'
   | 'tertiary_active'
+  | 'flat_active'
   | 'primary_hover'
   | 'secondary_hover'
   | 'tertiary_hover'
+  | 'flat_hover'
   | 'primary_disabled'
   | 'secondary_disabled'
   | 'tertiary_disabled'
+  | 'flat_disabled'
 
 export type ColorTextAlias = 'base' | 'primary' | 'secondary' | 'error' | 'success' | 'dimmed'
 
@@ -31,8 +34,8 @@ export type Colors = {
   interaction_background: InteractionColors
   interaction_foreground: InteractionColors
   interaction_outline: InteractionColors
-  feature_card_background: Color
-  feature_card_border: Color
+  card_background: Color
+  card_border: Color
 }
 
 export const colors: Colors = {
@@ -52,35 +55,44 @@ export const colors: Colors = {
     primary_active: brandColors.brand.primary,
     secondary_active: brandColors.clear,
     tertiary_active: brandColors.clear,
+    flat_active: gray[700],
     primary_hover: gray[100],
     secondary_hover: brandColors.clear,
     tertiary_hover: brandColors.clear,
+    flat_hover: gray[600],
     primary_disabled: gray[400],
     secondary_disabled: brandColors.clear,
     tertiary_disabled: brandColors.clear,
+    flat_disabled: brandColors.clear,
   },
   interaction_foreground: {
     primary_active: gray[900],
     secondary_active: gray[50],
     tertiary_active: gray[50],
+    flat_active: gray[50],
     primary_hover: gray[900],
     secondary_hover: gray[200],
     tertiary_hover: gray[200],
+    flat_hover: gray[200],
     primary_disabled: gray[500],
     secondary_disabled: gray[500],
     tertiary_disabled: gray[500],
+    flat_disabled: gray[500],
   },
   interaction_outline: {
     primary_active: brandColors.brand.primary,
     secondary_active: gray[700],
     tertiary_active: brandColors.clear,
+    flat_active: brandColors.clear,
     primary_hover: gray[100],
     secondary_hover: gray[400],
     tertiary_hover: brandColors.clear,
+    flat_hover: brandColors.clear,
     primary_disabled: gray[400],
     secondary_disabled: gray[500],
     tertiary_disabled: brandColors.clear,
+    flat_disabled: brandColors.clear,
   },
-  feature_card_background: gray[800],
-  feature_card_border: gray[500]
+  card_background: gray[800],
+  card_border: gray[500]
 }

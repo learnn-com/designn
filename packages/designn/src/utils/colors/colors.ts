@@ -14,9 +14,9 @@ export const gray: ColorScale = {
   400: 'rgba(141, 144, 152, 1)',
   500: '#696C73',
   600: '#46474D',
-  700: '#2E2F32',
+  700: '#37393E',
   800: '#27272C',
-  900: '#121214'
+  900: '#121214',
 }
 
 export const green: ColorScale = {
