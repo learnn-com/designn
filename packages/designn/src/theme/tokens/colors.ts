@@ -93,6 +93,6 @@ export const colors: Colors = {
     tertiary_disabled: brandColors.clear,
     flat_disabled: brandColors.clear,
   },
-  card_background: gray[800],
-  card_border: gray[500]
+  card_background: brandColors.backgroundColor,
+  card_border: gray[800]
 }

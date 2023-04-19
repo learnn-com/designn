@@ -20,9 +20,9 @@ export const LearningListItem = ({
     <HorizontalStack
       {...props}
       borderRadius={borders.radius.large}
-      bg={colors.bg_app}
+      bg={colors.card_background}
       borderStyle='solid'
-      borderColor={colors.edge}
+      borderColor={colors.card_border}
       borderWidth={borders.width.base}
       p={spacing.space_5}
       justifyContent='center'

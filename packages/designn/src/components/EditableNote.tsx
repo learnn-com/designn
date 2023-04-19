@@ -32,6 +32,9 @@ export const EditableNote = ({
       {...props}
       borderRadius={borders.radius.large}
       bg={colors.card_background}
+      borderStyle='solid'
+      borderColor={colors.card_border}
+      borderWidth={borders.width.base}
       p={spacing.space_8}
       justifyContent='center'
     >

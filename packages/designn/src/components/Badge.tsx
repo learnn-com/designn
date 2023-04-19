@@ -72,7 +72,7 @@ export const Badge = ({
               {icon}
             </HorizontalStack>
           )}
-          <Text variant='bodyXs' fontWeight='light' color='primary'>
+          <Text variant='bodyXs' fontWeight='black' color='primary'>
             {body}
           </Text>
         </HorizontalStack>

@@ -34,7 +34,7 @@ export const FeatureCard = ({
       <HorizontalStack width={spacing.space_32}>
         <VerticalStack justifyContent='center' width={spacing.space_6}>{icon}</VerticalStack>
         <VerticalStack ml={spacing.space_2}>
-          <Title variant='headingXs' fontWeight='semibold'>
+          <Title variant='headingXs' fontWeight='black'>
             {title}
           </Title>
           <Text variant='bodyXs' fontWeight='light'>

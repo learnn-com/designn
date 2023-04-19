@@ -3,7 +3,7 @@ import { undefinedAsFalse } from '../utils/props'
 import styled, { css } from 'styled-components'
 import { SpaceProps, space } from 'styled-system'
 
-type Variant = 'heading2xs' | 'headingXs' | 'headingSm' | 'headingMd' | 'headingLg' | 'headingXl' | 'heading2xl'
+type Variant = 'heading2xs' | 'headingXs' | 'headingSm' | 'headingMd' | 'headingLg' | 'headingXl' | 'heading2xl' | 'heading3xl'
 
 type Element = 'h1' | 'h2' | 'h3' | 'h4'
 
@@ -113,6 +113,11 @@ const Component = styled.h1<TitleProps & SpaceProps>`
     if (p.variant === 'heading2xl') {
       return `font-size: ${p.theme.typography.font_size_700};
               line-height: ${p.theme.typography.font_line_height_7};
+              letter-spacing:-0.05rem;`
+    }
+    if (p.variant === 'heading3xl') {
+      return `font-size: ${p.theme.typography.font_size_800};
+              line-height: ${p.theme.typography.font_line_height_8};
               letter-spacing:-0.05rem;`
     }
     return ''

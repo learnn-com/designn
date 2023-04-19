@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import styled from 'styled-components'
+import { FontWeightAlias } from 'theme/tokens/typography'
 
 type Variant = 'primary' | 'secondary' | 'tertiary'
 
@@ -25,6 +26,7 @@ export type ButtonProps = {
   size?: 'sm' | 'md' | 'lg'
   /** Border type */
   squareBorder?: boolean
+  textFontWeight?: FontWeightAlias
 }
 
 export function Button({
@@ -38,6 +40,7 @@ export function Button({
   iconPosition = 'left',
   size,
   squareBorder,
+  textFontWeight
 }: ButtonProps) {
   return (
     <Component
@@ -46,6 +49,7 @@ export function Button({
       icon={icon}
       iconPosition={iconPosition}
       variant={variant}
+      textFontWeight={textFontWeight}
       disabled={undefinedAsFalse(disabled)}
       size={size}
       label={label}
@@ -86,6 +90,10 @@ const Component = styled.button<ButtonProps>`
     return `font-size: ${p.theme.typography.font_size_200};
             line-height: ${p.theme.typography.font_line_height_2};`
   }}
+  ${p =>
+    p.textFontWeight
+      ? `font-weight:${p.theme.typography[`font_weight_${p.textFontWeight}`]};`
+      : `font-weight:${p.theme.typography.font_weight_black};`}
   ${p => {
     if (p.variant === 'primary') {
       return `background-color: ${p.theme.colors.interaction_background.primary_active};
