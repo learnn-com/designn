@@ -108,7 +108,7 @@ importers:
       lint-staged: 13.1.2
       react: 18.2.0
       react-dom: 18.2.0
-      styled-components: 5.3.9
+      styled-components: 5.3.10
       styled-system: ^5.1.5
       ts-jest: 29.0.5
       tsup: 6.5.0
@@ -121,7 +121,7 @@ importers:
       '@types/styled-system__theme-get': 5.0.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      styled-components: 5.3.9_7i5myeigehqah43i5u7wbekgba
+      styled-components: 5.3.10_7i5myeigehqah43i5u7wbekgba
       styled-system: 5.1.5
     devDependencies:
       '@babel/preset-env': 7.21.4_@babel+core@7.21.4
@@ -5322,7 +5322,7 @@ packages:
       - supports-color
     dev: true
 
-  /babel-plugin-styled-components/2.1.1_styled-components@5.3.9:
+  /babel-plugin-styled-components/2.1.1_styled-components@5.3.10:
     resolution: {integrity: sha512-c8lJlszObVQPguHkI+akXv8+Jgb9Ccujx0EetL7oIvwU100LxO6XAGe45qry37wUL40a5U9f23SYrivro2XKhA==}
     peerDependencies:
       styled-components: '>= 2'
@@ -5332,7 +5332,7 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.9_7i5myeigehqah43i5u7wbekgba
+      styled-components: 5.3.10_7i5myeigehqah43i5u7wbekgba
     dev: false
 
   /babel-plugin-syntax-jsx/6.18.0:
@@ -5453,6 +5453,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -7951,6 +7952,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -10807,6 +10809,7 @@ packages:
 
   /nan/2.17.0:
     resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -13168,8 +13171,8 @@ packages:
       inline-style-parser: 0.1.1
     dev: true
 
-  /styled-components/5.3.9_7i5myeigehqah43i5u7wbekgba:
-    resolution: {integrity: sha512-Aj3kb13B75DQBo2oRwRa/APdB5rSmwUfN5exyarpX+x/tlM/rwZA2vVk2vQgVSP6WKaZJHWwiFrzgHt+CLtB4A==}
+  /styled-components/5.3.10_7i5myeigehqah43i5u7wbekgba:
+    resolution: {integrity: sha512-3kSzSBN0TiCnGJM04UwO1HklIQQSXW7rCARUk+VyMR7clz8XVlA3jijtf5ypqoDIdNMKx3la4VvaPFR855SFcg==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>= 16.8.0 || 18'
@@ -13181,7 +13184,7 @@ packages:
       '@emotion/is-prop-valid': 1.2.0
       '@emotion/stylis': 0.8.5
       '@emotion/unitless': 0.7.5
-      babel-plugin-styled-components: 2.1.1_styled-components@5.3.9
+      babel-plugin-styled-components: 2.1.1_styled-components@5.3.10
       css-to-react-native: 3.2.0
       hoist-non-react-statics: 3.3.2
       react: 18.2.0

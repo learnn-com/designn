@@ -34,7 +34,7 @@
     "@types/styled-system__theme-get": "^5.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "5.3.9",
+    "styled-components": "5.3.10",
     "styled-system": "^5.1.5",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0"
