@@ -27,7 +27,7 @@ export const Badge = ({
       return (
         <HorizontalStack
           {...props}
-          borderRadius={squareBorder ? borders.radius.base : borders.radius.large}
+          borderRadius={squareBorder ? borders.radius.medium : borders.radius.large}
           borderColor={colors.outline}
           borderWidth={borders.width.base}
           borderStyle='solid'
@@ -44,12 +44,12 @@ export const Badge = ({
       return (
         <HorizontalStack
           {...props}
-          borderRadius={squareBorder ? borders.radius.base : borders.radius.large}
-          borderColor={colors.edge}
-          bg={colors.edge}
+          borderRadius={squareBorder ? borders.radius.medium : borders.radius.large}
+          borderColor={colors.card_background}
+          bg={colors.card_border}
           borderWidth={borders.width.base}
           borderStyle='solid'
-          py={spacing.space_1}
+          py={spacing.space_2}
           px={spacing.space_3}
           justifyContent='center'
         >
