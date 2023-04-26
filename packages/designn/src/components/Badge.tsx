@@ -31,7 +31,7 @@ export const Badge = ({
           borderColor={colors.outline}
           borderWidth={borders.width.base}
           borderStyle='solid'
-          py={spacing.space_1}
+          py={spacing.space_2}
           px={spacing.space_3}
           justifyContent='center'
         >
