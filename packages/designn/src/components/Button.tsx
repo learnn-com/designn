@@ -70,7 +70,7 @@ const Component = styled.button<ButtonProps>`
   justify-content: center;
   padding: 10px 20px;
   border-radius: ${p =>
-    p.squareBorder ? p.theme.borders.radius.base : p.theme.borders.radius.full};
+    p.squareBorder ? p.theme.borders.radius.medium : p.theme.borders.radius.full};
   ${p => `font-weight:${p.theme.typography.font_weight_semibold};`}
   ${p => {
     if (p.size === 'sm') {
