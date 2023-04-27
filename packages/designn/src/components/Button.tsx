@@ -40,7 +40,7 @@ export function Button({
   iconPosition = 'left',
   size,
   squareBorder,
-  textFontWeight
+  textFontWeight,
 }: ButtonProps) {
   return (
     <Component
@@ -69,6 +69,7 @@ const Component = styled.button<ButtonProps>`
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
+  letter-spacing: -0.03em;
   border-radius: ${p =>
     p.squareBorder ? p.theme.borders.radius.medium : p.theme.borders.radius.full};
   ${p => `font-weight:${p.theme.typography.font_weight_semibold};`}
@@ -149,13 +150,11 @@ const Component = styled.button<ButtonProps>`
 
   .icon {
     ${p => {
-      if (p.iconPosition === 'left')
-        return `margin-right: ${p.theme.spacing.space_2};`
-      else
-        return `margin-left: ${p.theme.spacing.space_2};`
+      if (p.iconPosition === 'left') return `margin-right: ${p.theme.spacing.space_2};`
+      else return `margin-left: ${p.theme.spacing.space_2};`
     }}
   }
 
-  pointer-events:${p => (p.disabled ? 'none' : null)};
+  pointer-events: ${p => (p.disabled ? 'none' : null)};
   cursor: ${p => (p.disabled ? 'normal' : 'pointer')};
 `

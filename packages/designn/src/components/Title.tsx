@@ -121,12 +121,12 @@ const Component = styled.h1<TitleProps & SpaceProps>`
     if (p.variant === 'heading2xl') {
       return `font-size: ${p.theme.typography.font_size_700};
               line-height: ${p.theme.typography.font_line_height_7};
-              letter-spacing:-0.04em;`
+              letter-spacing:-0.05em;`
     }
     if (p.variant === 'heading3xl') {
       return `font-size: ${p.theme.typography.font_size_800};
               line-height: ${p.theme.typography.font_line_height_8};
-              letter-spacing:-0.04em;`
+              letter-spacing:-0.05em;`
     }
     return ''
   }}
