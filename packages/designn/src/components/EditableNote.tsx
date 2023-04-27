@@ -40,12 +40,16 @@ export const EditableNote = ({
     >
       <VerticalStack flex={1} mr={spacing.space_3}>
         <HorizontalStack justifyContent='space-between'>
-          <Title variant='headingMd' fontWeight='bold'>
-            {title}
-          </Title>
+          <Title variant='headingMd'>{title}</Title>
           <HorizontalStack>{headerRight}</HorizontalStack>
         </HorizontalStack>
-        <Text variant='bodySm' fontWeight='light' lineHeightScale='3' color='secondary' mt={spacing.space_6}>
+        <Text
+          variant='bodySm'
+          fontWeight='light'
+          lineHeightScale='3'
+          color='secondary'
+          mt={spacing.space_6}
+        >
           {body}
         </Text>
       </VerticalStack>
