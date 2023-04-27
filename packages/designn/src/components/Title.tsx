@@ -3,7 +3,15 @@ import { undefinedAsFalse } from '../utils/props'
 import styled, { css } from 'styled-components'
 import { SpaceProps, space } from 'styled-system'
 
-type Variant = 'heading2xs' | 'headingXs' | 'headingSm' | 'headingMd' | 'headingLg' | 'headingXl' | 'heading2xl' | 'heading3xl'
+type Variant =
+  | 'heading2xs'
+  | 'headingXs'
+  | 'headingSm'
+  | 'headingMd'
+  | 'headingLg'
+  | 'headingXl'
+  | 'heading2xl'
+  | 'heading3xl'
 
 type Element = 'h1' | 'h2' | 'h3' | 'h4'
 
@@ -83,42 +91,42 @@ const Component = styled.h1<TitleProps & SpaceProps>`
     if (p.variant === 'heading2xs') {
       return `font-size: ${p.theme.typography.font_size_100};
               line-height: ${p.theme.typography.font_line_height_1};
-              letter-spacing:-0.05rem;`
+              letter-spacing:-0.04em;`
     }
     if (p.variant === 'headingXs') {
       return `font-size: ${p.theme.typography.font_size_200};
               line-height: ${p.theme.typography.font_line_height_2};
-              letter-spacing:-0.05rem;`
+              letter-spacing:-0.04em;`
     }
     if (p.variant === 'headingSm') {
       return `font-size: ${p.theme.typography.font_size_300};
               line-height: ${p.theme.typography.font_line_height_3};
-              letter-spacing:-0.05rem;`
+              letter-spacing:-0.04em;`
     }
     if (p.variant === 'headingMd') {
       return `font-size: ${p.theme.typography.font_size_400};
               line-height: ${p.theme.typography.font_line_height_4};
-              letter-spacing:-0.05rem;`
+              letter-spacing:-0.04em;`
     }
     if (p.variant === 'headingLg') {
       return `font-size: ${p.theme.typography.font_size_500};
               line-height: ${p.theme.typography.font_line_height_5};
-              letter-spacing:-0.05rem;`
+              letter-spacing:-0.04em;`
     }
     if (p.variant === 'headingXl') {
       return `font-size: ${p.theme.typography.font_size_600};
               line-height: ${p.theme.typography.font_line_height_6};
-              letter-spacing:-0.05rem;`
+              letter-spacing:-0.04em;`
     }
     if (p.variant === 'heading2xl') {
       return `font-size: ${p.theme.typography.font_size_700};
               line-height: ${p.theme.typography.font_line_height_7};
-              letter-spacing:-0.05rem;`
+              letter-spacing:-0.04em;`
     }
     if (p.variant === 'heading3xl') {
       return `font-size: ${p.theme.typography.font_size_800};
               line-height: ${p.theme.typography.font_line_height_8};
-              letter-spacing:-0.05rem;`
+              letter-spacing:-0.04em;`
     }
     return ''
   }}
