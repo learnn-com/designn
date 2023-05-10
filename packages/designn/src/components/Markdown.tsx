@@ -46,15 +46,16 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
 
   a:link, a:visited {
     color: ${p => p.theme.colors.text.primary};
-    text-decoration:none;
+    text-decoration: underline;
   }
 
   a:link:before {
     content: '🔗';
     margin: 0px 10px 0px 0px;
     text-decoration: none;
+    display:inline-block;
   }
-  
+
   ${flexbox}
   ${space}
   ${border}
