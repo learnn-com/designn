@@ -9,7 +9,8 @@ export default {
 const TITLE = 'Nome del Corso molto lungo asda e e e '
 const SUBTITLE = 'Corso • 3h 40min'
 const PROGRESS = 40
-const COVER_IMAGE = 'https://stack-vod-learnn-source-9043g70p82tj.s3.eu-west-3.amazonaws.com/medium_i_copywriting_cover_02_5f720857ac.jpg'
+const COVER_IMAGE = 'https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/medium_169_Cover_CORSI_new_54_086723cafa_88463e402d.png'
+const COMPANY_LOGO = 'https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/thumbnail_5_dfef551a2d.png'
 
 function bind(node: JSX.Element) {
   const template: ComponentStory<typeof CourseCard> = () => node
@@ -55,4 +56,18 @@ export const WithoutProgress = bind(
   </AppShell>,
 )
 WithoutProgress.storyName = 'Without Progress'
+
+export const WithCompanyLogo = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', height: '250px' }}>
+      <CourseCard
+        title={TITLE}
+        subtitle={SUBTITLE}
+        coverImage={COVER_IMAGE}
+        companyLogo={COMPANY_LOGO}
+      />
+    </div>
+  </AppShell>,
+)
+WithCompanyLogo.storyName = 'With company logo'
 
