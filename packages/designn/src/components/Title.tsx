@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import styled, { css } from 'styled-components'
 import { SpaceProps, space } from 'styled-system'
+import { FontLineHeightScale } from 'theme/tokens/typography'
 
 type Variant =
   | 'heading2xs'
@@ -30,10 +31,14 @@ export type TitleProps = {
   color?: Color
   /** Adjust weight of text */
   fontWeight?: FontWeight
+  /** Adjust height of text */
+  lineHeightScale?: FontLineHeightScale
   /** HTML id attribute */
   id?: string
   /** Truncate text overflow with ellipsis */
   truncate?: boolean
+  /** Truncate lines */
+  truncateLines?: number
   /** Typographic style of text */
   variant: Variant
   /** Id used for tests */
@@ -138,12 +143,24 @@ const Component = styled.h1<TitleProps & SpaceProps>`
     p.color
       ? `color:${p.theme.colors.text[`${p.color}`]};`
       : `color:${p.theme.colors.text.primary};`}
+
+  ${p => p.lineHeightScale && `line-height: ${p.theme.typography[`font_line_height_${p.lineHeightScale}`]};`}
 `
 
 const truncatedStyle = css`
-  overflow: hidden;
-  white-space: nowrap;
+  ${(p: TitleProps) =>
+    p.truncateLines
+      ? `
+  -webkit-line-clamp: ${p.truncateLines};
+  -webkit-box-orient: vertical;
+ `
+      : `
+ white-space: nowrap;
+ `}
+
   text-overflow: ellipsis;
+  display: -webkit-box;
+  overflow: hidden;
 `
 
 const getElement: (p: Omit<TitleProps, 'children'>) => Element = ({ variant }) => {

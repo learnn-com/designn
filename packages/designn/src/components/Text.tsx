@@ -31,7 +31,7 @@ export type TextProps = {
   textColor?: Color
   /** Adjust weight of text */
   fontWeight?: FontWeight
-  /** Adjust weight of text */
+  /** Adjust height of text */
   lineHeightScale?: FontLineHeightScale
   /** HTML id attribute */
   id?: string
