@@ -47,7 +47,7 @@ export const CourseCard = ({
           </div>
           <div className='buttonsContainer'>{buttons}</div>
         </div>
-        {progressPercentage && progressPercentage > 0 ? <ProgressBar percentage={progressPercentage} /> : null}
+        <ProgressBar percentage={progressPercentage} transition={true}/>
       </div>
     </StyledCourseCard>
   )

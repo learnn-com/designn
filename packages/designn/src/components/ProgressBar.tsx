@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react'
 
 export type ProgressBarProps = {
   percentage?: number
+  transition?: boolean
 }
 
-export const ProgressBar = ({ percentage }: ProgressBarProps & SpaceProps & LayoutProps) => {
+export const ProgressBar = ({ percentage, transition }: ProgressBarProps & SpaceProps & LayoutProps) => {
   const [progressAnimation, setProgressAnimation] = useState(0)
 
   useEffect(() => {
@@ -14,7 +15,9 @@ export const ProgressBar = ({ percentage }: ProgressBarProps & SpaceProps & Layo
   }, [percentage])
 
   return (
-    <StyledProgressBar>
+    <StyledProgressBar 
+    transition={transition}
+    >
       <div className='progress' style={{ width: `${progressAnimation}%` }}></div>
     </StyledProgressBar>
   )
@@ -27,7 +30,7 @@ const StyledProgressBar = styled.div`
   width: 100%;
 
   .progress {
-    transition: width 0.5s ease-in-out;
+    transition: ${p => p.transition ? 'width 0.5s ease-in-out' : 'none'};
     height: 2px;
     background-color: ${p => p.theme.colors.text.base};
     max-width: 100%;
