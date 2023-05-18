@@ -23,7 +23,17 @@ export type MarkdownProps = {
 export const Markdown = ({ children, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
   return (
     <StyledMarkdown {...props}>
-      <ReactMarkdown>{children}</ReactMarkdown>
+      <ReactMarkdown
+        renderers={{
+          link: props => (
+            <a href={props.node.url} target='_blank'>
+              {props.children}
+            </a>
+          ),
+        }}
+      >
+        {children}
+      </ReactMarkdown>
     </StyledMarkdown>
   )
 }
