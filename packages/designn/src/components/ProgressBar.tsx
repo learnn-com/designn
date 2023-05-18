@@ -29,7 +29,7 @@ const StyledProgressBar = styled.div`
   .progress {
     transition: width 0.5s ease-in-out;
     height: 2px;
-    background-color: ${p => p.theme.colors.text.base};
+    background-color: ${p => p.theme.colors.interaction_background.primary_active};
     max-width: 100%;
   }
 `

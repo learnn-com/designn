@@ -7,7 +7,7 @@ type ColorScale = {
 }
 
 export const gray: ColorScale = {
-  50: "#ffffff",
+  50: '#ffffff',
   100: 'rgba(233, 234, 239, 1)',
   200: '#D0D5DE',
   300: 'rgba(174, 180, 187, 1)',
@@ -90,7 +90,7 @@ export const orange: ColorScale = {
   200: 'rgba(250, 201, 168, 1)',
   300: 'rgba(247, 177, 130, 1)',
   400: 'rgba(245, 147, 82, 1)',
-  500: 'rgba(242, 117, 34, 1)',
+  500: '#e8b63e',
   600: 'rgba(216, 101, 13, 1)',
   700: 'rgba(164, 76, 10, 1)',
   800: 'rgba(111, 52, 7, 1)',
@@ -113,6 +113,7 @@ export const purple: ColorScale = {
 type BrandColor = {
   brand: { primary: Color; accent: Color }
   backgroundColor: Color
+  textColor: Color
   clear: Color
   muted: Color
 }
@@ -121,6 +122,7 @@ export const brandColors: BrandColor = {
     primary: '#ffffff',
     accent: '#000000',
   },
+  textColor: '#E7E9EA',
   backgroundColor: gray[900],
   muted: '#767676', //https://artincontext.org/muted-colors/
   clear: 'transparent',

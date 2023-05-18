@@ -1,4 +1,4 @@
-import { brandColors, Color, green, red, gray } from '../../utils/colors'
+import { brandColors, Color, green, red, gray, orange } from '../../utils/colors'
 
 export type ColorBorderAlias = 'border'
 export type ColorInteractionAlias =
@@ -15,7 +15,14 @@ export type ColorInteractionAlias =
   | 'tertiary_disabled'
   | 'flat_disabled'
 
-export type ColorTextAlias = 'base' | 'primary' | 'secondary' | 'error' | 'success' | 'dimmed'
+export type ColorTextAlias =
+  | 'base'
+  | 'primary'
+  | 'secondary'
+  | 'error'
+  | 'success'
+  | 'dimmed'
+  | 'primary_inverted'
 
 export type TextColors = {
   [TokenName in ColorTextAlias]: Color
@@ -36,6 +43,7 @@ export type Colors = {
   interaction_outline: InteractionColors
   card_background: Color
   card_border: Color
+  code: Color
 }
 
 export const colors: Colors = {
@@ -44,10 +52,11 @@ export const colors: Colors = {
   edge: gray[800],
   outline: gray[500],
   text: {
-    base: brandColors.brand.primary,
+    base: brandColors.textColor,
     secondary: gray[300],
     dimmed: gray[500],
     primary: brandColors.brand.primary,
+    primary_inverted: brandColors.brand.accent,
     error: red[500],
     success: green[500],
   },
@@ -94,5 +103,6 @@ export const colors: Colors = {
     flat_disabled: brandColors.clear,
   },
   card_background: brandColors.backgroundColor,
-  card_border: gray[800]
+  card_border: gray[800],
+  code: orange[500],
 }
