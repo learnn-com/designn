@@ -20,11 +20,7 @@ export type MarkdownProps = {
   size?: Size
 }
 
-export const Markdown = ({
-  children,
-  size = 'md',
-  ...props
-}: MarkdownProps & SpaceProps & LayoutProps) => {
+export const Markdown = ({ children, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
   return (
     <StyledMarkdown {...props}>
       <ReactMarkdown>{children}</ReactMarkdown>
@@ -38,7 +34,7 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
   ${p => {
     if (p.size === 'lg') {
       return `font-size: ${p.theme.typography.font_size_300};
-              line-height: ${p.theme.typography.font_line_height_3};
+              line-height: ${p.theme.typography.font_line_height_4};
               h2 {
                 margin-top: ${p.theme.spacing.space_8};
                 font-size:  ${p.theme.typography.font_size_500};
@@ -49,21 +45,21 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
                 font-weight: ${p.theme.typography.font_weight_bold};
               }
               `
+    } else {
+      return `font-size: ${p.theme.typography.font_size_200};
+      line-height: ${p.theme.typography.font_line_height_4};
+      h2 {
+        margin-top: ${p.theme.spacing.space_6};
+        font-size:  ${p.theme.typography.font_size_400};
+        font-weight: ${p.theme.typography.font_weight_bold};
+      }
+      h4 {
+        margin-top: ${p.theme.spacing.space_6};
+        font-weight: ${p.theme.typography.font_weight_bold};
+      }`
     }
-
-    return `font-size: ${p.theme.typography.font_size_200};
-            line-height: ${p.theme.typography.font_line_height_4};
-            h2 {
-              margin-top: ${p.theme.spacing.space_6};
-              font-size:  ${p.theme.typography.font_size_400};
-              font-weight: ${p.theme.typography.font_weight_bold};
-            }
-            h4 {
-              margin-top: ${p.theme.spacing.space_6};
-              font-weight: ${p.theme.typography.font_weight_bold};
-            }`
   }}
-  p a {
+  p a, ul li a {
     color: ${p => p.theme.colors.text.primary};
     font-weight: ${p => p.theme.typography.font_weight_bold};
     text-decoration: underline;
