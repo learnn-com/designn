@@ -12,6 +12,7 @@ export type CourseCardProps = {
   buttons?: JSX.Element
   onClick?: Function
   progressPercentage?: number
+  hideProgressBar?: boolean
 }
 
 export const CourseCard = ({
@@ -22,6 +23,7 @@ export const CourseCard = ({
   buttons,
   progressPercentage,
   onClick,
+  hideProgressBar
 }: CourseCardProps & SpaceProps & LayoutProps) => {
   const { spacing } = useTheme()
 
@@ -47,7 +49,7 @@ export const CourseCard = ({
           </div>
           <div className='buttonsContainer'>{buttons}</div>
         </div>
-        <ProgressBar percentage={progressPercentage} transition={true}/>
+        { !hideProgressBar && <ProgressBar percentage={progressPercentage} transition={true}/>}
       </div>
     </StyledCourseCard>
   )

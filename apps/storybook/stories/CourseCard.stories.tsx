@@ -51,6 +51,7 @@ export const WithoutProgress = bind(
         title={TITLE}
         subtitle={SUBTITLE}
         coverImage={COVER_IMAGE}
+        hideProgressBar
       />
     </div>
   </AppShell>,
