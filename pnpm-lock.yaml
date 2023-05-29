@@ -135,8 +135,8 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/react@18.0.37)(react@18.2.0)
       styled-components:
-        specifier: 5.3.10
-        version: 5.3.10(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+        specifier: 5.3.11
+        version: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
       styled-system:
         specifier: ^5.1.5
         version: 5.1.5
@@ -5363,7 +5363,7 @@ packages:
       - supports-color
     dev: true
 
-  /babel-plugin-styled-components@2.1.1(styled-components@5.3.10):
+  /babel-plugin-styled-components@2.1.1(styled-components@5.3.11):
     resolution: {integrity: sha512-c8lJlszObVQPguHkI+akXv8+Jgb9Ccujx0EetL7oIvwU100LxO6XAGe45qry37wUL40a5U9f23SYrivro2XKhA==}
     peerDependencies:
       styled-components: '>= 2'
@@ -5373,7 +5373,7 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.10(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+      styled-components: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
     dev: false
 
   /babel-plugin-syntax-jsx@6.18.0:
@@ -13173,8 +13173,8 @@ packages:
       inline-style-parser: 0.1.1
     dev: true
 
-  /styled-components@5.3.10(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-3kSzSBN0TiCnGJM04UwO1HklIQQSXW7rCARUk+VyMR7clz8XVlA3jijtf5ypqoDIdNMKx3la4VvaPFR855SFcg==}
+  /styled-components@5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uuzIIfnVkagcVHv9nE0VPlHPSCmXIUGKfJ42LNjxCCTDTL5sgnJ8Z7GZBq0EnLYGln77tPpEpExt2+qa+cZqSw==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>= 16.8.0 || 18'
@@ -13186,7 +13186,7 @@ packages:
       '@emotion/is-prop-valid': 1.2.0
       '@emotion/stylis': 0.8.5
       '@emotion/unitless': 0.7.5
-      babel-plugin-styled-components: 2.1.1(styled-components@5.3.10)
+      babel-plugin-styled-components: 2.1.1(styled-components@5.3.11)
       css-to-react-native: 3.2.0
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
