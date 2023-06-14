@@ -41,6 +41,8 @@ export type Colors = {
   interaction_background: InteractionColors
   interaction_foreground: InteractionColors
   interaction_outline: InteractionColors
+  item_active: Color
+  item_hover: Color
   card_background: Color
   card_border: Color
   code: Color
@@ -102,6 +104,8 @@ export const colors: Colors = {
     tertiary_disabled: brandColors.clear,
     flat_disabled: brandColors.clear,
   },
+  item_active: gray[800],
+  item_hover: gray[600],
   card_background: brandColors.backgroundColor,
   card_border: gray[800],
   code: orange[500],
