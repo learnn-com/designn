@@ -14,6 +14,7 @@ const StyledInput = styled.input`
   background-color: transparent;
   border: none;
   padding: 0;
+  margin: 0 ${p => p.theme.spacing.space_3};
   flex: 1;
 
   font-size: ${p => p.theme.typography.font_size_100};
@@ -31,14 +32,14 @@ const StyledInput = styled.input`
 
 const LeftComponent = styled.div`
   display: flex;
-  margin: 0 ${p => p.theme.spacing.space_3};
+  margin-left: ${p => p.theme.spacing.space_3};
   align-items: center;
   justify-content: center;
 `
 
 const RightComponent = styled.div`
   display: flex;
-  margin: 0 ${p => p.theme.spacing.space_3};
+  margin-right: ${p => p.theme.spacing.space_3};
   align-items: center;
   justify-content: center;
 `
@@ -49,7 +50,7 @@ export type TextInputProps = {
   value?: string
   leftComponent?: React.ReactElement
   rightComponent?: React.ReactElement
-}
+} & React.InputHTMLAttributes<HTMLInputElement>
 export const TextInput = ({
   leftComponent,
   rightComponent,

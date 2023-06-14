@@ -15,7 +15,7 @@ function bind(node: JSX.Element) {
 
 export const TextInputStandard = bind(
   <AppShell theme={defaultTheme}>
-    <TextInput />
+    <TextInput placeholder='Placeholder'/>
   </AppShell>,
 )
 TextInputStandard.storyName = 'TextInput Standard'
