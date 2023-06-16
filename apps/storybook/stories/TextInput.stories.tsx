@@ -1,6 +1,6 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AppShell, TextInput, defaultTheme } from '@learnn/designn'
+import { AppShell, TextInput, VerticalStack, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -13,6 +13,7 @@ function bind(node: JSX.Element) {
   return template.bind({})
 }
 
+
 export const TextInputStandard = bind(
   <AppShell theme={defaultTheme}>
     <TextInput placeholder='Placeholder'/>
@@ -20,44 +21,35 @@ export const TextInputStandard = bind(
 )
 TextInputStandard.storyName = 'TextInput Standard'
 
-export const TextInputTransparent = bind(
+export const TextInputSize = bind(
   <AppShell theme={defaultTheme}>
-    <TextInput placeholder='Placeholder' variant='transparent'/>
+    <VerticalStack>
+    <TextInput placeholder='Small size' size='sm' mt='20px'/>
+    <TextInput placeholder='Medium size' size='md' mt='20px'/>
+    <TextInput placeholder='Large size' size='lg' mt='20px'/>
+    </VerticalStack>
   </AppShell>,
 )
-TextInputTransparent.storyName = 'TextInput Transparent'
+TextInputSize.storyName = 'TextInput Different Sizes'
 
-export const TextInputLight = bind(
+export const TextInputVariants = bind(
   <AppShell theme={defaultTheme}>
-    <TextInput placeholder='Placeholder' variant='light'/>
+  <VerticalStack>
+  <TextInput placeholder='Transparent' variant='transparent' mt='20px'/>
+  <TextInput placeholder='Light' variant='light' mt='20px'/>
+  <TextInput placeholder='Dark' variant='dark' mt='20px'/>
+  </VerticalStack>
   </AppShell>,
 )
-TextInputLight.storyName = 'TextInput Light'
+TextInputVariants.storyName = 'TextInput Different Variants'
 
-export const TextInputDark = bind(
+export const TextInputComponent = bind(
   <AppShell theme={defaultTheme}>
-    <TextInput placeholder='Placeholder' variant='dark'/>
+  <VerticalStack>
+  <TextInput placeholder='Left Component' leftComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>}  mt='20px'/>
+  <TextInput placeholder='Right Component' rightComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>}  mt='20px'/>
+  <TextInput placeholder='Both Components' leftComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>} rightComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>}  mt='20px'/>
+  </VerticalStack>
   </AppShell>,
 )
-TextInputDark.storyName = 'TextInput Dark'
-
-export const TextInputLeftComponent = bind(
-  <AppShell theme={defaultTheme}>
-    <TextInput leftComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>} />
-  </AppShell>,
-)
-TextInputLeftComponent.storyName = 'TextInput Left Component'
-
-export const TextInputRightComponent = bind(
-  <AppShell theme={defaultTheme}>
-    <TextInput rightComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>} />
-  </AppShell>,
-)
-TextInputRightComponent.storyName = 'TextInput Right Component'
-
-export const TextInputLeftRightComponent = bind(
-  <AppShell theme={defaultTheme}>
-    <TextInput leftComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>} rightComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>} />
-  </AppShell>,
-)
-TextInputLeftRightComponent.storyName = 'TextInput Left Right Component'
+TextInputComponent.storyName = 'TextInput Component Position'

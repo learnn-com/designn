@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { DefaultTheme, useTheme } from 'styled-components'
 import { space, layout, border, compose, SpaceProps, LayoutProps } from 'styled-system'
 
-const styleContainerVariant = ({theme, variant}: {theme: DefaultTheme, variant: Variant}) => {
+const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; variant: Variant }) => {
   switch (variant) {
     default:
     case 'transparent':
@@ -22,7 +22,7 @@ const styleContainerVariant = ({theme, variant}: {theme: DefaultTheme, variant: 
       `
   }
 }
-const styleInputVariant = ({theme, variant}: {theme: DefaultTheme, variant: Variant}) => {
+const styleInputVariant = ({ theme, variant }: { theme: DefaultTheme; variant: Variant }) => {
   switch (variant) {
     default:
     case 'transparent':
@@ -40,11 +40,48 @@ const styleInputVariant = ({theme, variant}: {theme: DefaultTheme, variant: Vari
   }
 }
 
+
+const styleInputSize = ({ theme, size }: { theme: DefaultTheme; size: Size }) => {
+  switch (size) {
+    case 'sm':
+      return `
+      margin: ${theme.spacing.space_1} ${theme.spacing.space_2};
+      `
+    default:
+    case 'md':
+      return `
+      margin: ${theme.spacing.space_2} ${theme.spacing.space_2};
+      `
+    case 'lg':
+      return `
+      margin: ${theme.spacing.space_3} ${theme.spacing.space_2};
+      `
+  }
+}
+const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size: Size }) => {
+  switch (size) {
+    case 'sm':
+      return `
+      border-radius: ${theme.borders.radius.large};
+      `
+    default:
+    case 'md':
+      return `
+      border-radius: ${theme.borders.radius.large};
+      `
+    case 'lg':
+      return `
+      border-radius: ${theme.borders.radius.full};
+      `
+  }
+}
+
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justifycontent: center;
   ${styleContainerVariant}
+  ${styleContainerSize}
 
   ${compose(space, layout, border)}
 `
@@ -53,7 +90,6 @@ const StyledInput = styled.input`
   background-color: transparent;
   border: none;
   padding: 0;
-  margin: 0 ${p => p.theme.spacing.space_3};
   flex: 1;
 
   font-size: ${p => p.theme.typography.font_size_100};
@@ -66,8 +102,7 @@ const StyledInput = styled.input`
   }
 
   ${styleInputVariant}
-
-  ${compose(space, layout)}
+  ${styleInputSize}
 `
 
 const LeftComponent = styled.div`
@@ -84,16 +119,18 @@ const RightComponent = styled.div`
   justify-content: center;
 `
 
-type Variant = 'transparent' | 'dark' | 'light' 
+type Variant = 'transparent' | 'dark' | 'light'
+type Size = 'sm' | 'md' | 'lg'
 
-export type TextInputProps = {
+export type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onKeyPress?: (value: React.KeyboardEvent<HTMLInputElement>) => void
   value?: string
   leftComponent?: React.ReactElement
   rightComponent?: React.ReactElement
   variant?: Variant
-} & React.InputHTMLAttributes<HTMLInputElement>
+  size?: Size
+}
 export const TextInput = ({
   leftComponent,
   rightComponent,
@@ -102,21 +139,20 @@ export const TextInput = ({
   value,
   ...props
 }: TextInputProps & SpaceProps & LayoutProps) => {
-  const { borders, spacing, colors } = useTheme()
+  const { colors } = useTheme()
 
   return (
     <InputWrapper
-      borderRadius={borders.radius.large}
       bg={colors.card_background}
       variant={props.variant}
+      {...props}
     >
       {leftComponent && <LeftComponent>{leftComponent}</LeftComponent>}
-      <StyledInput 
-      my={spacing.space_2} 
-      {...props}
-      onChange={onChange} 
-      onKeyPress={onKeyPress} 
-      value={value}
+      <StyledInput
+        {...props}
+        onChange={onChange}
+        onKeyPress={onKeyPress}
+        value={value}
       />
       {rightComponent && <RightComponent>{rightComponent}</RightComponent>}
     </InputWrapper>
