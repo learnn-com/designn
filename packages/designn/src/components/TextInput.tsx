@@ -122,7 +122,7 @@ const RightComponent = styled.div`
 type Variant = 'transparent' | 'dark' | 'light'
 type Size = 'sm' | 'md' | 'lg'
 
-export type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+export type TextInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onKeyPress?: (value: React.KeyboardEvent<HTMLInputElement>) => void
   value?: string
