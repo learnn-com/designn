@@ -20,6 +20,27 @@ export const TextInputStandard = bind(
 )
 TextInputStandard.storyName = 'TextInput Standard'
 
+export const TextInputTransparent = bind(
+  <AppShell theme={defaultTheme}>
+    <TextInput placeholder='Placeholder' variant='transparent'/>
+  </AppShell>,
+)
+TextInputTransparent.storyName = 'TextInput Transparent'
+
+export const TextInputLight = bind(
+  <AppShell theme={defaultTheme}>
+    <TextInput placeholder='Placeholder' variant='light'/>
+  </AppShell>,
+)
+TextInputLight.storyName = 'TextInput Light'
+
+export const TextInputDark = bind(
+  <AppShell theme={defaultTheme}>
+    <TextInput placeholder='Placeholder' variant='dark'/>
+  </AppShell>,
+)
+TextInputDark.storyName = 'TextInput Dark'
+
 export const TextInputLeftComponent = bind(
   <AppShell theme={defaultTheme}>
     <TextInput leftComponent={<FontAwesomeIcon icon={faPlay} style={{color: 'white'}}/>} />
