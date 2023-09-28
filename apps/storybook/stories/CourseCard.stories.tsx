@@ -72,3 +72,17 @@ export const WithCompanyLogo = bind(
 )
 WithCompanyLogo.storyName = 'With company logo'
 
+export const WithPRO = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', height: '250px' }}>
+      <CourseCard
+        title={TITLE}
+        subtitle={SUBTITLE}
+        coverImage={COVER_IMAGE}
+        pro
+      />
+    </div>
+  </AppShell>,
+)
+WithPRO.storyName = 'With PRO Badge'
+

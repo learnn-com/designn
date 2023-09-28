@@ -13,6 +13,7 @@ export type CourseCardProps = {
   onClick?: Function
   progressPercentage?: number
   hideProgressBar?: boolean
+  pro?: boolean
 }
 
 export const CourseCard = ({
@@ -23,14 +24,20 @@ export const CourseCard = ({
   buttons,
   progressPercentage,
   onClick,
-  hideProgressBar
+  hideProgressBar,
+  pro
 }: CourseCardProps & SpaceProps & LayoutProps) => {
   const { spacing } = useTheme()
 
   return (
     <StyledCourseCard onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
       <div className='topContainer'>
+        <div className='leftContainer'>
         {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
+        </div>
+        <div className='rightContainer'>
+        {pro ? <div className='proBadge' ><span>Pro</span></div> : null}
+        </div>
       </div>
       <div>
         <div className='bottomContainer'>
@@ -86,13 +93,40 @@ const StyledCourseCard = styled.div`
   }
 
   .badgeImage {
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
     z-index: 100;
+  }
+  .proBadge {
+    background-color: ${p => p.theme.colors.card_background};
+    border-radius: ${p => p.theme.spacing.space_3};
+    padding:  ${p => p.theme.spacing.space_025}  ${p => p.theme.spacing.space_3};
+    position: absolute;
+
+    span {
+      color: ${p => p.theme.colors.text.base};
+      font-size: ${p => p.theme.typography.font_size_100};
+      font-weight: ${p => p.theme.typography.font_weight_bold};
+      line-height: ${p => p.theme.typography.font_line_height_1};
+    }
   }
   .topContainer {
     position: relative;
     padding: ${p => p.theme.spacing.space_5};
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    .leftContainer {
+      display: flex;
+      flex: 1;
+      justify-content: flex-start;
+    }
+    .rightContainer {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+    }
   }
 
   .bottomContainer {
