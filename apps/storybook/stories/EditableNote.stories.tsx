@@ -23,6 +23,12 @@ export const Standard = bind(
       <EditableNote
         title={TITLE}
         body={BODY}
+        onDeleteClick={() => {}}
+        onEditClick={() => {
+          return new Promise((resolve) => {
+            setTimeout(() => resolve(), 1000)
+          })
+        }}
         headerRight={
           <HorizontalStack>
             <Badge

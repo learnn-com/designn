@@ -174,4 +174,8 @@ const Component = styled.button<CircularButtonProps & SpaceProps>`
   }}
   pointer-events:${p => (p.disabled ? 'none' : null)};
   cursor: ${p => (p.disabled ? 'normal' : 'pointer')};
+
+  :focus {
+    outline: 0;
+  }
 `
