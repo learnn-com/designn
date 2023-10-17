@@ -7,7 +7,7 @@ import { space, layout, border, compose, SpaceProps, LayoutProps } from 'styled-
 const InputWrapper = styled.textarea`
   padding: ${p => p.theme.spacing.space_3};
   font-size: ${p => p.theme.typography.font_size_base};
-  border-radius: ${p => p.theme.spacing.space_6};
+  border-radius: ${p => p.theme.borders.radius.large};
   border: 0;
   width: 100%;
   background-color: ${p => p.theme.colors.edge};
