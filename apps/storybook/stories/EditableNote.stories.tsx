@@ -25,7 +25,7 @@ export const Standard = bind(
         body={BODY}
         onDeleteClick={() => {}}
         onEditClick={() => {
-          return new Promise((resolve) => {
+          return new Promise(resolve => {
             setTimeout(() => resolve(), 1000)
           })
         }}
@@ -48,3 +48,48 @@ export const Standard = bind(
   </AppShell>,
 )
 Standard.storyName = 'Editable Note Card'
+
+export const Variants = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', marginBottom: '3rem' }}>
+      <EditableNote
+        title={'Full variant'}
+        body={BODY}
+        onDeleteClick={() => {}}
+        onEditClick={() => {
+          return new Promise(resolve => {
+            setTimeout(() => resolve(), 1000)
+          })
+        }}
+        headerRight={
+          <HorizontalStack>
+            <Badge
+              icon={<FontAwesomeIcon icon={faClockFour} style={{ width: '100%' }} color='white' />}
+              body={'26/06/2000'}
+              variant='flat'
+            />
+            <Badge
+              icon={<FontAwesomeIcon icon={faBlog} style={{ width: '100%' }} color='white' />}
+              body={'1 Modulo'}
+              variant='flat'
+            />
+          </HorizontalStack>
+        }
+      />
+    </div>
+    <div style={{ display: 'flex', width: 500 }}>
+      <EditableNote
+        variant='small'
+        title={'Small variant'}
+        body={BODY}
+        onDeleteClick={() => {}}
+        onEditClick={() => {
+          return new Promise(resolve => {
+            setTimeout(() => resolve(), 1000)
+          })
+        }}
+      />
+    </div>
+  </AppShell>,
+)
+Variants.storyName = 'With size variants'
