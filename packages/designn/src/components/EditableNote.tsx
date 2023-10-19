@@ -124,7 +124,7 @@ export const EditableNote = ({
       )
     case 'small':
       return (
-        <HorizontalStack
+        <VerticalStack
           {...props}
           borderRadius={borders.radius.large}
           bg={colors.card_background}
@@ -132,78 +132,74 @@ export const EditableNote = ({
           borderColor={colors.card_border}
           borderWidth={borders.width.base}
           p={spacing.space_8}
-          justifyContent='center'
+          justifyContent='space-betwen'
           flex={1}
         >
           <VerticalStack flex={1}>
-            <HorizontalStack justifyContent='space-between' alignItems='center'>
-              <Title variant='headingSm'>{title}</Title>
-              <HorizontalStack>{headerRight}</HorizontalStack>
-              {status === 'show' ? (
-                <HorizontalStack alignItems='center'>
-                  <CircularButton
-                    variant='flat'
-                    onPress={onDeleteClick}
-                    size='sm'
-                    mr={spacing.space_2}
-                    icon={<FontAwesomeIcon icon={faTrashAlt} />}
-                  />
-                  <CircularButton
-                    variant='flat'
-                    onPress={() => {
-                      setEditInputText(body)
-                      setStatus('edit')
-                    }}
-                    size='sm'
-                    icon={<FontAwesomeIcon icon={faPencilAlt} />}
-                  />
-                </HorizontalStack>
-              ) : (
-                <HorizontalStack alignItems='center'>
-                  <CircularButton
-                    variant='flat'
-                    onPress={() => setStatus('show')}
-                    size='sm'
-                    mr={spacing.space_2}
-                    icon={<FontAwesomeIcon icon={faRotateLeft} />}
-                  />
-                  <CircularButton
-                    variant='flat'
-                    onPress={async () => {
-                      if (isLoading) return
-                      setLoading(true)
-                      try {
-                        await onEditClick(editInputText)
-                        setStatus('show')
-                      } catch (e) {}
-                      setLoading(false)
-                    }}
-                    size='sm'
-                    icon={<FontAwesomeIcon icon={faFloppyDisk} />}
-                  />
-                </HorizontalStack>
-              )}
-            </HorizontalStack>
             {status === 'show' ? (
               <Text
                 variant='bodySm'
                 fontWeight='regular'
                 color='secondary'
-                mt={spacing.space_6}
+                mb={spacing.space_6}
                 lineHeightScale='3'
               >
                 {body}
               </Text>
             ) : (
               <TextArea
-                mt={spacing.space_6}
+                mb={spacing.space_6}
                 value={editInputText}
                 rows={4}
                 onChange={e => setEditInputText(e.target.value)}
               />
             )}
           </VerticalStack>
-        </HorizontalStack>
+          {status === 'show' ? (
+            <HorizontalStack alignItems='center' justifyContent='flex-end'>
+              <CircularButton
+                variant='flat'
+                onPress={onDeleteClick}
+                size='sm'
+                mr={spacing.space_2}
+                icon={<FontAwesomeIcon icon={faTrashAlt} />}
+              />
+              <CircularButton
+                variant='flat'
+                onPress={() => {
+                  setEditInputText(body)
+                  setStatus('edit')
+                }}
+                size='sm'
+                icon={<FontAwesomeIcon icon={faPencilAlt} />}
+              />
+            </HorizontalStack>
+          ) : (
+            <HorizontalStack alignItems='center' justifyContent='flex-end'>
+              <CircularButton
+                variant='flat'
+                onPress={() => setStatus('show')}
+                size='sm'
+                mr={spacing.space_2}
+                icon={<FontAwesomeIcon icon={faRotateLeft} />}
+              />
+              <CircularButton
+                variant='flat'
+                onPress={async () => {
+                  if (isLoading) return
+                  setLoading(true)
+                  try {
+                    await onEditClick(editInputText)
+                    setStatus('show')
+                  } catch (e) {}
+                  setLoading(false)
+                }}
+                size='sm'
+                icon={<FontAwesomeIcon icon={faFloppyDisk} />}
+              />
+            </HorizontalStack>
+          )}
+        </VerticalStack>
       )
   }
 }
