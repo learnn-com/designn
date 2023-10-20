@@ -131,30 +131,29 @@ export const EditableNote = ({
           borderStyle='solid'
           borderColor={colors.card_border}
           borderWidth={borders.width.base}
-          p={spacing.space_8}
+          p={spacing.space_6}
           justifyContent='space-betwen'
           flex={1}
         >
-          <VerticalStack flex={1}>
-            {status === 'show' ? (
-              <Text
-                variant='bodySm'
-                fontWeight='regular'
-                color='secondary'
-                mb={spacing.space_6}
-                lineHeightScale='3'
-              >
-                {body}
-              </Text>
-            ) : (
-              <TextArea
-                mb={spacing.space_6}
-                value={editInputText}
-                rows={4}
-                onChange={e => setEditInputText(e.target.value)}
-              />
-            )}
-          </VerticalStack>
+          {status === 'show' ? (
+            <Text
+              variant='bodySm'
+              fontWeight='regular'
+              color='secondary'
+              mb={spacing.space_6}
+              lineHeightScale='3'
+            >
+              {body}
+            </Text>
+          ) : (
+            <TextArea
+              mb={spacing.space_6}
+              value={editInputText}
+              rows={4}
+              onChange={e => setEditInputText(e.target.value)}
+            />
+          )}
+
           {status === 'show' ? (
             <HorizontalStack alignItems='center' justifyContent='flex-end'>
               <CircularButton
