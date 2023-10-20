@@ -50,10 +50,6 @@ const Component = styled.button<CircularButtonProps & SpaceProps>`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  .icon > * {
-    width: 100%;
-    height: 100%;
-  }
   ${({ theme, ...p }: CircularButtonProps & { theme: DefaultTheme }) => {
     switch (p.size) {
       default:
@@ -64,9 +60,7 @@ const Component = styled.button<CircularButtonProps & SpaceProps>`
           border-radius: ${theme.spacing.space_8};
 
           .icon {
-            margin-top: -2px;
-            width: ${theme.spacing.space_3};
-            height: ${theme.spacing.space_3};
+            font-size: ${theme.spacing.space_3};
           }
         `
       case 'md':
@@ -76,8 +70,7 @@ const Component = styled.button<CircularButtonProps & SpaceProps>`
           border-radius: ${theme.spacing.space_12};
 
           .icon {
-            width: ${theme.spacing.space_5};
-            height: ${theme.spacing.space_5};
+            font-size: ${theme.spacing.space_5};
           }
         `
       case 'lg':
@@ -87,8 +80,7 @@ const Component = styled.button<CircularButtonProps & SpaceProps>`
           border-radius: ${theme.spacing.space_16};
 
           .icon {
-            width: ${theme.spacing.space_8};
-            height: ${theme.spacing.space_8};
+            font-size: ${theme.spacing.space_8};
           }
         `
     }
