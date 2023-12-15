@@ -12,6 +12,7 @@ import {
   faPencilAlt,
   faFloppyDisk,
   faRotateLeft,
+  faShareAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { TextArea } from './TextArea'
 
@@ -21,6 +22,7 @@ export type EditableNoteProps = {
   variant?: 'full' | 'small'
   headerRight?: ReactNode
   onDeleteClick: () => void
+  onShareClick?: () => void
   onEditClick: (newNoteValue: string) => Promise<void>
 }
 
@@ -30,6 +32,7 @@ export const EditableNote = ({
   headerRight,
   onDeleteClick,
   onEditClick,
+  onShareClick,
   variant = 'full',
   ...props
 }: EditableNoteProps & SpaceProps & LayoutProps) => {
@@ -80,18 +83,29 @@ export const EditableNote = ({
             <VerticalStack ml={spacing.space_3}>
               <CircularButton
                 variant='flat'
-                onPress={onDeleteClick}
-                size='md'
-                icon={<FontAwesomeIcon icon={faTrashAlt} />}
-              />
-              <CircularButton
-                variant='flat'
                 onPress={() => {
                   setEditInputText(body)
                   setStatus('edit')
                 }}
                 size='md'
                 icon={<FontAwesomeIcon icon={faPencilAlt} />}
+              />
+              {onShareClick ? (
+                <CircularButton
+                  variant='flat'
+                  onPress={onShareClick}
+                  size='md'
+                  icon={<FontAwesomeIcon icon={faShareAlt} />}
+                  mt={spacing.space_3}
+                />
+              ) : (
+                <></>
+              )}
+              <CircularButton
+                variant='flat'
+                onPress={onDeleteClick}
+                size='md'
+                icon={<FontAwesomeIcon icon={faTrashAlt} />}
                 mt={spacing.space_3}
               />
             </VerticalStack>
@@ -158,19 +172,30 @@ export const EditableNote = ({
             <HorizontalStack alignItems='center' justifyContent='flex-end'>
               <CircularButton
                 variant='flat'
-                onPress={onDeleteClick}
-                size='sm'
-                mr={spacing.space_2}
-                icon={<FontAwesomeIcon icon={faTrashAlt} />}
-              />
-              <CircularButton
-                variant='flat'
                 onPress={() => {
                   setEditInputText(body)
                   setStatus('edit')
                 }}
                 size='sm'
+                mr={spacing.space_2}
                 icon={<FontAwesomeIcon icon={faPencilAlt} />}
+              />
+              {onShareClick ? (
+                <CircularButton
+                  variant='flat'
+                  onPress={onShareClick}
+                  size='sm'
+                  mr={spacing.space_2}
+                  icon={<FontAwesomeIcon icon={faShareAlt} />}
+                />
+              ) : (
+                <></>
+              )}
+              <CircularButton
+                variant='flat'
+                onPress={onDeleteClick}
+                size='sm'
+                icon={<FontAwesomeIcon icon={faTrashAlt} />}
               />
             </HorizontalStack>
           ) : (

@@ -23,6 +23,7 @@ export const Standard = bind(
       <EditableNote
         title={TITLE}
         body={BODY}
+        onShareClick={() => {}}
         onDeleteClick={() => {}}
         onEditClick={() => {
           return new Promise(resolve => {
@@ -56,6 +57,7 @@ export const Variants = bind(
         title={'Full variant'}
         body={BODY}
         onDeleteClick={() => {}}
+        onShareClick={() => {}}
         onEditClick={() => {
           return new Promise(resolve => {
             setTimeout(() => resolve(), 1000)
@@ -82,6 +84,7 @@ export const Variants = bind(
         variant='small'
         title={'Small variant'}
         body={BODY}
+        onShareClick={() => {}}
         onDeleteClick={() => {}}
         onEditClick={() => {
           return new Promise(resolve => {
