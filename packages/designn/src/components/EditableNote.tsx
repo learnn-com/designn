@@ -12,9 +12,9 @@ import {
   faPencilAlt,
   faFloppyDisk,
   faRotateLeft,
-  faShareAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { TextArea } from './TextArea'
+import { Share } from '../icons/Share'
 
 export type EditableNoteProps = {
   title: string
@@ -95,7 +95,7 @@ export const EditableNote = ({
                   variant='flat'
                   onPress={onShareClick}
                   size='md'
-                  icon={<FontAwesomeIcon icon={faShareAlt} />}
+                  icon={<Share height={spacing.space_5} width={spacing.space_5} />}
                   mt={spacing.space_3}
                 />
               ) : (
@@ -186,7 +186,7 @@ export const EditableNote = ({
                   onPress={onShareClick}
                   size='sm'
                   mr={spacing.space_2}
-                  icon={<FontAwesomeIcon icon={faShareAlt} />}
+                  icon={<Share height={spacing.space_3} width={spacing.space_3} />}
                 />
               ) : (
                 <></>

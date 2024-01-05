@@ -61,6 +61,8 @@ const Component = styled.button<CircularButtonProps & SpaceProps>`
 
           .icon {
             font-size: ${theme.spacing.space_3};
+            display:flex;
+            align-items:center;
           }
         `
       case 'md':
@@ -71,6 +73,8 @@ const Component = styled.button<CircularButtonProps & SpaceProps>`
 
           .icon {
             font-size: ${theme.spacing.space_5};
+            display:flex;
+            align-items:center;
           }
         `
       case 'lg':
@@ -81,6 +85,8 @@ const Component = styled.button<CircularButtonProps & SpaceProps>`
 
           .icon {
             font-size: ${theme.spacing.space_8};
+            display:flex;
+            align-items:center;
           }
         `
     }
