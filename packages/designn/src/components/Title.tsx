@@ -135,6 +135,52 @@ const Component = styled.h1<TitleProps & SpaceProps>`
     }
     return ''
   }}
+
+  ${p => p.theme.responsive.medium_down} {
+    ${p => {
+      if (p.variant === 'heading2xs') {
+        return `font-size: ${p.theme.typography.font_size_75};
+                line-height: ${p.theme.typography.font_line_height_1};
+                letter-spacing:-0.04em;`
+      }
+      if (p.variant === 'headingXs') {
+        return `font-size: ${p.theme.typography.font_size_100};
+                line-height: ${p.theme.typography.font_line_height_1};
+                letter-spacing:-0.04em;`
+      }
+      if (p.variant === 'headingSm') {
+        return `font-size: ${p.theme.typography.font_size_200};
+                line-height: ${p.theme.typography.font_line_height_2};
+                letter-spacing:-0.04em;`
+      }
+      if (p.variant === 'headingMd') {
+        return `font-size: ${p.theme.typography.font_size_300};
+                line-height: ${p.theme.typography.font_line_height_3};
+                letter-spacing:-0.04em;`
+      }
+      if (p.variant === 'headingLg') {
+        return `font-size: ${p.theme.typography.font_size_400};
+                line-height: ${p.theme.typography.font_line_height_4};
+                letter-spacing:-0.04em;`
+      }
+      if (p.variant === 'headingXl') {
+        return `font-size: ${p.theme.typography.font_size_500};
+                line-height: ${p.theme.typography.font_line_height_5};
+                letter-spacing:-0.04em;`
+      }
+      if (p.variant === 'heading2xl') {
+        return `font-size: ${p.theme.typography.font_size_600};
+                line-height: ${p.theme.typography.font_line_height_6};
+                letter-spacing:-0.05em;`
+      }
+      if (p.variant === 'heading3xl') {
+        return `font-size: ${p.theme.typography.font_size_700};
+                line-height: ${p.theme.typography.font_line_height_7};
+                letter-spacing:-0.05em;`
+      }
+      return ''
+    }}
+  }
   ${p =>
     p.fontWeight
       ? `font-weight:${p.theme.typography[`font_weight_${p.fontWeight}`]};`
