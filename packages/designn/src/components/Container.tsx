@@ -27,12 +27,11 @@ export const Container = ({children, ...props}: ContainerProps & SpaceProps & La
     >
       <VerticalStack
         flexDirection='column'
-        width='100%'
-        height='100%'
+        flex={1}
         maxWidth='800px'
-        mt={spacing.space_12}
-        mx={spacing.space_4}
-        mb={spacing.space_6}
+        pt={spacing.space_12}
+        px={spacing.space_4}
+        pb={spacing.space_6}
         {...props}
         >
         {children}
