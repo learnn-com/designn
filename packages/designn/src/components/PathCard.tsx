@@ -50,18 +50,6 @@ const StyledPathCard = styled.div`
   height: 100%;
   aspect-ratio: 5/4;
 
-  :before {
-    content: '';
-    background: rgb(12, 12, 12);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-    height: 45%;
-    width: 100%;
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-    left: 0;
-  }
-
   :hover {
     cursor: pointer;
   }
