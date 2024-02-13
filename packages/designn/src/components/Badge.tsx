@@ -26,7 +26,6 @@ export const Badge = ({
     case 'outlined':
       return (
         <HorizontalStack
-          {...props}
           borderRadius={squareBorder ? borders.radius.medium : borders.radius.large}
           borderColor={colors.outline}
           borderWidth={borders.width.base}
@@ -34,6 +33,7 @@ export const Badge = ({
           py={spacing.space_2}
           px={spacing.space_3}
           justifyContent='center'
+          {...props}
         >
           <Text variant='bodyXs' fontWeight='semibold' textColor={colors.outline}>
             {body}
@@ -43,7 +43,6 @@ export const Badge = ({
     case 'contained':
       return (
         <HorizontalStack
-          {...props}
           borderRadius={squareBorder ? borders.radius.medium : borders.radius.large}
           borderColor={colors.card_border}
           bg={colors.card_background}
@@ -52,6 +51,7 @@ export const Badge = ({
           py={spacing.space_2}
           px={spacing.space_3}
           justifyContent='center'
+          {...props}
         >
           <Text variant='bodyXs' fontWeight='semibold' color='primary'>
             {body}
@@ -61,11 +61,11 @@ export const Badge = ({
     case 'flat':
       return (
         <HorizontalStack
-          {...props}
           py={spacing.space_1}
           px={spacing.space_3}
           justifyContent='center'
           alignItems='center'
+          {...props}
         >
           {icon && (
             <HorizontalStack width={spacing.space_3} mr={spacing.space_2} alignItems='center'>
