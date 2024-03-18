@@ -8,12 +8,12 @@ const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; varian
     case 'transparent':
       return `
         background-color: transparent;
-        border: ${theme.borders.width.medium} solid ${theme.colors.interaction_outline.secondary_active};
+        border: ${theme.borders.width.base} solid ${theme.colors.interaction_outline.secondary_active};
       `
     case 'dark':
       return `
         background-color: ${theme.colors.bg_app};
-        border: ${theme.borders.width.medium} solid ${theme.colors.interaction_outline.secondary_active};
+        border: ${theme.borders.width.base} solid ${theme.colors.interaction_outline.secondary_active};
       `
     case 'light':
       return `
@@ -62,16 +62,16 @@ const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size: Size }
   switch (size) {
     case 'sm':
       return `
-      border-radius: ${theme.borders.radius.large};
+      border-radius: ${theme.borders.radius.base};
       `
     default:
     case 'md':
       return `
-      border-radius: ${theme.borders.radius.large};
+      border-radius: ${theme.borders.radius.base};
       `
     case 'lg':
       return `
-      border-radius: ${theme.borders.radius.full};
+      border-radius: ${theme.borders.radius.base};
       `
   }
 }
