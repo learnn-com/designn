@@ -10,8 +10,11 @@ import {
   SpaceProps,
 } from 'styled-system'
 import { SpacingScale } from 'theme/tokens/spacing'
-import { ReactNode } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import { Box } from './Box'
+import { CircularButton } from './CircularButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Color } from 'utils/colors'
 
 export type HorizontalScrollProps = {
@@ -24,13 +27,94 @@ export const HorizontalScroll = ({
   children,
   ...props
 }: HorizontalScrollProps & FlexboxProps & SpaceProps & ColorProps & BorderProps) => {
+  const [isAtStart, setIsAtStart] = useState(true)
+  const [isAtEnd, setIsAtend] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  //Se new position <0 rimuovo freccia sinistra
+  // Se new position >= clientWidth rimuovo destra
+
+  const handleScrollRight = () => {
+    if (!scrollRef.current) return
+    console.log(
+      'current left:',
+      scrollRef.current.scrollLeft,
+      ' width:',
+      scrollRef.current.clientWidth,
+    )
+    console.log('scrollwidth:', scrollRef.current.scrollWidth)
+    const scrollWidth = scrollRef.current.scrollWidth
+    const clientWidth = scrollRef.current.clientWidth
+    const newScrollPosition = scrollRef.current.scrollLeft + clientWidth
+    // setScrollPosition(newScrollPosition)
+    console.log('new position:', newScrollPosition)
+    if (newScrollPosition + clientWidth >= scrollWidth) {
+      setIsAtend(true)
+    }
+    if (newScrollPosition > 0) {
+      setIsAtStart(false)
+    }
+    scrollSlider(newScrollPosition)
+  }
+
+  const handleScrollLeft = () => {
+    if (!scrollRef.current) return
+    console.log(
+      'current left:',
+      scrollRef.current.scrollLeft,
+      ' width:',
+      scrollRef.current.clientWidth,
+    )
+    const clientWidth = scrollRef.current.clientWidth
+    const newScrollPosition = scrollRef.current.scrollLeft - clientWidth
+    // setScrollPosition(newScrollPosition)
+    console.log('new position:', newScrollPosition)
+    if (newScrollPosition < clientWidth) {
+      setIsAtend(false)
+    }
+    if (newScrollPosition <= 0) {
+      setIsAtStart(true)
+    }
+    scrollSlider(newScrollPosition)
+  }
+
+  const scrollSlider = (position: number) => {
+    if (!scrollRef.current) return
+    scrollRef.current.scrollTo({
+      left: position,
+      behavior: 'smooth',
+    })
+  }
   return (
-    <StyledHorizontalScroll {...props}>
-      <div className='container'>
-        {children}
-        <div className='rightShadow' />
-      </div>
-    </StyledHorizontalScroll>
+    <>
+      <StyledHorizontalScroll {...props}>
+        <div className='container' ref={scrollRef}>
+          {!isAtStart ? (
+            <div className='leftShadow'>
+              <CircularButton
+                variant='flat'
+                onPress={handleScrollLeft}
+                icon={<FontAwesomeIcon icon={faChevronLeft} />}
+              />{' '}
+            </div>
+          ) : (
+            <></>
+          )}
+          {children}
+          {!isAtEnd ? (
+            <div className='rightShadow'>
+              <CircularButton
+                variant='flat'
+                onPress={handleScrollRight}
+                icon={<FontAwesomeIcon icon={faChevronRight} />}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      </StyledHorizontalScroll>
+    </>
   )
 }
 
@@ -67,15 +151,35 @@ const StyledHorizontalScroll = styled(Box)`
     z-index: 20000;
     height: 100%;
     margin-right: 0;
+    height: 100%;
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+    content: '';
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      to left,
+      ${p => p.shadowColor ?? 'rgb(0, 0, 0)'} 20%,
+      rgba(33, 33, 33, 0) 80%
+    );
   }
 
-  .rightShadow::before {
+  .leftShadow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 20000;
     height: 100%;
-    width: 80px;
-    display: inline-block;
+    margin-left: 0;
+    height: 100%;
+    width: 100px;
+    display: flex;
     content: '';
-    pointer-events: none;
     background: rgb(0, 0, 0);
-    background: linear-gradient(to left, ${p => p.shadowColor ?? 'rgb(0, 0, 0)'} 20%, rgba(33, 33, 33, 0) 80%);
+    background: linear-gradient(
+      to right,
+      ${p => p.shadowColor ?? 'rgb(0, 0, 0)'} 20%,
+      rgba(33, 33, 33, 0) 80%
+    );
   }
 `

@@ -24,6 +24,10 @@ export const HorizontalScrollStandard = bind(
       <Badge body='E-Commerce' variant='outlined' />
       <Badge body='B2B' variant='outlined' />
       <Badge body='Startup' variant='outlined' />
+      <Badge body='Growth' variant='outlined' />
+      <Badge body='Prodotto' variant='outlined' />
+      <Badge body='Validazione' variant='outlined' />
+      <Badge body='Mindset' variant='outlined' />
     </HorizontalScroll>
   </AppShell>,
 )
@@ -46,4 +50,3 @@ export const HorizontalScrollCustomShadow = bind(
   </AppShell>,
 )
 HorizontalScrollCustomShadow.storyName = 'HorizontalScroll Custom Shadow Color'
-
