@@ -33,23 +33,13 @@ export const HorizontalScroll = ({
   const [isAtEnd, setIsAtend] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  //Se new position <0 rimuovo freccia sinistra
-  // Se new position >= clientWidth rimuovo destra
-
   const handleScrollRight = () => {
     if (!scrollRef.current) return
-    console.log(
-      'current left:',
-      scrollRef.current.scrollLeft,
-      ' width:',
-      scrollRef.current.clientWidth,
-    )
-    console.log('scrollwidth:', scrollRef.current.scrollWidth)
+
     const scrollWidth = scrollRef.current.scrollWidth
     const clientWidth = scrollRef.current.clientWidth
     const newScrollPosition = scrollRef.current.scrollLeft + clientWidth
-    // setScrollPosition(newScrollPosition)
-    console.log('new position:', newScrollPosition)
+
     if (newScrollPosition + clientWidth >= scrollWidth) {
       setIsAtend(true)
     }
@@ -61,16 +51,10 @@ export const HorizontalScroll = ({
 
   const handleScrollLeft = () => {
     if (!scrollRef.current) return
-    console.log(
-      'current left:',
-      scrollRef.current.scrollLeft,
-      ' width:',
-      scrollRef.current.clientWidth,
-    )
+
     const clientWidth = scrollRef.current.clientWidth
     const newScrollPosition = scrollRef.current.scrollLeft - clientWidth
-    // setScrollPosition(newScrollPosition)
-    console.log('new position:', newScrollPosition)
+
     if (newScrollPosition < clientWidth) {
       setIsAtend(false)
     }
