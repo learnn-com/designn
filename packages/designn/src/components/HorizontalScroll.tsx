@@ -120,6 +120,7 @@ const StyledHorizontalScroll = styled(Box)`
     scrollbar-width: none;
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
 
   .container > * {
