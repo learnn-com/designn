@@ -120,7 +120,8 @@ const StyledHorizontalScroll = styled(Box)`
     scrollbar-width: none;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   .container > * {
@@ -142,6 +143,7 @@ const StyledHorizontalScroll = styled(Box)`
     width: 100px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     content: '';
     background: rgb(0, 0, 0);
     background: linear-gradient(
@@ -162,6 +164,7 @@ const StyledHorizontalScroll = styled(Box)`
     width: 100px;
     display: flex;
     content: '';
+    align-items: center;
     background: rgb(0, 0, 0);
     background: linear-gradient(
       to right,
