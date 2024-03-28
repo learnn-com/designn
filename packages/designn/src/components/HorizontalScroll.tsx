@@ -12,7 +12,7 @@ import {
 import { SpacingScale } from 'theme/tokens/spacing'
 import { ReactNode, useRef, useState } from 'react'
 import { Box } from './Box'
-import { CircularButton } from './CircularButton'
+import { CircularButton, Variant } from './CircularButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Color } from 'utils/colors'
@@ -21,10 +21,12 @@ export type HorizontalScrollProps = {
   gapScale?: SpacingScale
   children?: ReactNode
   shadowColor?: Color
+  arrowStyle?: Variant
 }
 
 export const HorizontalScroll = ({
   children,
+  arrowStyle = 'flat',
   ...props
 }: HorizontalScrollProps & FlexboxProps & SpaceProps & ColorProps & BorderProps) => {
   const [isAtStart, setIsAtStart] = useState(true)
@@ -92,7 +94,7 @@ export const HorizontalScroll = ({
           {!isAtStart ? (
             <div className='leftShadow'>
               <CircularButton
-                variant='flat'
+                variant={arrowStyle}
                 onPress={handleScrollLeft}
                 icon={<FontAwesomeIcon icon={faChevronLeft} />}
               />{' '}
@@ -104,7 +106,7 @@ export const HorizontalScroll = ({
           {!isAtEnd ? (
             <div className='rightShadow'>
               <CircularButton
-                variant='flat'
+                variant={arrowStyle}
                 onPress={handleScrollRight}
                 icon={<FontAwesomeIcon icon={faChevronRight} />}
               />
