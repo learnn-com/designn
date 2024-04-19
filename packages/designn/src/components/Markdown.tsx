@@ -13,14 +13,20 @@ import ReactMarkdown from 'react-markdown'
 
 type Size = 'md' | 'lg'
 
+type MarkdownOverrides = {
+  reactMarkdownProps?: ReactMarkdown.ReactMarkdownPropsBase
+}
+
 export type MarkdownProps = {
   /** Text to render */
   children: string
   /** Component size */
   size?: Size
+  /** Markdown Overrides */
+  overrides?: MarkdownOverrides
 }
 
-export const Markdown = ({ children, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
+export const Markdown = ({ children, overrides, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
   return (
     <StyledMarkdown {...props}>
       <ReactMarkdown
@@ -31,6 +37,7 @@ export const Markdown = ({ children, ...props }: MarkdownProps & SpaceProps & La
             </a>
           ),
         }}
+        {...overrides?.reactMarkdownProps}
       >
         {children}
       </ReactMarkdown>
