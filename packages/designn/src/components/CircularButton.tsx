@@ -3,7 +3,7 @@ import { undefinedAsFalse } from '../utils/props'
 import styled, { DefaultTheme } from 'styled-components'
 import { SpaceProps, space } from 'styled-system'
 
-type Variant = 'primary' | 'secondary' | 'tertiary' | 'flat'
+export type Variant = 'primary' | 'secondary' | 'tertiary' | 'flat'
 
 export type CircularButtonProps = {
   /** Hierarchy of the CircularButton */
