@@ -24,7 +24,7 @@ export const ProgressBar = ({
   )
 }
 
-const StyledProgressBar = styled.div`
+const StyledProgressBar = styled.div<{transition?: boolean}>`
   position: relative;
   height: 4px;
   background-color: ${p => p.theme.colors.edge};

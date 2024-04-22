@@ -9,7 +9,7 @@ import {
   space,
   SpaceProps,
 } from 'styled-system'
-import { SpacingScale } from 'theme/tokens/spacing'
+import { SpacingKeys, SpacingScale } from 'theme/tokens/spacing'
 import { ReactNode, useRef, useState } from 'react'
 import { Box } from './Box'
 import { CircularButton, Variant } from './CircularButton'
@@ -104,7 +104,7 @@ export const HorizontalScroll = ({
   )
 }
 
-const StyledHorizontalScroll = styled(Box)`
+const StyledHorizontalScroll = styled(Box)<HorizontalScrollProps & FlexboxProps & SpaceProps & ColorProps & BorderProps>`
   position: relative;
   ${color}
   ${flexbox}
@@ -125,7 +125,7 @@ const StyledHorizontalScroll = styled(Box)`
   }
 
   .container > * {
-    ${p => (p.gapScale ? `margin-right: ${p.theme.spacing['space_' + p.gapScale]}` : '')}
+    ${p => (p.gapScale ? `margin-right: ${p.theme.spacing['space_' + p.gapScale as SpacingKeys]}` : '')}
   }
 
   .container::-webkit-scrollbar {

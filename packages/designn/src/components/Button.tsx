@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import styled from 'styled-components'
 import { FontWeightAlias } from 'theme/tokens/typography'
+import { MarginProps, SizeProps, SpaceProps, compose, margin, size, space } from 'styled-system'
 
 type Variant = 'primary' | 'secondary' | 'tertiary'
 
@@ -41,7 +42,8 @@ export function Button({
   size,
   squareBorder,
   textFontWeight,
-}: ButtonProps) {
+  ...props
+}: ButtonProps & SizeProps & SpaceProps & MarginProps) {
   return (
     <Component
       id={id}
@@ -55,6 +57,7 @@ export function Button({
       label={label}
       data-testid={testid}
       squareBorder={undefinedAsFalse(squareBorder)}
+      {...props}
     >
       {icon && iconPosition === 'left' && <div className='icon'>{icon}</div>}
       {label}
@@ -63,7 +66,7 @@ export function Button({
   )
 }
 
-const Component = styled.button<ButtonProps>`
+const Component = styled.button<Omit<ButtonProps, 'onPress'>>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -157,4 +160,6 @@ const Component = styled.button<ButtonProps>`
 
   pointer-events: ${p => (p.disabled ? 'none' : null)};
   cursor: ${p => (p.disabled ? 'normal' : 'pointer')};
+  
+  ${compose(size, space, margin)}
 `

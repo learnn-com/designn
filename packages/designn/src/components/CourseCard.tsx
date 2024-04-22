@@ -3,6 +3,7 @@ import styled, { useTheme } from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
 import { ProgressBar } from './ProgressBar'
+import { MouseEventHandler } from 'react'
 
 export type CourseCardProps = {
   coverImage: string
@@ -10,7 +11,7 @@ export type CourseCardProps = {
   title: string
   subtitle?: string
   buttons?: JSX.Element
-  onClick?: Function
+  onClick?: MouseEventHandler<HTMLDivElement>
   progressPercentage?: number
   hideProgressBar?: boolean
   pro?: boolean
@@ -63,7 +64,6 @@ export const CourseCard = ({
 }
 
 const StyledCourseCard = styled.div`
-  backgroundimage: url('${p => p.coverImage}');
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -76,7 +76,7 @@ const StyledCourseCard = styled.div`
   height: 100%;
   aspect-ratio: 5/4;
 
-  :before {
+  &:before {
     content: '';
     background: rgb(12, 12, 12);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
@@ -88,7 +88,7 @@ const StyledCourseCard = styled.div`
     left: 0;
   }
 
-  :hover {
+  &:hover {
     cursor: pointer;
   }
 
