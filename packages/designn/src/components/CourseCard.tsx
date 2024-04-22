@@ -76,7 +76,7 @@ const StyledCourseCard = styled.div`
   height: 100%;
   aspect-ratio: 5/4;
 
-  :before {
+  &:before {
     content: '';
     background: rgb(12, 12, 12);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
@@ -88,7 +88,7 @@ const StyledCourseCard = styled.div`
     left: 0;
   }
 
-  :hover {
+  &:hover {
     cursor: pointer;
   }
 
