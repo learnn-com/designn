@@ -63,7 +63,7 @@ export function Button({
   )
 }
 
-const Component = styled.button<ButtonProps>`
+const Component = styled.button<Omit<ButtonProps, 'onPress'>>`
   display: flex;
   flex-direction: row;
   align-items: center;

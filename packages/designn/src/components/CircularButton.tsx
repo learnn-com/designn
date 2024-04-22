@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
-import styled, { DefaultTheme } from 'styled-components'
+import styled from 'styled-components'
 import { SpaceProps, space } from 'styled-system'
 
 export type Variant = 'primary' | 'secondary' | 'tertiary' | 'flat'
@@ -44,13 +44,13 @@ export function CircularButton({
   )
 }
 
-const Component = styled.button<CircularButtonProps & SpaceProps>`
+const Component = styled.button<Omit<CircularButtonProps, 'onPress'> & SpaceProps>`
   ${space}
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  ${({ theme, ...p }: CircularButtonProps & { theme: DefaultTheme }) => {
+  ${({ theme, ...p }) => {
     switch (p.size) {
       default:
       case 'sm':

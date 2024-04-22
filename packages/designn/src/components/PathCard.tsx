@@ -2,10 +2,11 @@ import { LayoutProps, SpaceProps } from 'styled-system'
 import styled, { useTheme } from 'styled-components'
 import { ProgressBar } from './ProgressBar'
 import { Text } from './Text'
+import { MouseEventHandler } from 'react'
 
 export type PathCardProps = {
   coverImage: string
-  onClick?: Function
+  onClick?: MouseEventHandler<HTMLDivElement>
   subtitle?: string
   progressPercentage?: number
   hideProgressBar?: boolean
@@ -37,7 +38,6 @@ export const PathCard = ({
 }
 
 const StyledPathCard = styled.div`
-  backgroundimage: url('${p => p.coverImage}');
   position: relative;
   display: flex;
   justify-content: space-between;

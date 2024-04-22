@@ -193,8 +193,8 @@ const Component = styled.h1<TitleProps & SpaceProps>`
   ${p => p.lineHeightScale && `line-height: ${p.theme.typography[`font_line_height_${p.lineHeightScale}`]};`}
 `
 
-const truncatedStyle = css`
-  ${(p: TitleProps) =>
+const truncatedStyle = css<TitleProps>`
+  ${(p) =>
     p.truncateLines
       ? `
   -webkit-line-clamp: ${p.truncateLines};

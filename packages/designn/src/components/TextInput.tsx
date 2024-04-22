@@ -1,8 +1,9 @@
 import React from 'react'
 import styled, { DefaultTheme, useTheme } from 'styled-components'
 import { space, layout, border, compose, SpaceProps, LayoutProps } from 'styled-system'
+import { Color } from 'utils/colors';
 
-const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; variant: Variant }) => {
+const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
   switch (variant) {
     default:
     case 'transparent':
@@ -22,7 +23,7 @@ const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; varian
       `
   }
 }
-const styleInputVariant = ({ theme, variant }: { theme: DefaultTheme; variant: Variant }) => {
+const styleInputVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
   switch (variant) {
     default:
     case 'transparent':
@@ -41,7 +42,7 @@ const styleInputVariant = ({ theme, variant }: { theme: DefaultTheme; variant: V
 }
 
 
-const styleInputSize = ({ theme, size }: { theme: DefaultTheme; size: Size }) => {
+const styleInputSize = ({ theme, size }: { theme: DefaultTheme; size?: Size }) => {
   switch (size) {
     case 'sm':
       return `
@@ -58,7 +59,7 @@ const styleInputSize = ({ theme, size }: { theme: DefaultTheme; size: Size }) =>
       `
   }
 }
-const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size: Size }) => {
+const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size?: Size }) => {
   switch (size) {
     case 'sm':
       return `
@@ -76,7 +77,7 @@ const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size: Size }
   }
 }
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.div<{bg: Color, variant?: Variant} & TextInputProps & SpaceProps & LayoutProps>`
   display: flex;
   flex-direction: row;
   justifycontent: center;
@@ -86,7 +87,7 @@ const InputWrapper = styled.div`
   ${compose(space, layout, border)}
 `
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<TextInputProps & SpaceProps & LayoutProps>`
   background-color: transparent;
   border: none;
   padding: 0;
