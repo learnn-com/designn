@@ -93,8 +93,8 @@ const StyledInput = styled.input<TextInputProps & SpaceProps & LayoutProps>`
   padding: 0;
   flex: 1;
 
-  font-size: ${p => p.theme.typography.font_size_100};
-  line-height: ${p => p.theme.typography.font_line_height_1};
+  font-size: ${p => p.theme.typography.font_size_300};
+  line-height: ${p => p.theme.typography.font_line_height_3};
   font-weight: ${p => p.theme.typography.font_weight_regular};
 
   &:focus {
