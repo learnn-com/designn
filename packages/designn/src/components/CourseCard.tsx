@@ -1,5 +1,5 @@
 import { LayoutProps, SpaceProps } from 'styled-system'
-import styled, { useTheme } from 'styled-components'
+import styled from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
 import { ProgressBar } from './ProgressBar'
@@ -28,8 +28,6 @@ export const CourseCard = ({
   hideProgressBar,
   pro
 }: CourseCardProps & SpaceProps & LayoutProps) => {
-  const { spacing } = useTheme()
-
   return (
     <StyledCourseCard onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
       <div className='topContainer'>
@@ -45,15 +43,15 @@ export const CourseCard = ({
           <div className='details'>
             <Title
               variant='headingXl'
-              mb={spacing.space_08}
-              pb={spacing.space_08}
               truncate
               truncateLines={2}
               lineHeightScale='5'
             >
               {title}
             </Title>
+            <div className='subtitleContainer'>
             {subtitle && <Text variant='bodyXs' fontWeight='bold'>{subtitle}</Text>}
+            </div>
           </div>
           <div className='buttonsContainer'>{buttons}</div>
         </div>
@@ -112,10 +110,15 @@ const StyledCourseCard = styled.div`
   }
   .topContainer {
     position: relative;
-    padding: ${p => p.theme.spacing.space_5};
+    padding: ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5} 0 ${p => p.theme.spacing.space_5};
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+
+
+    ${p => p.theme.responsive.medium_down} {
+      padding: ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3} 0 ${p => p.theme.spacing.space_3};
+    }
 
     .leftContainer {
       display: flex;
@@ -133,8 +136,12 @@ const StyledCourseCard = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: ${p => p.theme.spacing.space_5};
+    padding: 0 ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5};
     position: relative;
+
+    ${p => p.theme.responsive.medium_down} {
+      padding: 0 ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3};
+    }
   }
 
   .details {
@@ -144,6 +151,19 @@ const StyledCourseCard = styled.div`
     align-items: flex-start;
     gap: ${p => p.theme.spacing.space_3};
     max-width: 85%;
+
+    ${p => p.theme.responsive.medium_down} {
+      gap: 0;
+    }
+
+    .subtitleContainer {
+      margin-bottom: ${p => p.theme.spacing.space_08};
+      margin-top: ${p => p.theme.spacing.space_08};
+      ${p => p.theme.responsive.small_down} {
+        display: none;
+        margin: 0M
+      }
+    }
   }
   .title {
     -webkit-line-clamp: 2;

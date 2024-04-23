@@ -40,10 +40,10 @@ export const breakpoints: Breakpoints = {
 export const responsive: Responsive = {
   small_up: createResponsiveBreakpoint(breakpoints.small, 'min'),
   small_down: createResponsiveBreakpoint(breakpoints.small, 'max'),
-  medium_up: createResponsiveBreakpoint(breakpoints.small, 'min'),
-  medium_down: createResponsiveBreakpoint(breakpoints.small, 'max'),
-  large_up: createResponsiveBreakpoint(breakpoints.small, 'min'),
-  large_down: createResponsiveBreakpoint(breakpoints.small, 'max'),
-  xlarge_up: createResponsiveBreakpoint(breakpoints.small, 'min'),
-  xlarge_down: createResponsiveBreakpoint(breakpoints.small, 'max'),
+  medium_up: createResponsiveBreakpoint(breakpoints.medium, 'min'),
+  medium_down: createResponsiveBreakpoint(breakpoints.medium, 'max'),
+  large_up: createResponsiveBreakpoint(breakpoints.large, 'min'),
+  large_down: createResponsiveBreakpoint(breakpoints.large, 'max'),
+  xlarge_up: createResponsiveBreakpoint(breakpoints.xlarge, 'min'),
+  xlarge_down: createResponsiveBreakpoint(breakpoints.xlarge, 'max'),
 }

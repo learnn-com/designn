@@ -93,6 +93,10 @@ const StyledPathCard = styled.div`
     align-items: flex-start;
     gap: ${p => p.theme.spacing.space_3};
     max-width: 85%;
+
+    ${p => p.theme.responsive.small_down} {
+      display: none
+    }
   }
   .title {
     -webkit-line-clamp: 2;
