@@ -97,7 +97,7 @@ const StyledInput = styled.input<TextInputProps & SpaceProps & LayoutProps>`
   line-height: ${p => p.theme.typography.font_line_height_1};
   font-weight: ${p => p.theme.typography.font_weight_regular};
 
-  :focus {
+  &:focus {
     outline: none;
     background-color: transparent;
   }
