@@ -35,7 +35,7 @@ HorizontalScrollStandard.storyName = 'HorizontalScroll Standard'
 
 export const HorizontalScrollCustomShadow = bind(
   <AppShell theme={defaultTheme}>
-    <HorizontalScroll gapScale='3' width='500px' shadowColor='#f2f26'>
+    <HorizontalScroll gapScale='3' width='500px' shadowColor='#ffff'>
       <Badge body='Growth' variant='outlined' />
       <Badge body='Funnel' variant='outlined' />
       <Badge body='Ads' variant='outlined' />

@@ -26,36 +26,39 @@ export const CourseCard = ({
   progressPercentage,
   onClick,
   hideProgressBar,
-  pro
+  pro,
 }: CourseCardProps & SpaceProps & LayoutProps) => {
   return (
     <StyledCourseCard onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
       <div className='topContainer'>
         <div className='leftContainer'>
-        {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
+          {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
         </div>
         <div className='rightContainer'>
-        {pro ? <div className='proBadge' ><span>Pro</span></div> : null}
+          {pro ? (
+            <div className='proBadge'>
+              <span>Pro</span>
+            </div>
+          ) : null}
         </div>
       </div>
       <div>
         <div className='bottomContainer'>
           <div className='details'>
-            <Title
-              variant='headingXl'
-              truncate
-              truncateLines={2}
-              lineHeightScale='5'
-            >
+            <Title variant='headingXl' truncate truncateLines={2} lineHeightScale='5'>
               {title}
             </Title>
             <div className='subtitleContainer'>
-            {subtitle && <Text variant='bodyXs' fontWeight='bold'>{subtitle}</Text>}
+              {subtitle && (
+                <Text variant='bodyXs' fontWeight='bold'>
+                  {subtitle}
+                </Text>
+              )}
             </div>
           </div>
           <div className='buttonsContainer'>{buttons}</div>
         </div>
-        { !hideProgressBar && <ProgressBar percentage={progressPercentage} transition={true}/>}
+        {!hideProgressBar && <ProgressBar percentage={progressPercentage} transition={true} />}
       </div>
     </StyledCourseCard>
   )
@@ -97,8 +100,8 @@ const StyledCourseCard = styled.div`
   }
   .proBadge {
     background-color: ${p => p.theme.colors.card_background};
-    border-radius: ${p => p.theme.spacing.space_3};
-    padding:  ${p => p.theme.spacing.space_025}  ${p => p.theme.spacing.space_3};
+    border-radius: ${p => p.theme.spacing.space_2};
+    padding: ${p => p.theme.spacing.space_025} ${p => p.theme.spacing.space_3};
     position: absolute;
 
     span {
@@ -110,14 +113,15 @@ const StyledCourseCard = styled.div`
   }
   .topContainer {
     position: relative;
-    padding: ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5} 0 ${p => p.theme.spacing.space_5};
+    padding: ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5} 0
+      ${p => p.theme.spacing.space_5};
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 
-
     ${p => p.theme.responsive.medium_down} {
-      padding: ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3} 0 ${p => p.theme.spacing.space_3};
+      padding: ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3} 0
+        ${p => p.theme.spacing.space_3};
     }
 
     .leftContainer {
@@ -136,11 +140,13 @@ const StyledCourseCard = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5};
+    padding: 0 ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5}
+      ${p => p.theme.spacing.space_5};
     position: relative;
 
     ${p => p.theme.responsive.medium_down} {
-      padding: 0 ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3};
+      padding: 0 ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3}
+        ${p => p.theme.spacing.space_3};
     }
   }
 
@@ -161,7 +167,7 @@ const StyledCourseCard = styled.div`
       margin-top: ${p => p.theme.spacing.space_08};
       ${p => p.theme.responsive.small_down} {
         display: none;
-        margin: 0M
+        margin: 0m;
       }
     }
   }

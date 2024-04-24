@@ -52,7 +52,7 @@ Disabled.storyName = 'Disabled buttons'
 export const Borders = bind(
   <AppShell theme={defaultTheme}>
     <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '20px' }}>
-      <Button variant='primary' label={DEFAULT_TEXT} onPress={() => {}} squareBorder />
+      <Button variant='primary' label={DEFAULT_TEXT} onPress={() => {}} squareBorder={false} />
       <Button variant='primary' label={DEFAULT_TEXT} onPress={() => {}} />
     </div>
   </AppShell>,

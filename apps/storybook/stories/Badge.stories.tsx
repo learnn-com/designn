@@ -15,8 +15,8 @@ function bind(node: JSX.Element) {
 
 export const Outlined = bind(
   <AppShell theme={defaultTheme}>
-  <div style={{ display: 'flex' }}>
-    <Badge body='Categoria' variant='outlined' />
+    <div style={{ display: 'flex' }}>
+      <Badge body='Categoria' variant='outlined' />
     </div>
   </AppShell>,
 )
@@ -24,28 +24,31 @@ Outlined.storyName = 'Badge outlined'
 
 export const Contained = bind(
   <AppShell theme={defaultTheme}>
-  <div style={{ display: 'flex' }}>
-    <Badge body='Categoria' variant='contained' />
+    <div style={{ display: 'flex' }}>
+      <Badge body='Categoria' variant='contained' />
     </div>
   </AppShell>,
 )
 Contained.storyName = 'Badge contained'
 
-export const ContainedSquared = bind(
+export const ContainedRound = bind(
   <AppShell theme={defaultTheme}>
-  <div style={{ display: 'flex' }}>
-    <Badge body='Categoria' variant='contained' squareBorder />
+    <div style={{ display: 'flex' }}>
+      <Badge body='Categoria' variant='contained' squareBorder={false} />
     </div>
   </AppShell>,
 )
-Contained.storyName = 'Badge contained more squared'
+ContainedRound.storyName = 'Badge contained with round border'
 
 export const BadgeFlat = bind(
   <AppShell theme={defaultTheme}>
-  <div style={{ display: 'flex' }}>
-    <Badge body='Categoria' icon={<FontAwesomeIcon icon={faClock} color='white' style={{width: '100%'}}/>} variant='flat' />
+    <div style={{ display: 'flex' }}>
+      <Badge
+        body='Categoria'
+        icon={<FontAwesomeIcon icon={faClock} color='white' style={{ width: '100%' }} />}
+        variant='flat'
+      />
     </div>
   </AppShell>,
 )
 BadgeFlat.storyName = 'Badge flat'
-

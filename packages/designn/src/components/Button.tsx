@@ -40,7 +40,7 @@ export function Button({
   disabled,
   iconPosition = 'left',
   size,
-  squareBorder,
+  squareBorder = true,
   textFontWeight,
   ...props
 }: ButtonProps & SizeProps & SpaceProps & MarginProps) {
@@ -160,6 +160,6 @@ const Component = styled.button<Omit<ButtonProps, 'onPress'>>`
 
   pointer-events: ${p => (p.disabled ? 'none' : null)};
   cursor: ${p => (p.disabled ? 'normal' : 'pointer')};
-  
+
   ${compose(size, space, margin)}
 `

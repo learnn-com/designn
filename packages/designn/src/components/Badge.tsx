@@ -16,7 +16,7 @@ export type BadgeProps = {
 export const Badge = ({
   body,
   variant,
-  squareBorder,
+  squareBorder = true,
   icon,
   ...props
 }: BadgeProps & SpaceProps & LayoutProps) => {
