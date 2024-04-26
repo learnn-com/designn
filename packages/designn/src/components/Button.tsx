@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import styled from 'styled-components'
 import { FontWeightAlias } from 'theme/tokens/typography'
-import { MarginProps, SizeProps, SpaceProps, compose, margin, size, space } from 'styled-system'
+import { MarginProps, SpaceProps, WidthProps, HeightProps, compose, margin, space, width, height } from 'styled-system'
 
 type Variant = 'primary' | 'secondary' | 'tertiary'
 
@@ -43,7 +43,7 @@ export function Button({
   squareBorder = true,
   textFontWeight,
   ...props
-}: ButtonProps & SizeProps & SpaceProps & MarginProps) {
+}: ButtonProps & SpaceProps & MarginProps & WidthProps & HeightProps) {
   return (
     <Component
       id={id}
@@ -66,7 +66,7 @@ export function Button({
   )
 }
 
-const Component = styled.button<Omit<ButtonProps, 'onPress'>>`
+const Component = styled.button<Omit<ButtonProps & SpaceProps & MarginProps & WidthProps & HeightProps, 'onPress'>>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -160,6 +160,6 @@ const Component = styled.button<Omit<ButtonProps, 'onPress'>>`
 
   pointer-events: ${p => (p.disabled ? 'none' : null)};
   cursor: ${p => (p.disabled ? 'normal' : 'pointer')};
-
-  ${compose(size, space, margin)}
+  
+  ${compose(space, margin, width, height)}
 `
