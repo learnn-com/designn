@@ -93,6 +93,16 @@ const StyledInput = styled.input<TextInputProps & SpaceProps & LayoutProps>`
   padding: 0;
   flex: 1;
 
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: #ffffff;
+      transition: background-color 5000s ease-in-out 0s;
+      box-shadow: inset 0 0 20px 20px #23232329;
+  }
+
   font-size: ${p => p.theme.typography.font_size_100};
   line-height: ${p => p.theme.typography.font_line_height_1};
   font-weight: ${p => p.theme.typography.font_weight_regular};

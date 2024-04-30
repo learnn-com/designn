@@ -3,7 +3,7 @@ import { undefinedAsFalse } from '../utils/props'
 import { ColorTextAlias } from '../theme/tokens/colors'
 import { Color} from '../utils/colors'
 import styled, { css, DefaultTheme } from 'styled-components'
-import { SpaceProps, space } from 'styled-system'
+import { HeightProps, SpaceProps, WidthProps, compose, height, space, width } from 'styled-system'
 import {FontLineHeightScale } from '../theme/tokens/typography'
 
 
@@ -58,7 +58,7 @@ export function Text({
   as,
   testid,
   ...props
-}: TextProps & SpaceProps) {
+}: TextProps & WidthProps & HeightProps & SpaceProps) {
   const element: Element = as || (inline ? 'span' : 'p')
 
   return (
@@ -88,10 +88,10 @@ const textColorSf = (p: {theme: DefaultTheme} & TextProps) => {
   ? `color:${p.theme.colors.text[`${p.color}`]};`
   : `color:${p.theme.colors.text.primary};`
 }
-const Component = styled.p<TextProps & SpaceProps>`
+const Component = styled.p<TextProps & SpaceProps & WidthProps & HeightProps>`
   margin: 0;
   padding: 0;
-  ${space}
+
   ${p => {
     if (p.alignment === 'start') {
       return `text-align: left;`
@@ -129,6 +129,7 @@ const Component = styled.p<TextProps & SpaceProps>`
   ${textColorSf}
   ${p => p.lineHeightScale && `line-height: ${p.theme.typography[`font_line_height_${p.lineHeightScale}`]};`}
  
+  ${compose(space, width, height)}
 `
 
 const truncatedStyle = css`
