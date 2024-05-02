@@ -189,6 +189,10 @@ const Component = styled.h1<TitleProps & SpaceProps>`
                 line-height: ${p.theme.typography.font_line_height_3};
                 letter-spacing:-0.04em;`
       }
+      if (p.variant === 'headingXs') {
+        return `font-size: ${p.theme.typography.font_size_200};
+                line-height: ${p.theme.typography.font_line_height_2};`
+      }
       return ''
     }}
   }
@@ -197,16 +201,18 @@ const Component = styled.h1<TitleProps & SpaceProps>`
     p.fontWeight
       ? `font-weight:${p.theme.typography[`font_weight_${p.fontWeight}`]};`
       : `font-weight:${p.theme.typography.font_weight_black};`}
-    ${p =>
+  ${p =>
     p.color
       ? `color:${p.theme.colors.text[`${p.color}`]};`
       : `color:${p.theme.colors.text.primary};`}
 
-  ${p => p.lineHeightScale && `line-height: ${p.theme.typography[`font_line_height_${p.lineHeightScale}`]};`}
+  ${p =>
+    p.lineHeightScale &&
+    `line-height: ${p.theme.typography[`font_line_height_${p.lineHeightScale}`]};`}
 `
 
 const truncatedStyle = css<TitleProps>`
-  ${(p) =>
+  ${p =>
     p.truncateLines
       ? `
   -webkit-line-clamp: ${p.truncateLines};
