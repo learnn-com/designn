@@ -145,6 +145,9 @@ const Component = styled.button<Omit<ButtonProps & SpaceProps & MarginProps & Wi
                 color: ${p.theme.colors.interaction_foreground.tertiary_disabled};
                 border: 1px solid ${p.theme.colors.interaction_outline.tertiary_disabled};
               }
+              &:focus {
+                outline: none;
+              }
               `
     }
 
