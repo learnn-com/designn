@@ -1,3 +1,5 @@
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AppShell, Button, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
@@ -48,6 +50,19 @@ export const Disabled = bind(
 )
 
 Disabled.storyName = 'Disabled buttons'
+
+export const Loading = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '20px' }}>
+      <Button loading variant='primary' label={DEFAULT_TEXT} onPress={() => {}} />
+      <Button loading variant='secondary' label={DEFAULT_TEXT} onPress={() => {}} />
+      <Button loading variant='tertiary' label={DEFAULT_TEXT} onPress={() => {}} />
+      <Button loading variant='primary' label={DEFAULT_TEXT} onPress={() => {}} icon={<FontAwesomeIcon icon={faClock} size='lg' color='black' />} iconPosition='left'/>
+    </div>
+  </AppShell>,
+)
+
+Loading.storyName = 'Loading buttons'
 
 export const Borders = bind(
   <AppShell theme={defaultTheme}>

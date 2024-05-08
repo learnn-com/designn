@@ -21,6 +21,8 @@ export type ButtonProps = {
   testid?: string
   /** Weather or not the button is disabled */
   disabled?: boolean
+  /** Weather or not the button is loading */
+  loading?: boolean
   /** Where to position the icon */
   iconPosition?: 'left' | 'right'
   /** Component size */
@@ -38,6 +40,7 @@ export function Button({
   id,
   testid,
   disabled,
+  loading,
   iconPosition = 'left',
   size,
   squareBorder = true,
@@ -52,13 +55,14 @@ export function Button({
       iconPosition={iconPosition}
       variant={variant}
       textFontWeight={textFontWeight}
-      disabled={undefinedAsFalse(disabled)}
+      disabled={undefinedAsFalse(disabled) || undefinedAsFalse(loading)}
       size={size}
       label={label}
       data-testid={testid}
       squareBorder={undefinedAsFalse(squareBorder)}
       {...props}
     >
+      {loading && <div className='loader'></div>}
       {icon && iconPosition === 'left' && <div className='icon'>{icon}</div>}
       {label}
       {icon && iconPosition === 'right' && <div className='icon'>{icon}</div>}
@@ -77,22 +81,21 @@ const Component = styled.button<Omit<ButtonProps & SpaceProps & MarginProps & Wi
     p.squareBorder ? p.theme.borders.radius.medium : p.theme.borders.radius.full};
   ${p => `font-weight:${p.theme.typography.font_weight_semibold};`}
   ${p => {
-    if (p.size === 'sm') {
-      return `font-size: ${p.theme.typography.font_size_100};
-              line-height: ${p.theme.typography.font_line_height_1};
-              `
+    switch (p.size) {
+      case 'sm': 
+        return `font-size: ${p.theme.typography.font_size_100};
+                line-height: ${p.theme.typography.font_line_height_1};`
+      case 'md': 
+        return `font-size: ${p.theme.typography.font_size_200};
+                line-height: ${p.theme.typography.font_line_height_2};`
+      case 'lg': 
+        return `font-size: ${p.theme.typography.font_size_300};
+                line-height: ${p.theme.typography.font_line_height_3};
+                padding: 13px 20px;`
+      default: 
+        return `font-size: ${p.theme.typography.font_size_200};
+                line-height: ${p.theme.typography.font_line_height_2};`
     }
-    if (p.size === 'md') {
-      return `font-size: ${p.theme.typography.font_size_200};
-              line-height: ${p.theme.typography.font_line_height_2};`
-    }
-    if (p.size === 'lg') {
-      return `font-size: ${p.theme.typography.font_size_400};
-              line-height: ${p.theme.typography.font_line_height_4};`
-    }
-
-    return `font-size: ${p.theme.typography.font_size_200};
-            line-height: ${p.theme.typography.font_line_height_2};`
   }}
   ${p =>
     p.textFontWeight
@@ -163,6 +166,30 @@ const Component = styled.button<Omit<ButtonProps & SpaceProps & MarginProps & Wi
 
   pointer-events: ${p => (p.disabled ? 'none' : null)};
   cursor: ${p => (p.disabled ? 'normal' : 'pointer')};
+
+  .loader {
+    width: ${p => p.theme.spacing.space_3};
+    padding: ${p => p.theme.spacing.space_1};
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-right: ${p => p.theme.spacing.space_2};
+    ${p => {
+      switch (p.variant) {
+        case 'primary': return `background: ${p.theme.colors.interaction_foreground.primary_active};`
+        case 'secondary': return `background: ${p.theme.colors.interaction_foreground.secondary_active};`
+        case 'tertiary': return `background: ${p.theme.colors.interaction_foreground.tertiary_active};`
+      }
+    }}
+    --_m: 
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}
   
   ${compose(space, margin, width, height)}
 `
