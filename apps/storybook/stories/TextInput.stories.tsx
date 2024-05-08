@@ -27,6 +27,7 @@ export const TextInputSize = bind(
     <TextInput placeholder='Small size' size='sm' mt='20px'/>
     <TextInput placeholder='Medium size' size='md' mt='20px'/>
     <TextInput placeholder='Large size' size='lg' mt='20px'/>
+    <TextInput placeholder='XLarge size' size='xl' mt='20px'/>
     </VerticalStack>
   </AppShell>,
 )

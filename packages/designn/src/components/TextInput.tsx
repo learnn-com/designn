@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { DefaultTheme, useTheme } from 'styled-components'
-import { space, layout, border, compose, SpaceProps, LayoutProps } from 'styled-system'
+import { space, layout, border, compose, SpaceProps, LayoutProps, BorderProps } from 'styled-system'
 import { Color } from 'utils/colors';
 
 const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
@@ -57,6 +57,12 @@ const styleInputSize = ({ theme, size }: { theme: DefaultTheme; size?: Size }) =
       return `
       margin: ${theme.spacing.space_3} ${theme.spacing.space_2};
       `
+    case 'xl':
+      return `
+      margin: ${theme.spacing.space_4} ${theme.spacing.space_2};
+      font-size: ${theme.typography.font_size_200};
+      line-height: ${theme.typography.font_line_height_2};
+      `
   }
 }
 const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size?: Size }) => {
@@ -72,12 +78,16 @@ const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size?: Size 
       `
     case 'lg':
       return `
-      border-radius: ${theme.borders.radius.base};
+      border-radius: ${theme.borders.radius.medium};
+      `
+    case 'xl':
+      return `
+      border-radius: ${theme.borders.radius.medium};
       `
   }
 }
 
-const InputWrapper = styled.div<{bg: Color, variant?: Variant} & TextInputProps & SpaceProps & LayoutProps>`
+const InputWrapper = styled.div<{bg: Color, variant?: Variant} & TextInputProps & SpaceProps & LayoutProps & BorderProps>`
   display: flex;
   flex-direction: row;
   justifycontent: center;
@@ -137,7 +147,7 @@ const RightComponent = styled.div`
 `
 
 type Variant = 'transparent' | 'dark' | 'light'
-type Size = 'sm' | 'md' | 'lg'
+type Size = 'sm' | 'md' | 'lg' | 'xl'
 
 export type TextInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -155,7 +165,7 @@ export const TextInput = ({
   onKeyPress,
   value,
   ...props
-}: TextInputProps & SpaceProps & LayoutProps) => {
+}: TextInputProps & SpaceProps & LayoutProps & BorderProps) => {
   const { colors } = useTheme()
 
   return (
