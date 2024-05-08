@@ -113,6 +113,7 @@ export const purple: ColorScale = {
 type BrandColor = {
   brand: { primary: Color; accent: Color }
   backgroundColor: Color
+  modalBackground: Color
   textColor: Color
   clear: Color
   muted: Color
@@ -122,6 +123,7 @@ export const brandColors: BrandColor = {
     primary: '#ffffff',
     accent: '#000000',
   },
+  modalBackground: '#19191c',
   textColor: '#E7E9EA',
   backgroundColor: gray[900],
   muted: '#767676', //https://artincontext.org/muted-colors/

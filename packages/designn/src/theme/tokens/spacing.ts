@@ -1,6 +1,7 @@
 export type SpacingScale =
   | '0'
   | '025'
+  | '035'
   | '05'
   | '08'
   | '1'
@@ -29,6 +30,7 @@ export type Spacing = {
 export const spacing: Spacing = {
   space_0: '0rem',
   space_025: '0.0625rem',
+  space_035: '0.08rem',
   space_05: '0.125rem',
   space_08: '0.2rem',
   space_1: '0.25rem',
