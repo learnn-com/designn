@@ -6,13 +6,15 @@ import {
   ColorProps,
   flexbox,
   FlexboxProps,
+  shadow,
+  ShadowProps,
   space,
   SpaceProps,
 } from "styled-system";
 import {Box} from "./Box";
 
 export const HorizontalStack = styled(Box)<
-  FlexboxProps & SpaceProps & ColorProps & BorderProps
+  FlexboxProps & SpaceProps & ColorProps & BorderProps & ShadowProps
 >`
   display: flex;
   flex-direction: row;
@@ -21,4 +23,5 @@ export const HorizontalStack = styled(Box)<
   ${flexbox}
   ${space}
   ${border}
+  ${shadow}
 `;
