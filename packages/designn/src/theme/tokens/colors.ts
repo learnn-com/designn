@@ -65,7 +65,7 @@ export const colors: Colors = {
   },
   interaction_background: {
     primary_active: brandColors.brand.primary,
-    secondary_active: brandColors.clear,
+    secondary_active: brandColors.brand.accent,
     tertiary_active: brandColors.clear,
     flat_active: gray[700],
     primary_hover: gray[100],
@@ -110,5 +110,5 @@ export const colors: Colors = {
   card_background: brandColors.backgroundColor,
   card_border: gray[800],
   code: orange[500],
-  modal_background: brandColors.modalBackground
+  modal_background: brandColors.modalBackground,
 }

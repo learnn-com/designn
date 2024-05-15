@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import { LayoutProps, SpaceProps, BorderProps } from 'styled-system'
+import { useState, useRef } from 'react'
+import { LayoutProps, SpaceProps, BorderProps, compose, space, layout, border } from 'styled-system'
 import styled, { DefaultTheme } from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { useOutsideClick } from 'utils/hooks'
 
 type DropdownItem = { id: string; label: string }
 type Variant = 'transparent' | 'dark' | 'light'
@@ -28,7 +29,7 @@ const styleButtonVariant = ({ theme, variant }: { theme: DefaultTheme; variant?:
     case 'dark':
       return `
         color: ${theme.colors.text.base};
-        background-color: ${theme.colors.bg_app};
+        background-color: ${theme.colors.interaction_background.secondary_active};
         border: ${theme.borders.width.base} solid ${theme.colors.interaction_outline.secondary_active};
       `
     case 'light':
@@ -80,6 +81,7 @@ export const Dropdown = ({
   const [selectedItem, setSelectedItem] = useState<DropdownItem | undefined>(
     selectedId ? items.find(item => item.id === selectedId) : undefined,
   )
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const handleChange = (item: DropdownItem) => {
     setSelectedItem(item)
@@ -87,8 +89,10 @@ export const Dropdown = ({
     setIsOpen(false)
   }
 
+  useOutsideClick(dropdownRef, () => setIsOpen(false))
+
   return (
-    <StyledDropdown variant={variant} {...props}>
+    <StyledDropdown ref={dropdownRef} variant={variant} size={size} {...props}>
       <StyledButton
         variant={variant}
         size={size}
@@ -122,7 +126,7 @@ export const Dropdown = ({
 }
 
 const StyledDropdown = styled.div<
-  { variant: Variant | undefined } & SpaceProps & LayoutProps & BorderProps
+  { variant?: Variant; size?: Size } & SpaceProps & LayoutProps & BorderProps
 >`
   position: relative;
   display: flex;
@@ -135,11 +139,25 @@ const StyledDropdown = styled.div<
     overflow-y: auto;
     max-height: 250px;
     border-radius: ${p => p.theme.borders.radius.base};
-    top: ${p => p.theme.spacing.space_12};
     ${styleButtonVariant}
     border:none;
     padding-left: ${p => p.theme.spacing.space_1};
     padding-right: ${p => p.theme.spacing.space_1};
+    ${p => {
+      if (p.size === 'sm') {
+        return `top: ${p.theme.spacing.space_8};`
+      }
+      if (p.size === 'md') {
+        return `top: ${p.theme.spacing.space_10};`
+      }
+      if (p.size === 'lg') {
+        return `top: ${p.theme.spacing.space_12};`
+      }
+      if (p.size === 'xl') {
+        return `top: ${p.theme.spacing.space_16};`
+      }
+      return `top: ${p.theme.spacing.space_12};`
+    }}
   }
   .items ul {
     list-style: none;
@@ -147,9 +165,7 @@ const StyledDropdown = styled.div<
     width: 100%;
   }
   .item {
-    :hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
     margin-bottom: ${p => p.theme.spacing.space_1};
     padding-top: ${p => p.theme.spacing.space_2};
     padding-bottom: ${p => p.theme.spacing.space_2};
@@ -184,6 +200,8 @@ const StyledDropdown = styled.div<
       return ''
     }}
   }
+
+  ${compose(space, layout, border)}
 `
 
 const StyledButton = styled.button<{ size?: Size; variant?: Variant }>`
@@ -192,9 +210,8 @@ const StyledButton = styled.button<{ size?: Size; variant?: Variant }>`
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  :hover {
-    cursor: pointer;
-  }
+
+  cursor: pointer;
 
   font-size: ${p => p.theme.typography.font_size_100};
   line-height: ${p => p.theme.typography.font_line_height_1};

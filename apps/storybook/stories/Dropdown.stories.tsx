@@ -29,3 +29,29 @@ export const Default = bind(
 )
 
 Default.storyName = 'Default dropdown'
+
+export const Size = bind(
+  <AppShell theme={defaultTheme}>
+    <VerticalStack width='500px'>
+      <Dropdown items={ITEMS} size='sm' variant='dark' selectedId='2' mt='20px' />
+      <Dropdown items={ITEMS} size='md' variant='dark' selectedId='2' mt='20px' />
+      <Dropdown items={ITEMS} size='lg' variant='dark' selectedId='2' mt='20px' />
+      <Dropdown items={ITEMS} size='xl' variant='dark' selectedId='2' mt='20px' />
+    </VerticalStack>
+  </AppShell>,
+)
+
+Size.storyName = 'Different sizes'
+
+export const Variants = bind(
+  <AppShell theme={defaultTheme}>
+    <VerticalStack width='500px' bg='#121214' p='50px' pb='100px'>
+      <Dropdown items={ITEMS} variant='dark' selectedId='2' mt='20px' />
+
+      <Dropdown items={ITEMS} variant='light' selectedId='2' mt='20px' />
+      <Dropdown items={ITEMS} variant='transparent' selectedId='2' mt='20px' />
+    </VerticalStack>
+  </AppShell>,
+)
+
+Variants.storyName = 'Different variants'
