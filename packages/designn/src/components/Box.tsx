@@ -25,6 +25,7 @@ type BoxProps = {
   shadow?: number
   cursor?: string
   transition?: string
+  gap?: string
 }
 
 export const Box = styled.div<
@@ -39,9 +40,10 @@ export const Box = styled.div<
     TypographyProps &
     BackgroundProps
 >(
-  ({ cursor, transition }) => ({
+  ({ cursor, transition, gap }) => ({
     cursor,
     transition,
+    gap
   }),
   compose(layout, space, color, position, flexbox, flex, border, typography, background),
 )
