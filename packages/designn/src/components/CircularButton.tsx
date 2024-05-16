@@ -17,7 +17,7 @@ export type CircularButtonProps = {
   /** Weather or not the CircularButton is disabled */
   disabled?: boolean
   /** Component size */
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
 }
 
 export function CircularButton({
@@ -53,6 +53,18 @@ const Component = styled.button<Omit<CircularButtonProps, 'onPress'> & SpaceProp
   ${({ theme, ...p }) => {
     switch (p.size) {
       default:
+      case 'xs':
+        return `
+            width: ${theme.spacing.space_6};
+            height: ${theme.spacing.space_6};
+            border-radius: ${theme.spacing.space_6};
+  
+            .icon {
+              font-size: ${theme.spacing.space_3};
+              display:flex;
+              align-items:center;
+            }
+          `
       case 'sm':
         return `
           width: ${theme.spacing.space_8};

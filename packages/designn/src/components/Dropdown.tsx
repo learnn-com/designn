@@ -3,7 +3,7 @@ import { LayoutProps, SpaceProps, BorderProps, compose, space, layout, border } 
 import styled, { DefaultTheme } from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { useOutsideClick } from 'utils/hooks'
+import { useOutsideClick } from '../utils/hooks'
 
 type DropdownItem = { id: string; label: string }
 type Variant = 'transparent' | 'dark' | 'light'
