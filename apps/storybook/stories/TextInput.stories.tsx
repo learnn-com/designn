@@ -39,6 +39,7 @@ export const TextInputVariants = bind(
   <TextInput placeholder='Transparent' variant='transparent' mt='20px'/>
   <TextInput placeholder='Light' variant='light' mt='20px'/>
   <TextInput placeholder='Dark' variant='dark' mt='20px'/>
+  <TextInput placeholder='Underlined' variant='underlined' mt='20px'/>
   </VerticalStack>
   </AppShell>,
 )

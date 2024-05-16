@@ -24,6 +24,12 @@ const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; varian
         background-color: ${theme.colors.interaction_background.primary_active};
         border: none;
       `
+    case 'underlined':
+      return `
+        background-color: transparent;
+        border-bottom: ${theme.borders.width.base} solid ${theme.colors.interaction_outline.flat_active};
+        border-radius: 0 !important;
+      `
   }
 }
 const styleInputVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
@@ -149,7 +155,7 @@ const RightComponent = styled.div`
   justify-content: center;
 `
 
-type Variant = 'transparent' | 'dark' | 'light'
+type Variant = 'transparent' | 'dark' | 'light' | 'underlined'
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 
 export type TextInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & {

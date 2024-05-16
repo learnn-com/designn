@@ -95,7 +95,7 @@ export const colors: Colors = {
     primary_active: brandColors.brand.primary,
     secondary_active: gray[700],
     tertiary_active: brandColors.clear,
-    flat_active: brandColors.clear,
+    flat_active: gray[300],
     primary_hover: gray[100],
     secondary_hover: gray[400],
     tertiary_hover: brandColors.clear,
