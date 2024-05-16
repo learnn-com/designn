@@ -2,6 +2,9 @@ import React from 'react'
 import styled, { DefaultTheme, useTheme } from 'styled-components'
 import { space, layout, border, compose, SpaceProps, LayoutProps, BorderProps } from 'styled-system'
 import { Color } from 'utils/colors';
+import { VerticalStack } from './VerticalStack';
+import { Text } from './Text';
+import { Box } from './Box';
 
 const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
   switch (variant) {
@@ -13,7 +16,7 @@ const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; varian
       `
     case 'dark':
       return `
-        background-color: ${theme.colors.bg_app};
+        background-color: ${theme.colors.interaction_background.secondary_active};
         border: ${theme.borders.width.base} solid ${theme.colors.interaction_outline.secondary_active};
       `
     case 'light':
@@ -87,7 +90,7 @@ const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size?: Size 
   }
 }
 
-const InputWrapper = styled.div<{bg: Color, variant?: Variant} & TextInputProps & SpaceProps & LayoutProps & BorderProps>`
+const InputWrapper = styled.div<{ bg: Color, variant?: Variant } & TextInputProps & SpaceProps & LayoutProps & BorderProps>`
   display: flex;
   flex-direction: row;
   justifycontent: center;
@@ -157,6 +160,8 @@ export type TextInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, '
   rightComponent?: React.ReactElement
   variant?: Variant
   size?: Size
+  label?: string
+  error?: string
 }
 export const TextInput = ({
   leftComponent,
@@ -164,24 +169,33 @@ export const TextInput = ({
   onChange,
   onKeyPress,
   value,
+  label,
+  error,
+  size,
   ...props
-}: TextInputProps & SpaceProps & LayoutProps & BorderProps) => {
-  const { colors } = useTheme()
+}: TextInputProps & SpaceProps & Omit<LayoutProps, 'size'> & BorderProps) => {
+  const { colors, spacing } = useTheme()
 
   return (
-    <InputWrapper
-      bg={colors.card_background}
-      variant={props.variant}
-      {...props}
-    >
-      {leftComponent && <LeftComponent>{leftComponent}</LeftComponent>}
-      <StyledInput
-        {...props}
-        onChange={onChange}
-        onKeyPress={onKeyPress}
-        value={value}
-      />
-      {rightComponent && <RightComponent>{rightComponent}</RightComponent>}
-    </InputWrapper>
+    <VerticalStack width={'100%'} {...props}>
+      {label && (<Box mb={spacing.space_2}><Text variant='bodyXs' fontWeight='light'>{label}</Text></Box>)}
+      <InputWrapper
+        bg={colors.card_background}
+        variant={props.variant}
+        size={size}
+          {...props}
+      >
+        {leftComponent && <LeftComponent>{leftComponent}</LeftComponent>}
+        <StyledInput
+          {...props}
+          size={size}
+          onChange={onChange}
+          onKeyPress={onKeyPress}
+          value={value}
+        />
+        {rightComponent && <RightComponent>{rightComponent}</RightComponent>}
+      </InputWrapper>
+      {error && (<Box mt={spacing.space_2}><Text variant='bodyXs' textColor={colors.text.error}>{error}</Text></Box>)}
+    </VerticalStack>
   )
 }

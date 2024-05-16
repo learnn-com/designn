@@ -54,3 +54,14 @@ export const TextInputComponent = bind(
   </AppShell>,
 )
 TextInputComponent.storyName = 'TextInput Component Position'
+
+export const TextInputLabelError = bind(
+  <AppShell theme={defaultTheme}>
+  <VerticalStack>
+  <TextInput placeholder='With label' label='Label' mt='20px'/>
+  <TextInput placeholder='With error' error='This is an error' mt='20px'/>
+  <TextInput placeholder='With both' label='Label' error='This is an error' mt='20px'/>
+  </VerticalStack>
+  </AppShell>,
+)
+TextInputLabelError.storyName = 'TextInput with label and error'
