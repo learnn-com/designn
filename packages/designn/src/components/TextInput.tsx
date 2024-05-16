@@ -1,10 +1,10 @@
 import React from 'react'
 import styled, { DefaultTheme, useTheme } from 'styled-components'
 import { space, layout, border, compose, SpaceProps, LayoutProps, BorderProps } from 'styled-system'
-import { Color } from 'utils/colors';
-import { VerticalStack } from './VerticalStack';
-import { Text } from './Text';
-import { Box } from './Box';
+import { Color } from 'utils/colors'
+import { VerticalStack } from './VerticalStack'
+import { Text } from './Text'
+import { Box } from './Box'
 
 const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
   switch (variant) {
@@ -43,7 +43,6 @@ const styleInputVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: 
       `
   }
 }
-
 
 const styleInputSize = ({ theme, size }: { theme: DefaultTheme; size?: Size }) => {
   switch (size) {
@@ -90,7 +89,9 @@ const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size?: Size 
   }
 }
 
-const InputWrapper = styled.div<{ bg: Color, variant?: Variant } & TextInputProps & SpaceProps & LayoutProps & BorderProps>`
+const InputWrapper = styled.div<
+  { bg: Color; variant?: Variant } & TextInputProps & SpaceProps & LayoutProps & BorderProps
+>`
   display: flex;
   flex-direction: row;
   justifycontent: center;
@@ -107,13 +108,13 @@ const StyledInput = styled.input<TextInputProps & SpaceProps & LayoutProps>`
   flex: 1;
 
   &:-webkit-autofill,
-  &:-webkit-autofill:hover, 
-  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: #ffffff;
-      transition: background-color 5000s ease-in-out 0s;
-      box-shadow: inset 0 0 20px 20px #23232329;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
   }
 
   font-size: ${p => p.theme.typography.font_size_100};
@@ -178,13 +179,10 @@ export const TextInput = ({
 
   return (
     <VerticalStack width={'100%'} {...props}>
-      {label && (<Box mb={spacing.space_2}><Text variant='bodyXs' fontWeight='light'>{label}</Text></Box>)}
-      <InputWrapper
-        bg={colors.card_background}
-        variant={props.variant}
-        size={size}
-          {...props}
-      >
+      <Box mb={spacing.space_2}>
+        <Text variant='bodyXxs'>{label}</Text>
+      </Box>
+      <InputWrapper bg={colors.card_background} variant={props.variant} size={size} {...props}>
         {leftComponent && <LeftComponent>{leftComponent}</LeftComponent>}
         <StyledInput
           {...props}
@@ -195,7 +193,13 @@ export const TextInput = ({
         />
         {rightComponent && <RightComponent>{rightComponent}</RightComponent>}
       </InputWrapper>
-      {error && (<Box mt={spacing.space_2}><Text variant='bodyXs' textColor={colors.text.error}>{error}</Text></Box>)}
+      {error && (
+        <Box mt={spacing.space_2}>
+          <Text variant='bodyXs' textColor={colors.text.error}>
+            {error}
+          </Text>
+        </Box>
+      )}
     </VerticalStack>
   )
 }

@@ -1,13 +1,12 @@
 import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import { ColorTextAlias } from '../theme/tokens/colors'
-import { Color} from '../utils/colors'
+import { Color } from '../utils/colors'
 import styled, { css, DefaultTheme } from 'styled-components'
 import { HeightProps, SpaceProps, WidthProps, compose, height, space, width } from 'styled-system'
-import {FontLineHeightScale } from '../theme/tokens/typography'
+import { FontLineHeightScale } from '../theme/tokens/typography'
 
-
-type Variant = 'bodyXs' | 'bodySm' | 'bodyMd' | 'bodyLg'
+type Variant = 'bodyXxs' | 'bodyXs' | 'bodySm' | 'bodyMd' | 'bodyLg'
 
 type Element = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
 
@@ -16,7 +15,6 @@ type Alignment = 'start' | 'center' | 'end'
 type ColorVariants = ColorTextAlias
 
 type FontWeight = 'light' | 'regular' | 'semibold' | 'bold' | 'black'
-
 
 export type TextProps = {
   /** The element type */
@@ -79,14 +77,11 @@ export function Text({
   )
 }
 
-
-
-const textColorSf = (p: {theme: DefaultTheme} & TextProps) => {
-  if (p.textColor)
-    return `color: ${p.textColor}`
+const textColorSf = (p: { theme: DefaultTheme } & TextProps) => {
+  if (p.textColor) return `color: ${p.textColor}`
   return p.color
-  ? `color:${p.theme.colors.text[`${p.color}`]};`
-  : `color:${p.theme.colors.text.primary};`
+    ? `color:${p.theme.colors.text[`${p.color}`]};`
+    : `color:${p.theme.colors.text.primary};`
 }
 const Component = styled.p<TextProps & SpaceProps & WidthProps & HeightProps>`
   margin: 0;
@@ -106,6 +101,10 @@ const Component = styled.p<TextProps & SpaceProps & WidthProps & HeightProps>`
   }}
   ${p => (p.truncate ? truncatedStyle : '')}
   ${p => {
+    if (p.variant === 'bodyXxs') {
+      return `font-size: ${p.theme.typography.font_size_75};
+              line-height: ${p.theme.typography.font_line_height_1};`
+    }
     if (p.variant === 'bodyXs') {
       return `font-size: ${p.theme.typography.font_size_100};
               line-height: ${p.theme.typography.font_line_height_1};`
@@ -122,12 +121,14 @@ const Component = styled.p<TextProps & SpaceProps & WidthProps & HeightProps>`
       return `font-size: ${p.theme.typography.font_size_400};
               line-height: ${p.theme.typography.font_line_height_4};`
     }
-    return `font-size: ${p.theme.typography.font_size_200};
+    return `font-size: ${p.theme.typography.font_size_base};
             line-height: ${p.theme.typography.font_line_height_2};`
   }}
   ${p => (p.fontWeight ? `font-weight:${p.theme.typography[`font_weight_${p.fontWeight}`]};` : '')}
   ${textColorSf}
-  ${p => p.lineHeightScale && `line-height: ${p.theme.typography[`font_line_height_${p.lineHeightScale}`]};`}
+  ${p =>
+    p.lineHeightScale &&
+    `line-height: ${p.theme.typography[`font_line_height_${p.lineHeightScale}`]};`}
  
   ${compose(space, width, height)}
 `

@@ -24,6 +24,14 @@ export const Default = bind(
   <AppShell theme={defaultTheme}>
     <VerticalStack width='500px'>
       <Dropdown items={ITEMS} size='lg' variant='dark' selectedId='2' />
+      <Dropdown
+        items={ITEMS}
+        size='lg'
+        variant='dark'
+        selectedId='2'
+        mt='20px'
+        label='Dropdown con label'
+      />
     </VerticalStack>
   </AppShell>,
 )

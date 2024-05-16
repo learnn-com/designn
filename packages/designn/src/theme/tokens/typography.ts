@@ -1,4 +1,14 @@
-export type FontSizeScale = 'base' | '75' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800'
+export type FontSizeScale =
+  | 'base'
+  | '75'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
 
 export type FontLineHeightScale = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8'
 

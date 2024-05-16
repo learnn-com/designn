@@ -1,9 +1,11 @@
 import { useState, useRef } from 'react'
 import { LayoutProps, SpaceProps, BorderProps, compose, space, layout, border } from 'styled-system'
-import styled, { DefaultTheme } from 'styled-components'
+import styled, { DefaultTheme, useTheme } from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useOutsideClick } from '../utils/hooks'
+import { Text } from './Text'
+import { Box } from './Box'
 
 type DropdownItem = { id: string; label: string }
 type Variant = 'transparent' | 'dark' | 'light'
@@ -15,6 +17,7 @@ export type DropdownProps = {
   selectedId?: string
   variant?: Variant
   size?: Size
+  label?: string
 }
 
 const styleButtonVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
@@ -75,6 +78,7 @@ export const Dropdown = ({
   variant,
   size,
   items,
+  label,
   ...props
 }: DropdownProps & SpaceProps & LayoutProps & BorderProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -82,6 +86,7 @@ export const Dropdown = ({
     selectedId ? items.find(item => item.id === selectedId) : undefined,
   )
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const { spacing } = useTheme()
 
   const handleChange = (item: DropdownItem) => {
     setSelectedItem(item)
@@ -93,6 +98,11 @@ export const Dropdown = ({
 
   return (
     <StyledDropdown ref={dropdownRef} variant={variant} size={size} {...props}>
+      {label && (
+        <Box mb={spacing.space_2}>
+          <Text variant='bodyXxs'>{label}</Text>
+        </Box>
+      )}
       <StyledButton
         variant={variant}
         size={size}
