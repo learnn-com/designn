@@ -17,7 +17,7 @@ function bind(node: JSX.Element) {
 
 export const Basic = bind(
   <AppShell theme={defaultTheme}>
-    <Text variant='bodySm'>{DEFAULT_TEXT}</Text>
+    <Text>{DEFAULT_TEXT}</Text>
   </AppShell>,
 )
 Basic.storyName = 'A basic string of text'
