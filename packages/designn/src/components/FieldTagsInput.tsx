@@ -23,13 +23,13 @@ export const FieldTagsInput: FC<FieldTagsInputProps> = ({ label, error, value, m
     return (
         <VerticalStack width={'100%'}>
             {label && (<Box mb={spacing.space_2}><Text variant='bodyXs' fontWeight='light'>{label}</Text></Box>)}
-            <HorizontalStack alignItems='center'>
+            <HorizontalStack alignItems='center' flexDirection={{_: 'column', small: 'row'}} gap={spacing.space_4}>
                 <TextInput
                     value={inputVal}
                     onChange={e => setInputVal(e.target.value)}
                     placeholder={'Design'}
                     size='lg'
-                    width={'300px'}
+                    maxWidth={{_: '100%', small: '300px'}}
                     height={'100%'}
                     variant='dark'
                     onKeyDown={e => {
@@ -38,7 +38,6 @@ export const FieldTagsInput: FC<FieldTagsInputProps> = ({ label, error, value, m
                     }}
                 />
                 <Button
-                    ml={spacing.space_4}
                     variant='primary'
                     size='md'
                     label='Aggiungi'
