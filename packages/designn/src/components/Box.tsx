@@ -21,11 +21,12 @@ import {
   BackgroundProps,
 } from 'styled-system'
 
-type BoxProps = {
+export type BoxProps = {
   shadow?: number
   cursor?: string
   transition?: string
   gap?: string
+  scrollable?: boolean
 }
 
 export const Box = styled.div<
@@ -40,10 +41,15 @@ export const Box = styled.div<
     TypographyProps &
     BackgroundProps
 >(
-  ({ cursor, transition, gap }) => ({
+  ({ cursor, transition, gap, scrollable }) => ({
     cursor,
     transition,
-    gap
+    gap,
+    ...(scrollable && {
+      overflow: 'auto',
+      whiteSpace: 'nowrap',
+      'scrollbar-width': 'none'
+    })
   }),
   compose(layout, space, color, position, flexbox, flex, border, typography, background),
 )
