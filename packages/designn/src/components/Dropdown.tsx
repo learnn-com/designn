@@ -12,7 +12,7 @@ type Variant = 'transparent' | 'dark' | 'light'
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 
 export type DropdownProps = {
-  onSelect?: (id: string) => void
+  onSelect?: (item: DropdownItem) => void
   items: DropdownItem[]
   selectedId?: string
   variant?: Variant
@@ -90,7 +90,7 @@ export const Dropdown = ({
 
   const handleChange = (item: DropdownItem) => {
     setSelectedItem(item)
-    onSelect && onSelect(item.id)
+    onSelect && onSelect(item)
     setIsOpen(false)
   }
 
