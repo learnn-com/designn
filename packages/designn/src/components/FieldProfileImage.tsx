@@ -3,28 +3,30 @@ import { HorizontalStack } from './HorizontalStack';
 import { Title } from './Title';
 import styled, { useTheme } from 'styled-components';
 import { Box } from './Box';
-import { ReactNode, useRef, useState } from 'react';
+import { ReactNode, useRef } from 'react';
+import { Spacing } from 'theme/tokens/spacing';
 
 export type FieldProfileImageProps = {
-  defaultText?: string;
+  placeholder?: string;
   imageUrl?: string;
   loading?: string;
-  disableChange?: boolean;
   editIcon?: ReactNode;
+  size?: Spacing,
   onFileChange?: (file: File) => unknown;
+  variant?: 'standard' | 'edit'
 };
 
 export const FieldProfileImage = ({
-  defaultText,
+  placeholder,
   imageUrl,
-  disableChange,
   editIcon,
   onFileChange,
   loading,
+  size,
+  variant,
   ...props
 }: FieldProfileImageProps & SpaceProps & LayoutProps) => {
   const { borders, spacing, colors } = useTheme();
-  const [isHovered, setIsHovered] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,8 +42,8 @@ export const FieldProfileImage = ({
 
   return (
     <HorizontalStack
-      height={spacing.space_24}
-      width={spacing.space_24}
+      height={size ?? spacing.space_24}
+      width={size ?? spacing.space_24}
       borderRadius={borders.radius.base}
       bg={colors.interaction_background.secondary_active}
       borderStyle="solid"
@@ -50,8 +52,6 @@ export const FieldProfileImage = ({
       justifyContent="center"
       alignItems="center"
       overflow="hidden"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       position="relative"
       {...props}
     >
@@ -66,10 +66,10 @@ export const FieldProfileImage = ({
         />
       ) : (
         <Title variant="heading2xl" fontWeight="regular">
-          {defaultText ?? 'DC'}
+          {placeholder}
         </Title>
       )}
-      {(isHovered && !disableChange && !loading) && (
+      {(variant === 'edit' && !loading) && (
         <>
           <Box
             position="absolute"
