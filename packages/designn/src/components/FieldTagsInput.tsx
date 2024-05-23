@@ -16,7 +16,7 @@ export const FieldTagsInput: FC<FieldTagsInputProps> = ({
   maxItems,
   onChange,
 }) => {
-  const { spacing, borders, colors } = useTheme()
+  const { spacing, colors } = useTheme()
   const [inputVal, setInputVal] = useState('')
 
   const handleAddTag = () => {

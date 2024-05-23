@@ -100,7 +100,7 @@ export const Dropdown = ({
     <StyledDropdown ref={dropdownRef} variant={variant} size={size} {...props}>
       {label && (
         <Box mb={spacing.space_2}>
-          <Text variant='bodyXxs'>{label}</Text>
+          <Text variant='bodyXs'>{label}</Text>
         </Box>
       )}
       <StyledButton
