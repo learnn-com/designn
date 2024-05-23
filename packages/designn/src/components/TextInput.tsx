@@ -185,9 +185,11 @@ export const TextInput = ({
 
   return (
     <VerticalStack width={'100%'} {...props}>
-      <Box mb={spacing.space_2}>
-        <Text variant='bodyXxs'>{label}</Text>
-      </Box>
+      {label && (
+        <Box mb={spacing.space_2}>
+          <Text variant='bodyXxs'>{label}</Text>
+        </Box>
+      )}
       <InputWrapper bg={colors.card_background} variant={props.variant} size={size} {...props}>
         {leftComponent && <LeftComponent>{leftComponent}</LeftComponent>}
         <StyledInput

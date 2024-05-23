@@ -24,6 +24,7 @@ export const ActiveTag = ({
   ...props
 }: ActiveTagProps & SpaceProps & LayoutProps) => {
   const [isSelected, setSelected] = useState(selected)
+  const [isHovered, setHovered] = useState(false)
   const { borders, spacing, colors } = useTheme()
 
   const handleClick = () => {
@@ -59,10 +60,24 @@ export const ActiveTag = ({
       )
     case 'select':
       return (
-        <SelectTag onClick={handleClick} {...props} selected={isSelected}>
+        <SelectTag
+          onClick={handleClick}
+          {...props}
+          selected={isSelected}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
           <HorizontalStack justifyContent='center' alignItems='center'>
             <div className='circle'>
-              {isSelected && <FontAwesomeIcon icon={faCheck} color='#fff' />}
+              {isSelected ? (
+                isHovered ? (
+                  <FontAwesomeIcon icon={faClose} color='#fff' />
+                ) : (
+                  <FontAwesomeIcon icon={faCheck} color='#fff' />
+                )
+              ) : (
+                <></>
+              )}
             </div>
             <span className='text'>{body}</span>
           </HorizontalStack>
@@ -95,6 +110,7 @@ const SelectTag = styled.button<{ selected?: boolean } & SpaceProps & LayoutProp
     align-items: center;
     justify-content: center;
     display: flex;
+    padding: 1px;
   }
 
   cursor: pointer;
