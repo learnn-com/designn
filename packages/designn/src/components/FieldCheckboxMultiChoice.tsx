@@ -27,7 +27,7 @@ export const FieldCheckboxMultiChoice: FC<FieldCheckboxMultiChoiceProps> = ({
       )}
       <HorizontalStack flexWrap='wrap' my={spacing.space_2} gap={spacing.space_1}>
         {options.map(item => (
-          <Box mr={spacing.space_5}>
+          <Box mr={spacing.space_5} mb={spacing.space_6}>
             <Checkbox
               checked={value.some(x => x === item.value)}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

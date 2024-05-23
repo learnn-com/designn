@@ -75,6 +75,7 @@ export const FieldTagsInput: FC<FieldTagsInputProps> = ({
             body={val}
             variant='delete'
             mr={spacing.space_3}
+            mb={spacing.space_2}
             onClick={() => {
               onChange(value.filter(x => x !== val))
             }}

@@ -11,10 +11,9 @@ function bind(node: JSX.Element) {
   return template.bind({})
 }
 
-
 export const FieldCheckboxMultiChoiceStandard = bind(
   <AppShell theme={defaultTheme}>
-    <FieldCheckboxMultiChoice 
+    <FieldCheckboxMultiChoice
       options={[
         { label: 'Option 1', value: 'option-1' },
         { label: 'Option 2', value: 'option-2' },
@@ -29,7 +28,7 @@ FieldCheckboxMultiChoiceStandard.storyName = 'FieldCheckboxMultiChoice Standard'
 
 export const FieldCheckboxMultiChoiceSomeSelected = bind(
   <AppShell theme={defaultTheme}>
-    <FieldCheckboxMultiChoice 
+    <FieldCheckboxMultiChoice
       options={[
         { label: 'Option 1', value: 'option-1' },
         { label: 'Option 2', value: 'option-2' },
@@ -45,7 +44,7 @@ FieldCheckboxMultiChoiceSomeSelected.storyName = 'FieldCheckboxMultiChoice with 
 export const FieldCheckboxMultiChoiceLabelError = bind(
   <AppShell theme={defaultTheme}>
     <Box>
-      <FieldCheckboxMultiChoice 
+      <FieldCheckboxMultiChoice
         label='Label'
         options={[
           { label: 'Option 1', value: 'option-1' },
@@ -57,7 +56,7 @@ export const FieldCheckboxMultiChoiceLabelError = bind(
       />
     </Box>
     <Box mt={'10px'}>
-      <FieldCheckboxMultiChoice 
+      <FieldCheckboxMultiChoice
         error='This is an error'
         options={[
           { label: 'Option 1', value: 'option-1' },
@@ -69,7 +68,7 @@ export const FieldCheckboxMultiChoiceLabelError = bind(
       />
     </Box>
     <Box mt={'10px'}>
-      <FieldCheckboxMultiChoice 
+      <FieldCheckboxMultiChoice
         label='Label'
         error='This is an error'
         options={[
