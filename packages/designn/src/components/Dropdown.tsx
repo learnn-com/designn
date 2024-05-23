@@ -97,7 +97,7 @@ export const Dropdown = ({
   useOutsideClick(dropdownRef, () => setIsOpen(false))
 
   return (
-    <StyledDropdown ref={dropdownRef} variant={variant} size={size} {...props}>
+    <StyledDropdown ref={dropdownRef} variant={variant} label={label} size={size} {...props}>
       {label && (
         <Box mb={spacing.space_2}>
           <Text variant='bodyXs'>{label}</Text>
@@ -136,7 +136,7 @@ export const Dropdown = ({
 }
 
 const StyledDropdown = styled.div<
-  { variant?: Variant; size?: Size } & SpaceProps & LayoutProps & BorderProps
+  { variant?: Variant; size?: Size; label?: string } & SpaceProps & LayoutProps & BorderProps
 >`
   position: relative;
   display: flex;
@@ -154,25 +154,41 @@ const StyledDropdown = styled.div<
     padding-left: ${p => p.theme.spacing.space_1};
     padding-right: ${p => p.theme.spacing.space_1};
     ${p => {
-      if (p.size === 'sm') {
-        return `top: ${p.theme.spacing.space_8};`
-      }
-      if (p.size === 'md') {
-        return `top: ${p.theme.spacing.space_10};`
-      }
-      if (p.size === 'lg') {
+      if (p.label) {
+        if (p.size === 'sm' || p.size === 'md') {
+          return `top: ${p.theme.spacing.space_16};`
+        }
+        if (p.size === 'lg') {
+          return `top: ${p.theme.spacing.space_20};`
+        }
+        if (p.size === 'xl') {
+          return `top: ${p.theme.spacing.space_24};`
+        }
+        return `top: ${p.theme.spacing.space_16};`
+      } else {
+        if (p.size === 'sm') {
+          return `top: ${p.theme.spacing.space_8};`
+        }
+        if (p.size === 'md') {
+          return `top: ${p.theme.spacing.space_10};`
+        }
+        if (p.size === 'lg') {
+          return `top: ${p.theme.spacing.space_12};`
+        }
+        if (p.size === 'xl') {
+          return `top: ${p.theme.spacing.space_16};`
+        }
         return `top: ${p.theme.spacing.space_12};`
       }
-      if (p.size === 'xl') {
-        return `top: ${p.theme.spacing.space_16};`
-      }
-      return `top: ${p.theme.spacing.space_12};`
     }}
   }
   .items ul {
     list-style: none;
     padding: 0;
     width: 100%;
+  }
+  .items::-webkit-scrollbar {
+    display: none;
   }
   .item {
     cursor: pointer;

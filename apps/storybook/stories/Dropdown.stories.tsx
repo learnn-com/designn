@@ -13,6 +13,9 @@ const ITEMS = [
   { id: '4', label: 'Lorem ipsum 4' },
   { id: '5', label: 'Lorem ipsum 5' },
   { id: '6', label: 'Lorem ipsum 6' },
+  { id: '7', label: 'Lorem ipsum 7' },
+  { id: '8', label: 'Lorem ipsum 8' },
+  { id: '9', label: 'Lorem ipsum 9' },
 ]
 
 function bind(node: JSX.Element) {
@@ -22,7 +25,7 @@ function bind(node: JSX.Element) {
 
 export const Default = bind(
   <AppShell theme={defaultTheme}>
-    <VerticalStack width='500px'>
+    <VerticalStack width='500px' bg='#121214' p='50px' pb='100px'>
       <Dropdown items={ITEMS} size='lg' variant='dark' selectedId='2' />
       <Dropdown
         items={ITEMS}
