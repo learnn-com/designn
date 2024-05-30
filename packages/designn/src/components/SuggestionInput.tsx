@@ -1,10 +1,8 @@
 import styled, { DefaultTheme } from 'styled-components'
 import { TextInput, TextInputProps, TextInputVariant } from './TextInput'
-import { useState } from 'react';
-
+import { useEffect, useRef, useState } from 'react';
 
 const styleButtonVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: TextInputVariant }) => {
-  console.log('variant', variant)
   switch (variant) {
     case 'light':
       return `
@@ -46,10 +44,10 @@ const StyledSuggestionInput = styled.div<TextInputProps>`
         return `top: ${p.theme.spacing.space_10};`
       }
       if (p.size === 'lg') {
-        return `top: ${p.theme.spacing.space_12};`
+        return `top: ${p.theme.spacing.space_16};`
       }
       if (p.size === 'xl') {
-        return `top: ${p.theme.spacing.space_16};`
+        return `top: ${p.theme.spacing.space_20};`
       }
       return `top: ${p.theme.spacing.space_12};`
     }}
@@ -58,6 +56,7 @@ const StyledSuggestionInput = styled.div<TextInputProps>`
     list-style: none;
     padding: 0;
     width: 100%;
+    margin: ${p => p.theme.spacing.space_3} 0;
   }
   .item {
     cursor: pointer;
@@ -97,7 +96,7 @@ const StyledSuggestionInput = styled.div<TextInputProps>`
   }
 `
 
-type Suggestion = {id: string, label: string}
+export type Suggestion = {id: string, label: string}
 type SuggestionInputProps = TextInputProps & {
   suggestions: Suggestion[]
   activeSuggestionId?: string
@@ -111,17 +110,34 @@ export const SuggestionInput = ({
   ...props
 }: SuggestionInputProps) => {
   const [isOpen, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const handleSuggestionClick = (suggestion: Suggestion) => {
     onSuggestionSelected(suggestion)
   }
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      setOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  useEffect(() => {
+    setOpen(true)
+  }, [suggestions])
+
+
   return (
-    <StyledSuggestionInput {...props}>
+    <StyledSuggestionInput {...props} ref={containerRef}>
       <TextInput
         {...props}
-        onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
       />
       {(suggestions.length > 0 && isOpen) && (
         <div className='items'>
