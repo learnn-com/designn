@@ -6,7 +6,7 @@ import { VerticalStack } from './VerticalStack'
 import { Text } from './Text'
 import { Box } from './Box'
 
-const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
+const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: TextInputVariant }) => {
   switch (variant) {
     default:
     case 'transparent':
@@ -32,7 +32,7 @@ const styleContainerVariant = ({ theme, variant }: { theme: DefaultTheme; varian
       `
   }
 }
-const styleInputVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
+const styleInputVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: TextInputVariant }) => {
   switch (variant) {
     default:
     case 'transparent':
@@ -96,7 +96,7 @@ const styleContainerSize = ({ theme, size }: { theme: DefaultTheme; size?: Size 
 }
 
 const InputWrapper = styled.div<
-  { bg: Color; variant?: Variant } & TextInputProps & SpaceProps & LayoutProps & BorderProps
+  { bg: Color; variant?: TextInputVariant } & TextInputProps & SpaceProps & LayoutProps & BorderProps
 >`
   display: flex;
   flex-direction: row;
@@ -156,7 +156,7 @@ const RightComponent = styled.div`
   justify-content: center;
 `
 
-type Variant = 'transparent' | 'dark' | 'light' | 'underlined'
+export type TextInputVariant = 'transparent' | 'dark' | 'light' | 'underlined'
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 
 export type TextInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & {
@@ -165,7 +165,7 @@ export type TextInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, '
   value?: string
   leftComponent?: React.ReactElement
   rightComponent?: React.ReactElement
-  variant?: Variant
+  variant?: TextInputVariant
   size?: Size
   label?: string
   error?: string
