@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 import { SuggestionInput, Suggestion } from './SuggestionInput'
 import { Box } from './Box'
 import { TextInputProps } from './TextInput'
-
-const fetchGoogleMapsSuggestions = async (input: string, apiKey: string): Promise<Suggestion[]> => {
-  const response = await fetch(
-    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=(cities)&key=${apiKey}`
-  )
-  const data = await response.json()
-  return data.predictions.map((prediction: any) => ({
-    id: prediction.place_id,
-    label: prediction.description
-  }))
-}
+import { useLoadScript } from "@react-google-maps/api";
+import usePlacesAutocomplete from 'use-places-autocomplete'
 
 type LocationAutocompleteProps = {
   apiKey: string
@@ -22,7 +13,7 @@ type LocationAutocompleteProps = {
   onSuggestionSelected?: (suggestion: Suggestion) => void
 }
 
-export const LocationAutocomplete = ({
+export const LocationAutocompleteComponent = ({
   apiKey,
   value,
   onChange,
@@ -31,7 +22,11 @@ export const LocationAutocomplete = ({
 }: LocationAutocompleteProps & TextInputProps) => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([])
   const [inputValue, setInputValue] = useState<string>('')
-
+  const {
+    ready,
+    setValue,
+    suggestions: placeSuggestions,
+  } = usePlacesAutocomplete({});
 
   useEffect(() => {
     if (value)
@@ -39,16 +34,15 @@ export const LocationAutocomplete = ({
   }, [])
 
   useEffect(() => {
-    
-  }, [inputValue, apiKey])
+    if (placeSuggestions.data.length > 0)
+      setSuggestions(placeSuggestions.data.map(x => ({id: x.id, label: x.description})))
+  }, [placeSuggestions])
 
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value
 
     if (newValue) {
-      fetchGoogleMapsSuggestions(newValue, apiKey)
-      .then(results => setSuggestions(results))
-      .catch(() => setSuggestions([]))
+      setValue(newValue);
     } else {
       setSuggestions([])
     }
@@ -64,6 +58,8 @@ export const LocationAutocomplete = ({
     onSuggestionSelected && onSuggestionSelected(suggestion)
   }
 
+  if (!ready) return <></>
+
   return (
     <Box position="relative" width="100%">
       <SuggestionInput
@@ -77,3 +73,18 @@ export const LocationAutocomplete = ({
     </Box>
   )
 }
+
+export const LocationAutocompleteLoader: FC<LocationAutocompleteProps & TextInputProps> = (props) => {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: props.apiKey,
+    libraries: ["places"]
+  });
+
+  if (isLoaded)
+    return <LocationAutocompleteComponent {...props}/>
+  else
+    return <></>
+  
+}
+
+export const LocationAutocomplete = LocationAutocompleteLoader
