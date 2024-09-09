@@ -1,4 +1,4 @@
-import { AppShell, Markdown, defaultTheme } from '@learnn/designn'
+import { AppShell, Markdown, Title, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -10,6 +10,46 @@ const DEFAULT_TEXT =
   '**Provola**\n## Questo è un titolo\n\n![Automazioni con Google Apps Script.pdf](https://learnn-production-vod-source.s3.eu-central-1.amazonaws.com/Automazioni_con_Google_Apps_Script_05ee8932fe.pdf)'
 const LINK_LIST_TEXT =
   'Di seguito le risorse del percorso Web 3.0:\n\n- [Scarica le Slide del Modulo 2](https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/Slide_Learnn_Blockchain_Binance_1_cec71e42a5.pdf)\n- [Scarica le Slide del Modulo 3](https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/Crypto_Fundamentals_4acf9c1343.pdf)\n- [Scarica le Slide dal Modulo 4 al Modulo 8](https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/Learnn_speech_Filippo_B_7e2bc91c74.pdf)\n- [Scarica le Slide dal Modulo 8 al Modulo 10](https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/Learnn_Luca_Boiardi_trading_07107c1657.pdf)\n'
+
+const AI_TEXT = `
+Certo! Ecco un caso studio che potrebbe aiutarti a mettere in pratica le tue competenze e raggiungere il tuo obiettivo di lanciare un prodotto.
+
+### Caso Studio: Lancio di un Nuovo Prodotto SaaS
+
+**Scenario:**
+Sei il Technical Lead di una startup chiamata "TechWave" che sta sviluppando un nuovo prodotto SaaS (Software as a Service) chiamato "WaveManager". WaveManager è una piattaforma di gestione dei progetti che integra funzionalità di collaborazione, monitoraggio del tempo e gestione delle risorse. Il prodotto è attualmente in fase di beta testing con un gruppo selezionato di utenti.
+
+**Obiettivo:**
+Il tuo obiettivo è preparare il lancio ufficiale di WaveManager sul mercato. Vuoi assicurarti che il prodotto sia tecnicamente solido, che il team sia pronto per il supporto post-lancio e che ci sia una strategia di marketing efficace in atto.
+
+**Domande a cui rispondere:**
+
+1. **Preparazione Tecnica:**
+   - Quali sono i passaggi chiave per garantire che WaveManager sia tecnicamente pronto per il lancio?
+   - Come puoi assicurarti che il sistema sia scalabile e in grado di gestire un aumento del numero di utenti?
+   - Quali misure di sicurezza dovresti implementare per proteggere i dati degli utenti?
+
+2. **Supporto Post-Lancio:**
+   - Come puoi preparare il team di supporto per gestire le richieste degli utenti dopo il lancio?
+   - Quali strumenti e processi dovresti implementare per monitorare e risolvere i problemi tecnici che potrebbero emergere?
+
+3. **Strategia di Marketing:**
+   - Quali canali di marketing utilizzeresti per promuovere WaveManager?
+   - Come puoi utilizzare i feedback dei beta tester per migliorare la tua strategia di marketing?
+   - Quali metriche dovresti monitorare per valutare il successo del lancio?
+
+4. **Coinvolgimento degli Stakeholder:**
+   - Come puoi coinvolgere gli stakeholder interni ed esterni nel processo di lancio?
+   - Quali comunicazioni dovresti preparare per tenere informati gli stakeholder sui progressi e sui risultati del lancio?
+
+5. **Pianificazione del Lancio:**
+   - Qual è il tuo piano di lancio dettagliato, inclusi i tempi e le risorse necessarie?
+   - Come gestirai eventuali imprevisti o ritardi nel processo di lancio?
+
+### Esecuzione del Caso Studio
+
+Per rispondere a queste domande, potresti voler consultare corsi e lezioni specifiche su Learnn che trattano argomenti come la gestione dei progetti, la sicurezza informatica, il marketing digitale e il supporto tecnico. Vuoi che ti suggerisca alcuni corsi pertinenti su Learnn?
+`
 
 function bind(node: JSX.Element) {
   const template: ComponentStory<typeof Markdown> = () => node
@@ -38,4 +78,13 @@ export const StandardMarkdownLg = bind(
   </AppShell>,
 )
 
-StandardMarkdownLg.storyName = 'StandardMarkdown large size'
+StandardMarkdown.storyName = 'StandardMarkdown large size'
+
+export const AIMarkdown = bind(
+  <AppShell theme={defaultTheme}>
+    <Title variant='headingMd'> Assistente </Title>
+    <Markdown >{AI_TEXT}</Markdown>
+  </AppShell>,
+)
+
+AIMarkdown.storyName = 'AIMarkdown'
