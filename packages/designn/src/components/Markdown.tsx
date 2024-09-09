@@ -52,27 +52,58 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
     if (p.size === 'lg') {
       return `font-size: ${p.theme.typography.font_size_300};
               line-height: ${p.theme.typography.font_line_height_4};
+              h1 {
+                font-size: ${p.theme.typography.font_size_600};
+                line-height: ${p.theme.typography.font_line_height_6};
+                letter-spacing:-0.05em;
+              }
               h2 {
                 margin-top: ${p.theme.spacing.space_8};
                 font-size:  ${p.theme.typography.font_size_500};
-                font-weight: ${p.theme.typography.font_weight_bold};
+                font-weight: ${p.theme.typography.font_weight_black};
+                letter-spacing:-0.04em;
+              }
+              h3 {
+                margin-top: ${p.theme.spacing.space_8};
+                font-size: ${p.theme.typography.font_size_200};
+                font-weight: ${p.theme.typography.font_weight_black};
+                line-height: ${p.theme.typography.font_line_height_2};
+                letter-spacing:-0.04em;
               }
               h4 {
                 margin-top: ${p.theme.spacing.space_8};
                 font-weight: ${p.theme.typography.font_weight_bold};
+                font-weight: ${p.theme.typography.font_weight_black};
+                letter-spacing:-0.04em;
               }
               `
     } else {
       return `font-size: ${p.theme.typography.font_size_200};
       line-height: ${p.theme.typography.font_line_height_4};
+      h1 {
+            margin-top: ${p.theme.spacing.space_6};
+            font-size:  ${p.theme.typography.font_size_500};
+            letter-spacing:-0.04em;
+            font-weight: ${p.theme.typography.font_weight_black};
+            line-height: ${p.theme.typography.font_line_height_5};
+          }
       h2 {
         margin-top: ${p.theme.spacing.space_6};
         font-size:  ${p.theme.typography.font_size_400};
-        font-weight: ${p.theme.typography.font_weight_bold};
+        font-weight: ${p.theme.typography.font_weight_black};
+        line-height: ${p.theme.typography.font_line_height_4};
+        letter-spacing:-0.04em;
       }
+      h3 {
+            margin-top: ${p.theme.spacing.space_6};
+            font-size: ${p.theme.typography.font_size_200};
+            font-weight: ${p.theme.typography.font_weight_black};
+            line-height: ${p.theme.typography.font_line_height_2};
+            letter-spacing:-0.04em;
+          }
       h4 {
         margin-top: ${p.theme.spacing.space_6};
-        font-weight: ${p.theme.typography.font_weight_bold};
+        font-weight: ${p.theme.typography.font_weight_black};
       }`
     }
   }}
