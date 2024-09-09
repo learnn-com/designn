@@ -30,12 +30,12 @@ export const ExpertCard = ({
       <div>
         <div className='bottomContainer'>
           <div className='details'>
-            <Title variant='headingXl' truncate truncateLines={2} lineHeightScale='5'>
+            <Title variant='headingLg' truncate truncateLines={2} lineHeightScale='5' alignment='center'>
               {title}
             </Title>
             <div className='subtitleContainer'>
               {subtitle && (
-                <Text variant='bodyXs' fontWeight='bold'>
+                <Text variant='bodyXs' fontWeight='bold' alignment='center'>
                   {subtitle}
                 </Text>
               )}
@@ -59,7 +59,7 @@ const StyledExpertCard = styled.div`
   overflow: hidden;
   border-radius: ${p => p.theme.borders.radius.large};
   height: 100%;
-  aspect-ratio: 5/4;
+  aspect-ratio: 4/5;
 
   &:before {
     content: '';
@@ -123,7 +123,7 @@ const StyledExpertCard = styled.div`
   .bottomContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 ${p => p.theme.spacing.space_5} ${p => p.theme.spacing.space_5}
       ${p => p.theme.spacing.space_5};
     position: relative;
@@ -138,8 +138,9 @@ const StyledExpertCard = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: ${p => p.theme.spacing.space_3};
+    align-items: center;
+    justify-content: center;
+    gap: ${p => p.theme.spacing.space_1};
     max-width: 85%;
 
     ${p => p.theme.responsive.medium_down} {
