@@ -28,3 +28,16 @@ export const Standard = bind(
   </AppShell>,
 )
 Standard.storyName = 'Path Card'
+
+export const Medium = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', height: '200px' }}>
+      <PathCard
+        coverImage={COVER_IMAGE}
+        subtitle={SUBTITLE}
+        size='md'
+      />
+    </div>
+  </AppShell>,
+)
+Medium.storyName = 'Medium size Path Card'

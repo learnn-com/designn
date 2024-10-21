@@ -86,3 +86,17 @@ export const WithPRO = bind(
 )
 WithPRO.storyName = 'With PRO Badge'
 
+export const MediumSize = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', height: '200px' }}>
+      <CourseCard
+        title={TITLE}
+        subtitle={SUBTITLE}
+        coverImage={COVER_IMAGE}
+        progressPercentage={PROGRESS}
+        size='md'
+      />
+    </div>
+  </AppShell>,
+)
+MediumSize.storyName = 'Medium size Course Card'

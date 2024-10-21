@@ -10,6 +10,7 @@ export type PathCardProps = {
   subtitle?: string
   progressPercentage?: number
   hideProgressBar?: boolean
+  size?: "lg" | "md"
 }
 
 export const PathCard = ({
@@ -17,7 +18,8 @@ export const PathCard = ({
   onClick,
   subtitle,
   progressPercentage,
-  hideProgressBar
+  hideProgressBar,
+  size = "lg"
 }: PathCardProps & SpaceProps & LayoutProps) => {
   const {  } = useTheme()
 
@@ -28,7 +30,7 @@ export const PathCard = ({
       <div>
         <div className='bottomContainer'>
           <div className='details'>
-            {subtitle && <Text variant='bodyXs' fontWeight='bold'>{subtitle}</Text>}
+            {subtitle && <Text variant={size === 'md' ? 'bodyXxs' : 'bodyXs'} fontWeight='bold'>{subtitle}</Text>}
           </div>
         </div>
         { !hideProgressBar && <ProgressBar percentage={progressPercentage} transition={true}/>}
@@ -37,7 +39,7 @@ export const PathCard = ({
   )
 }
 
-const StyledPathCard = styled.div`
+const StyledPathCard = styled.div<{size?: "md" | "lg"}>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -48,7 +50,7 @@ const StyledPathCard = styled.div`
   overflow: hidden;
   border-radius: ${p => p.theme.borders.radius.large};
   height: 100%;
-  aspect-ratio: 5/4;
+  aspect-ratio: ${p => p.size === 'md' ? '7/5' : '5/4'};
 
   :hover {
     cursor: pointer;
