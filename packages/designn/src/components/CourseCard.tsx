@@ -185,7 +185,6 @@ const StyledCourseCard = styled.div<{size?: "lg" | "md"}>`
     }
 
     .subtitleContainer {
-      margin-bottom: ${p => p.theme.spacing.space_08};
       margin-top: ${p => p.theme.spacing.space_08};
       ${p => p.theme.responsive.small_down} {
         display: none;
