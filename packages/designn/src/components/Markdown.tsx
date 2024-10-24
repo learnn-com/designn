@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import { Box } from './Box'
 import ReactMarkdown from 'react-markdown'
 
-type Size = 'md' | 'lg'
+type Size = 'sm' | 'md' | 'lg'
 
 type MarkdownOverrides = {
   reactMarkdownProps?: ReactMarkdown.ReactMarkdownPropsBase
@@ -77,7 +77,8 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
                 letter-spacing:-0.04em;
               }
               `
-    } else {
+    } 
+    else if (p.size === 'md') {
       return `font-size: ${p.theme.typography.font_size_200};
       line-height: ${p.theme.typography.font_line_height_4};
       h1 {
@@ -103,6 +104,35 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
           }
       h4 {
         margin-top: ${p.theme.spacing.space_6};
+        font-weight: ${p.theme.typography.font_weight_black};
+      }`
+    }
+    else {
+      return `font-size: ${p.theme.typography.font_size_base};
+      line-height: ${p.theme.typography.font_line_height_4};
+      h1 {
+            margin-top: ${p.theme.spacing.space_4};
+            font-size:  ${p.theme.typography.font_size_400};
+            letter-spacing:-0.04em;
+            font-weight: ${p.theme.typography.font_weight_black};
+            line-height: ${p.theme.typography.font_line_height_5};
+          }
+      h2 {
+        margin-top: ${p.theme.spacing.space_4};
+        font-size:  ${p.theme.typography.font_size_300};
+        font-weight: ${p.theme.typography.font_weight_black};
+        line-height: ${p.theme.typography.font_line_height_4};
+        letter-spacing:-0.04em;
+      }
+      h3 {
+            margin-top: ${p.theme.spacing.space_4};
+            font-size: ${p.theme.typography.font_size_200};
+            font-weight: ${p.theme.typography.font_weight_black};
+            line-height: ${p.theme.typography.font_line_height_2};
+            letter-spacing:-0.04em;
+          }
+      h4 {
+        margin-top: ${p.theme.spacing.space_4};
         font-weight: ${p.theme.typography.font_weight_black};
       }`
     }

@@ -1,4 +1,4 @@
-import { AppShell, Markdown, Title, defaultTheme } from '@learnn/designn'
+import { AppShell, HorizontalStack, Markdown, Title, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -51,6 +51,14 @@ Il tuo obiettivo è preparare il lancio ufficiale di WaveManager sul mercato. Vu
 Per rispondere a queste domande, potresti voler consultare corsi e lezioni specifiche su Learnn che trattano argomenti come la gestione dei progetti, la sicurezza informatica, il marketing digitale e il supporto tecnico. Vuoi che ti suggerisca alcuni corsi pertinenti su Learnn?
 `
 
+const TITLES_TEXT = 
+`# Testo
+ ## Testo 2
+ ### Testo 3
+ **Bold**\n
+ Testo normale
+`
+
 function bind(node: JSX.Element) {
   const template: ComponentStory<typeof Markdown> = () => node
   return template.bind({})
@@ -88,3 +96,16 @@ export const AIMarkdown = bind(
 )
 
 AIMarkdown.storyName = 'AIMarkdown'
+
+
+export const MarkdownSizes = bind(
+  <AppShell theme={defaultTheme}>
+    <HorizontalStack justifyContent='space-evenly'>
+      <Markdown size='sm'>{TITLES_TEXT}</Markdown>
+      <Markdown size='md'>{TITLES_TEXT}</Markdown>
+      <Markdown size='lg'>{TITLES_TEXT}</Markdown>
+    </HorizontalStack>
+  </AppShell>,
+)
+
+MarkdownSizes.storyName = 'Different Markdown Sizes'
