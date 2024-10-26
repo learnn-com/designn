@@ -15,6 +15,7 @@ export type CourseCardProps = {
   progressPercentage?: number
   hideProgressBar?: boolean
   pro?: boolean
+  live?: boolean
   size?: "lg" | "md"
 }
 
@@ -28,6 +29,7 @@ export const CourseCard = ({
   onClick,
   hideProgressBar,
   pro,
+  live,
   size = "lg"
 }: CourseCardProps & SpaceProps & LayoutProps) => {
 
@@ -51,7 +53,7 @@ export const CourseCard = ({
     }
   }
   return (
-    <StyledCourseCard onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }} size={size}>
+    <StyledCourseCard onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }} size={size} pro={pro}>
       <div className='topContainer'>
         <div className='leftContainer'>
           {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
@@ -60,6 +62,11 @@ export const CourseCard = ({
           {pro ? (
             <div className='proBadge'>
               <span>Pro</span>
+            </div>
+          ) : null}
+          {live ? (
+            <div className='liveBadge'>
+              <span>Live</span>
             </div>
           ) : null}
         </div>
@@ -84,7 +91,7 @@ export const CourseCard = ({
   )
 }
 
-const StyledCourseCard = styled.div<{size?: "lg" | "md"}>`
+const StyledCourseCard = styled.div<{size?: "lg" | "md", pro?: boolean}>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -131,6 +138,36 @@ const StyledCourseCard = styled.div<{size?: "lg" | "md"}>`
       line-height: ${p => p.theme.typography.font_line_height_1};
     }
   }
+.liveBadge {
+    background-color: ${p => p.theme.colors.interaction_background.flat_active};
+    border-radius: ${p => p.theme.spacing.space_2};
+    padding: ${p => p.theme.spacing.space_1} ${p => p.theme.spacing.space_2};
+    position: absolute;
+    ${({ pro, theme }) => pro && `
+      top: ${theme.spacing.space_10};
+      right: ${theme.spacing.space_2};
+    `}
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: ${p => p.theme.spacing.space_3};
+      height: ${p => p.theme.spacing.space_3};
+      background-color: ${p => p.theme.colors.text.error};
+      border-radius: ${p => p.theme.spacing.space_2};
+      margin-right: ${p => p.theme.spacing.space_1};
+    }
+
+    span {
+      color: ${p => p.theme.colors.text.base};
+      font-size: ${p => p.theme.typography.font_size_100};
+      font-weight: ${p => p.theme.typography.font_weight_bold};
+      line-height: ${p => p.theme.typography.font_line_height_1};
+    }
+}
+
   .topContainer {
     position: relative;
     padding: ${p => p.size === 'md' ? `${p.theme.spacing.space_3} ${p.theme.spacing.space_3} 0

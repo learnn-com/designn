@@ -100,3 +100,36 @@ export const MediumSize = bind(
   </AppShell>,
 )
 MediumSize.storyName = 'Medium size Course Card'
+
+export const LiveContent = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', height: '200px' }}>
+      <CourseCard
+        title={TITLE}
+        subtitle={SUBTITLE}
+        coverImage={COVER_IMAGE}
+        progressPercentage={PROGRESS}
+        size='md'
+        live
+      />
+    </div>
+  </AppShell>,
+)
+LiveContent.storyName = 'Medium size Course Card for live content'
+
+export const LiveContentPro = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', height: '200px' }}>
+      <CourseCard
+        title={TITLE}
+        subtitle={SUBTITLE}
+        coverImage={COVER_IMAGE}
+        progressPercentage={PROGRESS}
+        size='md'
+        live
+        pro
+      />
+    </div>
+  </AppShell>,
+)
+LiveContentPro.storyName = 'Medium size Course Card for live content and pro'
