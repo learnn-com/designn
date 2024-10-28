@@ -35,6 +35,11 @@ export const Badge = ({
           justifyContent='center'
           {...props}
         >
+          {icon && (
+            <HorizontalStack width={spacing.space_3} mr={spacing.space_2} alignItems='center'>
+              {icon}
+            </HorizontalStack>
+          )}
           <Text variant='bodyXs' fontWeight='semibold' textColor={colors.outline}>
             {body}
           </Text>
@@ -53,6 +58,11 @@ export const Badge = ({
           justifyContent='center'
           {...props}
         >
+          {icon && (
+            <HorizontalStack width={spacing.space_3} mr={spacing.space_2} alignItems='center'>
+              {icon}
+            </HorizontalStack>
+          )}
           <Text variant='bodyXs' fontWeight='semibold' color='primary'>
             {body}
           </Text>
