@@ -1,4 +1,6 @@
-import { AppShell, CourseCard, defaultTheme } from '@learnn/designn'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AppShell, Badge, CourseCard, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -79,7 +81,7 @@ export const WithPRO = bind(
         title={TITLE}
         subtitle={SUBTITLE}
         coverImage={COVER_IMAGE}
-        pro
+        rightComponent={<Badge body='Pro' variant='contained' squareBorder={false} />}
       />
     </div>
   </AppShell>,
@@ -101,6 +103,7 @@ export const MediumSize = bind(
 )
 MediumSize.storyName = 'Medium size Course Card'
 
+
 export const LiveContent = bind(
   <AppShell theme={defaultTheme}>
     <div style={{ display: 'flex', height: '200px' }}>
@@ -110,7 +113,12 @@ export const LiveContent = bind(
         coverImage={COVER_IMAGE}
         progressPercentage={PROGRESS}
         size='md'
-        live
+        rightComponent={<Badge
+          body='Live'
+          icon={<FontAwesomeIcon icon={faCircle} color='red' style={{ width: '100%' }} />}
+          variant='contained'
+          squareBorder={false}
+        />}
       />
     </div>
   </AppShell>,
@@ -126,10 +134,23 @@ export const LiveContentPro = bind(
         coverImage={COVER_IMAGE}
         progressPercentage={PROGRESS}
         size='md'
-        live
-        pro
+        rightComponent={
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+          <Badge
+            body='Pro'
+            variant='contained'
+            squareBorder={false}
+          />
+          <Badge
+            body='Live'
+            icon={<FontAwesomeIcon icon={faCircle} color='red' style={{ width: '100%' }} />}
+            variant='contained'
+            squareBorder={false}
+          />
+        </div>}
       />
     </div>
   </AppShell>,
 )
 LiveContentPro.storyName = 'Medium size Course Card for live content and pro'
+

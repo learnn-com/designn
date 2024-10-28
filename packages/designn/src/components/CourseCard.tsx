@@ -1,4 +1,4 @@
-import { LayoutProps, SpaceProps } from 'styled-system'
+import { LayoutProps, right, SpaceProps } from 'styled-system'
 import styled from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
@@ -14,8 +14,7 @@ export type CourseCardProps = {
   onClick?: MouseEventHandler<HTMLDivElement>
   progressPercentage?: number
   hideProgressBar?: boolean
-  pro?: boolean
-  live?: boolean
+  rightComponent?: JSX.Element
   size?: "lg" | "md"
 }
 
@@ -28,8 +27,7 @@ export const CourseCard = ({
   progressPercentage,
   onClick,
   hideProgressBar,
-  pro,
-  live,
+  rightComponent,
   size = "lg"
 }: CourseCardProps & SpaceProps & LayoutProps) => {
 
@@ -53,23 +51,15 @@ export const CourseCard = ({
     }
   }
   return (
-    <StyledCourseCard onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }} size={size} pro={pro}>
+    <StyledCourseCard onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }} size={size}>
       <div className='topContainer'>
         <div className='leftContainer'>
           {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
         </div>
         <div className='rightContainer'>
-          {pro ? (
-            <div className='proBadge'>
-              <span>Pro</span>
-            </div>
-          ) : null}
-          {live ? (
-            <div className='liveBadge'>
-              <span>Live</span>
-            </div>
-          ) : null}
+          {rightComponent ?? null}
         </div>
+            
       </div>
       <div>
         <div className='bottomContainer'>
@@ -125,48 +115,6 @@ const StyledCourseCard = styled.div<{size?: "lg" | "md", pro?: boolean}>`
     height: auto;
     z-index: 100;
   }
-  .proBadge {
-    background-color: ${p => p.theme.colors.card_background};
-    border-radius: ${p => p.theme.spacing.space_2};
-    padding: ${p => p.theme.spacing.space_025} ${p => p.theme.spacing.space_3};
-    position: absolute;
-
-    span {
-      color: ${p => p.theme.colors.text.base};
-      font-size: ${p => p.theme.typography.font_size_100};
-      font-weight: ${p => p.theme.typography.font_weight_bold};
-      line-height: ${p => p.theme.typography.font_line_height_1};
-    }
-  }
-.liveBadge {
-    background-color: ${p => p.theme.colors.interaction_background.flat_active};
-    border-radius: ${p => p.theme.spacing.space_2};
-    padding: ${p => p.theme.spacing.space_1} ${p => p.theme.spacing.space_2};
-    position: absolute;
-    ${({ pro, theme }) => pro && `
-      top: ${theme.spacing.space_10};
-      right: ${theme.spacing.space_2};
-    `}
-    display: flex;
-    align-items: center;
-
-    &::before {
-      content: '';
-      display: inline-block;
-      width: ${p => p.theme.spacing.space_3};
-      height: ${p => p.theme.spacing.space_3};
-      background-color: ${p => p.theme.colors.text.error};
-      border-radius: ${p => p.theme.spacing.space_2};
-      margin-right: ${p => p.theme.spacing.space_1};
-    }
-
-    span {
-      color: ${p => p.theme.colors.text.base};
-      font-size: ${p => p.theme.typography.font_size_100};
-      font-weight: ${p => p.theme.typography.font_weight_bold};
-      line-height: ${p => p.theme.typography.font_line_height_1};
-    }
-}
 
   .topContainer {
     position: relative;
