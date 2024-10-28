@@ -1,4 +1,4 @@
-import { LayoutProps, right, SpaceProps } from 'styled-system'
+import { LayoutProps, SpaceProps } from 'styled-system'
 import styled from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
