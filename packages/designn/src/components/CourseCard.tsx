@@ -57,7 +57,7 @@ export const CourseCard = ({
           {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
         </div>
         <div className='rightContainer'>
-          {rightComponent ?? null}
+          {rightComponent}
         </div>
             
       </div>
