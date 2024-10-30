@@ -14,7 +14,7 @@ export type CourseCardProps = {
   onClick?: MouseEventHandler<HTMLDivElement>
   progressPercentage?: number
   hideProgressBar?: boolean
-  pro?: boolean
+  rightComponent?: JSX.Element
   size?: "lg" | "md"
 }
 
@@ -27,7 +27,7 @@ export const CourseCard = ({
   progressPercentage,
   onClick,
   hideProgressBar,
-  pro,
+  rightComponent,
   size = "lg"
 }: CourseCardProps & SpaceProps & LayoutProps) => {
 
@@ -57,12 +57,9 @@ export const CourseCard = ({
           {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
         </div>
         <div className='rightContainer'>
-          {pro ? (
-            <div className='proBadge'>
-              <span>Pro</span>
-            </div>
-          ) : null}
+          {rightComponent}
         </div>
+            
       </div>
       <div>
         <div className='bottomContainer'>
@@ -84,7 +81,7 @@ export const CourseCard = ({
   )
 }
 
-const StyledCourseCard = styled.div<{size?: "lg" | "md"}>`
+const StyledCourseCard = styled.div<{size?: "lg" | "md", pro?: boolean}>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -118,19 +115,7 @@ const StyledCourseCard = styled.div<{size?: "lg" | "md"}>`
     height: auto;
     z-index: 100;
   }
-  .proBadge {
-    background-color: ${p => p.theme.colors.card_background};
-    border-radius: ${p => p.theme.spacing.space_2};
-    padding: ${p => p.theme.spacing.space_025} ${p => p.theme.spacing.space_3};
-    position: absolute;
 
-    span {
-      color: ${p => p.theme.colors.text.base};
-      font-size: ${p => p.theme.typography.font_size_100};
-      font-weight: ${p => p.theme.typography.font_weight_bold};
-      line-height: ${p => p.theme.typography.font_line_height_1};
-    }
-  }
   .topContainer {
     position: relative;
     padding: ${p => p.size === 'md' ? `${p.theme.spacing.space_3} ${p.theme.spacing.space_3} 0
