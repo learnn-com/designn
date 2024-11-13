@@ -63,56 +63,56 @@ export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, varian
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
 
+  const updateTooltipPosition = () => {
+    const containerRect = containerRef.current?.getBoundingClientRect();
+    const tooltipRect = tooltipRef.current?.getBoundingClientRect();
+    
+    if (!containerRect) return;
+
+    let top = 0;
+    let left = 0;
+
+    switch (position) {
+      case 'top-left':
+        top = containerRect.top - tooltipRect!.height - 5;
+        left = containerRect.left - tooltipRect!.width;
+        break;
+      case 'top':
+        top = containerRect.top - tooltipRect!.height - 5;
+        left = containerRect.left;
+        break;
+      case 'top-right':
+        top = containerRect.top - tooltipRect!.height - 5;
+        left = containerRect.left + containerRect!.width - 10;
+        break;
+      case 'left':
+        top = containerRect.top ;
+        left = containerRect.left -  tooltipRect!.width - 5 ;
+        break;
+      case 'right':
+        top = containerRect.top ;
+        left = containerRect.left + containerRect!.width + 5;
+        break;
+      case 'bottom-left':
+        top = containerRect.bottom + 5;
+        left = containerRect.left - tooltipRect!.width;
+        break;
+      case 'bottom':
+        top = containerRect.bottom + 5;
+        left = containerRect.left;
+        break;
+      case 'bottom-right':
+        top = containerRect.bottom + 5;
+        left = containerRect.left + tooltipRect!.width +15;
+        break;
+      default:
+        break;
+    }
+
+    setTooltipPosition({ top, left });
+  };
+
   useEffect(() => {
-    const updateTooltipPosition = () => {
-      const containerRect = containerRef.current?.getBoundingClientRect();
-      const tooltipRect = tooltipRef.current?.getBoundingClientRect();
-      
-      if (!containerRect) return;
-
-      let top = 0;
-      let left = 0;
-
-      switch (position) {
-        case 'top-left':
-          top = containerRect.top - tooltipRect!.height - 5;
-          left = containerRect.left - tooltipRect!.width;
-          break;
-        case 'top':
-          top = containerRect.top - tooltipRect!.height - 5;
-          left = containerRect.left;
-          break;
-        case 'top-right':
-          top = containerRect.top - tooltipRect!.height - 5;
-          left = containerRect.left + containerRect!.width - 10;
-          break;
-        case 'left':
-          top = containerRect.top ;
-          left = containerRect.left -  tooltipRect!.width - 5 ;
-          break;
-        case 'right':
-          top = containerRect.top ;
-          left = containerRect.left + containerRect!.width + 5;
-          break;
-        case 'bottom-left':
-          top = containerRect.bottom + 5;
-          left = containerRect.left - tooltipRect!.width;
-          break;
-        case 'bottom':
-          top = containerRect.bottom + 5;
-          left = containerRect.left;
-          break;
-        case 'bottom-right':
-          top = containerRect.bottom + 5;
-          left = containerRect.left + tooltipRect!.width +15;
-          break;
-        default:
-          break;
-      }
-
-      setTooltipPosition({ top, left });
-    };
-
     updateTooltipPosition();
     window.addEventListener('resize', updateTooltipPosition);
     window.addEventListener('scroll', updateTooltipPosition);
@@ -121,7 +121,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, varian
       window.removeEventListener('resize', updateTooltipPosition);
       window.removeEventListener('scroll', updateTooltipPosition);
     };
-  }, [position]);
+  }, []);
 
   return (
     <TooltipContainer ref={containerRef}>
