@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import styled, { DefaultTheme } from 'styled-components';
 import { Text } from './Text'
 import { Spacing } from 'theme/tokens/spacing';
@@ -16,7 +16,6 @@ const TooltipContainer = styled.div`
   display: inline-block;
 `;
 
-
 const styleTooltipVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: 'dark' | 'light' }) => {
     switch (variant) {
         case 'light':
@@ -31,41 +30,22 @@ const styleTooltipVariant = ({ theme, variant }: { theme: DefaultTheme; variant?
     }
 }
 
-const TooltipText = styled.div<{ position: string, variant?: 'dark' | 'light', width?: Spacing }>`
+const TooltipText = styled.div<{ variant?: 'dark' | 'light'; width?: Spacing; top: number; left: number }>`
   visibility: hidden;
   text-align: center;
   border-radius: ${p => p.theme.borders.radius.base};
   padding: ${p => p.theme.spacing.space_3};
-  position: absolute;
+  position: fixed;
   z-index: 9999999;
   opacity: 0;
   transition: opacity 0.3s;
   width: ${p => p.width ?? '100px'};
+  overflow: visible;
+  pointer-events: none;
+  top: ${p => p.top}px;
+  left: ${p => p.left}px;
 
   ${styleTooltipVariant}
-  
-  ${({ position }) => {
-    switch (position) {
-      case 'top-left':
-        return 'bottom: 100%; right: 0; transform: translateY(-5px);';
-      case 'top':
-        return 'bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-5px);';
-      case 'top-right':
-        return 'bottom: 100%; left: 0; transform: translateY(-5px);';
-      case 'left':
-        return 'top: 50%; left: -5px; transform: translateX(-100%) translateY(-50%);';
-      case 'right':
-        return 'top: 50%; right: -5px; transform: translateX(100%) translateY(-50%);';
-      case 'bottom-left':
-        return 'top: 100%; right: 0; transform: translateY(5px);';
-      case 'bottom':
-        return 'top: 100%; left: 50%; transform: translateX(-50%) translateY(5px);';
-      case 'bottom-right':
-        return 'top: 100%; left: 0; transform: translateY(5px);';
-      default:
-        return '';
-    }
-  }}
 `;
 
 const TooltipWrapper = styled.div`
@@ -76,12 +56,84 @@ const TooltipWrapper = styled.div`
 `;
 
 export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, variant, children }) => {
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    const updateTooltipPosition = () => {
+      const containerRect = containerRef.current?.getBoundingClientRect();
+      const tooltipRect = tooltipRef.current?.getBoundingClientRect();
+      
+      if (!containerRect) return;
+
+      let top = 0;
+      let left = 0;
+
+      switch (position) {
+        case 'top-left':
+          top = containerRect.top - tooltipRect!.height - 5;
+          left = containerRect.left - tooltipRect!.width;
+          break;
+        case 'top':
+          top = containerRect.top - tooltipRect!.height - 5;
+          left = containerRect.left;
+          break;
+        case 'top-right':
+          top = containerRect.top - tooltipRect!.height - 5;
+          left = containerRect.left + tooltipRect!.width - 10;
+          break;
+        case 'left':
+          top = containerRect.top ;
+          left = containerRect.left -  tooltipRect!.width - 5 ;
+          break;
+        case 'right':
+          top = containerRect.top ;
+          left = containerRect.left + containerRect!.width + 5;
+          break;
+        case 'bottom-left':
+          top = containerRect.bottom + 5;
+          left = containerRect.left - tooltipRect!.width;
+          break;
+        case 'bottom':
+          top = containerRect.bottom + 5;
+          left = containerRect.left;
+          break;
+        case 'bottom-right':
+          top = containerRect.bottom + 5;
+          left = containerRect.left + tooltipRect!.width +15;
+          break;
+        default:
+          break;
+      }
+
+      setTooltipPosition({ top, left });
+    };
+
+    updateTooltipPosition();
+    window.addEventListener('resize', updateTooltipPosition);
+    window.addEventListener('scroll', updateTooltipPosition);
+
+    return () => {
+      window.removeEventListener('resize', updateTooltipPosition);
+      window.removeEventListener('scroll', updateTooltipPosition);
+    };
+  }, [position]);
+
   return (
-    <TooltipContainer>
+    <TooltipContainer ref={containerRef}>
       <TooltipWrapper>
         {children}
-        <TooltipText position={position} variant={variant} width={width}>
-            <Text variant='bodyXs' alignment='center' color={variant === 'dark' ? 'primary' : 'primary_inverted'}>{label}</Text>
+        <TooltipText
+          ref={tooltipRef}
+          variant={variant}
+          width={width}
+          top={tooltipPosition.top}
+          left={tooltipPosition.left}
+        >
+          <Text variant="bodyXs" alignment="center" color={variant === 'dark' ? 'primary' : 'primary_inverted'}>
+            {label}
+          </Text>
         </TooltipText>
       </TooltipWrapper>
     </TooltipContainer>
