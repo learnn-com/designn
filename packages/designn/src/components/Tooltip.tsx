@@ -9,6 +9,7 @@ interface TooltipProps {
   variant: 'dark' | 'light'
   width?: Spacing
   children: ReactNode;
+  customComponent?: ReactNode;
 }
 
 const TooltipContainer = styled.div`
@@ -55,7 +56,7 @@ const TooltipWrapper = styled.div`
   }
 `;
 
-export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, variant, children }) => {
+export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, variant, children, customComponent }) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
@@ -81,7 +82,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, varian
           break;
         case 'top-right':
           top = containerRect.top - tooltipRect!.height - 5;
-          left = containerRect.left + tooltipRect!.width - 10;
+          left = containerRect.left + containerRect!.width - 10;
           break;
         case 'left':
           top = containerRect.top ;
@@ -131,10 +132,11 @@ export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, varian
           top={tooltipPosition.top}
           left={tooltipPosition.left}
         >
-          <Text variant="bodyXs" alignment="center" color={variant === 'dark' ? 'primary' : 'primary_inverted'}>
+          {!customComponent && <Text variant="bodyXs" alignment="center" color={variant === 'dark' ? 'primary' : 'primary_inverted'}>
             {label}
-          </Text>
-        </TooltipText>
+          </Text>}
+            {customComponent}
+          </TooltipText>
       </TooltipWrapper>
     </TooltipContainer>
   );
