@@ -10,6 +10,7 @@ interface TooltipProps {
   width?: Spacing
   children: ReactNode;
   customComponent?: ReactNode;
+  delaySeconds?: number
 }
 
 const TooltipContainer = styled.div`
@@ -31,7 +32,7 @@ const styleTooltipVariant = ({ theme, variant }: { theme: DefaultTheme; variant?
     }
 }
 
-const TooltipText = styled.div<{ variant?: 'dark' | 'light'; width?: Spacing; top: number; left: number }>`
+const TooltipText = styled.div<{ variant?: 'dark' | 'light'; width?: Spacing; top: number; left: number; delaySeconds: number}>`
   visibility: hidden;
   text-align: center;
   border-radius: ${p => p.theme.borders.radius.base};
@@ -39,7 +40,8 @@ const TooltipText = styled.div<{ variant?: 'dark' | 'light'; width?: Spacing; to
   position: fixed;
   z-index: 9999999;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, visibility 0s ${p => p.delaySeconds ?? 0}s; 
+
   width: ${p => p.width ?? '100px'};
   overflow: visible;
   pointer-events: none;
@@ -56,7 +58,7 @@ const TooltipWrapper = styled.div`
   }
 `;
 
-export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, variant, children, customComponent }) => {
+export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, variant, children, customComponent, delaySeconds = 0 }) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
@@ -131,6 +133,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, varian
           width={width}
           top={tooltipPosition.top}
           left={tooltipPosition.left}
+          delaySeconds={delaySeconds}
         >
           {!customComponent && <Text variant="bodyXs" alignment="center" color={variant === 'dark' ? 'primary' : 'primary_inverted'}>
             {label}

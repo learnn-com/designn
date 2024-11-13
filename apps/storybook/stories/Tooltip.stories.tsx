@@ -157,3 +157,48 @@ export const WithCustomComponents = bind(
 )
 
 Positions.storyName = 'With Custom Components'
+
+
+export const WithDelay = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '50px', marginLeft: '10px', marginTop: '10px' }}>          
+      <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='top' variant='dark' width='300px' delaySeconds={3}
+        customComponent={<Markdown size='sm'>{TITLES_TEXT}</Markdown>}>
+        <Button variant='primary' label='3s delay' onPress={() => {}} />
+      </Tooltip>
+     
+      <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='top-right' variant='dark' width='300px' delaySeconds={1}
+        customComponent={  
+            <>
+              <Title variant='headingXs'>Un bel titolo piccolo</Title>
+              <Text variant='bodyXs'>Con un bel testo sotto ancora piu piccolo</Text>        
+              <CourseCard
+                  title={TITLE}
+                  subtitle={SUBTITLE}
+                  coverImage={COVER_IMAGE}
+                  progressPercentage={PROGRESS}
+                  />
+            </>
+        }>
+        <Button variant='primary' label='1s delay' onPress={() => {}} />
+      </Tooltip>      
+      <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='top-right' variant='dark' width='300px' delaySeconds={0.5}
+        customComponent={  
+            <>
+              <Title variant='headingXs'>Un bel titolo piccolo</Title>
+              <Text variant='bodyXs'>Con un bel testo sotto ancora piu piccolo</Text>        
+              <CourseCard
+                  title={TITLE}
+                  subtitle={SUBTITLE}
+                  coverImage={COVER_IMAGE}
+                  progressPercentage={PROGRESS}
+                  />
+            </>
+        }>
+        <Button variant='primary' label='0.5s delay' onPress={() => {}} />
+      </Tooltip>      
+    </div>
+  </AppShell>,
+)
+
+WithDelay.storyName = 'With Custom Delays'
