@@ -41,7 +41,7 @@ const styleTooltipVariant = ({
     default:
     case 'dark':
       return `
-                background-color: ${theme.colors.card_border};
+                background-color: ${theme.colors.interaction_background};
             `
   }
 }
