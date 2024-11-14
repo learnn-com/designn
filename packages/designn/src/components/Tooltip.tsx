@@ -103,7 +103,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ label, position, width, varian
         break;
       case 'bottom-right':
         top = containerRect.bottom + 5;
-        left = containerRect.left + tooltipRect!.width +15;
+        left = containerRect.left + containerRect!.width ;
         break;
       default:
         break;

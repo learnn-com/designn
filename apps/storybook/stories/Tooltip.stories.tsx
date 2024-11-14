@@ -73,7 +73,7 @@ Variants.storyName = 'With Different Variants'
 
 export const PositionsWithButtons = bind(
   <AppShell theme={defaultTheme}>
-    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '50px', marginLeft: '10px', marginTop: '10px' }}>    
+    <div style={{ display: 'flex', alignItems: 'top-left', flexDirection: 'row', gap: '50px', marginLeft: '10px', marginTop: '10px' }}>    
       <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='top' variant='dark' width='200px'>
         <Button variant='primary' label='top-left' onPress={() => {}} />
       </Tooltip>
@@ -151,6 +151,53 @@ export const WithCustomComponents = bind(
             </>
         }>
         <Button variant='primary' label='Gran Mix' onPress={() => {}} />
+      </Tooltip>      
+
+      <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='bottom-right' variant='dark' width='300px'
+        customComponent={  
+            <>
+              <Title variant='headingXs'>Un bel titolo piccolo</Title>
+              <Text variant='bodyXs'>Con un bel testo sotto ancora piu piccolo</Text>        
+              <CourseCard
+                  title={TITLE}
+                  subtitle={SUBTITLE}
+                  coverImage={COVER_IMAGE}
+                  progressPercentage={PROGRESS}
+                  />
+            </>
+        }>
+        <Button variant='primary' label='Gran Mix bottom right' onPress={() => {}} />
+      </Tooltip>    
+
+      <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='bottom-left' variant='dark' width='300px'
+        customComponent={  
+            <>
+              <Title variant='headingXs'>Un bel titolo piccolo</Title>
+              <Text variant='bodyXs'>Con un bel testo sotto ancora piu piccolo</Text>        
+              <CourseCard
+                  title={TITLE}
+                  subtitle={SUBTITLE}
+                  coverImage={COVER_IMAGE}
+                  progressPercentage={PROGRESS}
+                  />
+            </>
+        }>
+        <Button variant='primary' label='bottom left' onPress={() => {}} />
+      </Tooltip>      
+      <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='top-left' variant='dark' width='300px'
+        customComponent={  
+            <>
+              <Title variant='headingXs'>Un bel titolo piccolo</Title>
+              <Text variant='bodyXs'>Con un bel testo sotto ancora piu piccolo</Text>        
+              <CourseCard
+                  title={TITLE}
+                  subtitle={SUBTITLE}
+                  coverImage={COVER_IMAGE}
+                  progressPercentage={PROGRESS}
+                  />
+            </>
+        }>
+        <Button variant='primary' label='top left' onPress={() => {}} />
       </Tooltip>      
     </div>
   </AppShell>,
