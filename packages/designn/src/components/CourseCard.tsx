@@ -92,7 +92,7 @@ export const CourseCard = ({
               )}
             </div>
           </StyledCourseImage>
-          <HorizontalStack paddingX={spacing.space_3} paddingY={spacing.space_4}>
+          <HorizontalStack paddingX={spacing.space_3} paddingY={spacing.space_3}>
             <Title variant='headingXs' truncate truncateLines={2}>
               {title}
             </Title>
@@ -147,7 +147,7 @@ const StyledCourseImage = styled.div`
   border-top-left-radius: ${p => p.theme.borders.radius.large};
   border-top-right-radius: ${p => p.theme.borders.radius.large};
   width: 100%;
-  aspect-ratio: 18/9;
+  aspect-ratio: 5/3;
 
   &:before {
     content: '';
@@ -199,7 +199,7 @@ const StyledCourseImage = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3}
+    padding: 0 ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_2}
       ${p => p.theme.spacing.space_3};
     position: relative;
 
@@ -214,6 +214,7 @@ const StyledCourseImage = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-end;
     gap: ${p => p.theme.spacing.space_1};
     max-width: 85%;
 
