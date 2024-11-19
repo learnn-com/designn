@@ -73,8 +73,8 @@ Variants.storyName = 'With Different Variants'
 
 export const PositionsWithButtons = bind(
   <AppShell theme={defaultTheme}>
-    <div style={{ display: 'flex', alignItems: 'top-left', flexDirection: 'row', gap: '50px', marginLeft: '10px', marginTop: '10px' }}>    
-      <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='top' variant='dark' width='200px'>
+    <div style={{ display: 'flex', alignItems: 'top-left', flexDirection: 'row', gap: '50px', marginLeft: '100px', marginTop: '100px' }}>    
+      <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='top-left' variant='dark' width='200px'>
         <Button variant='primary' label='top-left' onPress={() => {}} />
       </Tooltip>
       
@@ -86,7 +86,7 @@ export const PositionsWithButtons = bind(
         <Button variant='primary' label='top-right' onPress={() => {}} />
       </Tooltip>
     </div>
-    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '50px', marginLeft: '10px', marginTop: '10px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '50px', marginLeft: '100px', marginTop: '100px' }}>
       <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='left' variant='dark'>
         <Button variant='primary' label='left' onPress={() => {}} />
       </Tooltip>
@@ -95,7 +95,7 @@ export const PositionsWithButtons = bind(
         <Button variant='primary' label='right' onPress={() => {}} />
       </Tooltip>
     </div>
-    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '50px', marginLeft: '10px', marginTop: '10px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '50px', marginLeft: '100px', marginTop: '100px' }}>
       <Tooltip label='This is a tooltip with long text to explain things. This is a tooltip if you havent noticed' position='bottom-left' variant='dark'>
         <Button variant='primary' label='bottom-left' onPress={() => {}} />
       </Tooltip>
