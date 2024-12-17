@@ -6,7 +6,7 @@ import styled, { css, DefaultTheme } from 'styled-components'
 import { HeightProps, SpaceProps, WidthProps, compose, height, space, width } from 'styled-system'
 import { FontLineHeightScale } from '../theme/tokens/typography'
 
-type Variant = 'bodyXxs' | 'bodyXs' | 'bodySm' | 'bodyMd' | 'bodyLg'
+type Variant = 'bodyXxxs' | 'bodyXxs' | 'bodyXs' | 'bodySm' | 'bodyMd' | 'bodyLg'
 
 type Element = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
 
@@ -103,6 +103,10 @@ const Component = styled.p<TextProps & SpaceProps & WidthProps & HeightProps>`
   ${p => {
     if (p.variant === 'bodyXxs') {
       return `font-size: ${p.theme.typography.font_size_75};
+              line-height: ${p.theme.typography.font_line_height_1};`
+    }
+    if (p.variant === 'bodyXxxs') {
+      return `font-size: 0.8rem;
               line-height: ${p.theme.typography.font_line_height_1};`
     }
     if (p.variant === 'bodyXs') {
