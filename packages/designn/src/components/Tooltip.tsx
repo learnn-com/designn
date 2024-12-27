@@ -1,5 +1,5 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
-import styled, { DefaultTheme } from 'styled-components'
+import React, { ReactNode } from 'react';
+import styled, { DefaultTheme } from 'styled-components';
 import { Text } from './Text'
 import { Spacing } from 'theme/tokens/spacing'
 
@@ -26,13 +26,7 @@ const TooltipContainer = styled.div`
   display: inline-block;
 `
 
-const styleTooltipVariant = ({
-  theme,
-  variant,
-}: {
-  theme: DefaultTheme
-  variant?: 'dark' | 'light'
-}) => {
+const styleTooltipVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: 'dark' | 'light' }) => {
   switch (variant) {
     case 'light':
       return `
@@ -47,36 +41,96 @@ const styleTooltipVariant = ({
 }
 
 const TooltipText = styled.div<{
-  variant?: 'dark' | 'light'
-  width?: Spacing
-  top: number
-  left: number
-  delaySeconds: number
+  variant?: 'dark' | 'light';
+  width?: Spacing;
+  position: 'top-left' | 'top' | 'top-right' | 'left' | 'right' | 'bottom-left' | 'bottom' | 'bottom-right';
+  delaySeconds: number;
 }>`
   visibility: hidden;
   text-align: center;
   border-radius: ${p => p.theme.borders.radius.base};
   padding: ${p => p.theme.spacing.space_3};
-  position: fixed;
-  z-index: 9999999;
+  position: absolute;
+  z-index: 9999;
   opacity: 0;
-  transition: opacity 0.3s, visibility 0s ${p => p.delaySeconds ?? 0}s;
-
+  transition: opacity 0.3s, visibility 0s ${p => p.delaySeconds}s;
   width: ${p => p.width ?? '100px'};
-  overflow: visible;
   pointer-events: none;
-  top: ${p => p.top}px;
-  left: ${p => p.left}px;
 
   ${styleTooltipVariant}
-`
+
+  ${p => {
+    switch (p.position) {
+      case 'top-left':
+        return `
+          bottom: 100%;
+          left: 0;
+          margin-bottom: 8px;
+          transform: translateX(-100%);
+        `;
+      case 'top':
+        return `
+          bottom: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          margin-bottom: 8px;
+        `;
+      case 'top-right':
+        return `
+          bottom: 100%;
+          right: 0;
+          margin-bottom: 8px;
+          transform: translateX(100%);
+        `;
+      case 'left':
+        return `
+          right: 100%;
+          top: 50%;
+          transform: translateY(-50%);
+          margin-right: 8px;
+        `;
+      case 'right':
+        return `
+          left: 100%;
+          top: 50%;
+          transform: translateY(-50%) translateX(8px);
+        `;
+      case 'bottom-left':
+        return `
+          top: 100%;
+          left: 0;
+          margin-top: 8px;
+          transform: translateX(-100%);
+        `;
+      case 'bottom':
+        return `
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          margin-top: 8px;
+        `;
+      case 'bottom-right':
+        return `
+          top: 100%;
+          right: 0;
+          margin-top: 8px;
+          transform: translateX(100%);
+        `;
+      default:
+        return '';
+    }
+  }}
+`;
 
 const TooltipWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+
   &:hover ${TooltipText} {
     visibility: visible;
     opacity: 1;
   }
-`
+`;
 
 export const Tooltip: React.FC<TooltipProps> = ({
   label,
@@ -87,86 +141,20 @@ export const Tooltip: React.FC<TooltipProps> = ({
   customComponent,
   delaySeconds = 0,
 }) => {
-  const tooltipRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 })
-
-  const updateTooltipPosition = () => {
-    const containerRect = containerRef.current?.getBoundingClientRect()
-    const tooltipRect = tooltipRef.current?.getBoundingClientRect()
-
-    if (!containerRect) return
-
-    let top = 0
-    let left = 0
-
-    switch (position) {
-      case 'top-left':
-        top = containerRect.top - tooltipRect!.height - 5
-        left = containerRect.left - tooltipRect!.width
-        break
-      case 'top':
-        top = containerRect.top - tooltipRect!.height - 5
-        left = containerRect.left
-        break
-      case 'top-right':
-        top = containerRect.top - tooltipRect!.height - 5
-        left = containerRect.left + containerRect!.width - 10
-        break
-      case 'left':
-        top = containerRect.top
-        left = containerRect.left - tooltipRect!.width - 5
-        break
-      case 'right':
-        top = containerRect.top
-        left = containerRect.left + containerRect!.width + 5
-        break
-      case 'bottom-left':
-        top = containerRect.bottom + 5
-        left = containerRect.left - tooltipRect!.width
-        break
-      case 'bottom':
-        top = containerRect.bottom + 5
-        left = containerRect.left
-        break
-      case 'bottom-right':
-        top = containerRect.bottom + 5
-        left = containerRect.left + containerRect!.width
-        break
-      default:
-        break
-    }
-
-    setTooltipPosition({ top, left })
-  }
-
-  useEffect(() => {
-    updateTooltipPosition()
-    window.addEventListener('resize', updateTooltipPosition)
-    window.addEventListener('scroll', updateTooltipPosition)
-
-    return () => {
-      window.removeEventListener('resize', updateTooltipPosition)
-      window.removeEventListener('scroll', updateTooltipPosition)
-    }
-  }, [])
-
   return (
-    <TooltipContainer ref={containerRef}>
+    <TooltipContainer>
       <TooltipWrapper>
         {children}
         <TooltipText
-          ref={tooltipRef}
           variant={variant}
           width={width}
-          top={tooltipPosition.top}
-          left={tooltipPosition.left}
+          position={position}
           delaySeconds={delaySeconds}
         >
           {!customComponent && (
             <Text
-              variant='bodyXs'
-              alignment='center'
+              variant="bodyXs"
+              alignment="center"
               color={variant === 'dark' ? 'primary' : 'primary_inverted'}
             >
               {label}
@@ -176,5 +164,5 @@ export const Tooltip: React.FC<TooltipProps> = ({
         </TooltipText>
       </TooltipWrapper>
     </TooltipContainer>
-  )
-}
+  );
+};

@@ -10,7 +10,7 @@ export type PathCardProps = {
   subtitle?: string
   progressPercentage?: number
   hideProgressBar?: boolean
-  size?: "lg" | "md"
+  size?: "lg" | "md" | "sm"
 }
 
 export const PathCard = ({
@@ -24,13 +24,22 @@ export const PathCard = ({
   const {  } = useTheme()
 
   return (
-    <StyledPathCard onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
+    <StyledPathCard size={size} onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
       <div className='topContainer'>
       </div>
       <div>
         <div className='bottomContainer'>
           <div className='details'>
-            {subtitle && <Text variant={size === 'md' ? 'bodyXxs' : 'bodyXs'} fontWeight='bold'>{subtitle}</Text>}
+            {subtitle && (
+              <Text
+                variant={
+                  size === 'md' ? 'bodyXs' : size === 'lg' ? 'bodySm' : 'bodyXxxs'
+                }
+                fontWeight='bold'
+              >
+                {subtitle}
+              </Text>
+            )}
           </div>
         </div>
         { !hideProgressBar && <ProgressBar percentage={progressPercentage} transition={true}/>}
@@ -39,7 +48,7 @@ export const PathCard = ({
   )
 }
 
-const StyledPathCard = styled.div<{size?: "md" | "lg"}>`
+const StyledPathCard = styled.div<{size?: "md" | "lg" | "sm"}>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -84,7 +93,7 @@ const StyledPathCard = styled.div<{size?: "md" | "lg"}>`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: ${p => p.theme.spacing.space_5};
+    padding: ${p => p.size === "sm" ? p.theme.spacing.space_4 : p.theme.spacing.space_5};
     position: relative;
   }
 

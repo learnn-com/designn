@@ -13,6 +13,7 @@ export type CourseCardProps = {
   companyLogo?: string
   title: string
   subtitle?: string
+  subtitleComponent?: JSX.Element
   buttons?: JSX.Element
   onClick?: MouseEventHandler<HTMLDivElement>
   progressPercentage?: number
@@ -27,6 +28,7 @@ export const CourseCard = ({
   companyLogo,
   title,
   subtitle,
+  subtitleComponent,
   buttons,
   progressPercentage,
   onClick,
@@ -78,11 +80,15 @@ export const CourseCard = ({
               <div className='bottomContainer'>
                 <div className='details'>
                   <div className='subtitleContainer'>
-                    {subtitle && (
-                      <Text variant='bodyXs' fontWeight='bold'>
-                        {subtitle}
-                      </Text>
-                    )}
+                    {
+                      subtitleComponent ?
+                        subtitleComponent :
+                        subtitle && (
+                          <Text variant='bodyXs' fontWeight='bold'>
+                            {subtitle}
+                          </Text>
+                        )
+                    }
                   </div>
                 </div>
                 <div className='buttonsContainer'>{buttons}</div>
@@ -118,11 +124,15 @@ export const CourseCard = ({
               <div className='details'>
                 {renderTitle()}
                 <div className='subtitleContainer'>
-                  {subtitle && (
-                    <Text variant='bodyXs' fontWeight='bold'>
-                      {subtitle}
-                    </Text>
-                  )}
+                  {
+                    subtitleComponent ?
+                      subtitleComponent :
+                      subtitle && (
+                        <Text variant='bodyXs' fontWeight='bold'>
+                          {subtitle}
+                        </Text>
+                      )
+                  }
                 </div>
               </div>
               <div className='buttonsContainer'>{buttons}</div>
@@ -277,10 +287,10 @@ const StyledCourseCard = styled.div<{ size?: 'lg' | 'md'; pro?: boolean }>`
   .topContainer {
     position: relative;
     padding: ${p =>
-      p.size === 'md'
-        ? `${p.theme.spacing.space_3} ${p.theme.spacing.space_3} 0
+    p.size === 'md'
+      ? `${p.theme.spacing.space_3} ${p.theme.spacing.space_3} 0
       ${p.theme.spacing.space_3}`
-        : `${p.theme.spacing.space_5} ${p.theme.spacing.space_5} 0
+      : `${p.theme.spacing.space_5} ${p.theme.spacing.space_5} 0
       ${p.theme.spacing.space_5}`};
     display: flex;
     flex-direction: row;
@@ -308,10 +318,10 @@ const StyledCourseCard = styled.div<{ size?: 'lg' | 'md'; pro?: boolean }>`
     flex-direction: row;
     justify-content: space-between;
     padding: ${p =>
-      p.size === 'md'
-        ? `0 ${p.theme.spacing.space_3} ${p.theme.spacing.space_3}
+    p.size === 'md'
+      ? `0 ${p.theme.spacing.space_3} ${p.theme.spacing.space_3}
       ${p.theme.spacing.space_3}`
-        : `0 ${p.theme.spacing.space_5} ${p.theme.spacing.space_5}
+      : `0 ${p.theme.spacing.space_5} ${p.theme.spacing.space_5}
       ${p.theme.spacing.space_5}`};
     position: relative;
 
