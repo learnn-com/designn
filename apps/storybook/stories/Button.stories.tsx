@@ -57,7 +57,14 @@ export const Loading = bind(
       <Button loading variant='primary' label={DEFAULT_TEXT} onPress={() => {}} />
       <Button loading variant='secondary' label={DEFAULT_TEXT} onPress={() => {}} />
       <Button loading variant='tertiary' label={DEFAULT_TEXT} onPress={() => {}} />
-      <Button loading variant='primary' label={DEFAULT_TEXT} onPress={() => {}} icon={<FontAwesomeIcon icon={faClock} size='lg' color='black' />} iconPosition='left'/>
+      <Button
+        loading
+        variant='primary'
+        label={DEFAULT_TEXT}
+        onPress={() => {}}
+        icon={<FontAwesomeIcon icon={faClock} size='lg' color='black' />}
+        iconPosition='left'
+      />
     </div>
   </AppShell>,
 )
@@ -74,3 +81,24 @@ export const Borders = bind(
 )
 
 Borders.storyName = 'With different borders'
+
+export const Icons = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '20px' }}>
+      <Button
+        variant='primary'
+        onPress={() => {}}
+        icon={<FontAwesomeIcon icon={faClock} size='lg' color='black' />}
+        iconPosition='left'
+      />
+      <Button
+        variant='secondary'
+        onPress={() => {}}
+        icon={<FontAwesomeIcon icon={faClock} size='lg' color='white' />}
+        iconPosition='left'
+      />
+    </div>
+  </AppShell>,
+)
+
+Icons.storyName = 'Only with icons'

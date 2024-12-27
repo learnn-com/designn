@@ -2,13 +2,23 @@ import { ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import styled from 'styled-components'
 import { FontWeightAlias } from 'theme/tokens/typography'
-import { MarginProps, SpaceProps, WidthProps, HeightProps, compose, margin, space, width, height } from 'styled-system'
+import {
+  MarginProps,
+  SpaceProps,
+  WidthProps,
+  HeightProps,
+  compose,
+  margin,
+  space,
+  width,
+  height,
+} from 'styled-system'
 
 type Variant = 'primary' | 'secondary' | 'tertiary'
 
 export type ButtonProps = {
   /** Text to display */
-  label: string
+  label?: string
   /** Hierarchy of the button */
   variant: Variant
   /** On press action */
@@ -70,7 +80,11 @@ export function Button({
   )
 }
 
-const Component = styled.button<Omit<ButtonProps & SpaceProps & MarginProps & WidthProps & HeightProps, 'onPress'>>`
+const Component = styled.button<
+  Omit<ButtonProps & SpaceProps & MarginProps & WidthProps & HeightProps, 'onPress'> & {
+    label?: string
+  }
+>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -82,17 +96,17 @@ const Component = styled.button<Omit<ButtonProps & SpaceProps & MarginProps & Wi
   ${p => `font-weight:${p.theme.typography.font_weight_semibold};`}
   ${p => {
     switch (p.size) {
-      case 'sm': 
+      case 'sm':
         return `font-size: ${p.theme.typography.font_size_100};
                 line-height: ${p.theme.typography.font_line_height_1};`
-      case 'md': 
+      case 'md':
         return `font-size: ${p.theme.typography.font_size_200};
                 line-height: ${p.theme.typography.font_line_height_2};`
-      case 'lg': 
+      case 'lg':
         return `font-size: ${p.theme.typography.font_size_300};
                 line-height: ${p.theme.typography.font_line_height_3};
                 padding: 13px 20px;`
-      default: 
+      default:
         return `font-size: ${p.theme.typography.font_size_200};
                 line-height: ${p.theme.typography.font_line_height_2};`
     }
@@ -159,8 +173,12 @@ const Component = styled.button<Omit<ButtonProps & SpaceProps & MarginProps & Wi
 
   .icon {
     ${p => {
-      if (p.iconPosition === 'left') return `margin-right: ${p.theme.spacing.space_2};`
-      else return `margin-left: ${p.theme.spacing.space_2};`
+      if (p.label) {
+        if (p.iconPosition === 'left') return `margin-right: ${p.theme.spacing.space_2};`
+        else return `margin-left: ${p.theme.spacing.space_2};`
+      } else {
+        return 'margin:0;'
+      }
     }}
   }
 
@@ -175,21 +193,28 @@ const Component = styled.button<Omit<ButtonProps & SpaceProps & MarginProps & Wi
     margin-right: ${p => p.theme.spacing.space_2};
     ${p => {
       switch (p.variant) {
-        case 'primary': return `background: ${p.theme.colors.interaction_foreground.primary_active};`
-        case 'secondary': return `background: ${p.theme.colors.interaction_foreground.secondary_active};`
-        case 'tertiary': return `background: ${p.theme.colors.interaction_foreground.tertiary_active};`
+        case 'primary':
+          return `background: ${p.theme.colors.interaction_foreground.primary_active};`
+        case 'secondary':
+          return `background: ${p.theme.colors.interaction_foreground.secondary_active};`
+        case 'tertiary':
+          return `background: ${p.theme.colors.interaction_foreground.tertiary_active};`
       }
     }}
     --_m: 
       conic-gradient(#0000 10%,#000),
       linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);
-            mask: var(--_m);
+    mask: var(--_m);
     -webkit-mask-composite: source-out;
-            mask-composite: subtract;
+    mask-composite: subtract;
     animation: l3 1s infinite linear;
   }
-  @keyframes l3 {to{transform: rotate(1turn)}}
-  
+  @keyframes l3 {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
   ${compose(space, margin, width, height)}
 `
