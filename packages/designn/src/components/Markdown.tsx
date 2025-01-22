@@ -24,17 +24,19 @@ export type MarkdownProps = {
   size?: Size
   /** Markdown Overrides */
   overrides?: MarkdownOverrides
-  /** If the regex matches the link, opens it in the same tab */
-  opensInSameTabRegex?: string
+  /** If the regex matches one of the links, opens it in the same tab */
+  opensInSameTabRegexes?: string[]
 }
 
-export const Markdown = ({ children, overrides, opensInSameTabRegex, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
+export const Markdown = ({ children, overrides, opensInSameTabRegexes, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
   return (
     <StyledMarkdown {...props}>
       <ReactMarkdown
         renderers={{
           link: (props: any) => {
-            const target = opensInSameTabRegex && new RegExp(opensInSameTabRegex).test(props.node.url) ? '' : '_blank'
+            const target = opensInSameTabRegexes && opensInSameTabRegexes.length > 0 && opensInSameTabRegexes.some((regex) => new RegExp(regex).test(props.node.url))
+                ? ''
+                : '_blank'
             return <a href={props.node.url} target={target}>{props.children}</a>
           },
         }} 

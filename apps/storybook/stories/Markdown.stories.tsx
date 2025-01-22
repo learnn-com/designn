@@ -111,12 +111,13 @@ export const MarkdownSizes = bind(
 MarkdownSizes.storyName = 'Different Markdown Sizes'
 
 const PLAYER_REGEX = '^https://my\\.learnn\\.com/player/.*$'
+const COURSE_REGEX = '^https://my\\.learnn\\.com/corso/.*$'
 export const MarkdownOpenLinks = bind(
   <AppShell theme={defaultTheme}>
     <HorizontalStack justifyContent='space-evenly'>
-      <Markdown size='sm' opensInSameTabRegex={PLAYER_REGEX}>[Open in the same tab](https://my.learnn.com/player/7164/?t=14) </Markdown>
+      <Markdown size='sm' opensInSameTabRegexes={[PLAYER_REGEX, COURSE_REGEX]}>[Open in the same tab](https://my.learnn.com/player/7164/?t=14) </Markdown>
       <Markdown size='sm'>[Open in a new tab](https://my.learnn.com/player/7164/?t=14)</Markdown>
-      <Markdown size='sm' opensInSameTabRegex={PLAYER_REGEX}>[Open in the same tab](https://my.learnn.com/player/7164)</Markdown>
+      <Markdown size='sm' opensInSameTabRegexes={[PLAYER_REGEX, COURSE_REGEX]}>[Open in the same tab](https://my.learnn.com/corso/1)</Markdown>
     </HorizontalStack>
   </AppShell>,
 )
