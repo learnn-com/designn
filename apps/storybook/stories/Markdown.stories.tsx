@@ -112,12 +112,23 @@ MarkdownSizes.storyName = 'Different Markdown Sizes'
 
 const PLAYER_REGEX = '^https://my\\.learnn\\.com/player/.*$'
 const COURSE_REGEX = '^https://my\\.learnn\\.com/corso/.*$'
+
+const parseUrl = (link: string): string => {
+  if (link.startsWith('learnn://')) {
+    return link.replace('learnn://', 'https://my.learnn.com/')
+  }
+  return link
+}
+
 export const MarkdownOpenLinks = bind(
   <AppShell theme={defaultTheme}>
     <HorizontalStack justifyContent='space-evenly'>
       <Markdown size='sm' opensInSameTabRegexes={[PLAYER_REGEX, COURSE_REGEX]}>[Open in the same tab](https://my.learnn.com/player/7164/?t=14) </Markdown>
       <Markdown size='sm'>[Open in a new tab](https://my.learnn.com/player/7164/?t=14)</Markdown>
       <Markdown size='sm' opensInSameTabRegexes={[PLAYER_REGEX, COURSE_REGEX]}>[Open in the same tab](https://my.learnn.com/corso/1)</Markdown>
+    </HorizontalStack>
+    <HorizontalStack justifyContent='space-evenly'>
+      <Markdown size='sm' opensInSameTabRegexes={[PLAYER_REGEX, COURSE_REGEX]} parseUrlsMethod={parseUrl} >[Modify link and open in same tab](learnn://player/7164/?t=14) </Markdown>
     </HorizontalStack>
   </AppShell>,
 )

@@ -26,18 +26,52 @@ export type MarkdownProps = {
   overrides?: MarkdownOverrides
   /** If the regex matches one of the links, opens it in the same tab */
   opensInSameTabRegexes?: string[]
+  /** Optionally parse links and modify the url */
+  parseUrlsMethod?: (url: string) => string
 }
 
-export const Markdown = ({ children, overrides, opensInSameTabRegexes, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
+type LinkProps = {
+  children: React.ReactNode[];
+  href: string;                 
+  node: {
+    type: string;
+    title: string | null;
+    url: string;
+    children: React.ReactNode[]; 
+    position?: object;  
+  };                   
+}
+
+export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
   return (
     <StyledMarkdown {...props}>
       <ReactMarkdown
         renderers={{
-          link: (props: any) => {
-            const target = opensInSameTabRegexes && opensInSameTabRegexes.length > 0 && opensInSameTabRegexes.some((regex) => new RegExp(regex).test(props.node.url))
-                ? ''
-                : '_blank'
-            return <a href={props.node.url} target={target}>{props.children}</a>
+          link: (props: LinkProps) => {
+            const url = props.node.url
+            const openInSameTab = opensInSameTabRegexes?.some(regex => new RegExp(regex).test(url))
+            const parsedUrl = parseUrlsMethod?.(url) 
+            if (openInSameTab) {
+              return (
+                <a href={url}>
+                  {props.children}
+                </a>
+              )
+            }
+            else if (parsedUrl) {
+              return (
+                <a href={parsedUrl}>
+                  {props.children}
+                </a>
+              )
+            }
+            else {
+              return (
+                <a href={url} target='_blank'>
+                  {props.children}
+                </a>
+              )
+            }
           },
         }} 
         {...overrides?.reactMarkdownProps}
