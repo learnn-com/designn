@@ -113,6 +113,35 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
                 font-weight: ${p.theme.typography.font_weight_black};
                 letter-spacing:-0.04em;
               }
+
+              ul, ol {
+                margin: 0;
+                padding: 0;
+                margin-left: ${p.theme.spacing.space_5};
+                padding-left: ${p.theme.spacing.space_5};
+              }
+
+              li {
+                margin: 0;
+                padding-left: 0;
+              }
+
+              p {
+                margin-top: ${p.theme.spacing.space_4};
+                margin-bottom: 0;
+              }
+              p a, ul li a {
+                color: ${p.theme.colors.text.primary};
+                font-weight: ${p.theme.typography.font_weight_bold};
+                text-decoration: underline;
+                font-size: ${p.theme.typography.font_size_250};
+              }
+
+              a:link,
+                a:visited {
+                color: ${p.theme.colors.text.primary};
+                text-decoration: underline;
+              } 
               `
     } 
     else if (p.size === 'md') {
@@ -142,7 +171,27 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
       h4 {
         margin-top: ${p.theme.spacing.space_6};
         font-weight: ${p.theme.typography.font_weight_black};
-      }`
+      }
+      p a, ul li a {
+        color: ${p.theme.colors.text.primary};
+        font-weight: ${p.theme.typography.font_weight_bold};
+        text-decoration: underline;
+        font-size: ${p.theme.typography.font_size_base};
+      }
+      
+      ul, ol {
+        margin: 0;
+        padding: 0;
+        margin-left: ${p.theme.spacing.space_2};
+        padding-left: ${p.theme.spacing.space_5};
+      }
+
+      a:link,
+        a:visited {
+        color: ${p.theme.colors.text.primary};
+        text-decoration: underline;
+      }    
+      `
     }
     else {
       return `font-size: ${p.theme.typography.font_size_base};
@@ -171,20 +220,30 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
       h4 {
         margin-top: ${p.theme.spacing.space_4};
         font-weight: ${p.theme.typography.font_weight_black};
-      }`
+      }
+      p a, ul li a {
+        color: ${p.theme.colors.text.primary};
+        font-weight: ${p.theme.typography.font_weight_bold};
+        text-decoration: underline;
+        font-size: ${p.theme.typography.font_size_base};
+      }
+      
+      ul, ol {
+        margin: 0;
+        padding: 0;
+        margin-left: ${p.theme.spacing.space_2};
+        padding-left: ${p.theme.spacing.space_5};
+      }
+
+      a:link,
+        a:visited {
+        color: ${p.theme.colors.text.primary};
+        text-decoration: underline;
+      }  
+      `
     }
   }}
-  p a, ul li a {
-    color: ${p => p.theme.colors.text.primary};
-    font-weight: ${p => p.theme.typography.font_weight_bold};
-    text-decoration: underline;
-  }
 
-  a:link,
-  a:visited {
-    color: ${p => p.theme.colors.text.primary};
-    text-decoration: underline;
-  }
   strong,
   b {
     font-weight: ${p => p.theme.typography.font_weight_bold};
@@ -208,6 +267,16 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+
+  li {
+    padding: 0;
+    margin: 0;
+  }
+
+  p {
+    margin-top: ${p => p.theme.spacing.space_4};
+    margin-bottom: 0;
   }
 
   ${flexbox}
