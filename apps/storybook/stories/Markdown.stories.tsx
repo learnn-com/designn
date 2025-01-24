@@ -134,3 +134,45 @@ export const MarkdownOpenLinks = bind(
 )
 
 MarkdownOpenLinks.storyName = 'Different Markdown Opening links'
+const LINK_LIST = `Qui trovi le risorse esempio le risorse esempio le risorse esempio le risorse esempio le risorse esempio:\n
+⚡️Tool per ricondividere:
+- [Esempio 1](https://www.google.com/)
+- [Esempio 1](https://www.google.com/)
+
+Tool per scaricare i video:
+- [Esempio 1](https://www.google.com/)
+
+Tool per commenti automatici Instagram:
+- [Esempio 1](https://www.google.com/)
+
+⚡️[Esempio 1](https://www.google.com/)
+`
+
+export const MarkdownShowListOfLinks = bind(
+  <AppShell theme={defaultTheme}>
+    <HorizontalStack justifyContent='space-evenly'>
+      <div>
+        <Title variant='headingMd'>No size</Title>
+        <Markdown>{LINK_LIST}</Markdown>
+      </div>
+
+      <div>
+        <Title variant='headingMd'>SM</Title>
+        <Markdown size='sm'>{LINK_LIST}</Markdown>
+      </div>
+    </HorizontalStack>
+    <HorizontalStack justifyContent='space-evenly' marginTop={50}>
+      <div>
+        <Title variant='headingMd'>MD</Title>
+        <Markdown size='md'>{LINK_LIST}</Markdown>
+      </div>
+
+      <div>
+        <Title variant='headingMd'>LG</Title>
+        <Markdown size='lg'>{LINK_LIST}</Markdown>
+      </div>
+    </HorizontalStack>
+  </AppShell>,
+)
+
+MarkdownShowListOfLinks.storyName = 'Lists of markdown links'

@@ -3,6 +3,7 @@ export type FontSizeScale =
   | '75'
   | '100'
   | '200'
+  | '250'
   | '300'
   | '400'
   | '500'
@@ -30,8 +31,9 @@ export const typography: Typography = {
   font_size_75: '0.75rem',
   font_size_100: '0.875rem',
   font_size_200: '1.1rem',
-  font_size_300: '1.25rem',
-  font_size_400: '1.5rem',
+  font_size_250: '1.3rem',
+  font_size_300: '1.5rem',
+  font_size_400: '1.75rem',
   font_size_500: '1.75rem',
   font_size_600: '2rem',
   font_size_700: '2.5rem',
