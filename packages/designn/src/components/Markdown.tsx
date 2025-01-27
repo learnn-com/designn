@@ -51,27 +51,16 @@ export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrls
             const url = props.node.url
             const openInSameTab = opensInSameTabRegexes?.some(regex => new RegExp(regex).test(url))
             const parsedUrl = parseUrlsMethod?.(url) 
-            if (openInSameTab) {
-              return (
-                <a href={url}>
-                  {props.children}
-                </a>
-              )
-            }
-            else if (parsedUrl) {
-              return (
-                <a href={parsedUrl}>
-                  {props.children}
-                </a>
-              )
-            }
-            else {
-              return (
-                <a href={url} target='_blank'>
-                  {props.children}
-                </a>
-              )
-            }
+            const openInSameTabParsed = parsedUrl ? opensInSameTabRegexes?.some(regex => new RegExp(regex).test(parsedUrl)) : undefined
+            
+            const href = parsedUrl || url;
+            const target = openInSameTab || openInSameTabParsed ? '' : '_blank';
+
+            return (
+              <a href={href} target={target}>
+                {props.children}
+              </a>
+            );
           },
         }} 
         {...overrides?.reactMarkdownProps}

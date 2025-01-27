@@ -129,6 +129,8 @@ export const MarkdownOpenLinks = bind(
     </HorizontalStack>
     <HorizontalStack justifyContent='space-evenly'>
       <Markdown size='sm' opensInSameTabRegexes={[PLAYER_REGEX, COURSE_REGEX]} parseUrlsMethod={parseUrl} >[Modify link and open in same tab](learnn://player/7164/?t=14) </Markdown>
+      <Markdown size='sm' opensInSameTabRegexes={[COURSE_REGEX]} parseUrlsMethod={parseUrl} >[Modify link and open in a new tab](learnn://player/7164/?t=14) </Markdown>
+      <Markdown size='sm' opensInSameTabRegexes={[COURSE_REGEX]} parseUrlsMethod={parseUrl} >[Modify link and open in a new tab](learnn://corso/1) </Markdown>
     </HorizontalStack>
   </AppShell>,
 )
