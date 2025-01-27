@@ -87,7 +87,7 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
   font-weight: ${p => p.theme.typography.font_weight_regular};
   ${p => {
     if (p.size === 'lg') {
-      return `font-size: ${p.theme.typography.font_size_300};
+      return `font-size: ${p.theme.typography.font_size_350};
               line-height: ${p.theme.typography.font_line_height_4};
               h1 {
                 font-size: ${p.theme.typography.font_size_600};
@@ -156,7 +156,7 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
           }
       h2 {
         margin-top: ${p.theme.spacing.space_6};
-        font-size:  ${p.theme.typography.font_size_400};
+        font-size:  ${p.theme.typography.font_size_450};
         font-weight: ${p.theme.typography.font_weight_black};
         line-height: ${p.theme.typography.font_line_height_4};
         letter-spacing:-0.04em;
@@ -198,14 +198,14 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
       line-height: ${p.theme.typography.font_line_height_4};
       h1 {
             margin-top: ${p.theme.spacing.space_4};
-            font-size:  ${p.theme.typography.font_size_400};
+            font-size:  ${p.theme.typography.font_size_450};
             letter-spacing:-0.04em;
             font-weight: ${p.theme.typography.font_weight_black};
             line-height: ${p.theme.typography.font_line_height_5};
           }
       h2 {
         margin-top: ${p.theme.spacing.space_4};
-        font-size:  ${p.theme.typography.font_size_300};
+        font-size:  ${p.theme.typography.font_size_350};
         font-weight: ${p.theme.typography.font_weight_black};
         line-height: ${p.theme.typography.font_line_height_4};
         letter-spacing:-0.04em;
