@@ -105,6 +105,10 @@ const InputWrapper = styled.div<
   ${styleContainerSize}
 
   ${compose(space, layout, border)}
+
+  &:focus-within {
+    border: 1px solid ${p => p.theme.colors.interaction_outline.primary_active};
+  }
 `
 
 const StyledInput = styled.input<TextInputProps & SpaceProps & LayoutProps>`
@@ -137,6 +141,7 @@ const StyledInput = styled.input<TextInputProps & SpaceProps & LayoutProps>`
     outline: none;
     background-color: transparent;
   }
+
 
   ${styleInputVariant}
   ${styleInputSize}
