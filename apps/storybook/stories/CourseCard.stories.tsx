@@ -31,6 +31,7 @@ export const Standard = bind(
         subtitle={SUBTITLE}
         coverImage={COVER_IMAGE}
         progressPercentage={PROGRESS}
+        className='card-coming-content'
       />
     </div>
   </AppShell>,
@@ -138,6 +139,7 @@ export const LiveContentPro = bind(
               icon={<FontAwesomeIcon icon={faCircle} color='red' style={{ width: '100%' }} />}
               variant='contained'
               squareBorder={false}
+              className='live-badge'
             />
           </div>
         }

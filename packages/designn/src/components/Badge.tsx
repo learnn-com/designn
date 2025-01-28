@@ -2,7 +2,7 @@ import { LayoutProps, SpaceProps } from 'styled-system'
 import { HorizontalStack } from './HorizontalStack'
 import { Text } from './Text'
 import { useTheme } from 'styled-components'
-import { ReactNode } from 'react'
+import { ReactNode, HTMLAttributes } from 'react'
 
 type Variant = 'outlined' | 'contained' | 'flat'
 
@@ -11,6 +11,7 @@ export type BadgeProps = {
   variant: Variant
   squareBorder?: boolean
   icon?: ReactNode
+  className?: string
 }
 
 export const Badge = ({
@@ -18,8 +19,9 @@ export const Badge = ({
   variant,
   squareBorder = true,
   icon,
+  className,
   ...props
-}: BadgeProps & SpaceProps & LayoutProps) => {
+}: BadgeProps & SpaceProps & LayoutProps & HTMLAttributes<HTMLDivElement>) => {
   const { borders, spacing, colors } = useTheme()
 
   switch (variant) {
@@ -40,7 +42,7 @@ export const Badge = ({
               {icon}
             </HorizontalStack>
           )}
-          <Text variant='bodyXs' fontWeight='semibold' textColor={colors.outline}>
+          <Text variant='bodyXs' fontWeight='semibold' textColor={colors.outline} className={className}>
             {body}
           </Text>
         </HorizontalStack>
@@ -63,7 +65,7 @@ export const Badge = ({
               {icon}
             </HorizontalStack>
           )}
-          <Text variant='bodyXs' fontWeight='semibold' color='primary'>
+          <Text variant='bodyXs' fontWeight='semibold' color='primary' className={className}>
             {body}
           </Text>
         </HorizontalStack>
@@ -82,7 +84,7 @@ export const Badge = ({
               {icon}
             </HorizontalStack>
           )}
-          <Text variant='bodyXs' fontWeight='black' color='primary'>
+          <Text variant='bodyXs' fontWeight='black' color='primary' className={className}>
             {body}
           </Text>
         </HorizontalStack>

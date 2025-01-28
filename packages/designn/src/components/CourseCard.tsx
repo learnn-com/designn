@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
 import { ProgressBar } from './ProgressBar'
-import { MouseEventHandler } from 'react'
+import { HTMLAttributes, MouseEventHandler } from 'react'
 import { useTheme } from 'styled-components'
 import { VerticalStack } from './VerticalStack'
 import { HorizontalStack } from './HorizontalStack'
@@ -21,6 +21,7 @@ export type CourseCardProps = {
   rightComponent?: JSX.Element
   size?: 'lg' | 'md'
   variant?: 'fullImage' | 'longTitle'
+  className?: string
 }
 
 export const CourseCard = ({
@@ -36,7 +37,8 @@ export const CourseCard = ({
   rightComponent,
   size = 'lg',
   variant = 'fullImage',
-}: CourseCardProps & SpaceProps & LayoutProps) => {
+  className = 'card-course',
+}: CourseCardProps & SpaceProps & LayoutProps & HTMLAttributes<HTMLElement>) => {
   const { colors, borders, spacing } = useTheme()
 
   const renderTitle = () => {
@@ -44,14 +46,14 @@ export const CourseCard = ({
       default:
       case 'lg': {
         return (
-          <Title variant='headingXl' truncate truncateLines={2} lineHeightScale='5'>
+          <Title variant='headingXl' truncate truncateLines={2} lineHeightScale='5' className='card-title'>
             {title}
           </Title>
         )
       }
       case 'md': {
         return (
-          <Title variant='headingSm' truncate truncateLines={2} lineHeightScale='2'>
+          <Title variant='headingSm' truncate truncateLines={2} lineHeightScale='2' className='card-title'>
             {title}
           </Title>
         )
@@ -68,13 +70,14 @@ export const CourseCard = ({
           borderColor={colors.card_border}
           borderWidth={borders.width.base}
           borderRadius={borders.radius.large}
+          className={className}
         >
           <StyledCourseImage onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
             <div className='topContainer'>
               <div className='leftContainer'>
                 {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
               </div>
-              <div className='rightContainer'>{rightComponent}</div>
+              <div className={'rightContainer'}>{rightComponent}</div>
             </div>
             <div>
               <div className='bottomContainer'>
@@ -84,7 +87,7 @@ export const CourseCard = ({
                       subtitleComponent ?
                         subtitleComponent :
                         subtitle && (
-                          <Text variant='bodyXs' fontWeight='bold'>
+                          <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
                             {subtitle}
                           </Text>
                         )
@@ -99,7 +102,7 @@ export const CourseCard = ({
             </div>
           </StyledCourseImage>
           <HorizontalStack paddingX={spacing.space_3} paddingY={spacing.space_3}>
-            <Title variant='headingXs' truncate truncateLines={2}>
+            <Title variant='headingXs' truncate truncateLines={2} className='card-title'>
               {title}
             </Title>
           </HorizontalStack>
@@ -109,6 +112,7 @@ export const CourseCard = ({
     default: {
       return (
         <StyledCourseCard
+          className={className}
           onClick={onClick}
           style={{ backgroundImage: `url('${coverImage}')` }}
           size={size}
@@ -128,7 +132,7 @@ export const CourseCard = ({
                     subtitleComponent ?
                       subtitleComponent :
                       subtitle && (
-                        <Text variant='bodyXs' fontWeight='bold'>
+                        <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
                           {subtitle}
                         </Text>
                       )

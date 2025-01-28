@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, HTMLAttributes } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import styled, { css } from 'styled-components'
 import { SpaceProps, space } from 'styled-system'
@@ -43,11 +43,14 @@ export type TitleProps = {
   variant: Variant
   /** Id used for tests */
   testid?: string
+  /** HTML class attribute */
+  className?: string
 }
 
 export function Title({
   alignment,
   children,
+  className,
   color,
   fontWeight,
   id,
@@ -55,7 +58,7 @@ export function Title({
   variant,
   testid,
   ...props
-}: TitleProps & SpaceProps) {
+}: TitleProps & SpaceProps & HTMLAttributes<HTMLElement>) {
   const element: Element = getElement({ variant })
 
   return (
@@ -68,6 +71,7 @@ export function Title({
       color={color ?? 'primary'}
       fontWeight={fontWeight}
       data-testid={testid}
+      className={className}
       {...props}
     >
       {children}

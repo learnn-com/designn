@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 import { undefinedAsFalse } from '../utils/props'
 import { ColorTextAlias } from '../theme/tokens/colors'
 import { Color } from '../utils/colors'
@@ -41,6 +41,8 @@ export type TextProps = {
   inline?: boolean
   /** Id used for tests */
   testid?: string
+  /** HTML class attribute */
+  className?: string
 }
 
 export function Text({
@@ -55,8 +57,9 @@ export function Text({
   inline,
   as,
   testid,
+  className,
   ...props
-}: TextProps & WidthProps & HeightProps & SpaceProps) {
+}: TextProps & WidthProps & HeightProps & SpaceProps & HTMLAttributes<HTMLElement>) {
   const element: Element = as || (inline ? 'span' : 'p')
 
   return (
@@ -70,6 +73,7 @@ export function Text({
       color={color ?? 'primary'}
       textColor={textColor}
       data-testid={testid}
+      className={className}
       {...props}
     >
       {children}
