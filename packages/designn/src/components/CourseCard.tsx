@@ -3,9 +3,7 @@ import styled from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
 import { ProgressBar } from './ProgressBar'
-import { HTMLAttributes, MouseEventHandler } from 'react'
 import { useTheme } from 'styled-components'
-import { VerticalStack } from './VerticalStack'
 import { HorizontalStack } from './HorizontalStack'
 
 export type CourseCardProps = {
@@ -15,7 +13,7 @@ export type CourseCardProps = {
   subtitle?: string
   subtitleComponent?: JSX.Element
   buttons?: JSX.Element
-  onClick?: MouseEventHandler<HTMLDivElement>
+  onClick?: Function
   progressPercentage?: number
   hideProgressBar?: boolean
   rightComponent?: JSX.Element
@@ -38,8 +36,8 @@ export const CourseCard = ({
   size = 'lg',
   variant = 'fullImage',
   className = 'card-course',
-}: CourseCardProps & SpaceProps & LayoutProps & HTMLAttributes<HTMLElement>) => {
-  const { colors, borders, spacing } = useTheme()
+}: CourseCardProps & SpaceProps & LayoutProps) => {
+  const { spacing } = useTheme()
 
   const renderTitle = () => {
     switch (size) {
@@ -64,22 +62,20 @@ export const CourseCard = ({
   switch (variant) {
     case 'longTitle':
       return (
-        <VerticalStack
-          bg={colors.card_background}
-          onClick={onClick}
-          borderColor={colors.card_border}
-          borderWidth={borders.width.base}
-          borderRadius={borders.radius.large}
+        <StyledCourseCard
+          onClick={() => onClick?.()}
+          style={{ backgroundImage: `url('${coverImage}')` }}
+          size={size}
           className={className}
         >
-          <StyledCourseImage onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
+          <StyledCourseImage style={{ backgroundImage: `url('${coverImage}')` }}>
             <div className='topContainer'>
               <div className='leftContainer'>
                 {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
               </div>
               <div className={'rightContainer'}>{rightComponent}</div>
             </div>
-            <div>
+            <div style={{ width: '100%' }}>
               <div className='bottomContainer'>
                 <div className='details'>
                   <div className='subtitleContainer'>
@@ -106,14 +102,14 @@ export const CourseCard = ({
               {title}
             </Title>
           </HorizontalStack>
-        </VerticalStack>
+        </StyledCourseCard>
       )
 
     default: {
       return (
         <StyledCourseCard
+          onClick={() => onClick?.()}
           className={className}
-          onClick={onClick}
           style={{ backgroundImage: `url('${coverImage}')` }}
           size={size}
         >
@@ -123,7 +119,7 @@ export const CourseCard = ({
             </div>
             <div className='rightContainer'>{rightComponent}</div>
           </div>
-          <div>
+          <div style={{ width: '100%' }}>
             <div className='bottomContainer'>
               <div className='details'>
                 {renderTitle()}
@@ -253,7 +249,7 @@ const StyledCourseImage = styled.div`
   }
 `
 
-const StyledCourseCard = styled.div<{ size?: 'lg' | 'md'; pro?: boolean }>`
+const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean }>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -264,6 +260,8 @@ const StyledCourseCard = styled.div<{ size?: 'lg' | 'md'; pro?: boolean }>`
   overflow: hidden;
   border-radius: ${p => p.theme.borders.radius.large};
   height: 100%;
+  width: 100%;
+  border: none;
   aspect-ratio: ${p => (p.size === 'md' ? '7/5' : '5/4')};
 
   &:before {
