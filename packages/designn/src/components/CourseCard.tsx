@@ -71,7 +71,7 @@ export const CourseCard = ({
           <StyledCourseImage style={{ backgroundImage: `url('${coverImage}')` }}>
             <div className='topContainer'>
               <div className='leftContainer'>
-                {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Company logo' /> : null}
+                {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Logo azienda' /> : null}
               </div>
               <div className={'rightContainer'}>{rightComponent}</div>
             </div>
@@ -115,7 +115,7 @@ export const CourseCard = ({
         >
           <div className='topContainer'>
             <div className='leftContainer'>
-              {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Company logo' /> : null}
+              {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Logo azienda' /> : null}
             </div>
             <div className='rightContainer'>{rightComponent}</div>
           </div>
