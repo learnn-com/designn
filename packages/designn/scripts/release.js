@@ -6,6 +6,21 @@ const versionType = args[0] || "patch"; // Accepts "patch", "minor", "major" or 
 
 console.log(`Releasing new ${versionType} version...`);
 
+function isWorkingDirectoryClean() {
+  try {
+    const status = execSync("git status --porcelain").toString().trim();
+    return status === "";
+  } catch (error) {
+    console.error("Error checking git status:", error);
+    return false;
+  }
+}
+
+if (!isWorkingDirectoryClean()) {
+  console.error("Working directory is not clean. Please commit or stash your changes before releasing.");
+  process.exit(1);
+}
+
 try {
   execSync(`pnpm version ${versionType} --no-git-tag-version`, { stdio: "inherit" });
 
@@ -21,7 +36,7 @@ try {
 
   console.log(`Git tag v${newVersion} pushed.`);
 
-  execSync(`pnpm publish --access public`, { stdio: "inherit" });
+  execSync(`bash .github/scripts/publish-package.sh`, { stdio: "inherit" });
 
   console.log(`Package v${newVersion} published successfully.`);
 } catch (error) {
