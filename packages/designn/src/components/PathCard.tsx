@@ -2,11 +2,10 @@ import { LayoutProps, SpaceProps } from 'styled-system'
 import styled, { useTheme } from 'styled-components'
 import { ProgressBar } from './ProgressBar'
 import { Text } from './Text'
-import { MouseEventHandler } from 'react'
 
 export type PathCardProps = {
   coverImage: string
-  onClick?: MouseEventHandler<HTMLDivElement>
+  onClick?: Function
   subtitle?: string
   progressPercentage?: number
   hideProgressBar?: boolean
@@ -24,7 +23,7 @@ export const PathCard = ({
   const {  } = useTheme()
 
   return (
-    <StyledPathCard size={size} onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
+    <StyledPathCard size={size} onClick={() => onClick?.()} style={{ backgroundImage: `url('${coverImage}')` }}>
       <div className='topContainer'>
       </div>
       <div>
@@ -48,7 +47,7 @@ export const PathCard = ({
   )
 }
 
-const StyledPathCard = styled.div<{size?: "md" | "lg" | "sm"}>`
+const StyledPathCard = styled.button<{size?: "md" | "lg" | "sm"}>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -59,6 +58,8 @@ const StyledPathCard = styled.div<{size?: "md" | "lg" | "sm"}>`
   overflow: hidden;
   border-radius: ${p => p.theme.borders.radius.large};
   height: 100%;
+  width: 100%;
+  border: none;
   aspect-ratio: ${p => p.size === 'md' ? '7/5' : '5/4'};
 
   :hover {

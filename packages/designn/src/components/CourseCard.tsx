@@ -3,9 +3,7 @@ import styled from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
 import { ProgressBar } from './ProgressBar'
-import { HTMLAttributes, MouseEventHandler } from 'react'
 import { useTheme } from 'styled-components'
-import { VerticalStack } from './VerticalStack'
 import { HorizontalStack } from './HorizontalStack'
 
 export type CourseCardProps = {
@@ -15,7 +13,7 @@ export type CourseCardProps = {
   subtitle?: string
   subtitleComponent?: JSX.Element
   buttons?: JSX.Element
-  onClick?: MouseEventHandler<HTMLDivElement>
+  onClick?: Function
   progressPercentage?: number
   hideProgressBar?: boolean
   rightComponent?: JSX.Element
@@ -38,8 +36,8 @@ export const CourseCard = ({
   size = 'lg',
   variant = 'fullImage',
   className = 'card-course',
-}: CourseCardProps & SpaceProps & LayoutProps & HTMLAttributes<HTMLElement>) => {
-  const { colors, borders, spacing } = useTheme()
+}: CourseCardProps & SpaceProps & LayoutProps) => {
+  const { spacing } = useTheme()
 
   const renderTitle = () => {
     switch (size) {
@@ -64,34 +62,33 @@ export const CourseCard = ({
   switch (variant) {
     case 'longTitle':
       return (
-        <VerticalStack
-          bg={colors.card_background}
-          onClick={onClick}
-          borderColor={colors.card_border}
-          borderWidth={borders.width.base}
-          borderRadius={borders.radius.large}
+        <StyledCourseCard
+          onClick={() => onClick?.()}         
+          size={size}
+          style={{background: '#121214'}}
           className={className}
+          variant={variant}
         >
-          <StyledCourseImage onClick={onClick} style={{ backgroundImage: `url('${coverImage}')` }}>
+          <StyledCourseImage style={{ backgroundImage: `url('${coverImage}')`, width: '100%', height: '100%' }}>
             <div className='topContainer'>
               <div className='leftContainer'>
-                {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
+                {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Logo azienda' /> : null}
               </div>
               <div className={'rightContainer'}>{rightComponent}</div>
             </div>
-            <div>
+            <div style={{ width: '100%' }}>
               <div className='bottomContainer'>
                 <div className='details'>
                   <div className='subtitleContainer'>
                     {
                       subtitleComponent ?
-                        subtitleComponent :
-                        subtitle && (
-                          <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
+                      subtitleComponent :
+                      subtitle && (
+                        <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
                             {subtitle}
                           </Text>
                         )
-                    }
+                      }
                   </div>
                 </div>
                 <div className='buttonsContainer'>{buttons}</div>
@@ -106,24 +103,25 @@ export const CourseCard = ({
               {title}
             </Title>
           </HorizontalStack>
-        </VerticalStack>
+        </StyledCourseCard>
       )
 
     default: {
       return (
         <StyledCourseCard
+          onClick={() => onClick?.()}
           className={className}
-          onClick={onClick}
           style={{ backgroundImage: `url('${coverImage}')` }}
           size={size}
+          variant={variant}
         >
           <div className='topContainer'>
             <div className='leftContainer'>
-              {companyLogo ? <img className='badgeImage' src={companyLogo} /> : null}
+              {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Logo azienda' /> : null}
             </div>
             <div className='rightContainer'>{rightComponent}</div>
           </div>
-          <div>
+          <div style={{ width: '100%' }}>
             <div className='bottomContainer'>
               <div className='details'>
                 {renderTitle()}
@@ -161,6 +159,7 @@ const StyledCourseImage = styled.div`
   border-top-left-radius: ${p => p.theme.borders.radius.large};
   border-top-right-radius: ${p => p.theme.borders.radius.large};
   width: 100%;
+  height: 100%;
   aspect-ratio: 5/3;
 
   &:before {
@@ -253,7 +252,7 @@ const StyledCourseImage = styled.div`
   }
 `
 
-const StyledCourseCard = styled.div<{ size?: 'lg' | 'md'; pro?: boolean }>`
+const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean; variant?: 'fullImage' | 'longTitle' }>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -264,7 +263,10 @@ const StyledCourseCard = styled.div<{ size?: 'lg' | 'md'; pro?: boolean }>`
   overflow: hidden;
   border-radius: ${p => p.theme.borders.radius.large};
   height: 100%;
+  width: 100%;
+  border: none;
   aspect-ratio: ${p => (p.size === 'md' ? '7/5' : '5/4')};
+  padding: 0;
 
   &:before {
     content: '';
@@ -276,6 +278,7 @@ const StyledCourseCard = styled.div<{ size?: 'lg' | 'md'; pro?: boolean }>`
     z-index: 0;
     bottom: 0;
     left: 0;
+    display: ${p => (p.variant === 'longTitle' ? 'none' : 'block')};
   }
 
   &:hover {

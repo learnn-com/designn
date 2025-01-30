@@ -149,6 +149,35 @@ export const LiveContentPro = bind(
 )
 LiveContentPro.storyName = 'Medium size Course Card for live content and pro'
 
+export const CardWithNoVariant = bind(
+  <AppShell theme={defaultTheme}>
+    <HorizontalStack gap='25px' style={{ width: '600px' }}>
+      <CourseCard
+        title={TITLE}
+        subtitle={SUBTITLE}
+        coverImage={COVER_IMAGE}
+        progressPercentage={PROGRESS}
+        size='md'
+        companyLogo={COMPANY_LOGO}
+      />
+      <CourseCard
+        title={TITLE}
+        subtitle={SUBTITLE}
+        coverImage={DOUBLE_COVER_IMAGE}
+        progressPercentage={PROGRESS}
+        size='md'
+        companyLogo={COMPANY_LOGO}
+        rightComponent={
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+            <Badge body='Pro' variant='contained' squareBorder={false} />
+          </div>
+        }
+      />
+    </HorizontalStack>
+  </AppShell>,
+)
+CardWithNoVariant.storyName = 'No variant course card stack'
+
 export const LongTitle = bind(
   <AppShell theme={defaultTheme}>
     <HorizontalStack gap='25px' style={{ width: '600px' }}>
@@ -176,4 +205,4 @@ export const LongTitle = bind(
     </HorizontalStack>
   </AppShell>,
 )
-LongTitle.storyName = 'LongTitle variant course card'
+LongTitle.storyName = 'LongTitle variant course card stack'
