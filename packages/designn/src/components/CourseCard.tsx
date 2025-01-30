@@ -63,12 +63,13 @@ export const CourseCard = ({
     case 'longTitle':
       return (
         <StyledCourseCard
-          onClick={() => onClick?.()}
-          style={{ backgroundImage: `url('${coverImage}')` }}
+          onClick={() => onClick?.()}         
           size={size}
+          style={{background: '#121214'}}
           className={className}
+          variant={variant}
         >
-          <StyledCourseImage style={{ backgroundImage: `url('${coverImage}')` }}>
+          <StyledCourseImage style={{ backgroundImage: `url('${coverImage}')`, width: '100%', height: '100%' }}>
             <div className='topContainer'>
               <div className='leftContainer'>
                 {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Logo azienda' /> : null}
@@ -81,13 +82,13 @@ export const CourseCard = ({
                   <div className='subtitleContainer'>
                     {
                       subtitleComponent ?
-                        subtitleComponent :
-                        subtitle && (
-                          <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
+                      subtitleComponent :
+                      subtitle && (
+                        <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
                             {subtitle}
                           </Text>
                         )
-                    }
+                      }
                   </div>
                 </div>
                 <div className='buttonsContainer'>{buttons}</div>
@@ -112,6 +113,7 @@ export const CourseCard = ({
           className={className}
           style={{ backgroundImage: `url('${coverImage}')` }}
           size={size}
+          variant={variant}
         >
           <div className='topContainer'>
             <div className='leftContainer'>
@@ -157,6 +159,7 @@ const StyledCourseImage = styled.div`
   border-top-left-radius: ${p => p.theme.borders.radius.large};
   border-top-right-radius: ${p => p.theme.borders.radius.large};
   width: 100%;
+  height: 100%;
   aspect-ratio: 5/3;
 
   &:before {
@@ -249,7 +252,7 @@ const StyledCourseImage = styled.div`
   }
 `
 
-const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean }>`
+const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean; variant?: 'fullImage' | 'longTitle' }>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -263,6 +266,7 @@ const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean }>`
   width: 100%;
   border: none;
   aspect-ratio: ${p => (p.size === 'md' ? '7/5' : '5/4')};
+  padding: 0;
 
   &:before {
     content: '';
@@ -274,6 +278,7 @@ const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean }>`
     z-index: 0;
     bottom: 0;
     left: 0;
+    display: ${p => (p.variant === 'longTitle' ? 'none' : 'block')};
   }
 
   &:hover {
