@@ -1,6 +1,6 @@
 import { faBlog, faBookBookmark, faClock, faClockFour } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AppShell, Badge, HorizontalStack, PathCard, VerticalStack, defaultTheme } from '@learnn/designn'
+import { AppShell, Badge, HorizontalStack, PathCard, VerticalStack,Text, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -19,7 +19,7 @@ function bind(node: JSX.Element) {
 
 export const Standard = bind(
   <AppShell theme={defaultTheme}>
-    <div style={{ display: 'flex', height: '250px' }}>
+    <div style={{ display: 'flex', height: '250px', width: '250px' }}>
       <PathCard
         coverImage={COVER_IMAGE}
         subtitle={SUBTITLE}
@@ -31,7 +31,7 @@ Standard.storyName = 'Path Card'
 
 export const Medium = bind(
   <AppShell theme={defaultTheme}>
-    <div style={{ display: 'flex', height: '200px' }}>
+    <div style={{ display: 'flex', height: '200px', width: '250px' }}>
       <PathCard
         coverImage={COVER_IMAGE}
         subtitle={SUBTITLE}
@@ -45,7 +45,7 @@ Medium.storyName = 'Medium size Path Card'
 
 export const Small = bind(
   <AppShell theme={defaultTheme}>
-    <div style={{ display: 'flex', height: '200px' }}>
+    <div style={{ display: 'flex', height: '200px', width: '250px' }}>
       <PathCard
         coverImage={COVER_IMAGE}
         subtitle={SUBTITLE}
@@ -55,3 +55,20 @@ export const Small = bind(
   </AppShell>,
 )
 Small.storyName = 'Small size Path Card'
+
+export const SmallWithComponent = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ display: 'flex', height: '200px', width: '250px' }}>
+      <PathCard
+        coverImage={COVER_IMAGE}
+        subtitleComponent={
+          <HorizontalStack alignItems='center'>
+            <Badge body='component' variant='outlined' />
+          </HorizontalStack>
+        }
+        size='sm'
+      />
+    </div>
+  </AppShell>,
+)
+SmallWithComponent.storyName = 'Small size Path Card with subtitle component'

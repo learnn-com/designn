@@ -7,6 +7,7 @@ export type PathCardProps = {
   coverImage: string
   onClick?: Function
   subtitle?: string
+  subtitleComponent?: string
   progressPercentage?: number
   hideProgressBar?: boolean
   size?: "lg" | "md" | "sm"
@@ -16,6 +17,7 @@ export const PathCard = ({
   coverImage,
   onClick,
   subtitle,
+  subtitleComponent,
   progressPercentage,
   hideProgressBar,
   size = "lg"
@@ -29,7 +31,7 @@ export const PathCard = ({
       <div>
         <div className='bottomContainer'>
           <div className='details'>
-            {subtitle && (
+            {subtitleComponent ? subtitleComponent : subtitle && (
               <Text
                 variant={
                   size === 'md' ? 'bodyXs' : size === 'lg' ? 'bodySm' : 'bodyXxxs'
