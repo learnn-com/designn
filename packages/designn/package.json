@@ -1,6 +1,6 @@
 {
   "name": "@learnn/designn",
-  "version": "0.1.3",
+  "version": "0.1.9",
   "description": "",
   "license": "MIT",
   "main": "build/index.js",
@@ -26,7 +26,8 @@
     "prepublish": "pnpm test && pnpm build",
     "test": "jest",
     "lint-staged": "lint-staged",
-    "start": "tsup --watch"
+    "start": "tsup --watch",
+    "release": "node scripts/release.js"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
@@ -65,7 +66,8 @@
     "lint-staged": "13.1.2",
     "ts-jest": "29.0.5",
     "tsup": "6.5.0",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "@types/node": "^18.0.0"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0"
