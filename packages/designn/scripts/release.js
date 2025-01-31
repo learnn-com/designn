@@ -36,9 +36,6 @@ try {
 
   console.log(`Git tag v${newVersion} pushed.`);
 
-  execSync(`bash ../../.github/scripts/publish-package.sh`, { stdio: "inherit" });
-
-  console.log(`Package v${newVersion} published successfully.`);
 } catch (error) {
   console.error("Release failed:", error instanceof Error ? error.message : error);
   process.exit(1);
