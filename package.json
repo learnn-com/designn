@@ -13,7 +13,8 @@
     "test": "turbo run test",
     "lint-staged": "turbo run lint-staged --concurrency=1",
     "eslint-check": "turbo run eslint-check",
-    "node:version": "node --version"
+    "node:version": "node --version",
+    "release": "cd packages/designn && node scripts/release.js"
   },
   "devDependencies": {
     "@pnpm/merge-lockfile-changes": "4.0.3",

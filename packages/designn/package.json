@@ -26,8 +26,7 @@
     "prepublish": "pnpm test && pnpm build",
     "test": "jest",
     "lint-staged": "lint-staged",
-    "start": "tsup --watch",
-    "release": "node scripts/release.js"
+    "start": "tsup --watch"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
