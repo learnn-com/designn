@@ -45,7 +45,7 @@ Medium.storyName = 'Medium size Path Card'
 
 export const Small = bind(
   <AppShell theme={defaultTheme}>
-    <div style={{ display: 'flex', height: '200px', width: '250px' }}>
+    <div style={{ display: 'flex', height: '200px', width: '270px' }}>
       <PathCard
         coverImage={COVER_IMAGE}
         subtitle={SUBTITLE}

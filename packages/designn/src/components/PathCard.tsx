@@ -28,7 +28,7 @@ export const PathCard = ({
     <StyledPathCard size={size} onClick={() => onClick?.()} style={{ backgroundImage: `url('${coverImage}')` }}>
       <div className='topContainer'>
       </div>
-      <div>
+      <div style={{width: '100%'}}>
         <div className='bottomContainer'>
           <div className='details'>
             {subtitleComponent ? subtitleComponent : subtitle && (
