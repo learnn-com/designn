@@ -200,12 +200,12 @@ const StyledCourseImage = styled.div`
 
     .leftContainer {
       display: flex;
-      flex: 1;
+      flex: 0 0 40%;
       justify-content: flex-start;
     }
     .rightContainer {
       display: flex;
-      flex: 1;
+      flex: 0 0 60%;
       justify-content: flex-end;
     }
   }
@@ -314,12 +314,12 @@ const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean; vari
 
     .leftContainer {
       display: flex;
-      flex: 1;
+      flex: 0 0 40%;
       justify-content: flex-start;
     }
     .rightContainer {
       display: flex;
-      flex: 1;
+      flex: 0 0 60%;
       justify-content: flex-end;
     }
   }

@@ -1,6 +1,6 @@
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AppShell, Badge, CourseCard, defaultTheme, HorizontalStack } from '@learnn/designn'
+import { AppShell, Badge, CourseCard, defaultTheme, HorizontalStack, VerticalStack } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -206,3 +206,58 @@ export const LongTitle = bind(
   </AppShell>,
 )
 LongTitle.storyName = 'LongTitle variant course card stack'
+
+export const ShortCardWithBadges = bind(
+  <AppShell theme={defaultTheme}>
+    <VerticalStack gap='25px'>
+
+      <HorizontalStack gap='25px' style={{ width: '220px' }}>
+        <CourseCard
+          title={TITLE}
+          subtitle={SUBTITLE}
+          coverImage={DOUBLE_COVER_IMAGE}
+          progressPercentage={PROGRESS}
+          variant='longTitle'
+          companyLogo={COMPANY_LOGO}
+          size='md'
+          rightComponent={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <Badge body='🚨 Rimozione' variant='contained' squareBorder={false}/>
+            </div>
+          }
+          />
+      </HorizontalStack>
+      <HorizontalStack gap='25px' style={{ width: '300px' }}>
+        <CourseCard
+          title={TITLE}
+          subtitle={SUBTITLE}
+          coverImage={DOUBLE_COVER_IMAGE}
+          progressPercentage={PROGRESS}
+          variant='longTitle'
+          companyLogo={COMPANY_LOGO}
+          rightComponent={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <Badge body='🚨 Rimozione aa' variant='contained' squareBorder={false} />
+            </div>
+          }
+          />
+      </HorizontalStack>
+      <HorizontalStack gap='25px' style={{ width: '350px' }}>
+        <CourseCard
+          title={TITLE}
+          subtitle={SUBTITLE}
+          coverImage={DOUBLE_COVER_IMAGE}
+          progressPercentage={PROGRESS}
+          variant='longTitle'
+          companyLogo={COMPANY_LOGO}
+          rightComponent={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <Badge body='🚨 Rimozione aa' variant='contained' squareBorder={false} />
+            </div>
+          }
+          />
+      </HorizontalStack>
+    </VerticalStack>
+  </AppShell>,
+)
+ShortCardWithBadges.storyName = 'Short card with badges'
