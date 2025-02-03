@@ -186,6 +186,8 @@ const StyledCourseImage = styled.div`
 
   .topContainer {
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
     padding: ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_3} 0
       ${p => p.theme.spacing.space_3};
     display: flex;
@@ -293,6 +295,8 @@ const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean; vari
 
   .topContainer {
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
     padding: ${p =>
     p.size === 'md'
       ? `${p.theme.spacing.space_3} ${p.theme.spacing.space_3} 0
