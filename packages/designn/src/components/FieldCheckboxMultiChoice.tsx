@@ -33,10 +33,8 @@ export const FieldCheckboxMultiChoice: FC<FieldCheckboxMultiChoiceProps> = ({
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 if (e.target.checked) {
                   onChange([...value, e.target.id])
-                  console.log('add')
                 } else {
                   onChange(value.filter(x => x !== e.target.id))
-                  console.log('remove')
                 }
               }}
               label={item.label}
