@@ -172,6 +172,7 @@ const Component = styled.button<
   }}
 
   .icon {
+    color: inherit;
     ${p => {
       if (p.label) {
         if (p.iconPosition === 'left') return `margin-right: ${p.theme.spacing.space_2};`

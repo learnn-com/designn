@@ -67,20 +67,18 @@ export const ActiveTag = ({
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <HorizontalStack justifyContent='center' alignItems='center'>
-            <div className='circle'>
-              {isSelected ? (
-                isHovered ? (
-                  <FontAwesomeIcon icon={faClose} color='#fff' />
-                ) : (
-                  <FontAwesomeIcon icon={faCheck} color='#fff' />
-                )
+          <div className='circle'>
+            {isSelected ? (
+              isHovered ? (
+                <FontAwesomeIcon icon={faClose} color='#fff' />
               ) : (
-                <></>
-              )}
-            </div>
-            <span className='text'>{body}</span>
-          </HorizontalStack>
+                <FontAwesomeIcon icon={faCheck} color='#fff' />
+              )
+            ) : (
+              <></>
+            )}
+          </div>
+          <span className='text'>{body}</span>
         </SelectTag>
       )
   }
@@ -88,6 +86,9 @@ export const ActiveTag = ({
 
 const SelectTag = styled.button<{ selected?: boolean } & SpaceProps & LayoutProps>`
   background-color: ${p => p.theme.colors.interaction_background.secondary_active};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-style: solid;
   border-width: ${p => p.theme.borders.width.base};
   border-color: ${p => p.theme.colors.interaction_outline.secondary_active};
