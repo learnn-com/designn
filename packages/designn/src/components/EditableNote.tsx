@@ -1,7 +1,6 @@
 import { LayoutProps, SpaceProps } from 'styled-system'
 import { HorizontalStack } from './HorizontalStack'
 import { Title } from './Title'
-import { Text } from './Text'
 import { VerticalStack } from './VerticalStack'
 import { useTheme } from 'styled-components'
 import { ReactNode, useState } from 'react'
@@ -15,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { TextArea } from './TextArea'
 import { Share } from '../icons/Share'
+import { Markdown, Size } from './Markdown'
 
 export type EditableNoteProps = {
   title: string
@@ -61,15 +61,13 @@ export const EditableNote = ({
               <HorizontalStack>{headerRight}</HorizontalStack>
             </HorizontalStack>
             {status === 'show' ? (
-              <Text
-                variant='bodySm'
-                fontWeight='light'
-                lineHeightScale='3'
-                color='secondary'
+              <Markdown
+                size={'sm' as Size}    
                 mt={spacing.space_6}
+                color='secondary'
               >
                 {body}
-              </Text>
+              </Markdown>
             ) : (
               <TextArea
                 mt={spacing.space_6}
@@ -150,15 +148,12 @@ export const EditableNote = ({
           flex={1}
         >
           {status === 'show' ? (
-            <Text
-              variant='bodySm'
-              fontWeight='regular'
-              color='secondary'
-              mb={spacing.space_6}
-              lineHeightScale='3'
+            <Markdown
+              size={'sm' as Size} 
+              color='secondary'   
             >
               {body}
-            </Text>
+            </Markdown>
           ) : (
             <TextArea
               mb={spacing.space_6}

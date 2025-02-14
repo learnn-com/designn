@@ -11,7 +11,8 @@ import styled from 'styled-components'
 import { Box } from './Box'
 import ReactMarkdown from 'react-markdown'
 
-type Size = 'sm' | 'md' | 'lg'
+export type Size = 'sm' | 'md' | 'lg'
+export type ColorVariants = 'primary' | 'secondary'
 
 type MarkdownOverrides = {
   reactMarkdownProps?: ReactMarkdown.ReactMarkdownPropsBase
@@ -22,6 +23,8 @@ export type MarkdownProps = {
   children: string
   /** Component size */
   size?: Size
+  /** Component size */
+  color?: ColorVariants
   /** Markdown Overrides */
   overrides?: MarkdownOverrides
   /** If the regex matches one of the links, opens it in the same tab */
@@ -72,7 +75,7 @@ export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrls
 }
 
 export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProps>`
-  color: ${p => p.theme.colors.text.base};
+  color: ${p => p.theme.colors.text[p.color === 'secondary' ? 'secondary' : 'base']};
   font-weight: ${p => p.theme.typography.font_weight_regular};
   ${p => {
     if (p.size === 'lg') {
