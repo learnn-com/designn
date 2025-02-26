@@ -7,10 +7,11 @@ export type PathCardProps = {
   coverImage: string
   onClick?: Function
   subtitle?: string
-  subtitleComponent?: string
+  subtitleComponent?: JSX.Element
+  topComponent?: JSX.Element
   progressPercentage?: number
   hideProgressBar?: boolean
-  size?: "lg" | "md" | "sm"
+  size?: 'lg' | 'md' | 'sm'
 }
 
 export const PathCard = ({
@@ -18,38 +19,42 @@ export const PathCard = ({
   onClick,
   subtitle,
   subtitleComponent,
+  topComponent,
   progressPercentage,
   hideProgressBar,
-  size = "lg"
+  size = 'lg',
 }: PathCardProps & SpaceProps & LayoutProps) => {
-  const {  } = useTheme()
+  const {} = useTheme()
 
   return (
-    <StyledPathCard size={size} onClick={() => onClick?.()} style={{ backgroundImage: `url('${coverImage}')` }}>
-      <div className='topContainer'>
-      </div>
-      <div style={{width: '100%'}}>
+    <StyledPathCard
+      size={size}
+      onClick={() => onClick?.()}
+      style={{ backgroundImage: `url('${coverImage}')` }}
+    >
+      <div className='topContainer'>{topComponent ? topComponent : <></>}</div>
+      <div style={{ width: '100%' }}>
         <div className='bottomContainer'>
           <div className='details'>
-            {subtitleComponent ? subtitleComponent : subtitle && (
-              <Text
-                variant={
-                  size === 'md' ? 'bodyXs' : size === 'lg' ? 'bodySm' : 'bodyXxxs'
-                }
-                fontWeight='bold'
-              >
-                {subtitle}
-              </Text>
-            )}
+            {subtitleComponent
+              ? subtitleComponent
+              : subtitle && (
+                  <Text
+                    variant={size === 'md' ? 'bodyXs' : size === 'lg' ? 'bodySm' : 'bodyXxxs'}
+                    fontWeight='bold'
+                  >
+                    {subtitle}
+                  </Text>
+                )}
           </div>
         </div>
-        { !hideProgressBar && <ProgressBar percentage={progressPercentage} transition={true}/>}
+        {!hideProgressBar && <ProgressBar percentage={progressPercentage} transition={true} />}
       </div>
     </StyledPathCard>
   )
 }
 
-const StyledPathCard = styled.button<{size?: "md" | "lg" | "sm"}>`
+const StyledPathCard = styled.button<{ size?: 'md' | 'lg' | 'sm' }>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -62,7 +67,8 @@ const StyledPathCard = styled.button<{size?: "md" | "lg" | "sm"}>`
   height: 100%;
   width: 100%;
   border: none;
-  aspect-ratio: ${p => p.size === 'md' ? '7/5' : '5/4'};
+  aspect-ratio: ${p => (p.size === 'md' ? '7/5' : '5/4')};
+  padding: 0;
 
   :hover {
     cursor: pointer;
@@ -75,28 +81,17 @@ const StyledPathCard = styled.button<{size?: "md" | "lg" | "sm"}>`
   }
   .topContainer {
     position: relative;
-    padding: ${p => p.theme.spacing.space_5};
+    padding: ${p => (p.size === 'sm' ? p.theme.spacing.space_4 : p.theme.spacing.space_5)};
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-
-    .leftContainer {
-      display: flex;
-      flex: 1;
-      justify-content: flex-start;
-    }
-    .rightContainer {
-      display: flex;
-      flex: 1;
-      justify-content: flex-end;
-    }
   }
 
   .bottomContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: ${p => p.size === "sm" ? p.theme.spacing.space_4 : p.theme.spacing.space_5};
+    padding: ${p => (p.size === 'sm' ? p.theme.spacing.space_4 : p.theme.spacing.space_5)};
     position: relative;
   }
 
@@ -109,7 +104,7 @@ const StyledPathCard = styled.button<{size?: "md" | "lg" | "sm"}>`
     max-width: 85%;
 
     ${p => p.theme.responsive.small_down} {
-      display: none
+      display: none;
     }
   }
   .title {
