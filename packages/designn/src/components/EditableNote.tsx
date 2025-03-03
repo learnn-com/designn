@@ -21,6 +21,7 @@ export type EditableNoteProps = {
   body: string
   variant?: 'full' | 'small'
   headerRight?: ReactNode
+  maxLinesToShow?: number
   onDeleteClick: () => void
   onShareClick?: () => void
   onEditClick: (newNoteValue: string) => Promise<void>
@@ -30,6 +31,7 @@ export const EditableNote = ({
   title,
   body,
   headerRight,
+  maxLinesToShow,
   onDeleteClick,
   onEditClick,
   onShareClick,
@@ -61,13 +63,15 @@ export const EditableNote = ({
               <HorizontalStack>{headerRight}</HorizontalStack>
             </HorizontalStack>
             {status === 'show' ? (
-              <Markdown
-                size={'sm' as Size}    
-                mt={spacing.space_6}
-                color='secondary'
-              >
-                {body}
-              </Markdown>
+              <div style={maxLinesToShow ? { textOverflow: 'ellipsis', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: maxLinesToShow, WebkitBoxOrient: 'vertical' } : {}}>
+                <Markdown
+                  size={'sm' as Size}    
+                  mt={spacing.space_6}
+                  color='secondary'
+                  >
+                  {body}
+                </Markdown>
+              </div>
             ) : (
               <TextArea
                 mt={spacing.space_6}
@@ -148,12 +152,14 @@ export const EditableNote = ({
           flex={1}
         >
           {status === 'show' ? (
-            <Markdown
-              size={'sm' as Size} 
-              color='secondary'   
-            >
-              {body}
-            </Markdown>
+            <div style={maxLinesToShow ? { textOverflow: 'ellipsis', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: maxLinesToShow, WebkitBoxOrient: 'vertical' } : {}}>
+              <Markdown
+                size={'sm' as Size} 
+                color='secondary'   
+                >
+                {body}
+              </Markdown>
+              </div>
           ) : (
             <TextArea
               mb={spacing.space_6}
