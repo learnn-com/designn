@@ -63,15 +63,14 @@ export const EditableNote = ({
               <HorizontalStack>{headerRight}</HorizontalStack>
             </HorizontalStack>
             {status === 'show' ? (
-              <div style={maxLinesToShow ? { textOverflow: 'ellipsis', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: maxLinesToShow, WebkitBoxOrient: 'vertical' } : {}}>
-                <Markdown
-                  size={'sm' as Size}    
-                  mt={spacing.space_6}
-                  color='secondary'
-                  >
-                  {body}
-                </Markdown>
-              </div>
+              <Markdown
+                size={'sm' as Size}    
+                mt={spacing.space_6}
+                color='secondary'
+                maxLines={maxLinesToShow}
+              >
+                {body}
+              </Markdown>
             ) : (
               <TextArea
                 mt={spacing.space_6}
@@ -152,14 +151,13 @@ export const EditableNote = ({
           flex={1}
         >
           {status === 'show' ? (
-            <div style={maxLinesToShow ? { textOverflow: 'ellipsis', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: maxLinesToShow, WebkitBoxOrient: 'vertical' } : {}}>
-              <Markdown
-                size={'sm' as Size} 
-                color='secondary'   
-                >
-                {body}
-              </Markdown>
-              </div>
+            <Markdown
+              size={'sm' as Size}    
+              color='secondary'
+              maxLines={maxLinesToShow}
+            >
+              {body}
+            </Markdown>
           ) : (
             <TextArea
               mb={spacing.space_6}

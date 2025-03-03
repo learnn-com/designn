@@ -31,6 +31,8 @@ export type MarkdownProps = {
   opensInSameTabRegexes?: string[]
   /** Optionally parse links and modify the url */
   parseUrlsMethod?: (url: string) => string
+  /** Maximum number of lines to show */
+  maxLines?: number
 }
 
 type LinkProps = {
@@ -45,9 +47,9 @@ type LinkProps = {
   };                   
 }
 
-export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
+export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
   return (
-    <StyledMarkdown {...props}>
+    <StyledMarkdown {...props} maxLines={maxLines}>
       <ReactMarkdown
         renderers={{
           link: (props: LinkProps) => {
@@ -74,9 +76,16 @@ export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrls
   )
 }
 
-export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProps>`
+export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProps & { maxLines?: number }>`
   color: ${p => p.theme.colors.text[p.color === 'secondary' ? 'secondary' : 'base']};
   font-weight: ${p => p.theme.typography.font_weight_regular};
+  ${p => p.maxLines && `
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: ${p.maxLines};
+    -webkit-box-orient: vertical;
+  `}
   ${p => {
     if (p.size === 'lg') {
       return `font-size: ${p.theme.typography.font_size_350};
