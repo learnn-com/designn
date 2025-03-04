@@ -178,3 +178,15 @@ export const MarkdownShowListOfLinks = bind(
 )
 
 MarkdownShowListOfLinks.storyName = 'Lists of markdown links'
+
+
+export const MarkdownWithEllipsis = bind(
+  <AppShell theme={defaultTheme}>
+      <div>
+        <Title variant='headingMd'>Truncate after 5 lines</Title>
+        <Markdown maxLines={5}>{AI_TEXT}</Markdown>
+      </div>
+  </AppShell>,
+)
+
+MarkdownShowListOfLinks.storyName = 'Lists of markdown links'

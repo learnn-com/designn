@@ -15,6 +15,9 @@ const BODY =
 const BODY_MARKDOWN =
   '# Lorem Ipsum\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the **industrys standard dummy text** ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset'
 
+const LONG_BODY =
+  '# Lorem Ipsum\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the **industrys standard dummy text** ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset\n # Lorem Ipsum\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the **industrys standard dummy text** ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset'
+
 function bind(node: JSX.Element) {
   const template: ComponentStory<typeof EditableNote> = () => node
   return template.bind({})
@@ -147,3 +150,79 @@ export const MarkdownNote = bind(
   </AppShell>,
 )
 MarkdownNote.storyName = 'With markdown charachters'
+
+export const MarkdownEllipsisNote = bind(
+  <AppShell theme={defaultTheme}>
+        <div style={{ display: 'flex', marginBottom: '3rem' }}>
+      <EditableNote
+        title={'Full variant'}
+        body={LONG_BODY}
+        onDeleteClick={() => {}}
+        onShareClick={() => {}}
+        onEditClick={() => {
+          return new Promise(resolve => {
+            setTimeout(() => resolve(), 1000)
+          })
+        }}
+        headerRight={
+          <HorizontalStack>
+            <Badge
+              icon={<FontAwesomeIcon icon={faClockFour} style={{ width: '100%' }} color='white' />}
+              body={'26/06/2000'}
+              variant='flat'
+            />
+            <Badge
+              icon={<FontAwesomeIcon icon={faBlog} style={{ width: '100%' }} color='white' />}
+              body={'1 Modulo'}
+              variant='flat'
+            />
+          </HorizontalStack>
+        }
+      />
+    </div>
+    <div style={{ display: 'flex', marginBottom: '3rem' }}>
+      <EditableNote
+        title={'Truncate after 6 lines'}
+        body={LONG_BODY}
+        maxLinesToShow={6}
+        onDeleteClick={() => {}}
+        onShareClick={() => {}}
+        onEditClick={() => {
+          return new Promise(resolve => {
+            setTimeout(() => resolve(), 1000)
+          })
+        }}
+        headerRight={
+          <HorizontalStack>
+            <Badge
+              icon={<FontAwesomeIcon icon={faClockFour} style={{ width: '100%' }} color='white' />}
+              body={'26/06/2000'}
+              variant='flat'
+            />
+            <Badge
+              icon={<FontAwesomeIcon icon={faBlog} style={{ width: '100%' }} color='white' />}
+              body={'1 Modulo'}
+              variant='flat'
+            />
+          </HorizontalStack>
+        }
+      />
+    </div>
+    <div style={{ display: 'flex', width: 500 }}>
+      <EditableNote
+        variant='small'
+        title={'Truncate after 4 lines'}
+        body={LONG_BODY}
+        maxLinesToShow={4}
+        onShareClick={() => {}}
+        onDeleteClick={() => {}}
+        onEditClick={() => {
+          return new Promise(resolve => {
+            setTimeout(() => resolve(), 1000)
+          })
+        }}
+      />
+    </div>
+  </AppShell>,
+)
+MarkdownEllipsisNote.storyName = 'With markdown ellipsis'

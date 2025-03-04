@@ -21,6 +21,7 @@ export type EditableNoteProps = {
   body: string
   variant?: 'full' | 'small'
   headerRight?: ReactNode
+  maxLinesToShow?: number
   onDeleteClick: () => void
   onShareClick?: () => void
   onEditClick: (newNoteValue: string) => Promise<void>
@@ -30,6 +31,7 @@ export const EditableNote = ({
   title,
   body,
   headerRight,
+  maxLinesToShow,
   onDeleteClick,
   onEditClick,
   onShareClick,
@@ -65,6 +67,7 @@ export const EditableNote = ({
                 size={'sm' as Size}    
                 mt={spacing.space_6}
                 color='secondary'
+                maxLines={maxLinesToShow}
               >
                 {body}
               </Markdown>
@@ -149,8 +152,9 @@ export const EditableNote = ({
         >
           {status === 'show' ? (
             <Markdown
-              size={'sm' as Size} 
-              color='secondary'   
+              size={'sm' as Size}    
+              color='secondary'
+              maxLines={maxLinesToShow}
             >
               {body}
             </Markdown>
