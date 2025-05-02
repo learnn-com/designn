@@ -52,8 +52,8 @@ importers:
         specifier: 7.21.4
         version: 7.21.4(@babel/core@7.21.4)
       '@learnn/nn-config-ts':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.4
+        version: 0.0.4
       '@storybook/addon-actions':
         specifier: 6.5.16
         version: 6.5.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -173,8 +173,8 @@ importers:
         specifier: 7.21.4
         version: 7.21.4(@babel/core@7.21.4)
       '@learnn/nn-config-ts':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.4
+        version: 0.0.4
       '@testing-library/dom':
         specifier: 8.20.0
         version: 8.20.0
@@ -1193,8 +1193,8 @@ packages:
   '@learnn/nn-config-prettier@1.0.1':
     resolution: {integrity: sha512-umHcwdVzDlvPtTTp2lifRhqDJDlQmWmmiEs46P9g+q9ze+/6lZKjvc+WhcWEIBeuPCkL6ghtmtgGHogfR9a1Qg==}
 
-  '@learnn/nn-config-ts@0.0.1':
-    resolution: {integrity: sha512-gTBr/mZ1XIi/T9qt9lijwxvT7n+3jdFGQd+qsMjh9Mz0gBziDdHDiX8YnqCPGkqokLdpONqVE3QCrb2tG3Do9g==}
+  '@learnn/nn-config-ts@0.0.4':
+    resolution: {integrity: sha512-qmRKgDzsW5ucgSNGmwpw3lg0At5VpzSIzkiywF6hQp6JDWXosPPqBFYl0xdZWWUvw8ik9p18Y8WG6DsJHFe+8A==}
 
   '@mdx-js/mdx@1.6.22':
     resolution: {integrity: sha512-AMxuLxPz2j5/6TpF/XSdKpQP1NlG0z11dFOlq+2IP/lSgl11GY8ji6S/rgsViN/L0BDvHvUMruRb7ub+24LUYA==}
@@ -8755,7 +8755,7 @@ snapshots:
 
   '@learnn/nn-config-prettier@1.0.1': {}
 
-  '@learnn/nn-config-ts@0.0.1': {}
+  '@learnn/nn-config-ts@0.0.4': {}
 
   '@mdx-js/mdx@1.6.22':
     dependencies:
