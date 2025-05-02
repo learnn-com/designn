@@ -9,13 +9,16 @@ import {
 } from 'styled-system'
 import styled from 'styled-components'
 import { Box } from './Box'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import ReactMarkdown from 'react-markdown'
+import { ReactMarkdownProps } from 'react-markdown/lib/ast-to-react'
 
 export type Size = 'sm' | 'md' | 'lg'
 export type ColorVariants = 'primary' | 'secondary'
 
 type MarkdownOverrides = {
-  reactMarkdownProps?: ReactMarkdown.ReactMarkdownPropsBase
+  reactMarkdownProps?: ReactMarkdownProps
 }
 
 export type MarkdownProps = {
@@ -47,10 +50,17 @@ type LinkProps = {
   };                   
 }
 
+const cleanMarkdownTables = (markdownText: string): string => {
+  return markdownText.replace(/\|\s*\|/g, '|\n|');
+}
+
 export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
   return (
     <StyledMarkdown {...props} maxLines={maxLines}>
       <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        remarkRehypeOptions={{ passThrough: ['link'] }}
         renderers={{
           link: (props: LinkProps) => {
             const url = props.node.url
@@ -70,7 +80,7 @@ export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrls
         }} 
         {...overrides?.reactMarkdownProps}
       >
-        {children}
+        {cleanMarkdownTables(children)}
       </ReactMarkdown>
     </StyledMarkdown>
   )
@@ -86,6 +96,33 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
     -webkit-line-clamp: ${p.maxLines};
     -webkit-box-orient: vertical;
   `}
+  table {
+    border-spacing: 0 !important;
+    border-collapse: collapse !important;
+    border-color: inherit !important;
+    display: block !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: auto !important;
+  }
+  tbody,
+  td,
+  tfoot,
+  th,
+  thead,
+  tr {
+    border-color: white !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+    padding: 0.5rem;
+  }
+  th {
+    font-weight: ${p => p.theme.typography.font_weight_black} !important;
+    font-size: ${p => p.theme.typography.font_size_200} !important;
+    text-align: left !important;
+    background-color: ${p => p.theme.colors.interaction_background.flat_active} !important;
+  }
   ${p => {
     if (p.size === 'lg') {
       return `font-size: ${p.theme.typography.font_size_350};
