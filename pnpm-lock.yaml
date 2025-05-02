@@ -190,9 +190,6 @@ importers:
       '@testing-library/user-event':
         specifier: 14.4.3
         version: 14.4.3(@testing-library/dom@8.20.0)
-      '@types/hast':
-        specifier: ^3.0.4
-        version: 3.0.4
       '@types/jest':
         specifier: 29.5.1
         version: 29.5.1
@@ -208,9 +205,6 @@ importers:
       '@types/testing-library__jest-dom':
         specifier: 5.14.5
         version: 5.14.5
-      '@types/unist':
-        specifier: ^3.0.3
-        version: 3.0.3
       babel-jest:
         specifier: 29.5.0
         version: 29.5.0(@babel/core@7.21.4)
@@ -1853,9 +1847,6 @@ packages:
   '@types/hast@2.3.4':
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
 
-  '@types/hast@3.0.4':
-    resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
-
   '@types/html-minifier-terser@5.1.2':
     resolution: {integrity: sha512-h4lTMgMJctJybDp8CQrxTUiiYmedihHWkjnF/8Pxseu2S6Nlfcy8kwboQ8yejh456rP2yWoEVm1sS/FVsfM48w==}
 
@@ -1975,9 +1966,6 @@ packages:
 
   '@types/unist@2.0.6':
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
-
-  '@types/unist@3.0.3':
-    resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
   '@types/webpack-env@1.18.0':
     resolution: {integrity: sha512-56/MAlX5WMsPVbOg7tAxnYvNYMMWr/QJiIp6BxVSW3JJXUVzzOn64qW8TzQyMSqSUFM2+PVI4aUHcHOzIz/1tg==}
@@ -10130,11 +10118,7 @@ snapshots:
 
   '@types/hast@2.3.4':
     dependencies:
-      '@types/unist': 3.0.3
-
-  '@types/hast@3.0.4':
-    dependencies:
-      '@types/unist': 3.0.3
+      '@types/unist': 2.0.6
 
   '@types/html-minifier-terser@5.1.2': {}
 
@@ -10171,7 +10155,7 @@ snapshots:
 
   '@types/mdast@3.0.11':
     dependencies:
-      '@types/unist': 3.0.3
+      '@types/unist': 2.0.6
 
   '@types/minimatch@5.1.2': {}
 
@@ -10243,8 +10227,6 @@ snapshots:
       source-map: 0.6.1
 
   '@types/unist@2.0.6': {}
-
-  '@types/unist@3.0.3': {}
 
   '@types/webpack-env@1.18.0': {}
 
