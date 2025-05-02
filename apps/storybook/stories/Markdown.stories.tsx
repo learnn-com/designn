@@ -190,3 +190,65 @@ export const MarkdownWithEllipsis = bind(
 )
 
 MarkdownShowListOfLinks.storyName = 'Lists of markdown links'
+
+const TABLE_TEXT = `
+| Header 1 | Header 2 | Header 3 |
+| -------- | -------- | -------- |
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
+`
+
+export const MarkdownWithTable = bind(
+  <AppShell theme={defaultTheme}>
+      <div>
+        <Title variant='headingMd'>Table</Title>
+        <Markdown>{TABLE_TEXT}</Markdown>
+      </div>
+  </AppShell>,
+)
+
+MarkdownWithTable.storyName = 'Markdown with table'
+
+const TABLE_TEXT_BROKEN = `
+Questa era una tabella rotta:
+| Voce | Dettagli | |--------------------------|----------------------------------------------------| | Titolo | Components / Markdown - Markdown with table ⋅ Storybook | | Versione di Storybook| 8.6.12 (la tua versione attuale è 6.5.16) | | Link | Visualizza qui | | Sezioni | BASICS, COMPONENTS, ActiveTag, AuthorCard, Badge, Button, Checkbox, CircularButton, Container, CourseCard, Dropdown, EditableNote, Expert Card, FeatureCard, FieldCheckboxMultiChoice, FieldProfileImage, FieldTagsInput, HorizontalScroll, LearningListItem, LocationAutocomplete, Markdown, StandardMarkdown large size, List of links, Standard Markdown Lg, AIMarkdown, Different Markdown Sizes, Different Markdown Opening links, Lists of markdown links, Markdown With Ellipsis, Markdown with table, PathCard, ProgressBar, SuggestionInput, Text, TextArea, TextInput, Title, ToggleSwitch, Tooltip, CanvasDocs || Titolo | Components / Markdown - Markdown with table ⋅ Storybook | | Versione di Storybook| 8.6.12 (la tua versione attuale è 6.5.16) | | Link | Visualizza qui | | Sezioni | BASICS, COMPONENTS, ActiveTag, AuthorCard, Badge, Button, Checkbox, CircularButton, Container, CourseCard, Dropdown, EditableNote, Expert Card, FeatureCard, FieldCheckboxMultiChoice, FieldProfileImage, FieldTagsInput, HorizontalScroll, LearningListItem, LocationAutocomplete, Markdown, StandardMarkdown large size, List of links, Standard Markdown Lg, AIMarkdown, Different Markdown Sizes, Different Markdown Opening links, Lists of markdown links, Markdown With Ellipsis, Markdown with table, PathCard, ProgressBar, SuggestionInput, Text, TextArea, TextInput, Title, ToggleSwitch, Tooltip, CanvasDocs |
+`
+
+export const MarkdownWithTableBroken = bind(
+  <AppShell theme={defaultTheme}>
+      <div>
+        <Title variant='headingMd'>Table</Title>
+        <Markdown>{TABLE_TEXT_BROKEN}</Markdown>
+      </div>
+  </AppShell>,
+)
+
+MarkdownWithTableBroken.storyName = 'Markdown with broken table'
+
+const TIME_BUTTONS_TEXT = `ciao guarda questo punto del video [00:20:00] è interessante`
+
+export const MarkdownWithTimeButtons = bind(
+  <AppShell theme={defaultTheme}>
+      <div>
+        <Title variant='headingMd'>Table</Title>
+          <Markdown
+            overrides={{
+              reactMarkdownProps: {
+                renderers: {
+                  text: (props: any) => {
+                    const text = props.children as string;
+                    const timePattern = /\[(\d{2}:\d{2}:\d{2})\]/g;
+                    const parts = text.split(timePattern);
+                    return <>{parts.map((part, index) => index % 2 === 1 ? <button style={{ backgroundColor: 'red' }} key={index}>{part}</button> : part)}</>;
+                  }
+                }
+              }
+            }}
+          >
+          {TIME_BUTTONS_TEXT}
+        </Markdown>
+      </div>
+  </AppShell>
+);
+
+MarkdownWithTimeButtons.storyName = 'Markdown with time buttons'
