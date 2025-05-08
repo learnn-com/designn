@@ -1,5 +1,6 @@
 import { AppShell, HorizontalStack, Markdown, Title, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import styles from './markdown.module.css'
 
 export default {
   title: 'Components/Markdown',
@@ -219,6 +220,20 @@ export const MarkdownWithTableBroken = bind(
       <div>
         <Title variant='headingMd'>Table</Title>
         <Markdown>{TABLE_TEXT_BROKEN}</Markdown>
+      </div>
+  </AppShell>,
+)
+
+MarkdownWithTableBroken.storyName = 'Markdown with broken table'
+
+
+const CLASSNAME_TEXT = '# Titolo h1\n## Titolo h2\n### Titolo h3\n**Bold**\nTesto normale'
+
+export const MarkdownWithClassName = bind(
+  <AppShell theme={defaultTheme}>
+      <div>
+        <Title variant='headingMd'>Text with class name</Title>
+        <Markdown className ={styles.content}>{CLASSNAME_TEXT}</Markdown>
       </div>
   </AppShell>,
 )

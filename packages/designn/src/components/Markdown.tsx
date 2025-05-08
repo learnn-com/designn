@@ -33,6 +33,8 @@ export type MarkdownProps = {
   parseUrlsMethod?: (url: string) => string
   /** Maximum number of lines to show */
   maxLines?: number
+  /** External className for custom CSS */
+  className?: string
 }
 
 type LinkProps = {
@@ -51,9 +53,9 @@ const cleanMarkdownTables = (markdownText: string): string => {
   return markdownText.replace(/\|\s*\|/g, '|\n|');
 }
 
-export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
+export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, ...props }: MarkdownProps & SpaceProps & LayoutProps) => {
   return (
-    <StyledMarkdown {...props} maxLines={maxLines}>
+    <StyledMarkdown {...props} maxLines={maxLines} className={className}>
       <ReactMarkdown
         plugins={[remarkGfm]}
         renderers={{
