@@ -208,6 +208,23 @@ export const MarkdownWithTable = bind(
   </AppShell>,
 )
 
+const LARGE_TABLE_TEXT = `
+This is an example with 20 columns to show horizontal scroll:
+| Header 1 | Header 2 | Header 3 | Header 4 | Header 5 | Header 6 | Header 7 | Header 8 | Header 9 | Header 10 | Header 11 | Header 12 | Header 13 | Header 14 | Header 15 | Header 16 | Header 17 | Header 18 | Header 19 | Header 20 |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| Cell 1   | Cell 2   | Cell 3   | Cell 4   | Cell 5   | Cell 6   | Cell 7   | Cell 8   | Cell 9   | Cell 10   | Cell 11   | Cell 12   | Cell 13   | Cell 14   | Cell 15   | Cell 16   | Cell 17   | Cell 18   | Cell 19   | Cell 20   |
+| Cell 21  | Cell 22  | Cell 23  | Cell 24  | Cell 25  | Cell 26  | Cell 27  | Cell 28  | Cell 29  | Cell 30   | Cell 31   | Cell 32   | Cell 33   | Cell 34   | Cell 35   | Cell 36   | Cell 37   | Cell 38   | Cell 39   | Cell 40   |
+`
+
+export const MarkdownWithLargeTable = bind(
+  <AppShell theme={defaultTheme}>
+      <div>
+        <Title variant='headingMd'>Table</Title>
+        <Markdown>{LARGE_TABLE_TEXT}</Markdown>
+      </div>
+  </AppShell>,
+)
+
 MarkdownWithTable.storyName = 'Markdown with table'
 
 const TABLE_TEXT_BROKEN = `

@@ -74,6 +74,13 @@ export const Markdown = ({ children, overrides, opensInSameTabRegexes, parseUrls
               </a>
             );
           },
+          table: (props) => {
+            return (
+              <div className="table-container">
+                <table>{props.children}</table>
+              </div>
+            );
+          },
         }} 
         {...overrides?.reactMarkdownProps}
       >
@@ -93,15 +100,21 @@ export const StyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProp
     -webkit-line-clamp: ${p.maxLines};
     -webkit-box-orient: vertical;
   `}
-   table {
+  
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: ${p => p.theme.spacing.space_4};
+  }
+  
+  table {
     border-spacing: 0 !important;
     border-collapse: collapse !important;
     border-color: inherit !important;
-    display: block !important;
+    display: table !important;
     margin: 0 auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: auto !important;
+    width: auto !important;
+    min-width: 100% !important;
   }
   tbody,
   td,
