@@ -155,11 +155,11 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
   font-size: 1.2rem;
   line-height: 1.8em;
   letter-spacing: -0.4px;
-  font-weight: 300;
+  font-weight: 400;
   --webkit-font-smoothing: antialiased;
 
   strong {
-    font-weight: 700;
+    font-weight: 800;
   }
 
     a {
@@ -222,21 +222,24 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
   ol ol,
   ul ol,
   ol ul {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.8rem;
+    margin-bottom: 1.5rem;
   }
 
   li {
-    margin: 0.4rem 0;
-    line-height: 1.6;
+    margin: 0.4rem 0px;
+    line-height: 1.5;
+    margin-bottom: 0.8rem !important;
   }
 
   li li {
-    margin: 0.2rem 0;
+    margin: 0.2rem 0px;
+    margin-bottom: 0.8rem !important;
   }
 
   li li li {
-    margin: 0.1rem 0;
+    margin: 0.1rem 0px;
+    margin-bottom: 0.8rem !important;
   }
 
 
@@ -257,7 +260,7 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
         letter-spacing:-1.8px;
       }
       h3 {
-            margin-top: 2.5rem;
+            margin-top: 3rem;
             margin-bottom: 1.3rem;
             font-size: 2rem;
             font-weight: ${p => p.theme.typography.font_weight_black};
@@ -293,9 +296,10 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
   `}
   
   .table-container {
-    width: 90%;
-    margin: 1.5rem auto;
+    width: 100%;
+    margin: 2rem auto 2.5rem;
     overflow-x: auto;
+    line-height: 1.2em;
   }
   
   .image-container {
@@ -303,22 +307,25 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
     text-align: center;
     
     img {
-      max-width: 90%;
+      max-width: 100%;
       height: auto;
       border-radius: 0.5rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       display: block;
-      margin: 0 auto;
+      margin: 2rem auto 2.5rem;
     }
   }
   
   .blockquote-box {
-    width: 90%;
-    margin: 1.5rem auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 2rem auto 2.5rem;
     padding: 1.5rem;
     background-color: #262733;
     border-color: #8585853D;
     border-style: solid;
+    line-height: 1.6em;
 
     border-width: 1px 1px 1px 1px;
     border-radius: 1.5rem;
@@ -353,7 +360,7 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
   th,
   thead,
   tr {
-    padding: 0.5rem;
+    padding: 0.6rem 0.8rem;
   }
   
   td, th {
@@ -383,9 +390,9 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
   }
 
     .code-block-container {
-    max-width: 90%;
+    max-width: 100%;
     position: relative;
-    margin: 1.5rem auto;
+    margin: 2rem auto 2.5rem;
     border-radius: 0.5rem;
     overflow: hidden;
     background-color: #1a1a1a;
