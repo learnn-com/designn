@@ -1,5 +1,6 @@
 import { AppShell, FormattedMarkdown, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import React from 'react'
 
 export default {
   title: 'Components/FormattedMarkdown',
@@ -206,6 +207,18 @@ Sei arrivato fin qua? Ecco due righe orizzontali per separare il contenuto.
 
 Se vuoi proseguire, prepara gli appunti di questa sessione: li useremo come base per definire, nelle prossime lezioni, obiettivi ancora più mirati e allineati ai tuoi reali valori.
 `
+const TEXT_LESSON_WITH_TABLE_AND_TEXT_OVERRIDE = `
+# Esempio di lezione testuale con tabella e override h1
+
+[test]
+
+Fino ad ora hai esplorato le basi della retrospettiva e la gestione degli ostacoli. In questa lezione scoprirai tecniche più "introspettive" e profonde per valutare il tuo operato, i tuoi valori e la tua direzione. Aziende come **Patagonia** o team di sviluppo come quello di **Valve** (creatori di videogiochi come Half-Life) sfruttano esercizi creativi per riflettere, reinventarsi e trovare nuove soluzioni.
+
+| Header 1 | Header 2 | Header 3 | Header 4 | Header 5 | Header 6 | Header 7 | Header 8 | Header 9 | Header 10 | Header 11 | Header 12 | Header 13 | Header 14 | Header 15 | Header 16 | Header 17 | Header 18 | Header 19 | Header 20 |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| Cell 1   | Cell 2   | Cell 3   | Cell 4   | Cell 5   | Cell 6   | Cell 7   | Cell 8   | Cell 9   | Cell 10   | Cell 11   | Cell 12   | Cell 13   | Cell 14   | Cell 15   | Cell 16   | Cell 17   | Cell 18   | Cell 19   | Cell 20   |
+| Cell 21  | Cell 22  | Cell 23  | Cell 24  | Cell 25  | Cell 26  | Cell 27  | Cell 28  | Cell 29  | Cell 30   | Cell 31   | Cell 32   | Cell 33   | Cell 34   | Cell 35   | Cell 36   | Cell 37   | Cell 38   | Cell 39   | Cell 40   |
+`
 
 
 function bind(node: JSX.Element) {
@@ -233,4 +246,53 @@ export const TextLesson = bind(
 )
 
 TextLesson.storyName = 'Text Lesson example'
+
+
+export const TextLessonWithTableAndTextOverride = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+      <FormattedMarkdown
+        overrides={{
+          reactMarkdownProps: {
+            renderers: {
+              text: (props: any) => {
+                const text = props.children as string;
+                const TEST_PATTERN = /\[test\]/g;
+                if (!TEST_PATTERN.test(text)) {
+                  return <>{text}</>;
+                }
+                const parts = text.split(TEST_PATTERN);
+
+                return (
+                  <>
+                    {parts.map((part, index) => (
+                      <React.Fragment key={index}>
+                        {part}
+                        {index < parts.length - 1 && (
+                          <div
+                            style={{
+                              display: 'inline',
+                              backgroundColor: 'red',
+                              color: 'white',
+                              padding: '0 4px',
+                              borderRadius: '3px',
+                            }}
+                          >
+                            test
+                          </div>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </>
+                );
+              },
+            },
+          },
+        }}
+      >{TEXT_LESSON_WITH_TABLE_AND_TEXT_OVERRIDE}</FormattedMarkdown>
+    </div>
+  </AppShell>,
+)
+
+TextLessonWithTableAndTextOverride.storyName = 'Text Lesson with table and text override'
 
