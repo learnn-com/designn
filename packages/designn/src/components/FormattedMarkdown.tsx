@@ -92,6 +92,8 @@ export const FormattedMarkdown = ({ children, overrides, opensInSameTabRegexes, 
     []
   )
 
+  const { renderers, ...reactMarkdownPropsRest } = overrides?.reactMarkdownProps || {}
+
   return (
     <FormattedStyledMarkdown {...props} maxLines={maxLines} className={className}>
       <ReactMarkdown
@@ -139,8 +141,9 @@ export const FormattedMarkdown = ({ children, overrides, opensInSameTabRegexes, 
               </div>
             );
           },
+          ...renderers,
         }} 
-        {...overrides?.reactMarkdownProps}
+        {...reactMarkdownPropsRest}
       >
         {cleanMarkdownTables(children)}
       </ReactMarkdown>
