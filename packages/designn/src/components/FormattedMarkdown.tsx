@@ -53,7 +53,7 @@ type LinkProps = {
 }
 
 const cleanMarkdownTables = (markdownText: string): string => {
-  return markdownText.replace(/\|\s*\|/g, '|\n|');
+  return markdownText?.replace(/\|\s*\|/g, '|\n|') ?? markdownText;
 }
 
 export const FormattedMarkdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, ...props }: FormattedMarkdownProps & SpaceProps & LayoutProps) => {
