@@ -247,6 +247,16 @@ export const TextLesson = bind(
 
 TextLesson.storyName = 'Text Lesson example'
 
+export const UndefinedText = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+      <FormattedMarkdown >{undefined}</FormattedMarkdown>
+    </div>
+  </AppShell>,
+)
+
+UndefinedText.storyName = 'Undefined text'
+
 
 export const TextLessonWithTableAndTextOverride = bind(
   <AppShell theme={defaultTheme}>

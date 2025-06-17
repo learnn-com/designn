@@ -23,7 +23,7 @@ type MarkdownOverrides = {
 
 export type FormattedMarkdownProps = {
   /** Text to render */
-  children: string
+  children?: string
   /** Component size */
   size?: FormattedMarkdownSize
   /** Component size */
@@ -52,8 +52,9 @@ type LinkProps = {
   };                   
 }
 
-const cleanMarkdownTables = (markdownText: string): string => {
-  return markdownText?.replace(/\|\s*\|/g, '|\n|') ?? markdownText;
+const cleanMarkdownTables = (markdownText: string | undefined | null): string => {
+  if (!markdownText) return '';
+  return markdownText.replace(/\|\s*\|/g, '|\n|');
 }
 
 export const FormattedMarkdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, ...props }: FormattedMarkdownProps & SpaceProps & LayoutProps) => {
