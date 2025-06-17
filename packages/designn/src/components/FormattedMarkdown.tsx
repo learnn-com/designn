@@ -23,7 +23,7 @@ type MarkdownOverrides = {
 
 export type FormattedMarkdownProps = {
   /** Text to render */
-  children?: string
+  children: string | undefined | null
   /** Component size */
   size?: FormattedMarkdownSize
   /** Component size */

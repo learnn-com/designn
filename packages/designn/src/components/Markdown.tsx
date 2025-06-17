@@ -20,7 +20,7 @@ type MarkdownOverrides = {
 
 export type MarkdownProps = {
   /** Text to render */
-  children: string
+  children: string | undefined | null
   /** Component size */
   size?: Size
   /** Component size */
@@ -49,7 +49,8 @@ type LinkProps = {
   };                   
 }
 
-const cleanMarkdownTables = (markdownText: string): string => {
+const cleanMarkdownTables = (markdownText: string | undefined | null): string => {
+  if (!markdownText) return '';
   return markdownText.replace(/\|\s*\|/g, '|\n|');
 }
 

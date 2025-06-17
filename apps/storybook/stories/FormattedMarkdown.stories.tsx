@@ -250,7 +250,9 @@ TextLesson.storyName = 'Text Lesson example'
 export const UndefinedText = bind(
   <AppShell theme={defaultTheme}>
     <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-      <FormattedMarkdown >{undefined}</FormattedMarkdown>
+      <FormattedMarkdown>
+        {undefined}
+      </FormattedMarkdown>
     </div>
   </AppShell>,
 )
