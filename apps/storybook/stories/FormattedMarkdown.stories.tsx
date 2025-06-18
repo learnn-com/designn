@@ -316,5 +316,5 @@ export const SmallSize = bind(
   </AppShell>,
 )
 
-SmallSize.storyName = 'Small Size (1.1rem base)'
+SmallSize.storyName = 'Small Size'
 

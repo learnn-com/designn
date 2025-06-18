@@ -241,7 +241,7 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
   ${p => {
     if (p.size === 'sm') {
       return `
-        font-size: 1.1rem;
+        font-size: 1.125rem;
         line-height: 1.6em;
         letter-spacing: -0.3px;
         
@@ -255,20 +255,19 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
         }
         
         p a ul li {
-          font-size: 1.1rem;
+          font-size: 1.125rem;
         }
 
-        /* Scaled headings */
         h1 {
           margin-bottom: 1.3rem !important;
-          font-size: 2.7rem;
+          font-size: 2.5rem;
           letter-spacing:-2.4px;
           font-weight: ${p.theme.typography.font_weight_black};
           line-height: 0.95em;
         }
         h2 {
           margin-top: 2.4rem !important;
-          margin-bottom: 1.3rem !important;
+          margin-bottom: 1.2rem !important;
           font-size: 2.0rem;
           font-weight: ${p.theme.typography.font_weight_black};
           line-height: 1.05em;
@@ -276,7 +275,7 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
         }
         h3 {
           margin-top: 2.4rem;
-          margin-bottom: 1.1rem;
+          margin-bottom: 1rem;
           font-size: 1.6rem;
           font-weight: ${p.theme.typography.font_weight_black};
           line-height: 1.05em;
@@ -284,11 +283,10 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
         }
         h4 {
           margin-top: ${p.theme.spacing.space_5};
-          font-size: 1.1rem;
+          font-size: 1.125rem;
           font-weight: ${p.theme.typography.font_weight_black};
         }
 
-        /* Scaled list spacing */
         ul, ol {
           margin: 0 0 1.2rem 0;
           padding-inline-start: 1.2rem;
@@ -301,7 +299,7 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
 
         li {
           margin: 0.3rem 0px;
-          line-height: 1.4;
+          line-height: 1.5;
           margin-bottom: 0.6rem !important;
         }
 
@@ -315,18 +313,15 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
           margin-bottom: 0.6rem !important;
         }
 
-        /* Scaled horizontal rule */
         hr {
           margin: 1.6rem 0;
         }
 
-        /* Scaled table container */
         .table-container {
           margin: 1.6rem auto 2rem;
           line-height: 1.1em;
         }
 
-        /* Scaled image container */
         .image-container {
           margin: 1.2rem 0;
           
@@ -335,14 +330,12 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
           }
         }
 
-        /* Scaled blockquote */
         .blockquote-box {
           margin: 1.6rem auto 2rem;
           padding: 1.2rem;
           line-height: 1.5em;
         }
 
-        /* Scaled code block container */
         .code-block-container {
           margin: 1.6rem auto 2rem;
         }
