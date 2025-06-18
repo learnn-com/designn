@@ -308,3 +308,13 @@ export const TextLessonWithTableAndTextOverride = bind(
 
 TextLessonWithTableAndTextOverride.storyName = 'Text Lesson with table and text override'
 
+export const SmallSize = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+      <FormattedMarkdown size="sm">{TEXT_LESSON}</FormattedMarkdown>
+    </div>
+  </AppShell>,
+)
+
+SmallSize.storyName = 'Small Size (1.1rem base)'
+

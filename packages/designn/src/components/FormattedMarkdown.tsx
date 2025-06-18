@@ -14,7 +14,7 @@ import remarkGfm from 'remark-gfm'
 import React from 'react'
 import { useState } from 'react'
 
-export type FormattedMarkdownSize = 'sm' | 'md' | 'lg'
+export type FormattedMarkdownSize = 'sm'
 export type FormattedMarkdownColorVariants = 'primary' | 'secondary'
 
 type MarkdownOverrides = {
@@ -24,10 +24,8 @@ type MarkdownOverrides = {
 export type FormattedMarkdownProps = {
   /** Text to render */
   children: string | undefined | null
-  /** Component size */
+  /** Component size - 'sm' for smaller variant (1.1rem base), undefined for default (1.2rem base) */
   size?: FormattedMarkdownSize
-  /** Component size */
-  color?: FormattedMarkdownColorVariants
   /** Markdown Overrides */
   overrides?: MarkdownOverrides
   /** If the regex matches one of the links, opens it in the same tab */
@@ -57,7 +55,7 @@ const cleanMarkdownTables = (markdownText: string | undefined | null): string =>
   return markdownText.replace(/\|\s*\|/g, '|\n|');
 }
 
-export const FormattedMarkdown = ({ children, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, ...props }: FormattedMarkdownProps & SpaceProps & LayoutProps) => {
+export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, ...props }: FormattedMarkdownProps & SpaceProps & LayoutProps) => {
   const codeBlockRenderer = React.useCallback(
     (codeProps: any) => {
       const { language, value } = codeProps
@@ -96,7 +94,7 @@ export const FormattedMarkdown = ({ children, overrides, opensInSameTabRegexes, 
   const { renderers, ...reactMarkdownPropsRest } = overrides?.reactMarkdownProps || {}
 
   return (
-    <FormattedStyledMarkdown {...props} maxLines={maxLines} className={className}>
+    <FormattedStyledMarkdown {...props} size={size} maxLines={maxLines} className={className}>
       <ReactMarkdown
         plugins={[remarkGfm]}
         renderers={{
@@ -152,13 +150,13 @@ export const FormattedMarkdown = ({ children, overrides, opensInSameTabRegexes, 
   )
 }
 
+type FormattedStyledMarkdownProps = FlexboxProps & SpaceProps & BorderProps & {
+  maxLines?: number;
+  size?: FormattedMarkdownSize;
+};
 
-
-export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & BorderProps & { maxLines?: number }>`
-  color: ${p => p.theme.colors.text[p.color === 'secondary' ? 'secondary' : 'base']};
-  font-size: 1.2rem;
-  line-height: 1.8em;
-  letter-spacing: -0.4px;
+export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>`
+  color: ${p => p.theme.colors.text.base};
   font-weight: 400;
   --webkit-font-smoothing: antialiased;
 
@@ -166,11 +164,10 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
     font-weight: 800;
   }
 
-    a {
+  a {
     border-bottom: 2px solid white;
     color: ${p => p.theme.colors.text.base};
     font-weight: 600;
-    font-size: 1.2rem;
     cursor: pointer;
     text-decoration: none;
   }
@@ -179,18 +176,13 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
     background-color: white;
   }
 
-
   p {
     font-style: normal;
-    letter-spacing: -0.4px;
     text-transform: none;
     padding: 0px;
-    margin-top: 1.3rem;
     margin-bottom: 0rem;
   }
-  p a ul li {
-    font-size: 1.2rem;
-  }
+
   ul,
   ol {
     margin: 0 0 1.5rem 0;
@@ -246,36 +238,165 @@ export const FormattedStyledMarkdown = styled(Box)<FlexboxProps & SpaceProps & B
     margin-bottom: 0.8rem !important;
   }
 
+  ${p => {
+    if (p.size === 'sm') {
+      return `
+        font-size: 1.1rem;
+        line-height: 1.6em;
+        letter-spacing: -0.3px;
+        
+        a {
+          font-size: 1.1rem;
+        }
+        
+        p {
+          letter-spacing: -0.3px;
+          margin-top: 1.1rem;
+        }
+        
+        p a ul li {
+          font-size: 1.1rem;
+        }
 
+        /* Scaled headings */
+        h1 {
+          margin-bottom: 1.3rem !important;
+          font-size: 2.7rem;
+          letter-spacing:-2.4px;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 0.95em;
+        }
+        h2 {
+          margin-top: 2.4rem !important;
+          margin-bottom: 1.3rem !important;
+          font-size: 2.0rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 1.05em;
+          letter-spacing:-1.4px;
+        }
+        h3 {
+          margin-top: 2.4rem;
+          margin-bottom: 1.1rem;
+          font-size: 1.6rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 1.05em;
+          letter-spacing:-0.8px;
+        }
+        h4 {
+          margin-top: ${p.theme.spacing.space_5};
+          font-size: 1.1rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+        }
 
-      h1 {
-        margin-bottom: 1.5rem !important;
-        font-size:  3.2rem;
-        letter-spacing:-3px;
-        font-weight: ${p => p.theme.typography.font_weight_black};
-        line-height: 1em;
+        /* Scaled list spacing */
+        ul, ol {
+          margin: 0 0 1.2rem 0;
+          padding-inline-start: 1.2rem;
+        }
+
+        ul ul, ol ol, ul ol, ol ul {
+          margin-top: 0.6rem;
+          margin-bottom: 1.2rem;
+        }
+
+        li {
+          margin: 0.3rem 0px;
+          line-height: 1.4;
+          margin-bottom: 0.6rem !important;
+        }
+
+        li li {
+          margin: 0.15rem 0px;
+          margin-bottom: 0.6rem !important;
+        }
+
+        li li li {
+          margin: 0.08rem 0px;
+          margin-bottom: 0.6rem !important;
+        }
+
+        /* Scaled horizontal rule */
+        hr {
+          margin: 1.6rem 0;
+        }
+
+        /* Scaled table container */
+        .table-container {
+          margin: 1.6rem auto 2rem;
+          line-height: 1.1em;
+        }
+
+        /* Scaled image container */
+        .image-container {
+          margin: 1.2rem 0;
+          
+          img {
+            margin: 1.6rem auto 2rem;
           }
-      h2 {
-        margin-top: 3rem !important;
-        margin-bottom: 1.5rem !important;
-        font-size: 2.4rem;
-        font-weight: ${p => p.theme.typography.font_weight_black};
-        line-height: 1.1em;
-        letter-spacing:-1.8px;
-      }
-      h3 {
-            margin-top: 3rem;
-            margin-bottom: 1.3rem;
-            font-size: 2rem;
-            font-weight: ${p => p.theme.typography.font_weight_black};
-            line-height: 1.1em;
-            letter-spacing:-1px;
-          }
-      h4 {
-        margin-top: ${p => p.theme.spacing.space_6};
+        }
+
+        /* Scaled blockquote */
+        .blockquote-box {
+          margin: 1.6rem auto 2rem;
+          padding: 1.2rem;
+          line-height: 1.5em;
+        }
+
+        /* Scaled code block container */
+        .code-block-container {
+          margin: 1.6rem auto 2rem;
+        }
+      `;
+    } else {
+      return `
         font-size: 1.2rem;
-        font-weight: ${p => p.theme.typography.font_weight_black};
-      }
+        line-height: 1.8em;
+        letter-spacing: -0.4px;
+        
+        a {
+          font-size: 1.2rem;
+        }
+        
+        p {
+          letter-spacing: -0.4px;
+          margin-top: 1.3rem;
+        }
+        
+        p a ul li {
+          font-size: 1.2rem;
+        }
+
+        h1 {
+          margin-bottom: 1.5rem !important;
+          font-size: 3.2rem;
+          letter-spacing:-3px;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 1em;
+        }
+        h2 {
+          margin-top: 3rem !important;
+          margin-bottom: 1.5rem !important;
+          font-size: 2.4rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 1.1em;
+          letter-spacing:-1.8px;
+        }
+        h3 {
+          margin-top: 3rem;
+          margin-bottom: 1.3rem;
+          font-size: 2rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 1.1em;
+          letter-spacing:-1px;
+        }
+        h4 {
+          margin-top: ${p.theme.spacing.space_6};
+          font-size: 1.2rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+        }
+      `;
+    }
+  }}
 
   h1 + p,
   h2 + p,
