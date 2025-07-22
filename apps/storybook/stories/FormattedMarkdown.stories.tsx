@@ -1,4 +1,4 @@
-import { AppShell, FormattedMarkdown, defaultTheme } from '@learnn/designn'
+import { AiReferenceCard, AppShell, FormattedMarkdown, aiPurpleTheme, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React from 'react'
 
@@ -6,6 +6,7 @@ export default {
   title: 'Components/FormattedMarkdown',
   component: FormattedMarkdown,
 } as ComponentMeta<typeof FormattedMarkdown>
+
 
 const TEST_MD_SELECTORS = `
 # Titolo H1
@@ -318,3 +319,138 @@ export const SmallSize = bind(
 
 SmallSize.storyName = 'Small Size'
 
+
+const TEXT_LESSON_WITH_AI_REFERENCE_CARDS = `
+Per approfondire ulteriormente, ti consiglio di considerare i seguenti corsi e lezioni disponibili su Learnn:
+<lesson id=“3925” title=“Strategia di comunicazione per lanciare il proprio brand e prodotto“/>
+
+O forse preferisci questi corsi:
+<course id=“145” title=“Strategia Lancio Black Friday”/> 
+<course id=“135” title=“Data Driven Marketing”/>
+Inoltre, se desideri supporto professionale, potresti considerare di contattare:
+<path id=“3925” slug="advertising" title=“Strategia di comunicazione per lanciare il proprio brand e prodotto“/>
+<expert id=“3925” slug="giorgiognoli"title=“Strategia di comunicazione per lanciare il proprio brand e prodotto“/>
+esperti nel settore del marketing.
+`
+export const TextWithAiReferenceCards = bind(
+  <AppShell theme={aiPurpleTheme}>
+    <div style={{ maxWidth: '400px', background: '#170C24', padding: '50px', borderRadius: '16px'}}>
+      <FormattedMarkdown
+        overrides={{
+          reactMarkdownProps: {
+            renderers: {
+              text: (props: any) => {
+                const text = props.children as string;
+
+                const ALL_PATTERNS = /<(lesson|course|expert|path)\s+[^>]*\/>/g;
+                
+                const matches = Array.from(text.matchAll(ALL_PATTERNS));
+                if (matches.length === 0) {
+                  return <>{text}</>;
+                }
+
+                const parts: (string | { type: string; id: string | null; title: string | null; ctaTitle: string | null; destination: string | null })[] = [];
+                let lastIndex = 0;
+
+                function extractAttributes(xmlTag: string) {
+                  const cleaned = xmlTag.replace(/[“”]/g, '"');
+                
+                  const idMatch = cleaned.match(/id="([^"]+)"/);
+                  const titleMatch = cleaned.match(/title="([^"]+)"/);
+                
+                  return {
+                    id: idMatch ? idMatch[1] : null,
+                    title: titleMatch ? titleMatch[1] : null
+                  };
+                }
+
+                function mapTypeToEntityName(type: string) {
+                  switch (type) {
+                    case 'lesson':
+                      return 'Lezione';
+                    case 'course':
+                      return 'Corso';
+                    case 'expert':
+                      return 'Expert';
+                    case 'path':
+                      return 'Percorso';
+                    default:
+                      return 'Risorsa';
+                  }
+                }
+
+                function mapTypeToCtaTitle(type: string) {
+                  switch (type) {
+                    case 'lesson':
+                      return 'Vai alla lezione';
+                    case 'course':
+                      return 'Vai al corso';
+                    case 'expert':
+                      return 'Vedi expert';
+                    case 'path':
+                      return 'Vai al percorso';
+                    default:
+                      return 'Vai alla risorsa';
+                  }
+                }
+
+                function mapTypeToDestination(type:string, id:string) {
+                  console.log('ciaone', type, id);
+                  switch (type) {
+                    case 'lesson':
+                      return `/player/${id}`;
+                    case 'course':
+                      return `/course/${id}`;
+                    case 'expert':
+                      return `/expert`;
+                    case 'path':
+                      return `/paths`;
+                    default:
+                      return '/';
+                  }
+                }
+
+
+                matches.forEach((match) => {
+                  parts.push(text.slice(lastIndex, match.index));
+                  const attrs = extractAttributes(match[0]);
+                  parts.push({
+                    type: mapTypeToEntityName(match[1]),
+                    id: attrs.id,
+                    title: attrs.title,
+                    ctaTitle: mapTypeToCtaTitle(match[1]),
+                    destination: mapTypeToDestination(match[1], attrs.id ?? '')
+                  });
+                  lastIndex = (match.index ?? 0) + match[0].length;
+                });
+                parts.push(text.slice(lastIndex));
+                
+                return (
+                  <>
+                  {parts.map((part) => {
+                      if (typeof part === 'string') {
+                        return part;
+                      }
+                      else{
+                        return (
+                          <AiReferenceCard
+                        onClick={() => { window.location.href = part.destination ?? '' }}
+                        typeTitle={part?.type}
+                        title={part.title || ''}
+                        ctaTitle={part?.ctaTitle || ''}
+                        />
+                        )
+                      }
+                  })}
+                  </>
+                );
+              },
+            },
+          },
+        }}
+      >{TEXT_LESSON_WITH_AI_REFERENCE_CARDS}</FormattedMarkdown>
+    </div>
+  </AppShell>,
+)
+
+TextWithAiReferenceCards.storyName = 'Text with AiReferenceCards'
