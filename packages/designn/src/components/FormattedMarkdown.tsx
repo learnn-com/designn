@@ -57,7 +57,7 @@ const cleanMarkdownTables = (markdownText: string | undefined | null): string =>
   return markdownText.replace(/\|\s*\|/g, '|\n|');
 }
 
-export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, ...props }: FormattedMarkdownProps & SpaceProps & LayoutProps) => {
+export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, history, ...props }: FormattedMarkdownProps & SpaceProps & LayoutProps) => {
   const codeBlockRenderer = React.useCallback(
     (codeProps: any) => {
       const { language, value } = codeProps
@@ -114,7 +114,6 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
           
             const handleClick = (destination: string) => {
               if (history) {
-                // @ts-ignore
                 history.push(destination);
               }
             };
@@ -122,11 +121,7 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
             return (
               history ? (
                 <a 
-                  href={href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleClick(href);
-                  }}
+                  onClick={() => handleClick(href)}
                   style={{ cursor: 'pointer' }}
                 >
                   {props.children}
