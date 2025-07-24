@@ -119,7 +119,7 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
             };
           
             return (
-              history ? (
+              history && (openInSameTab || openInSameTabParsed) ? (
                 <a 
                   onClick={() => handleClick(href)}
                   style={{ cursor: 'pointer' }}
