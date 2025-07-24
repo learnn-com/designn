@@ -27,7 +27,7 @@ export const AiReferenceCard: FC<AiReferenceCardProps> = ({
         <VerticalStack mt={spacing.space_2}>
             <CardContainer onClick={onClick} >
                 <HorizontalStack alignItems="center" flex={1} >
-                   {image && (
+                {image && (
                         <ImageContainer>
                             <Image src={image} alt={title} />
                         </ImageContainer>
@@ -69,11 +69,11 @@ export const AiReferenceCard: FC<AiReferenceCardProps> = ({
 const CardContainer = styled.div`
     flex: 1;
     position: relative;
-    background-color: #252525;
+    background-color: #221832;
     border-radius: 24px;
     padding: 15px;
     transition: transform 100ms ease-in-out;
-    border: 1px solid gray;
+    border: 1px solid #38294C;
     cursor: pointer;
     font-family: ${p => p.theme.typography.font_family};
     color: ${p => p.theme.colors.text.base};
@@ -102,7 +102,7 @@ const Overlay = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(34, 24, 50, 0.85);
     z-index: 100;
     width: 100%;
     height: 100%;
