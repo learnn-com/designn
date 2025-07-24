@@ -1,4 +1,4 @@
-import { AppShell, Dropdown, VerticalStack, defaultTheme } from '@learnn/designn'
+import { AppShell, Dropdown, VerticalStack, aiPurpleTheme, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -66,3 +66,23 @@ export const Variants = bind(
 )
 
 Variants.storyName = 'Different variants'
+
+
+export const DefaultWithAiTheme = bind(
+  <AppShell theme={aiPurpleTheme}>
+    <VerticalStack width='500px' bg='#121214' p='50px' pb='100px'>
+      <Dropdown items={ITEMS} size='lg' variant='light' selectedId='2' purpleTheme={true} />
+      <Dropdown
+        items={ITEMS}
+        purpleTheme={true}
+        size='lg'
+        variant='light'
+        selectedId='2'
+        mt='20px'
+        label='Dropdown con label'
+      />
+    </VerticalStack>
+  </AppShell>,
+)
+
+DefaultWithAiTheme.storyName = 'Default dropdown'

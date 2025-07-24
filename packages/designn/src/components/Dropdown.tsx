@@ -18,6 +18,7 @@ export type DropdownProps = {
   variant?: Variant
   size?: Size
   label?: string
+  purpleTheme?: boolean
 }
 
 const styleButtonVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
@@ -79,6 +80,7 @@ export const Dropdown = ({
   size,
   items,
   label,
+  purpleTheme,
   ...props
 }: DropdownProps & SpaceProps & LayoutProps & BorderProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -97,7 +99,7 @@ export const Dropdown = ({
   useOutsideClick(dropdownRef, () => setIsOpen(false))
 
   return (
-    <StyledDropdown ref={dropdownRef} variant={variant} label={label} size={size} {...props}>
+    <StyledDropdown ref={dropdownRef} variant={variant} label={label} size={size} purpleTheme={purpleTheme} {...props}>
       {label && (
         <Box mb={spacing.space_2}>
           <Text variant='bodyXs'>{label}</Text>
@@ -136,7 +138,7 @@ export const Dropdown = ({
 }
 
 const StyledDropdown = styled.div<
-  { variant?: Variant; size?: Size; label?: string } & SpaceProps & LayoutProps & BorderProps
+  { variant?: Variant; size?: Size; label?: string, purpleTheme?: boolean } & SpaceProps & LayoutProps & BorderProps
 >`
   position: relative;
   display: flex;
@@ -203,6 +205,22 @@ const StyledDropdown = styled.div<
 
     border-radius: ${p => p.theme.borders.radius.base};
 
+    &:hover {
+      ${p => {
+        const hoverColor = p.purpleTheme ? '#6D548A' : p.theme.colors.interaction_background.flat_active;
+        if (p.variant === 'transparent') {
+          return `background-color: ${hoverColor};`
+        }
+        if (p.variant === 'dark') {
+          return `background-color: ${hoverColor};`
+        }
+        if (p.variant === 'light') {
+          return `background-color: ${hoverColor}; color: ${p.theme.colors.text.primary};`
+        }
+        return `background-color: ${hoverColor};`
+      }}
+    }
+
     ${p => p.theme.responsive.medium_down} {
       font-size: ${p => p.theme.typography.font_size_300};
       line-height: ${p => p.theme.typography.font_line_height_3};
@@ -214,16 +232,17 @@ const StyledDropdown = styled.div<
   }
   .selected {
     ${p => {
+      const selectedColor = p.purpleTheme ? '#6D548A' : p.theme.colors.interaction_background.flat_active;
       if (p.variant === 'transparent') {
-        return `background-color:${p.theme.colors.interaction_background.flat_active}; `
+        return `background-color: ${selectedColor};`
       }
       if (p.variant === 'dark') {
-        return `background-color:${p.theme.colors.interaction_background.flat_active}; `
+        return `background-color: ${selectedColor};`
       }
       if (p.variant === 'light') {
-        return `background-color:${p.theme.colors.interaction_background.flat_active};color:${p.theme.colors.text.primary} `
+        return `background-color: ${selectedColor}; color: ${p.theme.colors.text.primary};`
       }
-      return ''
+      return `background-color: ${selectedColor};`
     }}
   }
 

@@ -1,4 +1,4 @@
-import { AppShell, Box, TextArea, defaultTheme } from '@learnn/designn'
+import { AppShell, Box, TextArea, aiPurpleTheme, defaultTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -47,3 +47,12 @@ export const TextAreaLabelError = bind(
   </AppShell>,
 )
 TextAreaLabelError.storyName = 'TextArea with label and error'
+
+
+export const TextAreaAiTheme = bind(
+  <AppShell theme={aiPurpleTheme}>
+    <TextArea placeholder='this is a placeholder' rows={10} variant='light' />
+  </AppShell>,
+)
+
+TextAreaAiTheme.storyName = 'TextArea with AI theme'

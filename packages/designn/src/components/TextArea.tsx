@@ -44,6 +44,7 @@ const InputWrapper = styled.textarea<
     outline: 0;
   }
 
+
   ${styleContainerVariant}
   ${compose(space, layout, border)}
 `
@@ -78,7 +79,7 @@ export const TextArea = ({
         variant={variant}
         {...props}
         onChange={onChange}
-        value={value}
+        value={value }
         my={spacing.space_2}
       />
       {error && (
