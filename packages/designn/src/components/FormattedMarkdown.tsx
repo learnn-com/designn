@@ -36,6 +36,8 @@ export type FormattedMarkdownProps = {
   maxLines?: number
   /** External className for custom CSS */
   className?: string
+  /** Helper from useHistory hook */
+  history?: any
 }
 
 type LinkProps = {
@@ -100,20 +102,37 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
         renderers={{
           code: codeBlockRenderer,
           link: (props: LinkProps) => {
-            const url = props.node.url
-            const openInSameTab = opensInSameTabRegexes?.some(regex => new RegExp(regex).test(url))
-            const parsedUrl = parseUrlsMethod?.(url) 
-            const openInSameTabParsed = parsedUrl ? opensInSameTabRegexes?.some(regex => new RegExp(regex).test(parsedUrl)) : undefined
-            
+            const url = props.node.url;
+            const parsedUrl = parseUrlsMethod?.(url);
             const href = parsedUrl || url;
-            const target = openInSameTab || openInSameTabParsed ? '' : '_blank';
-
+          
+            const openInSameTab = opensInSameTabRegexes?.some(regex => new RegExp(regex).test(url));
+            const openInSameTabParsed = parsedUrl
+              ? opensInSameTabRegexes?.some(regex => new RegExp(regex).test(parsedUrl))
+              : false;
+          
+            const shouldNavigate = openInSameTab || openInSameTabParsed;
+          
+            const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+              if (shouldNavigate && history) {
+                e.preventDefault();
+                // @ts-ignore
+                history.push(href);
+              }
+            };
+          
             return (
-              <a href={href} target={target}>
+              <a
+                href={href}
+                target={shouldNavigate ? undefined : '_blank'}
+                rel={shouldNavigate ? undefined : 'noopener noreferrer'}
+                onClick={handleClick}
+              >
                 {props.children}
               </a>
             );
           },
+          
           image: (props) => {
             return (
               <div className="image-container">
