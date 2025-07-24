@@ -84,7 +84,7 @@ export const ActiveTag = ({
   }
 }
 
-const SelectTag = styled.button<{ selected?: boolean } & SpaceProps & LayoutProps>`
+const SelectTag = styled.button<{ selected?: boolean, purpleTheme?: boolean } & SpaceProps & LayoutProps>`
   background-color: ${p => p.theme.colors.interaction_background.secondary_active};
   display: flex;
   align-items: center;
@@ -101,6 +101,12 @@ const SelectTag = styled.button<{ selected?: boolean } & SpaceProps & LayoutProp
   &:hover {
     background-color: ${p => p.theme.colors.interaction_outline.secondary_active};
     color: ${p => p.theme.colors.text.primary};
+    ${p => p.purpleTheme && `
+      .circle {
+        border-color: ${p.theme.colors.interaction_outline.primary_active};
+        background-color: ${p.theme.colors.interaction_background.primary_active};
+      }
+    `}
   }
   .circle {
     width: 15px;

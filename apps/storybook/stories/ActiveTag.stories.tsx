@@ -1,4 +1,4 @@
-import { AppShell, ActiveTag, defaultTheme, HorizontalStack } from '@learnn/designn'
+import { AppShell, ActiveTag, defaultTheme, HorizontalStack, aiPurpleTheme } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -57,3 +57,29 @@ export const Select = bind(
   </AppShell>,
 )
 Select.storyName = 'Tag select mode'
+
+export const SelectWithAITheme = bind(
+  <AppShell theme={aiPurpleTheme}>
+    <HorizontalStack width='500px' bg='#170C24' p='50px' alignItems='flex-start'>
+      <ActiveTag
+        body='UI'
+        variant='select'
+        purpleTheme
+        onClick={(selected: boolean) => {
+          console.log(selected)
+        }}
+        mr='20px'
+      />
+      <ActiveTag
+        body='Web Design'
+        variant='select'
+        purpleTheme
+        onClick={(selected: boolean) => {
+          console.log(selected)
+        }}
+        selected
+      />
+    </HorizontalStack>
+  </AppShell>,
+)
+SelectWithAITheme.storyName = 'Tag select mode with AI theme'
