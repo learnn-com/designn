@@ -101,8 +101,9 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
         plugins={[remarkGfm]}
         renderers={{
           code: codeBlockRenderer,
+          
           link: (props: LinkProps) => {
-            const url = props.node.url;
+            const url = props.node?.url || props.href || '';
             const parsedUrl = parseUrlsMethod?.(url);
             const href = parsedUrl || url;
           
@@ -111,25 +112,34 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
               ? opensInSameTabRegexes?.some(regex => new RegExp(regex).test(parsedUrl))
               : false;
           
-            const shouldNavigate = openInSameTab || openInSameTabParsed;
-          
-            const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-              if (shouldNavigate && history) {
-                e.preventDefault();
+            const handleClick = (destination: string) => {
+              if (history) {
                 // @ts-ignore
-                history.push(href);
+                history.push(destination);
               }
             };
           
             return (
-              <a
-                href={href}
-                target={shouldNavigate ? undefined : '_blank'}
-                rel={shouldNavigate ? undefined : 'noopener noreferrer'}
-                onClick={handleClick}
-              >
-                {props.children}
-              </a>
+              history ? (
+                <a 
+                  href={href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleClick(href);
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {props.children}
+                </a>
+              ) : (
+                <a
+                  href={href}
+                  target={openInSameTab || openInSameTabParsed ? '' : '_blank'}
+                  rel={!(openInSameTab || openInSameTabParsed) ? 'noopener noreferrer' : undefined}
+                >
+                  {props.children}
+                </a>
+              )
             );
           },
           
