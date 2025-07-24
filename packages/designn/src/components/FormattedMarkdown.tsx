@@ -122,7 +122,7 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
               history && (openInSameTab || openInSameTabParsed) ? (
                 <a 
                   onClick={() => handleClick(href)}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: 'pointer', '&:hover': { color: 'black', backgroundColor: 'white' } }}
                 >
                   {props.children}
                 </a>

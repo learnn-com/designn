@@ -454,3 +454,34 @@ export const TextWithAiReferenceCards = bind(
 )
 
 TextWithAiReferenceCards.storyName = 'Text with AiReferenceCards'
+
+
+
+const RELATIVE_REGEX_STRINGS = [
+  '.*\\/paths.*',
+  '.*\\/corso.*',
+  '.*\\/todo-generator.*',
+  '.*\\/percorso-custom-lezioni.*',
+  '.*\\/percorso-custom.*',
+];
+
+const LINK_WITH_HOVER_TEXT = `
+[test lezione](https://my-staging.learnn.com/player/1)
+[test corso](/corso/1)
+[test path](/paths/advertising)
+[test expert](https://learnn.com/expert/lucamastella)
+[test pathgen](/percorso-custom?prompt=come%20%lanciare%20ecommerce)
+[test pathgen lezioni](/percorso-custom-lezioni?prompt=come%20%lanciare%20ecommerce)
+[test todo](/todo-generator?prompt=come%20%lanciare%20ecommerce)`
+const dummyVariable = true as any
+
+export const LinkWithHover = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+      <FormattedMarkdown opensInSameTabRegexes={RELATIVE_REGEX_STRINGS} history={dummyVariable}>{LINK_WITH_HOVER_TEXT}</FormattedMarkdown>
+    </div>
+  </AppShell>,
+)
+
+LinkWithHover.storyName = 'Test Markdown links with hover'
+
