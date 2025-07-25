@@ -36,8 +36,8 @@ export type FormattedMarkdownProps = {
   maxLines?: number
   /** External className for custom CSS */
   className?: string
-  /** Helper from useHistory hook */
-  history?: any
+  /** Function to handle link clicks */
+  onLinkClick?: (href: string) => void
 }
 
 type LinkProps = {
@@ -57,7 +57,7 @@ const cleanMarkdownTables = (markdownText: string | undefined | null): string =>
   return markdownText.replace(/\|\s*\|/g, '|\n|');
 }
 
-export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, history, ...props }: FormattedMarkdownProps & SpaceProps & LayoutProps) => {
+export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabRegexes, parseUrlsMethod, maxLines, className, onLinkClick, ...props }: FormattedMarkdownProps & SpaceProps & LayoutProps) => {
   const codeBlockRenderer = React.useCallback(
     (codeProps: any) => {
       const { language, value } = codeProps
@@ -112,29 +112,27 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
               ? opensInSameTabRegexes?.some(regex => new RegExp(regex).test(parsedUrl))
               : false;
           
-            const handleClick = (destination: string) => {
-              if (history) {
-                history.push(destination);
-              }
-            };
-          
             return (
-              history && (openInSameTab || openInSameTabParsed) ? (
-                <a 
-                  onClick={() => handleClick(href)}
-                  style={{ cursor: 'pointer', '&:hover': { color: 'black', backgroundColor: 'white' } }}
-                >
-                  {props.children}
-                </a>
-              ) : (
-                <a
-                  href={href}
-                  target={openInSameTab || openInSameTabParsed ? '' : '_blank'}
-                  rel={!(openInSameTab || openInSameTabParsed) ? 'noopener noreferrer' : undefined}
-                >
-                  {props.children}
-                </a>
-              )
+              <a
+                href={href}
+                onClick={e => {
+                  if (
+                    (openInSameTab || openInSameTabParsed) &&
+                    onLinkClick &&
+                    !e.defaultPrevented &&
+                    e.button === 0 &&
+                    !(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey)
+                  ) {
+                    e.preventDefault();
+                  }
+                  onLinkClick?.(href);
+                }}
+                target={openInSameTab || openInSameTabParsed ? '' : '_blank'}
+                rel={!(openInSameTab || openInSameTabParsed) ? 'noopener noreferrer' : undefined}
+                style={{ cursor: 'pointer' }}
+              >
+                {props.children}
+              </a>
             );
           },
           
