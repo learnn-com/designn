@@ -495,14 +495,16 @@ const RELATIVE_REGEX_STRINGS_ON_CLICK = [
   '.*\\/percorso-custom.*',
 ];
 const LINK_WITH_ON_CLICK = `
-[questo lo apre in una nuova tab](https://my-staging.learnn.com/player/1)
-[qui lo apre nella stessa tab](https://my-staging.learnn.com/percorso-custom-lezioni?prompt=come%20%lanciare%20ecommerce)
+[questo lo apre in una nuova tab](https://my-staging.learnn.com/player/1)\n
+[qui lo apre nella stessa tab](https://my-staging.learnn.com/percorso-custom-lezioni?prompt=come%20%lanciare%20ecommerce)\n
+[questo apre in una nuova tab https://my-staging.learnn.com/player/1](/player/1)\n
+[questo apre nella stessa tab](/percorso-custom-lezioni?prompt=come%20%lanciare%20ecommerce)
 `
 
 export const LinkWithOnClick = bind(
   <AppShell theme={defaultTheme}>
     <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-      <FormattedMarkdown opensInSameTabRegexes={RELATIVE_REGEX_STRINGS_ON_CLICK} onLinkClick={() => {window.alert('on link click')}}>{LINK_WITH_ON_CLICK}</FormattedMarkdown>
+      <FormattedMarkdown opensInSameTabRegexes={RELATIVE_REGEX_STRINGS_ON_CLICK} onLinkClick={(url) => {window.alert('on link click url: ' + url)}}>{LINK_WITH_ON_CLICK}</FormattedMarkdown>
     </div>
   </AppShell>,
 )

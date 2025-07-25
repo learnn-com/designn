@@ -124,8 +124,8 @@ export const FormattedMarkdown = ({ children, size, overrides, opensInSameTabReg
                     !(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey)
                   ) {
                     e.preventDefault();
+                    onLinkClick?.(href);
                   }
-                  onLinkClick?.(href);
                 }}
                 target={openInSameTab || openInSameTabParsed ? '' : '_blank'}
                 rel={!(openInSameTab || openInSameTabParsed) ? 'noopener noreferrer' : undefined}
