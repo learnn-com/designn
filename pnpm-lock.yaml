@@ -134,7 +134,7 @@ importers:
         version: 5.1.16
       '@types/styled-system__theme-get':
         specifier: ^5.0.2
-        version: 5.0.2
+        version: 5.0.4
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -1931,8 +1931,8 @@ packages:
   '@types/styled-system@5.1.16':
     resolution: {integrity: sha512-+dyGs2n2o6QStsexh87NeaRmXYnKOnEe7iOEkcYOwKwI5a1gFL0+Mt/hZKi+4KD1qDMkLkGb0lpDrffb/vSkDQ==}
 
-  '@types/styled-system__theme-get@5.0.2':
-    resolution: {integrity: sha512-tvGRyzADAn2qQ8Z/fw9YOBTL1EttDQ0zrmHq/N+/K/9tF1l2lsZ9334hls1zie32FCxjPJEhzzXVHxKwqXslog==}
+  '@types/styled-system__theme-get@5.0.4':
+    resolution: {integrity: sha512-dbzwxQ+8x6Bo3EKZMo9M3Knzo77ukwoC/isKW+GAuF5TenXlPkvgzx4t4+Lp0+fKs2M4owSef0KO3gtGW3Hpkw==}
 
   '@types/stylis@4.2.0':
     resolution: {integrity: sha512-n4sx2bqL0mW1tvDf/loQ+aMX7GQD3lc3fkCMC55VFNDu/vBOabO+LTIeXKM14xK0ppk5TUGcWRjiSpIlUpghKw==}
@@ -6311,6 +6311,7 @@ packages:
   source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
     engines: {node: '>= 8'}
+    deprecated: The work that was done in this beta branch won't be included in future versions
 
   space-separated-tokens@1.1.5:
     resolution: {integrity: sha512-q/JSVd1Lptzhf5bkYm4ob4iWPjx0KiRe3sRFBNrVqbJkFaBm5vbbowy1mymoPNLRa52+oadOhJ+K49wsSeSjTA==}
@@ -10011,7 +10012,7 @@ snapshots:
     dependencies:
       csstype: 3.1.2
 
-  '@types/styled-system__theme-get@5.0.2': {}
+  '@types/styled-system__theme-get@5.0.4': {}
 
   '@types/stylis@4.2.0': {}
 
