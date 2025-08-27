@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { LayoutProps, SpaceProps, BorderProps, compose, space, layout, border } from 'styled-system'
 import styled, { DefaultTheme, useTheme } from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -97,6 +97,10 @@ export const Dropdown = ({
   }
 
   useOutsideClick(dropdownRef, () => setIsOpen(false))
+
+  useEffect(() => {
+    setSelectedItem(selectedId ? items.find(item => item.id === selectedId) : undefined)
+  }, [selectedId, items])
 
   return (
     <StyledDropdown ref={dropdownRef} variant={variant} label={label} size={size} purpleTheme={purpleTheme} {...props}>
