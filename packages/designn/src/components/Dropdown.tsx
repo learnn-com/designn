@@ -8,7 +8,7 @@ import { Text } from './Text'
 import { Box } from './Box'
 
 type DropdownItem = { id: string; label: string }
-type Variant = 'transparent' | 'dark' | 'light'
+type Variant = 'transparent' | 'dark' | 'light' | 'transparent-dark' | 'transparent-light'
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 
 export type DropdownProps = {
@@ -36,6 +36,39 @@ const styleButtonVariant = ({ theme, variant }: { theme: DefaultTheme; variant?:
         background-color: ${theme.colors.interaction_background.secondary_active};
         border: ${theme.borders.width.base} solid ${theme.colors.interaction_outline.secondary_active};
       `
+    case 'light':
+      return `
+        color: ${theme.colors.text.primary_inverted};
+        background-color: ${theme.colors.interaction_background.primary_active};
+        border: none;
+      `
+    case 'transparent-dark':
+    case 'transparent-light':
+      return `
+        color: ${theme.colors.text.base};
+        background-color: transparent;
+        border: none;
+      `
+  }
+}
+
+const styleItemsVariant = ({ theme, variant }: { theme: DefaultTheme; variant?: Variant }) => {
+  switch (variant) {
+    default:
+    case 'transparent':
+      return `
+        color: ${theme.colors.text.base};
+        background-color: transparent;
+        border: ${theme.borders.width.base} solid ${theme.colors.interaction_outline.secondary_active};
+      `
+    case 'transparent-dark':
+    case 'dark':
+      return `
+        color: ${theme.colors.text.base};
+        background-color: ${theme.colors.interaction_background.secondary_active};
+        border: ${theme.borders.width.base} solid ${theme.colors.interaction_outline.secondary_active};
+      `
+    case 'transparent-light':
     case 'light':
       return `
         color: ${theme.colors.text.primary_inverted};
@@ -155,7 +188,7 @@ const StyledDropdown = styled.div<
     overflow-y: auto;
     max-height: 250px;
     border-radius: ${p => p.theme.borders.radius.base};
-    ${styleButtonVariant}
+    ${styleItemsVariant}
     border:none;
     padding-left: ${p => p.theme.spacing.space_1};
     padding-right: ${p => p.theme.spacing.space_1};

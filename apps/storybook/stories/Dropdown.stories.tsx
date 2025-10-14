@@ -61,6 +61,9 @@ export const Variants = bind(
 
       <Dropdown items={ITEMS} variant='light' selectedId='2' mt='20px' />
       <Dropdown items={ITEMS} variant='transparent' selectedId='2' mt='20px' />
+
+      <Dropdown items={ITEMS} variant='transparent-dark' selectedId='2' mt='20px' />
+      <Dropdown items={ITEMS} variant='transparent-light' selectedId='2' mt='20px' />
     </VerticalStack>
   </AppShell>,
 )
