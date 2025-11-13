@@ -319,6 +319,16 @@ export const SmallSize = bind(
 
 SmallSize.storyName = 'Small Size'
 
+export const XSmallSize = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+      <FormattedMarkdown size="xs">{TEXT_LESSON}</FormattedMarkdown>
+    </div>
+  </AppShell>,
+)
+
+XSmallSize.storyName = 'Extra Small Size'
+
 
 const TEXT_LESSON_WITH_AI_REFERENCE_CARDS = `
 Per approfondire ulteriormente, ti consiglio di considerare i seguenti corsi e lezioni disponibili su Learnn:

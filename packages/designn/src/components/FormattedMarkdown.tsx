@@ -14,7 +14,7 @@ import remarkGfm from 'remark-gfm'
 import React from 'react'
 import { useState } from 'react'
 
-export type FormattedMarkdownSize = 'sm'
+export type FormattedMarkdownSize = 'sm' | 'xs'
 export type FormattedMarkdownColorVariants = 'primary' | 'secondary'
 
 type MarkdownOverrides = {
@@ -360,6 +360,107 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
 
         .code-block-container {
           margin: 1.6rem auto 2rem;
+        }
+      `;
+    } else if (p.size === 'xs') {
+      return `
+        font-size: 0.875rem;
+        line-height: 1.4em;
+        letter-spacing: -0.15px;
+        
+        a {
+          font-size: 0.85rem;
+        }
+        
+        p {
+          letter-spacing: -0.15px;
+          margin-top: 0.8rem;
+        }
+        
+        p a ul li {
+          font-size: 0.875rem;
+        }
+
+        h1 {
+          margin-bottom: 1rem !important;
+          font-size: 1.7rem;
+          letter-spacing:-1.5px;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 0.95em;
+        }
+        h2 {
+          margin-top: 1.6rem !important;
+          margin-bottom: 0.8rem !important;
+          font-size: 1.35rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 1.05em;
+          letter-spacing:-0.9px;
+        }
+        h3 {
+          margin-top: 1.6rem;
+          margin-bottom: 0.7rem;
+          font-size: 1.15rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+          line-height: 1.05em;
+          letter-spacing:-0.55px;
+        }
+        h4 {
+          margin-top: ${p.theme.spacing.space_5};
+          font-size: 0.8125rem;
+          font-weight: ${p.theme.typography.font_weight_black};
+        }
+
+        ul, ol {
+          margin: 0 0 0.8rem 0;
+          padding-inline-start: 0.875rem;
+        }
+
+        ul ul, ol ol, ul ol, ol ul {
+          margin-top: 0.4rem;
+          margin-bottom: 0.8rem;
+        }
+
+        li {
+          margin: 0.2rem 0px;
+          line-height: 1.4;
+          margin-bottom: 0.4rem !important;
+        }
+
+        li li {
+          margin: 0.1rem 0px;
+          margin-bottom: 0.4rem !important;
+        }
+
+        li li li {
+          margin: 0.05rem 0px;
+          margin-bottom: 0.4rem !important;
+        }
+
+        hr {
+          margin: 1.2rem 0;
+        }
+
+        .table-container {
+          margin: 1.2rem auto 1.5rem;
+          line-height: 1.1em;
+        }
+
+        .image-container {
+          margin: 0.8rem 0;
+          
+          img {
+            margin: 1.2rem auto 1.5rem;
+          }
+        }
+
+        .blockquote-box {
+          margin: 1.2rem auto 1.5rem;
+          padding: 0.875rem;
+          line-height: 1.4em;
+        }
+
+        .code-block-container {
+          margin: 1.2rem auto 1.5rem;
         }
       `;
     } else {
