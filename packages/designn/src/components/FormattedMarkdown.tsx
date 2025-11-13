@@ -446,10 +446,11 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
         }
 
         .image-container {
-          margin: 0.8rem 0;
+          margin: 0.1rem 0 !important;
           
           img {
-            margin: 1.2rem auto 1.5rem;
+            margin: 0rem auto 0rem !important;
+            padding: 0 !important;
           }
         }
 

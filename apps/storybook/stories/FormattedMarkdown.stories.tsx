@@ -208,6 +208,16 @@ Sei arrivato fin qua? Ecco due righe orizzontali per separare il contenuto.
 
 Se vuoi proseguire, prepara gli appunti di questa sessione: li useremo come base per definire, nelle prossime lezioni, obiettivi ancora più mirati e allineati ai tuoi reali valori.
 `
+const TEXT_LESSON_XS = `
+### Esempio Lettera al tuo futuro (o passato) in h3
+
+Un esercizio che molti coach professionisti consigliano, ma che non è stato inventato da loro. Ti dico un segreto: è inventato da me ed ora te lo spiego, perche solo io so veramente come si fa:
+Questo è un testo che ho inserito io e conterrà delle parole totalmente a caso. Pero non basta, gli inserirò anche un immagine del tutto a caso:
+
+![immagine alt text](https://learnn.com/blog/wp-content/uploads/2025/06/invideo-io.webp)
+
+Applicare questi esercizi di retrospettiva avanzata serve a **mettere a fuoco** desideri, paure e regole di vita. Ciò rafforza la definizione dei tuoi obiettivi e la motivazione a raggiungerli. Come mostrano i case study (Bumble, Valve, LEGO), un approccio creativo all'autoanalisi può sbloccare soluzioni innovative e performance migliori.
+`
 const TEXT_LESSON_WITH_TABLE_AND_TEXT_OVERRIDE = `
 # Esempio di lezione testuale con tabella e override h1
 
@@ -322,7 +332,7 @@ SmallSize.storyName = 'Small Size'
 export const XSmallSize = bind(
   <AppShell theme={defaultTheme}>
     <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-      <FormattedMarkdown size="xs">{TEXT_LESSON}</FormattedMarkdown>
+      <FormattedMarkdown size="xs">{TEXT_LESSON_XS}</FormattedMarkdown>
     </div>
   </AppShell>,
 )
