@@ -14,7 +14,7 @@ import remarkGfm from 'remark-gfm'
 import React from 'react'
 import { useState } from 'react'
 
-export type FormattedMarkdownSize = 'sm' | 'xs'
+export type FormattedMarkdownSize = 'md' | 'sm' | 'xs'
 export type FormattedMarkdownColorVariants = 'primary' | 'secondary'
 
 type MarkdownOverrides = {
