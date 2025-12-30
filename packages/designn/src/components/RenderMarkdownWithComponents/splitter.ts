@@ -1,6 +1,6 @@
 import React from 'react'
 import { z } from 'zod'
-import { extractAttributesFromXmlTag, extractChildrenFromXmlTag, validateProps } from './utils'
+import { extractAttributesFromXmlTag, validateProps } from './utils'
 
 type AnyZod = z.ZodTypeAny
 type SchemaProps<S extends AnyZod> = z.infer<S>
@@ -36,7 +36,7 @@ function findClosingTagIndex(
   tagName: string,
   fullText: string,
   tagStartIndex: number
-): number | null {
+): { closingTagStart: number; closingTagEnd: number } | null {
   if (openingTag.trim().endsWith('/>')) {
     return null // Self-closing tag, no closing tag
   }
@@ -63,7 +63,11 @@ function findClosingTagIndex(
     if (closeIndex < openIndex) {
       depth--
       if (depth === 0) {
-        return closeIndex + (nextClose?.[0]?.length ?? 0)
+        const closingTagLength = nextClose?.[0]?.length ?? 0
+        return {
+          closingTagStart: closeIndex,
+          closingTagEnd: closeIndex + closingTagLength
+        }
       }
       currentIndex = closeIndex + (nextClose?.[0]?.length ?? 0)
     } else if (openIndex < Infinity) {
@@ -84,105 +88,133 @@ export function componentSplitter<S extends AnyZod>(
   const tagNames = configs.map(c => c.tag).join('|')
   const pattern = new RegExp(`(<(${tagNames})\\s+[^>]*/?>)`, 'gi')
   
-  const segments: Array<{ content: string; isTag: boolean; index: number; endIndex?: number }> = []
+  const parts: Part[] = []
+  const processedRanges: Array<{ start: number; end: number }> = []
   let lastIndex = 0
-  let match
   
-  while ((match = pattern.exec(text)) !== null) {
+  const isProcessed = (index: number): boolean => {
+    return processedRanges.some(range => index >= range.start && index < range.end)
+  }
+  
+  const findNextUnprocessedTag = (startIndex: number): RegExpExecArray | null => {
+    pattern.lastIndex = startIndex
+    let match: RegExpExecArray | null = null
+    
+    while ((match = pattern.exec(text)) !== null) {
+      if (!isProcessed(match.index)) {
+        return match
+      }
+    }
+    
+    return null
+  }
+  
+  let match = findNextUnprocessedTag(0)
+  
+  while (match !== null) {
     if (match.index > lastIndex) {
-      segments.push({
-        content: text.substring(lastIndex, match.index),
-        isTag: false,
-        index: lastIndex
-      })
+      const textBefore = text.substring(lastIndex, match.index)
+      if (textBefore) {
+        parts.push({
+          type: 'text',
+          content: textBefore
+        })
+      }
     }
     
     const tagMatch = match[0].match(/<(\w+)/i)
     const tagName = tagMatch?.[1]?.toLowerCase()
     const config = tagName ? configs.find(c => c.tag.toLowerCase() === tagName) : null
     
-    let endIndex: number | undefined = undefined
-    if (config && tagName && !match[0].trim().endsWith('/>')) {
-      const closingIndex = findClosingTagIndex(match[0], tagName, text, match.index)
-      if (closingIndex !== null) {
-        endIndex = closingIndex
-      }
-    }
-    
-    segments.push({
-      content: match[0],
-      isTag: true,
-      index: match.index,
-      endIndex
-    })
-    
-    if (endIndex !== undefined) {
-      lastIndex = endIndex
-    } else {
+    if (!config || !tagName) {
+      parts.push({
+        type: 'text',
+        content: match[0]
+      })
       lastIndex = match.index + match[0].length
+      match = findNextUnprocessedTag(lastIndex)
+      continue
     }
-  }
-  
-  if (lastIndex < text.length) {
-    segments.push({
-      content: text.substring(lastIndex),
-      isTag: false,
-      index: lastIndex
-    })
-  }
-  
-  const parts: Part[] = []
-  
-  for (const segment of segments) {
-    if (!segment.isTag) {
-      if (segment.content) {
-        parts.push({
-          type: 'text',
-          content: segment.content
-        })
-      }
-    } else {
-      const tagMatch = segment.content.match(/<(\w+)/i)
-      if (!tagMatch) {
-        parts.push({
-          type: 'text',
-          content: segment.content
-        })
-        continue
-      }
-      
-      const tagName = tagMatch[1].toLowerCase()
-      const config = configs.find(c => c.tag.toLowerCase() === tagName)
-      
-      if (!config) {
-        parts.push({
-          type: 'text',
-          content: segment.content
-        })
-        continue
-      }
-      
-      const attributes = extractAttributesFromXmlTag(segment.content)
-      
+    
+    const isSelfClosing = match[0].trim().endsWith('/>')
+    
+    if (isSelfClosing) {
+      const attributes = extractAttributesFromXmlTag(match[0])
       const validation = validateProps(attributes, config.props)
       
-      if (!validation.success) {
-        parts.push({
-          type: 'text',
-          content: segment.content
-        })
-      } else {
-        const children = extractChildrenFromXmlTag(segment.content, text, segment.index)
+      if (validation.success) {
         const componentIndex = configs.indexOf(config)
-        
         parts.push({
           type: 'component',
           tag: config.tag,
           props: validation.data,
-          children: children || undefined,
           componentIndex
         })
+      } else {
+        parts.push({
+          type: 'text',
+          content: match[0]
+        })
       }
+      
+      lastIndex = match.index + match[0].length
+      match = findNextUnprocessedTag(lastIndex)
+      continue
+    }
+    
+    const closingTagInfo = findClosingTagIndex(match[0], tagName, text, match.index)
+    
+    if (closingTagInfo === null) {
+      parts.push({
+        type: 'text',
+        content: match[0]
+      })
+      lastIndex = match.index + match[0].length
+      match = findNextUnprocessedTag(lastIndex)
+      continue
+    }
+    
+    const attributes = extractAttributesFromXmlTag(match[0])
+    const validation = validateProps(attributes, config.props)
+    
+    if (!validation.success) {
+      parts.push({
+        type: 'text',
+        content: match[0]
+      })
+      lastIndex = match.index + match[0].length
+      match = findNextUnprocessedTag(lastIndex)
+      continue
+    }
+    
+    const openingTagEnd = match.index + match[0].length
+    const children = text.substring(openingTagEnd, closingTagInfo.closingTagStart)
+    
+    processedRanges.push({
+      start: match.index,
+      end: closingTagInfo.closingTagEnd
+    })
+    
+    const componentIndex = configs.indexOf(config)
+    parts.push({
+      type: 'component',
+      tag: config.tag,
+      props: validation.data,
+      children: children || undefined,
+      componentIndex
+    })
+    
+    lastIndex = closingTagInfo.closingTagEnd
+    match = findNextUnprocessedTag(lastIndex)
+  }
+  
+  if (lastIndex < text.length) {
+    const remainingText = text.substring(lastIndex)
+    if (remainingText) {
+      parts.push({
+        type: 'text',
+        content: remainingText
+      })
     }
   }
   

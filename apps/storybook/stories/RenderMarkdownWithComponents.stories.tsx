@@ -274,3 +274,56 @@ export const MarkdownWithTwoComponents = bind(
 
 MarkdownWithTwoComponents.storyName = 'Markdown with two different components'
 
+const nestedHighlightComponent = defineMarkdownComponent({
+  tag: 'highlight',
+  props: z.object({
+    color: z.union([z.literal('yellow'), z.literal('green')]),
+  }),
+  component: ({ color, children }) => (
+    <HighlightBox color={color}>
+      <RenderMarkdownWithComponents components={defineMarkdownComponents(nestedHighlightComponent)}>
+        {children || ''}
+      </RenderMarkdownWithComponents>
+    </HighlightBox>
+  ),
+})
+
+const MARKDOWN_WITH_NESTED_COMPONENTS = `
+# Example with nested components
+
+This is a normal paragraph before the nested components.
+
+<highlight color="yellow">
+Questo è il contenuto del primo highlight esterno. Può contenere **markdown** e *formattazione*.
+
+- Lista item 1
+- Lista item 2
+
+<highlight color="green">
+Questo è il contenuto dell'highlight interno nidificato. Anche questo può contenere **markdown** e altre formattazioni.
+
+- Item interno 1
+- Item interno 2
+- Item interno 3
+
+Ecco un altro paragrafo dentro l'highlight interno.
+</highlight>
+
+Continuazione del contenuto del primo highlight dopo quello nidificato.
+</highlight>
+
+Paragrafo normale dopo gli highlight nidificati.
+`
+
+export const MarkdownWithNestedComponents = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}>
+      <RenderMarkdownWithComponents components={defineMarkdownComponents(nestedHighlightComponent)}>
+        {MARKDOWN_WITH_NESTED_COMPONENTS}
+      </RenderMarkdownWithComponents>
+    </div>
+  </AppShell>,
+)
+
+MarkdownWithNestedComponents.storyName = 'Markdown with nested components'
+
