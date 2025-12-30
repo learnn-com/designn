@@ -16,6 +16,10 @@
     "design system",
     "learnn"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/learnn-com/designn.git"
+  },
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf .turbo node_modules build",
