@@ -63,15 +63,17 @@ export const VerifiedCard: FC<VerifiedCardProps> = ({
           <ImageCover src={verifiedImageUrl} alt='Verified' />
         </ImageContainer>
         <InfoContainer>
-          <VerifiedTitle
-            variant='heading3xl'
-            alignment='center'
-            truncate
-            truncateLines={2}
-            color='primary'
-          >
-            {verified.courseTitle}
-          </VerifiedTitle>
+          <VerifiedTitleWrapper>
+            <VerifiedTitle
+                variant='heading3xl'
+                alignment='center'
+                truncate
+                truncateLines={2}
+                color='primary'
+            >
+                {verified.courseTitle}
+            </VerifiedTitle>
+          </VerifiedTitleWrapper>
           <VerifiedOwnerName variant='bodyMd' color='primary' fontWeight='semibold' alignment='center'>
             <strong>{verified.ownerName}</strong> ha superato con successo il test finale del corso.
           </VerifiedOwnerName>
@@ -150,13 +152,22 @@ const InfoContainer = styled.div`
   margin-top: 2cqw;
 `
 
+const VerifiedTitleWrapper = styled.div`
+  width: 100%;
+  overflow: hidden;
+  height: 30cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const VerifiedTitle = styled(Title).attrs({
   variant: 'heading3xl',
 })`
-  font-size: 13cqw !important;
-  line-height: 0.9em !important;
+  width: 100%;
+  font-size: 12cqw !important;
+  line-height: 1.1em !important;
   letter-spacing: -0.05em;
-  overflow: visible;
 `
 
 const VerifiedOwnerName = styled(Text).attrs({

@@ -8,20 +8,10 @@ export default {
 } as ComponentMeta<typeof VerifiedCard>
 
 const mockVerifiedState: VerifiedProps = {
-  courseTitle: 'Business Validation',
+  courseTitle: 'Google Ads',
   attemptId: 'abc123-def456-ghi789',
   submittedAt: '2024-01-15T10:30:00Z',
   startedAt: '2024-01-15T10:00:00Z',
-  ownerName: 'Luca Pirrone',
-  courseDurationMinutes: 120,
-  courseLessonsCount: 10,
-}
-
-const mockVerifiedStateWithoutSubmitted: VerifiedProps = {
-  courseTitle: 'Corso di Marketing Digitale Avanzato',
-  attemptId: 'xyz789-abc123-def456',
-  submittedAt: '2024-02-20T14:15:00Z',
-  startedAt: '2024-02-20T14:15:00Z',
   ownerName: 'Luca Pirrone',
   courseDurationMinutes: 120,
   courseLessonsCount: 10,
@@ -38,7 +28,7 @@ const mockVerifiedStateWithMinutes: VerifiedProps = {
 }
 
 const mockVerifiedStateLongTitle: VerifiedProps = {
-  courseTitle: 'Questo è un titolo molto lungo che dovrebbe essere troncato con ellipsis quando supera le due righe di testo disponibili nel componente',
+  courseTitle: 'Google Ads: Creazione e Gestione di Campagne di Advertising',
   attemptId: 'very-long-attempt-id-123456789',
   submittedAt: '2024-03-10T09:45:00Z',
   startedAt: '2024-03-10T09:30:00Z',
