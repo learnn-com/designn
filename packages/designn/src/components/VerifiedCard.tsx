@@ -4,12 +4,16 @@ import { Title } from './Title'
 import { Text } from './Text'
 import { SpaceProps, LayoutProps } from 'styled-system'
 import { useTheme } from 'styled-components'
+import { HorizontalStack } from './HorizontalStack'
 
 export interface VerifiedProps {
   courseTitle: string
   attemptId: string
   submittedAt: string
   startedAt: string
+  ownerName: string
+  courseDurationMinutes: number
+  courseLessonsCount: number
 }
 
 export interface VerifiedCardProps extends SpaceProps, LayoutProps {
@@ -36,38 +40,55 @@ export const VerifiedCard: FC<VerifiedCardProps> = ({
   className,
   ...props
 }) => {
-  const { spacing } = useTheme()
+  useTheme()
   const formattedDate = formatDate(new Date(Date.parse(verified.submittedAt)))
+
+  const formattedCourseDuration = () => {
+    if (verified.courseDurationMinutes > 60) {
+      return `${Math.floor(verified.courseDurationMinutes / 60)} ore`
+    } else {
+      return `${verified.courseDurationMinutes} minuti`
+    }
+  }
 
   return (
     <StyledCard
       href={verificationUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+      target='_blank'
+      rel='noopener noreferrer'
       className={className}
       {...props}
     >
       <CardInner>
-      <ImageContainer>
-            <ImageCover src={verifiedImageUrl} alt="Verified" />
-          </ImageContainer>
+        <ImageContainer>
+          <ImageCover src={verifiedImageUrl} alt='Verified' />
+        </ImageContainer>
         <InfoContainer>
           <Title
-            variant="headingXl"
-            lineHeightScale='6'
-            alignment="center"
+            variant='heading3xl'
+            alignment='center'
             truncate
             truncateLines={2}
-            color="primary"
-            className="verified-title"
-            mb={spacing.space_4}
+            color='primary'
+            className='verified-title'
           >
             {verified.courseTitle}
           </Title>
-          <DateContainer>
-            <DateLabel>DATA VERIFICA:</DateLabel>
-            <DateValue>{formattedDate}</DateValue>
-          </DateContainer>
+          <Text variant='bodyMd' color='primary' fontWeight='semibold' alignment='center' className='verified-owner-name'>
+            <strong>{verified.ownerName}</strong> ha superato con successo il test finale del corso.
+          </Text>
+          <HorizontalStack width='100%'>
+            <DateContainer>
+              <DateLabel>DATA VERIFICA</DateLabel>
+              <DateValue>{formattedDate}</DateValue>
+            </DateContainer>
+            <DateContainer>
+              <DateLabel>DURATA CORSO</DateLabel>
+              <DateValue>
+                {formattedCourseDuration()}, {verified.courseLessonsCount} lezioni
+              </DateValue>
+            </DateContainer>
+          </HorizontalStack>
           <VerifiedId>
             <strong>ID VERIFICA:</strong> {verified.attemptId}
           </VerifiedId>
@@ -85,7 +106,9 @@ const StyledCard = styled.a<SpaceProps & LayoutProps>`
   position: relative;
   border: ${p => p.theme.borders.width.medium} solid ${p => p.theme.colors.text.primary};
   text-decoration: none;
-  display: block;
+  display: flex;
+  aspect-ratio: 1;
+  max-width: 400px;
 
   &:hover {
     text-decoration: none;
@@ -93,19 +116,27 @@ const StyledCard = styled.a<SpaceProps & LayoutProps>`
   }
 
   .verified-title {
+    line-height: 0.9em;
     ${p => p.theme.responsive.small_down} {
-      font-size: ${p => p.theme.typography.font_size_300};
-      line-height: ${p => p.theme.typography.font_line_height_3};
+      font-size: ${p => p.theme.typography.font_size_500};
+    }
+  }
+
+  .verified-owner-name {
+    ${p => p.theme.responsive.small_down} {
+      font-size: ${p => p.theme.typography.font_size_100};
+      line-height: ${p => p.theme.typography.font_line_height_1};
     }
   }
 `
 
 const CardInner = styled.div`
-  padding: ${p => p.theme.spacing.space_6} ${p => p.theme.spacing.space_4};
+  padding: ${p => p.theme.spacing.space_6} ${p => p.theme.spacing.space_6}
+    ${p => p.theme.spacing.space_3} ${p => p.theme.spacing.space_6};
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  flex: 1;
 `
 
 const ImageContainer = styled.div`
@@ -113,6 +144,9 @@ const ImageContainer = styled.div`
   width: 100%;
   width: 120px;
   margin-bottom: ${p => p.theme.spacing.space_4};
+  ${p => p.theme.responsive.small_down} {
+    width: 90px;
+  }
 `
 
 const ImageCover = styled.img`
@@ -128,19 +162,19 @@ const InfoContainer = styled.div`
   width: 100%;
   align-items: center;
   flex: 1;
+  justify-content: space-between;
 `
 
 const DateContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: ${p => p.theme.spacing.space_4};
   flex: 1;
 `
 
 const DateLabel = styled(Text).attrs({
-  variant: 'bodyXxs',
+  variant: 'bodySm',
   color: 'primary',
-  fontWeight: 'semibold',
+  fontWeight: 'bold',
   alignment: 'center',
 })`
   -webkit-line-clamp: 1;
@@ -149,12 +183,16 @@ const DateLabel = styled(Text).attrs({
   text-overflow: ellipsis;
   overflow: hidden;
   margin: 0;
+  ${p => p.theme.responsive.small_down} {
+    font-size: ${p => p.theme.typography.font_size_75};
+    line-height: ${p => p.theme.typography.font_line_height_1};
+  }
 `
 
 const DateValue = styled(Text).attrs({
-  variant: 'bodyXxs',
+  variant: 'bodySm',
   color: 'primary',
-  fontWeight: 'semibold',
+  fontWeight: 'light',
   alignment: 'center',
 })`
   -webkit-line-clamp: 1;
@@ -163,6 +201,12 @@ const DateValue = styled(Text).attrs({
   text-overflow: ellipsis;
   overflow: hidden;
   margin: 0;
+  margin-top: ${p => p.theme.spacing.space_1};
+
+  ${p => p.theme.responsive.small_down} {
+    font-size: ${p => p.theme.typography.font_size_75};
+    line-height: ${p => p.theme.typography.font_line_height_1};
+  }
 `
 
 const VerifiedId = styled(Text).attrs({

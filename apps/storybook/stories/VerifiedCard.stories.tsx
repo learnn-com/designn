@@ -8,10 +8,13 @@ export default {
 } as ComponentMeta<typeof VerifiedCard>
 
 const mockVerifiedState: VerifiedProps = {
-  courseTitle: 'Facebook Ads Optimization: audit, ottimizzazione e strategie avanzate',
+  courseTitle: 'Business Validation',
   attemptId: 'abc123-def456-ghi789',
   submittedAt: '2024-01-15T10:30:00Z',
   startedAt: '2024-01-15T10:00:00Z',
+  ownerName: 'Luca Pirrone',
+  courseDurationMinutes: 120,
+  courseLessonsCount: 10,
 }
 
 const mockVerifiedStateWithoutSubmitted: VerifiedProps = {
@@ -19,6 +22,19 @@ const mockVerifiedStateWithoutSubmitted: VerifiedProps = {
   attemptId: 'xyz789-abc123-def456',
   submittedAt: '2024-02-20T14:15:00Z',
   startedAt: '2024-02-20T14:15:00Z',
+  ownerName: 'Luca Pirrone',
+  courseDurationMinutes: 120,
+  courseLessonsCount: 10,
+}
+
+const mockVerifiedStateWithMinutes: VerifiedProps = {
+  courseTitle: 'Corso di Marketing Digitale Avanzato',
+  attemptId: 'xyz789-abc123-def456',
+  submittedAt: '2024-02-20T14:15:00Z',
+  startedAt: '2024-02-20T14:15:00Z',
+  ownerName: 'Luca Pirrone',
+  courseDurationMinutes: 50,
+  courseLessonsCount: 10,
 }
 
 const mockVerifiedStateLongTitle: VerifiedProps = {
@@ -26,6 +42,9 @@ const mockVerifiedStateLongTitle: VerifiedProps = {
   attemptId: 'very-long-attempt-id-123456789',
   submittedAt: '2024-03-10T09:45:00Z',
   startedAt: '2024-03-10T09:30:00Z',
+  ownerName: 'Luca Pirrone',
+  courseDurationMinutes: 120,
+  courseLessonsCount: 10,
 }
 
 const mockVerifiedStateTwoLines: VerifiedProps = {
@@ -33,6 +52,9 @@ const mockVerifiedStateTwoLines: VerifiedProps = {
   attemptId: 'two-lines-title-123456',
   submittedAt: '2024-04-15T11:20:00Z',
   startedAt: '2024-04-15T11:00:00Z',
+  ownerName: 'Luca Pirrone',
+  courseDurationMinutes: 120,
+  courseLessonsCount: 10,
 }
 
 const mockVerifiedStateShortTitle: VerifiedProps = {
@@ -40,6 +62,9 @@ const mockVerifiedStateShortTitle: VerifiedProps = {
   attemptId: 'short-title-789012',
   submittedAt: '2024-05-20T15:30:00Z',
   startedAt: '2024-05-20T15:15:00Z',
+  ownerName: 'Luca Pirrone',
+  courseDurationMinutes: 120,
+  courseLessonsCount: 10,
 }
 
 const VERIFIED_IMAGE_URL =
@@ -52,9 +77,7 @@ function bind(node: JSX.Element) {
 
 export const Standard = bind(
   <AppShell theme={defaultTheme}>
-    <div style={{ width: '400px' }}>
-      <VerifiedCard verified={mockVerifiedState} verifiedImageUrl={VERIFIED_IMAGE_URL} verificationUrl="https://learnn.com/v/abc123-def456-ghi789" />
-    </div>
+    <VerifiedCard verified={mockVerifiedState} verifiedImageUrl={VERIFIED_IMAGE_URL} verificationUrl="https://learnn.com/v/abc123-def456-ghi789" />
   </AppShell>,
 )
 Standard.storyName = 'Verified Card Standard'
@@ -94,28 +117,20 @@ export const CustomDateFormat = bind(
 )
 CustomDateFormat.storyName = 'Custom Date Format'
 
-export const MultipleCards = bind(
+export const WithMinutesFormat = bind(
   <AppShell theme={defaultTheme}>
-    <div style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <VerifiedCard verified={mockVerifiedState} verifiedImageUrl={VERIFIED_IMAGE_URL} verificationUrl="https://learnn.com/v/abc123-def456-ghi789" />
-      <VerifiedCard
-        verified={mockVerifiedStateWithoutSubmitted}
-        verifiedImageUrl={VERIFIED_IMAGE_URL}
-        verificationUrl="https://learnn.com/v/abc123-def456-ghi789"
-      />
-      <VerifiedCard
-        verified={mockVerifiedStateLongTitle} 
-        verifiedImageUrl={VERIFIED_IMAGE_URL}
-        verificationUrl="https://learnn.com/v/abc123-def456-ghi789"
-      />
-    </div>
+    <VerifiedCard
+    verified={mockVerifiedStateWithMinutes}
+    verifiedImageUrl={VERIFIED_IMAGE_URL}
+    verificationUrl="https://learnn.com/v/abc123-def456-ghi789"
+    />
   </AppShell>,
 )
-MultipleCards.storyName = 'Multiple Verified Cards'
+WithMinutesFormat.storyName = 'With Minutes Format'
 
 export const TwoCardsHorizontal = bind(
   <AppShell theme={defaultTheme}>
-    <HorizontalStack gap="1.5rem" style={{ width: '900px' }}>
+    <HorizontalStack gap="1.5rem">
       <div style={{ flex: 1 }}>
         <VerifiedCard
           verified={mockVerifiedStateTwoLines}
