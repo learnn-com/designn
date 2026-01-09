@@ -102,7 +102,6 @@ const StyledCard = styled.a<SpaceProps & LayoutProps>`
   container-type: inline-size;
   background-color: ${p => p.theme.colors.verified_card_background};
   border-radius: ${p => p.theme.borders.radius.large};
-  margin-top: 3.33cqw; /* 1.25rem = 20px, 20/600*100 = 3.33cqw */
   overflow: hidden;
   position: relative;
   border: ${p => p.theme.borders.width.medium} solid ${p => p.theme.colors.text.primary};
