@@ -47,6 +47,7 @@ export type Colors = {
   card_border: Color
   code: Color
   modal_background: Color
+  verified_card_background: Color
 }
 
 export const colors: Colors = {
@@ -111,4 +112,5 @@ export const colors: Colors = {
   card_border: gray[800],
   code: orange[500],
   modal_background: brandColors.modalBackground,
+  verified_card_background: gray[900],
 }
