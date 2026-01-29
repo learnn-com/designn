@@ -37,33 +37,44 @@ export type RenderMarkdownWithComponentsProps<
 export function RenderMarkdownWithComponents<
   Cs extends readonly MarkdownComponentConfig<string, AnyZod>[],
 >({ children, components, size = 'sm', ...formattedMarkdownProps }: RenderMarkdownWithComponentsProps<Cs> & FormattedMarkdownProps) {
-  const parts = componentSplitter(children, [...components])
+  const safeChildren = children != null && typeof children === 'string' ? children : ''
+  const safeComponents = Array.isArray(components) ? components : []
 
-  return (
-    <>
-      {parts.map((part, index) => {
-        if (part.type === 'text') {
-          return (
-            <FormattedMarkdown key={index} size={size} {...formattedMarkdownProps}>
-              {part.content}
-            </FormattedMarkdown>
-          )
-        } else if (part.type === 'component') {
-          const config = components[part.componentIndex]
-          if (!config) {
+  try {
+    const parts = componentSplitter(safeChildren, [...safeComponents])
+
+    return (
+      <>
+        {parts.map((part, index) => {
+          if (part.type === 'text') {
             return (
               <FormattedMarkdown key={index} size={size} {...formattedMarkdownProps}>
-                {part.children || ''}
+                {part.content}
               </FormattedMarkdown>
             )
-          }
+          } else if (part.type === 'component') {
+            const config = safeComponents[part.componentIndex]
+            if (!config) {
+              return (
+                <FormattedMarkdown key={index} size={size} {...formattedMarkdownProps}>
+                  {part.children || ''}
+                </FormattedMarkdown>
+              )
+            }
 
-          const Component = config.component
-          const props = { ...(part.props as Record<string, unknown>), children: part.children }
-          return React.createElement(Component as React.ComponentType<any>, { key: index, ...props })
-        }
-        return null
-      })}
-    </>
-  )
+            const Component = config.component
+            const props = { ...(part.props as Record<string, unknown>), children: part.children }
+            return React.createElement(Component as React.ComponentType<any>, { key: index, ...props })
+          }
+          return null
+        })}
+      </>
+    )
+  } catch {
+    return (
+      <FormattedMarkdown key="fallback" size={size} {...formattedMarkdownProps}>
+        {safeChildren}
+      </FormattedMarkdown>
+    )
+  }
 }
