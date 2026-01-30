@@ -327,3 +327,72 @@ export const MarkdownWithNestedComponents = bind(
 
 MarkdownWithNestedComponents.storyName = 'Markdown with nested components'
 
+export const UndefinedChildren = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}>
+      <div style={{ marginBottom: '8px', color: '#666', fontSize: '14px' }}>
+        No children passed (undefined). Should render empty, not crash.
+      </div>
+      <RenderMarkdownWithComponents components={[]} />
+    </div>
+  </AppShell>,
+)
+
+UndefinedChildren.storyName = 'Error handling: undefined children'
+
+export const NullChildren = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}>
+      <div style={{ marginBottom: '8px', color: '#666', fontSize: '14px' }}>
+        children=null. Should render empty, not crash.
+      </div>
+      <RenderMarkdownWithComponents components={[]}>{null}</RenderMarkdownWithComponents>
+    </div>
+  </AppShell>,
+)
+
+NullChildren.storyName = 'Error handling: null children'
+
+export const EmptyStringChildren = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}>
+      <div style={{ marginBottom: '8px', color: '#666', fontSize: '14px' }}>
+        children="". Should render empty, not crash.
+      </div>
+      <RenderMarkdownWithComponents components={[]}>{''}</RenderMarkdownWithComponents>
+    </div>
+  </AppShell>,
+)
+
+EmptyStringChildren.storyName = 'Error handling: empty string children'
+
+export const UndefinedComponents = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}>
+      <div style={{ marginBottom: '8px', color: '#666', fontSize: '14px' }}>
+        components=undefined. Should render markdown as plain text, not crash.
+      </div>
+      <RenderMarkdownWithComponents components={undefined as any}>
+        {`# Heading
+
+Paragraph with **bold**.`}
+      </RenderMarkdownWithComponents>
+    </div>
+  </AppShell>,
+)
+
+UndefinedComponents.storyName = 'Error handling: undefined components'
+
+export const UndefinedChildrenWithComponents = bind(
+  <AppShell theme={defaultTheme}>
+    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}>
+      <div style={{ marginBottom: '8px', color: '#666', fontSize: '14px' }}>
+        Undefined children with custom components. Should render empty, not crash.
+      </div>
+      <RenderMarkdownWithComponents components={defineMarkdownComponents(buttonComponent)} />
+    </div>
+  </AppShell>,
+)
+
+UndefinedChildrenWithComponents.storyName = 'Error handling: undefined children with components'
+

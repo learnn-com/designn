@@ -85,7 +85,14 @@ export function componentSplitter<S extends AnyZod>(
   text: string,
   configs: ComponentConfig<S>[]
 ): Part[] {
-  const tagNames = configs.map(c => c.tag).join('|')
+  const safeText = typeof text === 'string' ? text : ''
+  const safeConfigs = Array.isArray(configs) ? configs : []
+  const tagNames = safeConfigs.map(c => c.tag).join('|')
+
+  if (!tagNames) {
+    return safeText ? [{ type: 'text', content: safeText }] : []
+  }
+
   const pattern = new RegExp(`(<(${tagNames})\\s+[^>]*/?>)`, 'gi')
   
   const parts: Part[] = []
@@ -100,7 +107,7 @@ export function componentSplitter<S extends AnyZod>(
     pattern.lastIndex = startIndex
     let match: RegExpExecArray | null = null
     
-    while ((match = pattern.exec(text)) !== null) {
+    while ((match = pattern.exec(safeText)) !== null) {
       if (!isProcessed(match.index)) {
         return match
       }
@@ -113,7 +120,7 @@ export function componentSplitter<S extends AnyZod>(
   
   while (match !== null) {
     if (match.index > lastIndex) {
-      const textBefore = text.substring(lastIndex, match.index)
+      const textBefore = safeText.substring(lastIndex, match.index)
       if (textBefore) {
         parts.push({
           type: 'text',
@@ -124,7 +131,7 @@ export function componentSplitter<S extends AnyZod>(
     
     const tagMatch = match[0].match(/<(\w+)/i)
     const tagName = tagMatch?.[1]?.toLowerCase()
-    const config = tagName ? configs.find(c => c.tag.toLowerCase() === tagName) : null
+    const config = tagName ? safeConfigs.find(c => c.tag.toLowerCase() === tagName) : null
     
     if (!config || !tagName) {
       parts.push({
@@ -143,7 +150,7 @@ export function componentSplitter<S extends AnyZod>(
       const validation = validateProps(attributes, config.props)
       
       if (validation.success) {
-        const componentIndex = configs.indexOf(config)
+        const componentIndex = safeConfigs.indexOf(config)
         parts.push({
           type: 'component',
           tag: config.tag,
@@ -162,7 +169,7 @@ export function componentSplitter<S extends AnyZod>(
       continue
     }
     
-    const closingTagInfo = findClosingTagIndex(match[0], tagName, text, match.index)
+    const closingTagInfo = findClosingTagIndex(match[0], tagName, safeText, match.index)
     
     if (closingTagInfo === null) {
       parts.push({
@@ -188,14 +195,14 @@ export function componentSplitter<S extends AnyZod>(
     }
     
     const openingTagEnd = match.index + match[0].length
-    const children = text.substring(openingTagEnd, closingTagInfo.closingTagStart)
+    const children = safeText.substring(openingTagEnd, closingTagInfo.closingTagStart)
     
     processedRanges.push({
       start: match.index,
       end: closingTagInfo.closingTagEnd
     })
     
-    const componentIndex = configs.indexOf(config)
+    const componentIndex = safeConfigs.indexOf(config)
     parts.push({
       type: 'component',
       tag: config.tag,
@@ -208,8 +215,8 @@ export function componentSplitter<S extends AnyZod>(
     match = findNextUnprocessedTag(lastIndex)
   }
   
-  if (lastIndex < text.length) {
-    const remainingText = text.substring(lastIndex)
+  if (lastIndex < safeText.length) {
+    const remainingText = safeText.substring(lastIndex)
     if (remainingText) {
       parts.push({
         type: 'text',
