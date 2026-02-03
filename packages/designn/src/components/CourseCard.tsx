@@ -73,9 +73,9 @@ export const CourseCard = ({
     case 'longTitle':
       return (
         <StyledCourseCard
-          onClick={() => onClick?.()}         
+          onClick={() => onClick?.()}
           size={size}
-          style={{background: '#121214'}}
+          style={{ background: '#121214' }}
           className={className}
           variant={variant}
         >
@@ -92,13 +92,13 @@ export const CourseCard = ({
                   <div className='subtitleContainer'>
                     {
                       subtitleComponent ?
-                      subtitleComponent :
-                      subtitle && (
-                        <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
+                        subtitleComponent :
+                        subtitle && (
+                          <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
                             {subtitle}
                           </Text>
                         )
-                      }
+                    }
                   </div>
                 </div>
                 <div className='buttonsContainer'>{buttons}</div>
@@ -119,9 +119,9 @@ export const CourseCard = ({
     case 'authorInfo':
       return (
         <StyledCourseCard
-          onClick={() => onClick?.()}         
+          onClick={() => onClick?.()}
           size={size}
-          style={{background: '#121214'}}
+          style={{ background: '#121214' }}
           className={className}
           variant={variant}
         >
@@ -135,18 +135,19 @@ export const CourseCard = ({
             <div style={{ width: '100%' }}>
               <div className='bottomContainer'>
                 <div className='details'>
-                  {renderTitle()}
+
                   <div className='subtitleContainer'>
                     {
                       subtitleComponent ?
-                      subtitleComponent :
-                      subtitle && (
-                        <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
+                        subtitleComponent :
+                        subtitle && (
+                          <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
                             {subtitle}
                           </Text>
                         )
-                      }
+                    }
                   </div>
+                  {renderTitle()}
                 </div>
                 <div className='buttonsContainer'>{buttons}</div>
               </div>
