@@ -109,7 +109,7 @@ export const CourseCard = ({
             </div>
           </StyledCourseImage>
           <HorizontalStack paddingX={spacing.space_3} paddingY={spacing.space_3}>
-            <Title variant='headingXs' truncate truncateLines={2} className='card-title'>
+            <Title variant='heading2xs' truncate truncateLines={3} className='card-title'>
               {title}
             </Title>
           </HorizontalStack>

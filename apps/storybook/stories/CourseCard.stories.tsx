@@ -264,9 +264,9 @@ ShortCardWithBadges.storyName = 'Short card with badges'
 
 export const VariantsComparison = bind(
   <AppShell theme={defaultTheme}>
-    <HorizontalStack gap='50px' alignItems='start' style={{ width: '900px' }}>
+    <HorizontalStack gap='50px' alignItems='start'>
       <VerticalStack>
-        <VerticalStack gap='10px' style={{ flex: 1 }}>
+        <VerticalStack gap='10px' width='250px' style={{ flex: 1 }}>
           <Text variant='bodySm' fontWeight='bold' style={{ marginBottom: '10px' }}>
             Baseline (fullImage)
           </Text>
@@ -290,7 +290,7 @@ export const VariantsComparison = bind(
       </VerticalStack>
 
       <VerticalStack>
-        <VerticalStack gap='10px' style={{ flex: 1 }}>
+        <VerticalStack gap='10px' width='250px' style={{ flex: 1 }}>
           <Text variant='bodySm' fontWeight='bold' style={{ marginBottom: '10px' }}>
             Author Info
           </Text>
@@ -317,7 +317,7 @@ export const VariantsComparison = bind(
         </VerticalStack>
       </VerticalStack>
       <VerticalStack>
-        <VerticalStack gap='10px' style={{ flex: 1 }}>
+        <VerticalStack gap='10px' width='250px' style={{ flex: 1 }}>
           <Text variant='bodySm' fontWeight='bold' style={{ marginBottom: '10px' }}>
             Long Title
           </Text>
@@ -325,7 +325,7 @@ export const VariantsComparison = bind(
             title={TITLE}
             subtitleComponent={
               <HorizontalStack alignItems='center'>
-                <Text variant='bodyXs' fontWeight='bold'>
+                <Text variant='bodyXxxs' fontWeight='bold'>
                   Corso
                   {' • 2 ore'}
                 </Text>
