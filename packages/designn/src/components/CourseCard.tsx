@@ -1,10 +1,18 @@
 import { LayoutProps, SpaceProps } from 'styled-system'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
 import { ProgressBar } from './ProgressBar'
-import { useTheme } from 'styled-components'
 import { HorizontalStack } from './HorizontalStack'
+import { VerticalStack } from './VerticalStack'
+import { Box } from './Box'
+
+export type CourseCardVariant = 'fullImage' | 'longTitle' | 'authorInfo'
+
+export type AuthorInfo = {
+  authorName: string
+  authorProfession: string
+}
 
 export type CourseCardProps = {
   coverImage: string
@@ -18,8 +26,9 @@ export type CourseCardProps = {
   hideProgressBar?: boolean
   rightComponent?: JSX.Element
   size?: 'lg' | 'md'
-  variant?: 'fullImage' | 'longTitle'
+  variant?: CourseCardVariant
   className?: string
+  authors?: AuthorInfo[]
 }
 
 export const CourseCard = ({
@@ -36,6 +45,7 @@ export const CourseCard = ({
   size = 'lg',
   variant = 'fullImage',
   className = 'card-course',
+  authors,
 }: CourseCardProps & SpaceProps & LayoutProps) => {
   const { spacing } = useTheme()
 
@@ -74,7 +84,7 @@ export const CourseCard = ({
               <div className='leftContainer'>
                 {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Logo azienda' /> : null}
               </div>
-              <div className={'rightContainer'}>{rightComponent}</div>
+              <div className='rightContainer'>{rightComponent}</div>
             </div>
             <div style={{ width: '100%' }}>
               <div className='bottomContainer'>
@@ -103,6 +113,87 @@ export const CourseCard = ({
               {title}
             </Title>
           </HorizontalStack>
+        </StyledCourseCard>
+      )
+
+    case 'authorInfo':
+      return (
+        <StyledCourseCard
+          onClick={() => onClick?.()}         
+          size={size}
+          style={{background: '#121214'}}
+          className={className}
+          variant={variant}
+        >
+          <StyledCourseImage style={{ backgroundImage: `url('${coverImage}')`, width: '100%', height: '100%' }}>
+            <div className='topContainer'>
+              <div className='leftContainer'>
+                {companyLogo ? <img className='badgeImage' src={companyLogo} alt='Logo azienda' /> : null}
+              </div>
+              <div className='rightContainer'>{rightComponent}</div>
+            </div>
+            <div style={{ width: '100%' }}>
+              <div className='bottomContainer'>
+                <div className='details'>
+                  {renderTitle()}
+                  <div className='subtitleContainer'>
+                    {
+                      subtitleComponent ?
+                      subtitleComponent :
+                      subtitle && (
+                        <Text variant='bodyXs' fontWeight='bold' className='card-detail'>
+                            {subtitle}
+                          </Text>
+                        )
+                      }
+                  </div>
+                </div>
+                <div className='buttonsContainer'>{buttons}</div>
+              </div>
+              {!hideProgressBar && (
+                <ProgressBar percentage={progressPercentage} transition={true} />
+              )}
+            </div>
+          </StyledCourseImage>
+          {authors && authors.length > 0 && (
+            <Box
+              paddingX={spacing.space_3}
+              paddingY={spacing.space_3}
+              backgroundColor='#121214'
+            >
+              {authors.length === 1 ? (
+                <VerticalStack gap={spacing.space_1}>
+                  {authors[0].authorName && (
+                    <Text variant='bodyXs' fontWeight='regular' color='primary' truncate>
+                      {authors[0].authorName}
+                    </Text>
+                  )}
+                  {authors[0].authorProfession && (
+                    <Text variant='bodyXxs' color='secondary' truncate>
+                      {authors[0].authorProfession}
+                    </Text>
+                  )}
+                </VerticalStack>
+              ) : (
+                <VerticalStack gap={spacing.space_1}>
+                  {authors.slice(0, 2).map((author, index) => (
+                    <HorizontalStack key={index} gap={spacing.space_1} alignItems='center'>
+                      {author.authorName && (
+                        <Text variant='bodyXs' fontWeight='regular' color='primary' style={{ whiteSpace: 'nowrap' }}>
+                          {author.authorName}
+                        </Text>
+                      )}
+                      {author.authorProfession && (
+                        <Text variant='bodyXxs' color='secondary' truncate>
+                          {author.authorProfession}
+                        </Text>
+                      )}
+                    </HorizontalStack>
+                  ))}
+                </VerticalStack>
+              )}
+            </Box>
+          )}
         </StyledCourseCard>
       )
 
@@ -166,7 +257,7 @@ const StyledCourseImage = styled.div`
     content: '';
     background: rgb(12, 12, 12);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-    height: 45%;
+    height: 55%;
     width: 100%;
     position: absolute;
     z-index: 0;
@@ -254,7 +345,7 @@ const StyledCourseImage = styled.div`
   }
 `
 
-const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean; variant?: 'fullImage' | 'longTitle' }>`
+const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean; variant?: CourseCardVariant }>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -267,20 +358,20 @@ const StyledCourseCard = styled.button<{ size?: 'lg' | 'md'; pro?: boolean; vari
   height: 100%;
   width: 100%;
   border: none;
-  aspect-ratio: ${p => (p.size === 'md' ? '7/5' : '5/4')};
+  aspect-ratio: ${p => (p.size === 'md' ? (p.variant === "authorInfo" || p.variant === "longTitle") ? '7/6' : '7/5' : '5/4')};
   padding: 0;
 
   &:before {
     content: '';
     background: rgb(12, 12, 12);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-    height: 45%;
+    height: 55%;
     width: 100%;
     position: absolute;
     z-index: 0;
     bottom: 0;
     left: 0;
-    display: ${p => (p.variant === 'longTitle' ? 'none' : 'block')};
+    display: ${p => (p.variant === 'longTitle' || p.variant === 'authorInfo' ? 'none' : 'block')};
   }
 
   &:hover {
