@@ -1,6 +1,6 @@
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AppShell, Badge, CourseCard, defaultTheme, HorizontalStack, VerticalStack } from '@learnn/designn'
+import { AppShell, Badge, CourseCard, defaultTheme, HorizontalStack, VerticalStack, Text } from '@learnn/designn'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
@@ -222,10 +222,10 @@ export const ShortCardWithBadges = bind(
           size='md'
           rightComponent={
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              <Badge body='🚨 Rimozione' variant='contained' squareBorder={false}/>
+              <Badge body='🚨 Rimozione' variant='contained' squareBorder={false} />
             </div>
           }
-          />
+        />
       </HorizontalStack>
       <HorizontalStack gap='25px' style={{ width: '300px' }}>
         <CourseCard
@@ -240,7 +240,7 @@ export const ShortCardWithBadges = bind(
               <Badge body='🚨 Rimozione aa' variant='contained' squareBorder={false} />
             </div>
           }
-          />
+        />
       </HorizontalStack>
       <HorizontalStack gap='25px' style={{ width: '350px' }}>
         <CourseCard
@@ -255,9 +255,146 @@ export const ShortCardWithBadges = bind(
               <Badge body='🚨 Rimozione aa' variant='contained' squareBorder={false} />
             </div>
           }
-          />
+        />
       </HorizontalStack>
     </VerticalStack>
   </AppShell>,
 )
 ShortCardWithBadges.storyName = 'Short card with badges'
+
+export const VariantsComparison = bind(
+  <AppShell theme={defaultTheme}>
+    <HorizontalStack gap='50px' alignItems='start'>
+      <VerticalStack>
+        <VerticalStack gap='10px' width='250px' style={{ flex: 1 }}>
+          <Text variant='bodySm' fontWeight='bold' style={{ marginBottom: '10px' }}>
+            Baseline (fullImage)
+          </Text>
+          <CourseCard
+            title={TITLE}
+            subtitleComponent={
+              <HorizontalStack alignItems='center'>
+                <Text variant='bodyXs' fontWeight='bold'>
+                  Corso
+                  {' • 2 ore'}
+                </Text>
+              </HorizontalStack>
+            }
+            coverImage={COVER_IMAGE}
+            progressPercentage={PROGRESS}
+            variant='fullImage'
+            companyLogo={COMPANY_LOGO}
+            size='md'
+          />
+        </VerticalStack>
+      </VerticalStack>
+
+      <VerticalStack>
+        <VerticalStack gap='10px' width='250px' style={{ flex: 1 }}>
+          <Text variant='bodySm' fontWeight='bold' style={{ marginBottom: '10px' }}>
+            Author Info
+          </Text>
+          <CourseCard
+            title={TITLE}
+            subtitleComponent={
+              <HorizontalStack alignItems='center'>
+                <Text variant='bodyXs' fontWeight='bold'>
+                  Corso
+                  {' • 2 ore'}
+                </Text>
+              </HorizontalStack>
+            }
+            coverImage={COVER_IMAGE}
+            progressPercentage={PROGRESS}
+            variant='authorInfo'
+            companyLogo={COMPANY_LOGO}
+            authors={[
+              { authorName: 'Mario Rossi', authorProfession: 'Acme Corporation' },
+              { authorName: 'Luigi Bianchi', authorProfession: 'Tech Solutions' }
+            ]}
+            size='md'
+          />
+        </VerticalStack>
+      </VerticalStack>
+      <VerticalStack>
+        <VerticalStack gap='10px' width='250px' style={{ flex: 1 }}>
+          <Text variant='bodySm' fontWeight='bold' style={{ marginBottom: '10px' }}>
+            Long Title
+          </Text>
+          <CourseCard
+            title={TITLE}
+            subtitleComponent={
+              <HorizontalStack alignItems='center'>
+                <Text variant='bodyXxxs' fontWeight='bold'>
+                  Corso
+                  {' • 2 ore'}
+                </Text>
+              </HorizontalStack>
+            }
+            coverImage={COVER_IMAGE}
+            progressPercentage={PROGRESS}
+            variant='longTitle'
+            companyLogo={COMPANY_LOGO}
+            size='md'
+          />
+        </VerticalStack>
+      </VerticalStack>
+    </HorizontalStack>
+  </AppShell>,
+)
+VariantsComparison.storyName = 'Variants Comparison'
+
+export const CourseCardAuthorInfo = bind(
+  <AppShell theme={defaultTheme}>
+    <HorizontalStack gap='25px'>
+      <VerticalStack gap='10px' width='250px'>
+        <Text variant='bodySm' fontWeight='bold' style={{ marginBottom: '10px' }}>
+          1 Autore
+        </Text>
+        <CourseCard
+          title={TITLE}
+          subtitleComponent={
+            <HorizontalStack alignItems='center'>
+              <Text variant='bodyXxxs' fontWeight='bold'>
+                Corso
+                {' • 2 ore'}
+              </Text>
+            </HorizontalStack>
+          }
+          coverImage={COVER_IMAGE}
+          progressPercentage={PROGRESS}
+          variant='authorInfo'
+          companyLogo={COMPANY_LOGO}
+          authors={[{ authorName: 'Mario Rossi Verdi Bianchi Rossi Verdi', authorProfession: 'Ex Google Apple & Acme Corporation' }]}
+          size='md'
+        />
+      </VerticalStack>
+      <VerticalStack gap='10px' width='250px'>
+        <Text variant='bodySm' fontWeight='bold' style={{ marginBottom: '10px' }}>
+          2 Autori
+        </Text>
+        <CourseCard
+          title={TITLE}
+          subtitleComponent={
+            <HorizontalStack alignItems='center'>
+              <Text variant='bodyXxxs' fontWeight='bold'>
+                Corso
+                {' • 2 ore'}
+              </Text>
+            </HorizontalStack>
+          }
+          coverImage={COVER_IMAGE}
+          progressPercentage={PROGRESS}
+          variant='authorInfo'
+          companyLogo={COMPANY_LOGO}
+          authors={[
+            { authorName: 'Mario Rossi', authorProfession: 'Ex Google & Acme Corporation' },
+            { authorName: 'Luigi Bianchi Rossi Verdi', authorProfession: 'Ex Apple & Tech Solutions' }
+          ]}
+          size='md'
+        />
+      </VerticalStack>
+    </HorizontalStack>
+  </AppShell>,
+)
+CourseCardAuthorInfo.storyName = 'CourseCard Author Info'

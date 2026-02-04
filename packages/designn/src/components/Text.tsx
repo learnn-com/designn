@@ -35,6 +35,8 @@ export type TextProps = {
   id?: string
   /** Truncate text overflow with ellipsis */
   truncate?: boolean
+  /** Truncate lines */
+  truncateLines?: number
   /** Typographic style of text */
   variant?: Variant
   /** Weather or not element should be inline */
@@ -53,6 +55,7 @@ export function Text({
   fontWeight,
   id,
   truncate,
+  truncateLines,
   variant,
   inline,
   as,
@@ -69,6 +72,7 @@ export function Text({
       variant={variant}
       alignment={alignment ?? 'start'}
       truncate={undefinedAsFalse(truncate)}
+      truncateLines={truncateLines}
       fontWeight={fontWeight}
       color={color ?? 'primary'}
       textColor={textColor}
@@ -141,8 +145,18 @@ const Component = styled.p<TextProps & SpaceProps & WidthProps & HeightProps>`
   ${compose(space, width, height)}
 `
 
-const truncatedStyle = css`
-  overflow: hidden;
-  white-space: nowrap;
+const truncatedStyle = css<TextProps>`
+  ${p =>
+    p.truncateLines
+      ? `
+  -webkit-line-clamp: ${p.truncateLines};
+  -webkit-box-orient: vertical;
+ `
+      : `
+ white-space: nowrap;
+ `}
+
   text-overflow: ellipsis;
+  display: -webkit-box;
+  overflow: hidden;
 `
