@@ -47,7 +47,7 @@ export const CourseCard = ({
   className = 'card-course',
   authors,
 }: CourseCardProps & SpaceProps & LayoutProps) => {
-  const { spacing } = useTheme()
+  const { spacing, colors, typography } = useTheme()
 
   const renderTitle = () => {
     switch (size) {
@@ -135,7 +135,6 @@ export const CourseCard = ({
             <div style={{ width: '100%' }}>
               <div className='bottomContainer'>
                 <div className='details'>
-
                   <div className='subtitleContainer'>
                     {
                       subtitleComponent ?
@@ -147,7 +146,6 @@ export const CourseCard = ({
                         )
                     }
                   </div>
-                  {renderTitle()}
                 </div>
                 <div className='buttonsContainer'>{buttons}</div>
               </div>
@@ -156,45 +154,26 @@ export const CourseCard = ({
               )}
             </div>
           </StyledCourseImage>
-          {authors && authors.length > 0 && (
-            <Box
-              paddingX={spacing.space_3}
-              paddingY={spacing.space_3}
-              backgroundColor='#121214'
-            >
-              {authors.length === 1 ? (
+          <Box
+            paddingX={spacing.space_3}
+            paddingY={spacing.space_3}
+            backgroundColor='#121214'
+          >
+            <VerticalStack gap={spacing.space_2}>
+              <Title variant='headingXs' truncate truncateLines={2} className='card-title'>
+                {title}
+              </Title>
+              {authors && authors.length > 0 && (
                 <VerticalStack gap={spacing.space_1}>
                   {authors[0].authorName && (
-                    <Text variant='bodyXs' fontWeight='regular' color='primary' truncate>
-                      {authors[0].authorName}
+                    <Text variant='bodyXs' fontWeight='regular' color='secondary' truncate truncateLines={2}>
+                      <span style={{ fontWeight: typography.font_weight_bold, color: colors.text.primary }}>{authors[0].authorName}</span> - {authors[0].authorProfession}
                     </Text>
                   )}
-                  {authors[0].authorProfession && (
-                    <Text variant='bodyXxs' color='secondary' truncate>
-                      {authors[0].authorProfession}
-                    </Text>
-                  )}
-                </VerticalStack>
-              ) : (
-                <VerticalStack gap={spacing.space_1}>
-                  {authors.slice(0, 2).map((author, index) => (
-                    <HorizontalStack key={index} gap={spacing.space_1} alignItems='center'>
-                      {author.authorName && (
-                        <Text variant='bodyXs' fontWeight='regular' color='primary' style={{ whiteSpace: 'nowrap' }}>
-                          {author.authorName}
-                        </Text>
-                      )}
-                      {author.authorProfession && (
-                        <Text variant='bodyXxs' color='secondary' truncate>
-                          {author.authorProfession}
-                        </Text>
-                      )}
-                    </HorizontalStack>
-                  ))}
                 </VerticalStack>
               )}
-            </Box>
-          )}
+            </VerticalStack>
+          </Box>
         </StyledCourseCard>
       )
 
