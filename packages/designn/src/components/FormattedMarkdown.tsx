@@ -281,6 +281,7 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
         }
 
         h1 {
+          margin-top: 2.4rem !important;
           margin-bottom: 1.3rem !important;
           font-size: 2.5rem;
           letter-spacing:-2.4px;
@@ -382,6 +383,7 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
         }
 
         h1 {
+          margin-top: 1.6rem !important;
           margin-bottom: 1rem !important;
           font-size: 1.7rem;
           letter-spacing:-1.5px;
@@ -484,6 +486,7 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
         }
 
         h1 {
+          margin-top: 3rem !important;
           margin-bottom: 1.5rem !important;
           font-size: 3.2rem;
           letter-spacing:-3px;
