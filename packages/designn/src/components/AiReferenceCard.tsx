@@ -93,21 +93,19 @@ const ImageContainer = styled.div<{ $fullHeight: boolean }>`
     width: 4rem;
     flex-shrink: 0;
     margin-right: 0.2rem;
-    display: flex;
-    align-items: center;
+    position: relative;
     ${p => p.$fullHeight
         ? 'align-self: stretch;'
-        : 'align-self: center;'
+        : 'align-self: center; height: 4rem;'
     }
 `
 
 const Image = styled.img<{ $fullHeight: boolean }>`
-    width: 100%;
     object-fit: cover;
     display: block;
     ${p => p.$fullHeight
-        ? 'height: 100%; flex: 1;'
-        : 'height: 4rem;'
+        ? 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;'
+        : 'width: 100%; height: 100%;'
     }
 `
 
