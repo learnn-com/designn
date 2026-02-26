@@ -72,6 +72,7 @@ const CardContainer = styled.div`
     background-color: #221832;
     border-radius: 24px;
     padding: 15px;
+    margin-bottom: 0.4rem;
     transition: transform 100ms ease-in-out;
     border: 1px solid #38294C;
     cursor: pointer;
@@ -86,9 +87,11 @@ const CardContainer = styled.div`
 const ImageContainer = styled.div`
     border-radius: 1rem;
     overflow: hidden;
-    height: 4rem;
+    min-width: 4rem;
     width: 4rem;
     flex-shrink: 0;
+    margin-right: 0.2rem;
+    align-self: stretch;
 `
 
 const Image = styled.img`

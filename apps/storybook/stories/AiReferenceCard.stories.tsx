@@ -15,7 +15,7 @@ const EXAMPLE_TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. S
 
 export const Default = bind(
   <AppShell theme={aiPurpleTheme}>
-    <VerticalStack width='400px' background='#170C24' p='50px' pb='100px' gap={'16px'}>
+    <VerticalStack width='400px' background='#170C24' p='50px' pb='100px'>
     <FormattedMarkdown>{EXAMPLE_TEXT}</FormattedMarkdown>
       <AiReferenceCard 
         onClick={() => {}}
