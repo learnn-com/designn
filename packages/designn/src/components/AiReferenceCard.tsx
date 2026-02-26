@@ -9,16 +9,18 @@ export type AiReferenceCardProps = {
     typeTitle?: string
     title: string
     image?: string
+    imageFullHeight?: boolean
     subtitle?: string
     ctaTitle?: string
 }
 
-export const AiReferenceCard: FC<AiReferenceCardProps> = ({ 
-    onClick, 
-    typeTitle, 
-    image, 
-    title, 
-    subtitle, 
+export const AiReferenceCard: FC<AiReferenceCardProps> = ({
+    onClick,
+    typeTitle,
+    image,
+    imageFullHeight = false,
+    title,
+    subtitle,
     ctaTitle,
 }) => {
     const { spacing } = useTheme()
@@ -28,8 +30,8 @@ export const AiReferenceCard: FC<AiReferenceCardProps> = ({
             <CardContainer onClick={onClick} >
                 <HorizontalStack alignItems="center" flex={1} >
                 {image && (
-                        <ImageContainer>
-                            <Image src={image} alt={title} />
+                        <ImageContainer $fullHeight={imageFullHeight}>
+                            <Image src={image} alt={title} $fullHeight={imageFullHeight} />
                         </ImageContainer>
                    )}
                     <VerticalStack 
@@ -84,20 +86,29 @@ const CardContainer = styled.div`
     }
 `
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ $fullHeight: boolean }>`
     border-radius: 1rem;
     overflow: hidden;
     min-width: 4rem;
     width: 4rem;
     flex-shrink: 0;
     margin-right: 0.2rem;
-    align-self: stretch;
+    display: flex;
+    align-items: center;
+    ${p => p.$fullHeight
+        ? 'align-self: stretch;'
+        : 'align-self: center;'
+    }
 `
 
-const Image = styled.img`
+const Image = styled.img<{ $fullHeight: boolean }>`
     width: 100%;
-    height: 100%;
     object-fit: cover;
+    display: block;
+    ${p => p.$fullHeight
+        ? 'height: 100%; flex: 1;'
+        : 'height: 4rem;'
+    }
 `
 
 const Overlay = styled.div`

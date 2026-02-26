@@ -27,7 +27,7 @@ export const Default = bind(
       />
       <AiReferenceCard 
         onClick={() => {}}
-        image='https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/medium_i_google_ads_copertina_01_79213edd37.jpg'
+        image='	https://learnn-production-vod-source.s3.eu-central-1.amazonaws.com/large_Path_ecomm_690ab620ef.png'
         typeTitle='Lezione'
         title='Come usare ChatGPT per la tua azienda'
         subtitle='Dal corso: ChatGPT & AI'
@@ -92,3 +92,45 @@ export const BasicCards = bind(
 )
 
 BasicCards.storyName = 'Course: most basic cards'
+
+export const ImageFullHeight = bind(
+  <AppShell theme={aiPurpleTheme}>
+    <VerticalStack width='400px' background='#170C24' p='50px' pb='100px' gap={'16px'}>
+      <AiReferenceCard
+        onClick={() => {}}
+        typeTitle='Corso'
+        image='https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/medium_i_google_ads_copertina_01_79213edd37.jpg'
+        title='ChatGPT & AI'
+        subtitle='Simone Dassereto'
+        ctaTitle='Vai al corso'
+      />
+      <AiReferenceCard
+        onClick={() => {}}
+        typeTitle='Corso'
+        image='https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/medium_i_google_ads_copertina_01_79213edd37.jpg'
+        title='ChatGPT & AI'
+        subtitle='Simone Dassereto'
+        ctaTitle='Vai al corso'
+        imageFullHeight
+      />
+      <AiReferenceCard
+        onClick={() => {}}
+        typeTitle='Lezione'
+        image='https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/medium_i_google_ads_copertina_01_79213edd37.jpg'
+        title="Come sfruttare l'intelligenza artificiale generativa per ottimizzare i processi aziendali nel 2025"
+        subtitle="Dal corso: ChatGPT & AI per il Business — Simone Dassereto"
+        ctaTitle='Vai alla lezione'
+      />
+      <AiReferenceCard
+        onClick={() => {}}
+        typeTitle='Lezione'
+        image='https://stack-media-learnn-534097984700.s3.eu-west-3.amazonaws.com/medium_i_google_ads_copertina_01_79213edd37.jpg'
+        title="Come sfruttare l'intelligenza artificiale generativa per ottimizzare i processi aziendali nel 2025"
+        subtitle="Dal corso: ChatGPT & AI per il Business — Simone Dassereto"
+        ctaTitle='Vai alla lezione'
+        imageFullHeight
+      />
+    </VerticalStack>
+  </AppShell>,
+)
+ImageFullHeight.storyName = 'Image: default vs imageFullHeight'
