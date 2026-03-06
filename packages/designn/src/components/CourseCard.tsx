@@ -3,7 +3,6 @@ import styled, { useTheme } from 'styled-components'
 import { Title } from './Title'
 import { Text } from './Text'
 import { ProgressBar } from './ProgressBar'
-import { HorizontalStack } from './HorizontalStack'
 import { VerticalStack } from './VerticalStack'
 import { Box } from './Box'
 
@@ -108,11 +107,26 @@ export const CourseCard = ({
               )}
             </div>
           </StyledCourseImage>
-          <HorizontalStack paddingX={spacing.space_3} paddingY={spacing.space_3}>
-            <Title variant='heading2xs' truncate truncateLines={3} className='card-title'>
-              {title}
-            </Title>
-          </HorizontalStack>
+          <Box
+            paddingX={spacing.space_3}
+            paddingY={spacing.space_3}
+            backgroundColor='#121214'
+          >
+            <VerticalStack gap={spacing.space_1}>
+              <Title variant='heading2xs' truncate truncateLines={2} className='card-title'>
+                {title}
+              </Title>
+              {authors && authors.length > 0 && (
+                <VerticalStack gap={spacing.space_1}>
+                  {authors[0].authorName && (
+                    <Text variant='bodyXxxs' fontWeight='regular' color='secondary' truncate truncateLines={1}>
+                      {authors[0].authorName} - {authors[0].authorProfession}
+                    </Text>
+                  )}
+                </VerticalStack>
+              )}
+            </VerticalStack>
+          </Box>
         </StyledCourseCard>
       )
 

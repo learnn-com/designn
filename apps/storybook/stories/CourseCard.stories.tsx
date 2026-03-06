@@ -335,6 +335,10 @@ export const VariantsComparison = bind(
             progressPercentage={PROGRESS}
             variant='longTitle'
             companyLogo={COMPANY_LOGO}
+            authors={[
+              { authorName: 'Mario Rossi', authorProfession: 'Acme Corporation' },
+              { authorName: 'Luigi Bianchi', authorProfession: 'Tech Solutions' }
+            ]}
             size='md'
           />
         </VerticalStack>
