@@ -518,6 +518,10 @@ export const FormattedStyledMarkdown = styled(Box)<FormattedStyledMarkdownProps>
     }
   }}
 
+  > *:first-child {
+    margin-top: 0 !important;
+  }
+
   h1 + p,
   h2 + p,
   h3 + p,
