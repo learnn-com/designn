@@ -7,4 +7,4 @@ It's based on:
 - reactjs
 - styled components
 
-It uses storybook to document the design system
+It uses storybook to document the design system.
