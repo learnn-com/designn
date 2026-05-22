@@ -316,7 +316,7 @@ const StyledCourseImage = styled.div`
     align-items: flex-start;
     justify-content: flex-end;
     gap: ${p => p.theme.spacing.space_1};
-    max-width: 85%;
+    max-width: 95%;
 
     ${p => p.theme.responsive.medium_down} {
       gap: 0;
