@@ -41,3 +41,7 @@ my.secrets
 
 lib
 .idea/
+.pair/working/
+
+.pair/.kb-version.json
+.pair/.skill-name-map.json
