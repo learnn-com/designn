@@ -1,0 +1,117 @@
+{
+  "asset_registries": {
+    "knowledge": {
+      "source": ".pair/knowledge",
+      "behavior": "mirror",
+      "description": "Knowledge base and documentation",
+      "targets": [
+        {
+          "path": ".pair/knowledge",
+          "mode": "canonical"
+        }
+      ]
+    },
+    "agents": {
+      "source": "AGENTS.md",
+      "behavior": "mirror",
+      "description": "AI agents guidance and session context",
+      "targets": [
+        {
+          "path": "AGENTS.md",
+          "mode": "canonical"
+        },
+        {
+          "path": "CLAUDE.md",
+          "mode": "copy",
+          "transform": {
+            "prefix": "claude"
+          }
+        }
+      ]
+    },
+    "skills": {
+      "source": ".skills",
+      "behavior": "overwrite",
+      "flatten": true,
+      "flattenDepth": 1,
+      "prefix": "pair",
+      "description": "Agent skills distributed to AI tool directories",
+      "targets": [
+        {
+          "path": ".claude/skills/",
+          "mode": "canonical"
+        },
+        {
+          "path": ".github/skills/",
+          "mode": "symlink"
+        },
+        {
+          "path": ".cursor/skills/",
+          "mode": "symlink"
+        }
+      ]
+    },
+    "workflows": {
+      "source": ".workflows",
+      "behavior": "overwrite",
+      "exclude": [
+        "pair-implement-batch.test.mjs",
+        "pair-refine-batch.test.mjs",
+        "pair-loop.test.mjs",
+        "pair-contracts/autonomy-policy.test.mjs",
+        "pair-contracts/autonomy-cycle.test.mjs",
+        "pair-contracts/autonomy-parity.test.mjs",
+        "pair-contracts/autonomy-parity.fixtures.json",
+        "pair-contracts/delta-review-witnesses.test.mjs",
+        "pair-contracts/ensure-contract.test.mjs",
+        "pair-contracts/red-snapshot.test.mjs",
+        "pair-contracts/cycle-state.test.mjs",
+        "pair-contracts/gitleaks-allowlist.test.mjs",
+        "pair-contracts/gitleaks-allowlist-control.test.mjs",
+        "pair-contracts/cycle-recovery.test.mjs",
+        "pair-contracts/stage-achash.test.mjs",
+        "pair-contracts/workflow-profile.test.mjs",
+        "pair-contracts/cycle-metrics.test.mjs",
+        "pair-contracts/cycle-merge.test.mjs",
+        "pair-contracts/cycle-prepare.test.mjs",
+        "pair-contracts/cycle-prepare-parity.test.mjs",
+        "pair-contracts/cycle-runtime.test.mjs",
+        "pair-contracts/engine-integration.test.mjs",
+        "pair-contracts/recipe.test.mjs",
+        "pair-contracts/pr-comment.test.mjs",
+        "pair-contracts/pr-state.test.mjs",
+        "pair-contracts/engine-boundaries.test.mjs",
+        "pair-contracts/host-adapter.test.mjs",
+        "pair-contracts/filesystem-adapter.test.mjs",
+        "pair-contracts/linear-adapter.test.mjs",
+        "pair-contracts/fixtures/linear/fake-linear.mjs",
+        "pair-contracts/fixtures/linear/world.json",
+        "pair-contracts/filesystem-roundtrip.test.mjs",
+        "pair-contracts/opaque-card-ids.test.mjs",
+        "pair-contracts/pm-agnostic-conformance.test.mjs",
+        "pair-contracts/word-limits.test.mjs"
+      ],
+      "description": "Batch orchestration workflows (Claude Code only; inert elsewhere)",
+      "targets": [
+        {
+          "path": ".claude/workflows/",
+          "mode": "canonical"
+        }
+      ]
+    },
+    "agent-definitions": {
+      "source": ".agents",
+      "behavior": "overwrite",
+      "description": "Agent execution layer the workflows dispatch to (pair-implementer, pair-reviewer, pair-fix-test-author, pair-red-contract-verifier, pair-contract-generator) — five subagents, one per judgment role of the delivery workflow",
+      "targets": [
+        {
+          "path": ".claude/agents/",
+          "mode": "canonical"
+        }
+      ]
+    }
+  },
+  "skipRegistries": [
+    "github"
+  ]
+}

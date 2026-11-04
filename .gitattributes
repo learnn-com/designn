@@ -1,0 +1,6 @@
+# pair-cli generated: collapsed in GitHub diffs
+.pair/knowledge/** linguist-generated=true
+.pair/llms.txt linguist-generated=true
+.claude/skills/** linguist-generated=true
+.claude/agents/** linguist-generated=true
+.claude/workflows/** linguist-generated=true
